@@ -5,7 +5,7 @@ Contact Us!
 
 Main Developers
 ---------------
-GitHub: `create GitHub issue <https://github.com/yoctoyotta1024/GoodSciProjTemplate/issues/new>`_
+GitHub: `create GitHub issue <https://github.com/yoctoyotta1024/microphysics_testcases/issues/new>`_
 ####################################################################################################
 
 

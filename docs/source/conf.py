@@ -1,7 +1,7 @@
 '''
 Copyright (c) 2024 MPI-M, Clara Bayley
 
------ GoodSciProjTemplate -----
+----- Microphysics Test Cases -----
 File: conf.py
 Project: source
 Created Date: Tuesday 27th February 2024
@@ -15,7 +15,6 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-config file for sphinx documentation
 '''
 
 
@@ -38,7 +37,7 @@ sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'GoodSciProjTemplate'
+project = 'Microphysics Test Cases'
 license = 'BSD 3-Clause'
 copyright = '(2024) MPI-M, Clara Bayley'
 author = 'Clara Bayley & Other Developers'

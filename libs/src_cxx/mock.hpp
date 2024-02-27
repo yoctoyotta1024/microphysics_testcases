@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2024 MPI-M, Clara Bayley
- * 
- * ----- GoodSciProjTemplate -----
+ *
+ * ----- Microphysics Test Cases -----
  * File: mock.hpp
  * Project: src_cxx
  * Created Date: Tuesday 27th February 2024
@@ -15,7 +15,6 @@
  * https://opensource.org/licenses/BSD-3-Clause
  * -----
  * File Description:
- * source file for mock c++ header library
  */
 
 

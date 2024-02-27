@@ -1,14 +1,9 @@
-# Template for Good Python and C++ Scientific Project
-
-This code is adapted from [this](https://juliadynamics.github.io/DrWatson.jl/stable) template for
-Julia Language to make a reproducible scientific project for Python and C++ code in light of the
-guidelines from [this](https://www.youtube.com/watch?v=x3swaMSCcYk) Good Scientific Code Workshop by
-George Datseris.
+# Microphysics Test Cases
 
 ## Install
 To (locally) reproduce this project simply clone the repository.
 ```
-git clone https://github.com/yoctoyotta1024/GoodSciProjTemplate.git
+git clone https://github.com/yoctoyotta1024/microphysics_testcases.git
 ```
 You will need to run ``pre-commit install`` but other than that all the necessary packages for you
 to run & have fun with everything should work out of the box... If not, please raise an issue on the
@@ -16,7 +11,7 @@ GitHub repository.
 
 ## Documentation
 Some documentation has been set up for this project which you should be able to find hosted online
-here: https://yoctoyotta1024.github.io/GoodSciProjTemplate/... If not, please raise an issue on the
+here: https://yoctoyotta1024.github.io/microphysics_testcases/... If not, please raise an issue on the
 GitHub repository.
 
 Alternatively, You can build and view the documentation locally. First build the .xml
@@ -35,5 +30,4 @@ Thank you and good luck!
 - Clara Bayley
 
 ## Acknowledgements
-- Lukas Kluft
-- George Datseris
+- Bjorn Stevens
