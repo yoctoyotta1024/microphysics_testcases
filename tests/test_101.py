@@ -1,7 +1,7 @@
 '''
 Copyright (c) 2024 MPI-M, Clara Bayley
 
------ GoodSciProjTemplate -----
+----- Microphysics Test Cases -----
 File: test_101.py
 Project: tests
 Created Date: Tuesday 27th February 2024
@@ -15,7 +15,6 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-test just to check tests work
 '''
 
 

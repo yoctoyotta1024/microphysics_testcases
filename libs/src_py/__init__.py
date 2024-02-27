@@ -1,7 +1,7 @@
 '''
 Copyright (c) 2024 MPI-M, Clara Bayley
 
------ GoodSciProjTemplate -----
+----- Microphysics Test Cases -----
 File: __init__.py
 Project: src_py
 Created Date: Tuesday 27th February 2024
