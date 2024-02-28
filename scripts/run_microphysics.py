@@ -2,13 +2,13 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: test_mock.py
-Project: tests
+File: run_microphysics.py
+Project: scripts
 Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Tuesday 27th February 2024
+Last Modified: Wednesday 28th February 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -18,8 +18,12 @@ File Description:
 '''
 
 
-import numpy as np
-from libs.src_py import mock
+import sys
+import pathlib
 
-def test_area_circle():
-	assert mock.area_circle(1.0) == np.pi
+path = str(pathlib.Path(__file__).parent.resolve())
+sys.path.append(path+'/../libs/') # add path to src_py to PATH
+
+from src_py import microphys
+
+microphys.hello_world()
