@@ -22,7 +22,8 @@ class for mock microphysics scheme in Python
 import numpy as np
 
 class MicrophysicsScheme:
-  """A class representing a Python mock microphysics scheme."""
+  """A class representing a Python microphysics scheme which is a mock-up of the muphys-cpp graupel
+  class for ICON."""
 
   def __init__(self):
     """Init the MicrophysicsScheme object (Python only) """

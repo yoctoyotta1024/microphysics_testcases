@@ -24,17 +24,17 @@ import pathlib
 path = str(pathlib.Path(__file__).parent.resolve())
 sys.path.append(path+'/../libs/') # add path to src_py to PATH
 
-from src_py.microphysics_scheme import MicrophysicsScheme
+from src_py.microphysics_scheme import MicrophysicsSchemeWrapper
 
 def main():
   """Run an example of using the MicrophysicsScheme class.
 
   This function demonstrates an example usage of the MicrophysicsScheme class.
   It creates an instance of the MicrophysicsScheme class, initializes it,
-  loops over a series of computations using the `run` method, and finalizes it.
+  loops over series of computations using the `run` method, and finalizes it.
   """
 
-  microphys = MicrophysicsScheme()
+  microphys = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
   print("\n--- Example of using: "+microphys.name+" ---\n")
 

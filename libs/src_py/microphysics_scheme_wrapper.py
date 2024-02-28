@@ -23,11 +23,40 @@ and run scripts
 from microphysics_scheme import MicrophysicsScheme
 
 class MicrophysicsSchemeWrapper:
-  """A class wrapping around Python MicrophysicsScheme for compatibility purposes"""
+  """A class wrapping around Python MicrophysicsScheme for compatibility purposes.
+
+  This class wraps around the MicrophysicsScheme class to provide compatibility with the Python
+  run scripts and tests in this project. It initializes a MicrophysicsScheme object and provides
+  wrappers around methods to initialize, finalize, and run the microphysics.
+
+  Args:
+      nvec (int): Number of horizontal points.
+      ke (int): Number of grid points in vertical direction.
+      ivstart (int): Start index for horizontal direction.
+      dz (float): Layer thickness of full levels (m).
+      qnc (float): Cloud number concentration.
+
+  Attributes:
+      nvec (int): Number of horizontal points.
+      ke (int): Number of grid points in vertical direction.
+      ivstart (int): Start index for horizontal direction.
+      dz (float): Layer thickness of full levels (m).
+      qnc (float): Cloud number concentration.
+      microphys (MicrophysicsScheme): instance of Python MicrophysicsScheme.
+
+  """
 
   def __init__(self, nvec, ke, ivstart, dz, qnc):
-    """Init the MicrophysicsScheme object """
+    """Initialize the MicrophysicsSchemeWrapper object.
 
+    Args:
+      nvec (int): Number of horizontal points.
+      ke (int): Number of grid points in vertical direction.
+      ivstart (int): Start index for horizontal direction.
+      dz (float): Layer thickness of full levels (m).
+      qnc (float): Cloud number concentration.
+
+    """
     self.nvec = nvec
     self.ke = ke
     self.ivstart = ivstart
@@ -36,26 +65,39 @@ class MicrophysicsSchemeWrapper:
     self.microphys = MicrophysicsScheme()
 
   def initialize(self):
-
+    """Initialize the microphysics scheme."""
     self.microphys.initialize()
 
   def finalize(self):
-
+    """Finalize the microphysics scheme."""
     self.microphys.finalize()
 
   def run(self, timestep, thermo):
+    """Run the microphysics computations.
 
-   dt = timestep
-   t = thermo.temp
-   rho = thermo.rho
-   p = thermo.press
-   qv, qc, qi, qr, qs, qg = thermo.massmix_ratios
+    This method is a wrapper of the MicrophysicsScheme object's run function to call the
+    microphysics computations in a way that's compatible with the scripts and tests in this rest
+    of this project.
 
-   t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx = self.microphys.run(self.nvec, self.ke, self.ivstart,
-                                                                 dt, self.dz, t, rho,
-                                                                 p, qv, qc, qi, qr, qs, qg, self.qnc)
+    Args:
+        timestep (float): Timestep.
+        thermo (Thermo): Thermodynamic properties.
 
-   thermo.temp = t
-   thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
+    Returns:
+        Thermo: Updated thermodynamic properties after microphysics computations.
 
-   return thermo
+    """
+    dt = timestep
+    t = thermo.temp
+    rho = thermo.rho
+    p = thermo.press
+    qv, qc, qi, qr, qs, qg = thermo.massmix_ratios
+
+    t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx = self.microphys.run(self.nvec, self.ke, self.ivstart,
+                                                                  dt, self.dz, t, rho,
+                                                                  p, qv, qc, qi, qr, qs, qg, self.qnc)
+
+    thermo.temp = t
+    thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
+
+    return thermo
