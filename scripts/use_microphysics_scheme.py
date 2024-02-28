@@ -27,6 +27,12 @@ sys.path.append(path+'/../libs/') # add path to src_py to PATH
 from src_py.microphysics_scheme import MicrophysicsScheme
 
 def main():
+  """Run an example of using the MicrophysicsScheme class.
+
+  This function demonstrates an example usage of the MicrophysicsScheme class.
+  It creates an instance of the MicrophysicsScheme class, initializes it,
+  loops over a series of computations using the `run` method, and finalizes it.
+  """
 
   microphys = MicrophysicsScheme()
 
