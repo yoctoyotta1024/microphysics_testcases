@@ -27,7 +27,7 @@ def test_microphys():
 
 	assert microphys.initialize() == 0
 
-	assert microphys.run(0) == 1
-	assert microphys.run(1) == 2
+	assert microphys.run(0,1) == 1
+	assert microphys.run(0,2) == 2
 
 	assert microphys.finalize == 0
