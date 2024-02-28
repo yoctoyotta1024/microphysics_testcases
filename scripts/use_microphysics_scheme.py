@@ -30,7 +30,7 @@ def main():
 
   microphys = MicrophysicsScheme()
 
-  print("--- Example of using: "+microphys.name+" ---")
+  print("\n--- Example of using: "+microphys.name+" ---\n")
 
   microphys.initialize()
 
@@ -43,6 +43,8 @@ def main():
     print("i = "+str(some_value))
 
   microphys.finalize()
+
+  print("\n--- Example Complete ---\n")
 
 if __name__ == "__main__":
     main()
