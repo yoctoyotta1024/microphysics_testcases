@@ -19,18 +19,23 @@ File Description:
 
 from .adiabatic_expansion import AdiabaticExpansion
 
-def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
-
-  ### type of dynamics parcel will undergo
-  parcel_dynamics = AdiabaticExpansion()
-
-  microphys_scheme.initialize()
+def timestep_0dparcel(time, time_end, timestep, thermo, microphys_scheme, parcel_dynamics):
 
   while time <= time_end:
 
     thermo = parcel_dynamics.run(time, thermo)
     thermo = microphys_scheme.run(time, thermo)
 
-    time += timestep
+  time += timestep
+
+def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
+
+  ### type of dynamics parcel will undergo
+  parcel_dynamics = AdiabaticExpansion()
+
+  ### run dynamics + microphysics
+  microphys_scheme.initialize()
+
+  timestep_0dparcel(time, time_end, timestep, thermo, microphys_scheme, parcel_dynamics)
 
   microphys_scheme.finalize()
