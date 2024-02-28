@@ -28,6 +28,19 @@ def timestep_0dparcel(time, time_end, timestep, thermo, microphys_scheme, parcel
     time += timestep
 
 def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
+  """Run a 0-D parcel model with a specified microphysics scheme.
+
+  This function runs a 0-D parcel model with the given initial thermodynamic conditions, and
+  microphysics scheme from time to time_end with a constant timestep.
+
+  Parameters:
+      time (float): Initial time for the simulation (s).
+      time_end (float): End time for the simulation (s).
+      timestep (float): Timestep for the simulation (s).
+      thermo (Thermodynamics): Initial thermodynamic conditions.
+      microphys_scheme: Microphysics scheme to use.
+
+  """
 
   ### type of dynamics parcel will undergo
   parcel_dynamics = AdiabaticExpansion()
