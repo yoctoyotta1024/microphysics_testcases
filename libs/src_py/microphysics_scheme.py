@@ -27,7 +27,7 @@ class MicrophysicsScheme:
   def __init__(self):
     """Init the MicrophysicsScheme object (Python only) """
 
-    self.name = "Python Mock Microphysics Class"
+    self.name = "Python Mock Microphysics Instance"
 
   def initialize(self):
     """Initialize the microphysics scheme.
@@ -55,7 +55,7 @@ class MicrophysicsScheme:
 
     return 0
 
-  def run(self, i):
+  def run(self, time, thermo):
     """Run the microphysics computations.
 
     This method executes the microphysics computations.
@@ -69,4 +69,4 @@ class MicrophysicsScheme:
 
     print("run microphysics")
 
-    return i+1
+    return thermo
