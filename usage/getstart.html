@@ -135,7 +135,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -198,7 +198,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -216,6 +216,26 @@
 <div><p>$ pre-commit install</p>
 </div></blockquote>
 <p>That’s it, you’re done!</p>
+<section id="using-pybind11-on-arm64-macbooks-with-m1-processors-instead-of-x86-64-architectures">
+<h2>Using PyBind11 on ARM64 (Macbooks with M1 Processors) instead of x86_64 Architectures<a class="headerlink" href="#using-pybind11-on-arm64-macbooks-with-m1-processors-instead-of-x86-64-architectures" title="Link to this heading">#</a></h2>
+<p>If you are using Python on an ARM64 architecture (e.g. you have a Mac with an M1 silicon chip) then
+you need to ensure the python libraries have been installed for ARM64 and <em>not</em> x86_64
+architectures. You can check this by entering either <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">[your_python_library].dylib</span></code> or
+<code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">[your_python_library].so</span></code>, which will tell you which architecture your python is installed
+for.</p>
+<p>If you don’t know where your python libraries are installed, have a look at <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> to find
+the path to your python interpreter, e.g. something like <code class="docutils literal notranslate"><span class="pre">/path/to/python/bin/python</span></code>. Then
+look in <code class="docutils literal notranslate"><span class="pre">/path/to/python/lib/</span></code> for something like <code class="docutils literal notranslate"><span class="pre">libpython[X.Y].dylib</span></code> or <code class="docutils literal notranslate"><span class="pre">libpython[X.Y].so</span></code>
+where X.Y is your python version (which you can get from <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>).</p>
+<p>If your python libraries are not ARM64, then you will have problems… One solution is to create a
+conda enviroment which specifically uses conda’s osx-arm64 directory to find packages, e.g. via</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">CONDA_SUBDIR</span><span class="o">=</span>osx-arm64<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span><span class="o">[</span>my_arm64_env<span class="o">]</span><span class="w"> </span>numpy<span class="w"> </span>-c<span class="w"> </span>conda-forge
+<span class="gp">$ </span>conda<span class="w"> </span>activate<span class="w"> </span><span class="o">[</span>name_my_arm64_env<span class="o">]</span>
+<span class="gp">$ </span>conda<span class="w"> </span>config<span class="w"> </span>--env<span class="w"> </span>--set<span class="w"> </span>subdir<span class="w"> </span>osx-arm64
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">[name_my_arm64_env]</span></code> is the name of your new enviroment.</p>
+</section>
 </section>
 
         </article>
@@ -253,7 +273,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 27 February 2024</div>
+              Last updated on 28 February 2024</div>
           </div>
           <div class="right-details">
             
@@ -262,8 +282,27 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#using-pybind11-on-arm64-macbooks-with-m1-processors-instead-of-x86-64-architectures">Using PyBind11 on ARM64 (Macbooks with M1 Processors) instead of x86_64 Architectures</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
