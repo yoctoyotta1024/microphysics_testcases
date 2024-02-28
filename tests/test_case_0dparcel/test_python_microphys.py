@@ -23,6 +23,37 @@ from libs.src_py.thermodynamics import Thermodynamics
 from libs.src_py.microphysics_scheme import MicrophysicsSchemeWrapper
 
 def test_python_microphys():
+  """Test of Python microphysics scheme (which is a mock-up of the muphys-cpp graupel
+  class for ICON).
+
+  This function sets up initial conditions and parameters for testing the Python
+  microphysics scheme in a 0-D parcel test case. It initialises thermodynamic conditions,
+  specifies the microphysics scheme to use (via a wrapper), and runs the 0-D parcel model with the
+  chosen microphysics.
+
+  Test Parameters:
+      Timestepping:
+        time_init (float): Initial time for the simulation (s).
+        time_end (float): End time for the simulation (s).
+        timestep (float): Timestep for the simulation (s).
+      Initial thermodynamics:
+        temp (float): Initial temperature (K).
+        rho (float): Initial density of moist air (kg/m3).
+        press (float): Initial pressure (Pa).
+        qvap (float): Initial specific water vapor content (kg/kg).
+        qcond (float): Initial specific cloud water content (kg/kg).
+        qice (float): Initial specific cloud ice content (kg/kg).
+        qrain (float): Initial specific rain content (kg/kg).
+        qsnow (float): Initial specific snow content (kg/kg).
+        qgrau (float): Initial specific graupel content (kg/kg).
+      Microphysics Scheme:
+        nvec (int): Number of horizontal points for the microphysics scheme.
+        ke (float): Number of grid points in vertical direction for the microphysics scheme.
+        ivstart (int): Start index for horizontal direction for the microphysics scheme.
+        dz (float): Layer thickness of full levels (m) for the microphysics scheme.
+        qnc (float): Cloud number concentration.
+
+  """
 
   ### timestepping
   time_init = 0.0 # [s]

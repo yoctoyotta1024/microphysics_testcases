@@ -68,6 +68,7 @@ class MicrophysicsScheme:
         qr (float): Specific rain content (kg/kg)
         qs (float): Specific snow content kg/kg)
         qg (float): Specific graupel content (kg/kg)
+        qnc (float): Cloud number concentration.
 
     Returns:
         Tuple[float, float, float, float, float, float, float, float, float]:
