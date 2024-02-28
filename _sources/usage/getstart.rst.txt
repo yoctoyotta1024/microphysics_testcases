@@ -30,7 +30,7 @@ look in ``/path/to/python/lib/`` for something like ``libpython[X.Y].dylib`` or 
 where X.Y is your python version (which you can get from ``python --version``).
 
 If your python libraries are not ARM64, then you will have problems... One solution is to create a
-conda enviroment which specifically uses conda's osx-arm64 directory to find packages, e.g. via
+conda enviroment which specifically uses conda-forge's osx-arm64 directory to find packages, e.g. via
 
 .. code-block:: console
 

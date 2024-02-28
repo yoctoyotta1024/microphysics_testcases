@@ -228,7 +228,7 @@ the path to your python interpreter, e.g. something like <code class="docutils l
 look in <code class="docutils literal notranslate"><span class="pre">/path/to/python/lib/</span></code> for something like <code class="docutils literal notranslate"><span class="pre">libpython[X.Y].dylib</span></code> or <code class="docutils literal notranslate"><span class="pre">libpython[X.Y].so</span></code>
 where X.Y is your python version (which you can get from <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>).</p>
 <p>If your python libraries are not ARM64, then you will have problems… One solution is to create a
-conda enviroment which specifically uses conda’s osx-arm64 directory to find packages, e.g. via</p>
+conda enviroment which specifically uses conda-forge’s osx-arm64 directory to find packages, e.g. via</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">CONDA_SUBDIR</span><span class="o">=</span>osx-arm64<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span><span class="o">[</span>my_arm64_env<span class="o">]</span><span class="w"> </span>numpy<span class="w"> </span>-c<span class="w"> </span>conda-forge
 <span class="gp">$ </span>conda<span class="w"> </span>activate<span class="w"> </span><span class="o">[</span>name_my_arm64_env<span class="o">]</span>
 <span class="gp">$ </span>conda<span class="w"> </span>config<span class="w"> </span>--env<span class="w"> </span>--set<span class="w"> </span>subdir<span class="w"> </span>osx-arm64
