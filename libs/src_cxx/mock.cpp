@@ -21,7 +21,7 @@
 
 #include "mock.hpp"
 
-PYBIND11_MODULE(mock, m) {
+PYBIND11_MODULE(mock_cxx, m) {
     m.doc() = "pybind11 example plugin";   // optional module docstring
 
     m.def("area_circle", &area_circle,
