@@ -8,23 +8,26 @@ project(project
 # # Add the location of pybind11Config.cmake to the CMake module path
 # list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/path/to/pybind11Config.cmake")
 
-# Use the pybind11 package from .gitmodules
-add_subdirectory(extern/pybind11)
+# # Use the pybind11 package from .gitmodules
+# add_subdirectory(extern/pybind11)
 
-# Define the C++ source files
-set(SOURCES libs/src_cxx/mock.cpp)
+# # Define the C++ source files
+# set(SOURCES libs/src_cxx/mock.cpp)
 
-# Create the Python extension module
-pybind11_add_module(mock_cxx MODULE ${SOURCES})
+# # Create the Python extension module
+# pybind11_add_module(mock_cxx MODULE ${SOURCES})
 
-# Link any necessary libraries (if needed)
-target_link_libraries(mock_cxx PRIVATE pybind11::module)
+# # Link any necessary libraries (if needed)
+# target_link_libraries(mock_cxx PRIVATE pybind11::module)
 
 # Set additional compile options if needed
 # target_compile_options(mock PRIVATE -Wall -Wextra)
 
 # Optionally install the Python extension module
 # install(TARGETS mock LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}")
+
+add_subdirectory(extern/pybind11)
+pybind11_add_module(mock_cxx libs/src_cxx/mock.cpp)
 
 set_target_properties(mock_cxx PROPERTIES
   CMAKE_CXX_STANDARD_REQUIRED ON
