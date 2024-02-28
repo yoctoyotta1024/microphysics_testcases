@@ -37,16 +37,16 @@ def main():
   initializes it, loops over series of computations using the `run` method, and finalizes it.
   """
 
-  press = 101325
   temp = 288.15
   rho = 1.225
+  press = 101325
   qvap = 0.015
   qcond = 0.0
   qice = 0.0
   qrain = 0.0
   qsnow = 0.0
   qgrau = 0.0
-  thermo = Thermodynamics(press, temp, rho, qvap, qcond, qice, qrain, qsnow, qgrau)
+  thermo = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
 
   nvec = 1
   ke = 1
@@ -59,7 +59,7 @@ def main():
 
   microphys.initialize()
 
-  ### run 11 steps print value returned by microphysics
+  ### run 11 steps and print value of temperature returned by microphysics
   time = 0.0
   time_end = 10.0
   timestep = 1.0
@@ -67,7 +67,8 @@ def main():
 
     thermo = microphys.run(timestep, thermo)
 
-    print("temp = "+str(thermo.temp))
+    msg = "time = {:.1f}".format(time, thermo.temp, thermo.press)
+    print("time = "+str(time)+": temp = "+str(thermo.temp))
 
     time += timestep
 

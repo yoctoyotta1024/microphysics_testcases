@@ -25,9 +25,9 @@ class Thermodynamics:
   content (mass mixing ratio) of vapour and condensates.
 
   Parameters:
-      press (float): Pressure (Pa).
       temp (float): Temperature (K).
       rho (float): Density of moist air (kg/m3)
+      press (float): Pressure (Pa).
       qvap (float): Specific water vapor content (kg/kg)
       qcond (float): Specific cloud water content (kg/kg)
       qice (float): Specific cloud ice content (kg/kg)
@@ -36,9 +36,9 @@ class Thermodynamics:
       qgrau (float): Specific graupel content (kg/kg)
 
   Attributes:
-      press (float): Pressure (Pa).
       temp (float): Temperature (K).
       rho (float): Density of moist air (kg/m3)
+      press (float): Pressure (Pa).
       massmix_ratios (tuple): specific content of vapour and condensates,
                                 in order: [
                                 qvap (float): Specific water vapor content (kg/kg),
@@ -51,7 +51,7 @@ class Thermodynamics:
 
   '''
 
-  def __init__(self, press, temp, rho, qvap, qcond, qice, qrain, qsnow, qgrau):
+  def __init__(self, temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau):
     '''Initialize a thermodynamics object with the given variables
 
     Parameters:
@@ -66,7 +66,7 @@ class Thermodynamics:
         qgrau (float): Specific graupel content (kg/kg)
 
     '''
-    self.press = press
     self.temp = temp
     self.rho = rho
+    self.press = press
     self.massmix_ratios = [qvap, qcond, qice, qrain, qsnow, qgrau]
