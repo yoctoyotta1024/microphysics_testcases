@@ -17,11 +17,11 @@ https://opensource.org/licenses/BSD-3-Clause
 File Description:
 '''
 
-
 from .adiabatic_expansion import AdiabaticExpansion
 
 def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
 
+  ### type of dynamics parcel will undergo
   parcel_dynamics = AdiabaticExpansion()
 
   microphys_scheme.initialize()
