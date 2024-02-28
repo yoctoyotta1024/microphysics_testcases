@@ -54,7 +54,7 @@ def test_python_microphys():
 
   """
 
-  ### timestepping
+  ### time parameters
   time_init = 0.0 # [s]
   time_end = 10.0 # [s]
   timestep = 1.0 # [s]
@@ -79,4 +79,5 @@ def test_python_microphys():
   qnc = 500
   microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
+  ### Run 0D parcel model with chosen setup
   run_0dparcel(time_init, time_end, timestep, thermo_init, microphys_scheme)
