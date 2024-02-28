@@ -67,8 +67,9 @@ def main():
 
     thermo = microphys.run(timestep, thermo)
 
-    msg = "time = {:.1f}".format(time, thermo.temp, thermo.press)
-    print("time = "+str(time)+": temp = "+str(thermo.temp))
+    msg = "time = {:.1f}s: [T, rho, P] = "+\
+      "[{:.2f}K, {:.3f}Kgm^-3, {:.0f}Pa]".format(time, thermo.temp, thermo.rho, thermo.press)
+    print(msg)
 
     time += timestep
 
