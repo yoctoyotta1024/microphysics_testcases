@@ -55,7 +55,7 @@ class MicrophysicsScheme:
 
     return 0
 
-  def run(self, time, thermo):
+  def run(self, nvec, ke, ivstart, dt, dz, t, rho, p, qv, qc, qi, qr, qs, qg, qnc, prr_gsp, pflx):
     """Run the microphysics computations.
 
     This method executes the microphysics computations.
@@ -69,4 +69,4 @@ class MicrophysicsScheme:
 
     print("run microphysics")
 
-    return thermo
+    return t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx
