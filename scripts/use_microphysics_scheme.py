@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: run_microphysics.py
+File: use_microphysics_scheme.py
 Project: scripts
 Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
@@ -24,6 +24,6 @@ import pathlib
 path = str(pathlib.Path(__file__).parent.resolve())
 sys.path.append(path+'/../libs/') # add path to src_py to PATH
 
-from src_py import microphys
+from src_py import microphysics_scheme
 
-microphys.hello_world()
+microphys = microphys.MicrophysicsScheme()

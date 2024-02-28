@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: microphys.py
+File: microphysics_scheme.py
 Project: src_py
 Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
@@ -15,6 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
+class for mock microphysics scheme in Python
 '''
 
 
@@ -54,7 +55,7 @@ class MicrophysicsScheme:
 
     return 0
 
-  def run(self):
+  def run(self, i):
     """Run the microphysics computations.
 
     This method executes the microphysics computations.
@@ -65,4 +66,4 @@ class MicrophysicsScheme:
 
     print("run microphysics")
 
-    return 0
+    return i+1
