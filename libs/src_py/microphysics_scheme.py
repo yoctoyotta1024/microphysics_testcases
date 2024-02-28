@@ -60,8 +60,11 @@ class MicrophysicsScheme:
 
     This method executes the microphysics computations.
 
+    Parameters:
+        i (int): Some parameter to be used in the computations.
+
     Returns:
-        int: 0 upon successful execution.
+        int: Result of the computations, i + 1.
     """
 
     print("run microphysics")

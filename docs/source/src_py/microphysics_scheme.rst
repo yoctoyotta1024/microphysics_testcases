@@ -1,9 +1,8 @@
 Python Mock Microphysics Module
 ===============================
 
-.. automodule:: libs.src_py.microphysics_scheme
+.. autoclass:: libs.src_py.microphysics_scheme.MicrophysicsScheme
    :members:
    :undoc-members:
    :private-members:
-   :special-members:
    :show-inheritance:

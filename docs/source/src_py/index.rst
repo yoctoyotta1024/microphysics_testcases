@@ -4,4 +4,4 @@ Python Package
 .. toctree::
    :maxdepth: 2
 
-   microphys
+   microphysics_scheme
