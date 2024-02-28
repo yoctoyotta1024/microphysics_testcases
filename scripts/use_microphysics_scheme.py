@@ -65,11 +65,11 @@ def main():
   timestep = 1.0
   while time <= time_end:
 
-    thermo = microphys.run(timestep, thermo)
-
     msg = "time = {:.1f}s: [T, rho, P] = "+\
       "[{:.2f}K, {:.3f}Kgm^-3, {:.0f}Pa]".format(time, thermo.temp, thermo.rho, thermo.press)
     print(msg)
+
+    thermo = microphys.run(timestep, thermo)
 
     time += timestep
 
