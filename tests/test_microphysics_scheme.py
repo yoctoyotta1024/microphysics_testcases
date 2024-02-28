@@ -15,7 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-tests fot phyon microphysics module
+mock unit tests for Python microphysics module
 '''
 
 
@@ -30,4 +30,4 @@ def test_microphys():
 	assert microphys.run(0) == 1
 	assert microphys.run(1) == 2
 
-	assert microphys.finalize() == 0
+	assert microphys.finalize == 0

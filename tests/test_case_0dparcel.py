@@ -19,9 +19,10 @@ test case for adiabatic expansion of a parcel of air (0-D model)
 '''
 
 
-import sys
-import pathlib
-import numpy as np
+from libs.src_py.microphysics_scheme import MicrophysicsScheme
+def test_case_0dparcel():
+
+
 
 # path = str(pathlib.Path(__file__).parent.resolve())
 # sys.path.append(path+'/../build/') # add path to microphys to PATH
