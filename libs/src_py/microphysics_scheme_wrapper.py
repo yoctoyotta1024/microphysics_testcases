@@ -19,7 +19,7 @@ wrapper function for an instance of MicrophysicsScheme so it can be used by gene
 and run scripts
 '''
 
-
+from thermodynamics import Thermodynamics
 from microphysics_scheme import MicrophysicsScheme
 
 class MicrophysicsSchemeWrapper:
@@ -72,7 +72,7 @@ class MicrophysicsSchemeWrapper:
     """Finalize the microphysics scheme."""
     self.microphys.finalize()
 
-  def run(self, timestep, thermo):
+  def run(self, timestep: float, thermo: Thermodynamics) -> Thermodynamics:
     """Run the microphysics computations.
 
     This method is a wrapper of the MicrophysicsScheme object's run function to call the
