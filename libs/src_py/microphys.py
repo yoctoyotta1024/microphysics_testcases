@@ -20,28 +20,24 @@ File Description:
 
 import numpy as np
 
-def hello_world():
-  """
-  Prints 'Hello World!'.
+class MicrophysicsScheme:
+  def __init__():
+    name = "Python mock microphysics class"
 
-  This function doesn't take any parameters.
-  """
+  def initialize():
 
-  print("Hello World!")
+    print("microphysics initialisation")
 
-def area_circle(radius):
-  """
-  Calculate the area of a circle.
+    return 0
 
-  Parameters:
-      radius (float): The radius of the circle.
+  def finalize():
 
-  Returns:
-      float: The area of the circle.
+    print("microphysics finalisation")
 
-  Examples:
-    >>> area_circle(4.0)
-    50.26548245743669...
-  """
+    return 0
 
-  return np.pi * radius * radius
+  def run():
+
+    print("run microphysics")
+
+    return 0
