@@ -28,7 +28,7 @@ class MicrophysicsScheme:
   def __init__(self):
     """Init the MicrophysicsScheme object (Python only) """
 
-    self.name = "Python Mock Microphysics Instance"
+    self.name = "Python mock-up of an instance of muphys-cpp's graupel for ICON"
 
   def initialize(self):
     """Initialize the microphysics scheme.
@@ -62,10 +62,33 @@ class MicrophysicsScheme:
     This method executes the microphysics computations.
 
     Parameters:
-        i (int): Some parameter to be used in the computations.
+        nvec (int): Number of horizontal points.
+        ke (int): Number of grid points in vertical direction.
+        ivstart (int): Start index for horizontal direction.
+        dt (float): Times-tep for integration of microphysics (s)
+        dz (float): Layer thickness of full levels (m).
+        t (float): Temperature (K).
+        rho (float): Density of moist air (kg/m3)
+        p (float): Pressure (Pa).
+        qv (float): Specific water vapor content (kg/kg)
+        qc (float): Specific cloud water content (kg/kg)
+        qi (float): Specific cloud ice content (kg/kg)
+        qr (float): Specific rain content (kg/kg)
+        qs (float): Specific snow content kg/kg)
+        qg (float): Specific graupel content (kg/kg)
 
     Returns:
-        int: Result of the computations, i + 1.
+        Tuple[float, float, float, float, float, float, float, float, float]:
+            - Updated temperature (K).
+            - Updated specific water vapor content (kg/kg)
+            - Updated specific cloud water content (kg/kg)
+            - Updated specific cloud ice content (kg/kg)
+            - Updated specific rain content (kg/kg)
+            - Updated specific snow content kg/kg)
+            - Updated specific graupel content kg/kg)
+            - Updated precipitation rate of rain, grid-scale (kg/(m2*s))
+            - Updated total precipitation flux
+
     """
 
     print("run microphysics")

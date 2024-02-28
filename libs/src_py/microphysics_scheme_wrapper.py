@@ -80,13 +80,14 @@ class MicrophysicsSchemeWrapper:
     of this project.
 
     Args:
-        timestep (float): Timestep.
+        timestep (float): Time-step for integration of microphysics (s)
         thermo (Thermo): Thermodynamic properties.
 
     Returns:
         Thermo: Updated thermodynamic properties after microphysics computations.
 
     """
+
     dt = timestep
     t = thermo.temp
     rho = thermo.rho
