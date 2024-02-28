@@ -20,7 +20,7 @@ mock test case for adiabatic expansion of a parcel of air (0-D model)
 
 from .run_0dparcel import run_0dparcel
 from libs.src_py.thermodynamics import Thermodynamics
-from libs.src_py.microphysics_scheme import MicrophysicsSchemeWrapper
+from libs.src_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
 def test_python_microphys():
   """runs 0-D parcel model test using Python microphysics scheme (which is a mock-up of the
