@@ -18,7 +18,7 @@ File Description:
 mock test case for adiabatic expansion of a parcel of air (0-D model)
 '''
 
-from .case_0dparcel import run_case_0dparcel
+from .run_0dparcel import run_0dparcel
 from libs.src_py.thermodynamics import Thermodynamics
 from libs.src_py.microphysics_scheme import MicrophysicsSchemeWrapper
 
@@ -49,4 +49,4 @@ def test_python_microphys():
   qnc = 500
   microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
-  run_case_0dparcel(time_init, time_end, timestep, thermo_init, microphys_scheme)
+  run_0dparcel(time_init, time_end, timestep, thermo_init, microphys_scheme)

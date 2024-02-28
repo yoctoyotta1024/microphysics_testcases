@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: case_0dparcel.py
+File: run_0dparcel_expansion.py
 Project: test_case_0dparcel
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
@@ -20,15 +20,15 @@ File Description:
 
 from .adiabatic_expansion import AdiabaticExpansion
 
-def run_case_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
+def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
 
-  expansion = AdiabaticExpansion()
+  parcel_dynamics = AdiabaticExpansion()
 
   microphys_scheme.initialize()
 
   while time <= time_end:
 
-    thermo = expansion.run(time, thermo)
+    thermo = parcel_dynamics.run(time, thermo)
     thermo = microphys_scheme.run(time, thermo)
 
     time += timestep
