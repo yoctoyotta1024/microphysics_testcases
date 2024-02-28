@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: run_0dparcel_expansion.py
+File: run_0dparcel.py
 Project: test_case_0dparcel
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
