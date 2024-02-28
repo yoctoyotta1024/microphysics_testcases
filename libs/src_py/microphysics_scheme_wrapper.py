@@ -19,8 +19,8 @@ wrapper function for an instance of MicrophysicsScheme so it can be used by gene
 and run scripts
 '''
 
-from thermodynamics import Thermodynamics
-from microphysics_scheme import MicrophysicsScheme
+from .thermodynamics import Thermodynamics
+from .microphysics_scheme import MicrophysicsScheme
 
 class MicrophysicsSchemeWrapper:
   """A class wrapping around Python MicrophysicsScheme for compatibility purposes.

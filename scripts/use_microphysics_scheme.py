@@ -20,6 +20,7 @@ File Description:
 
 import sys
 import pathlib
+import numpy as np
 
 path = str(pathlib.Path(__file__).parent.resolve())
 sys.path.append(path+'/../libs/') # add path to src_py to PATH
@@ -58,12 +59,17 @@ def main():
 
   microphys.initialize()
 
-  for timestep in range(0.0, 10.0, 1.0):
-    # for 10 steps print value returned by microphysics
+  ### run 11 steps print value returned by microphysics
+  time = 0.0
+  time_end = 10.0
+  timestep = 1.0
+  while time <= time_end:
 
     thermo = microphys.run(timestep, thermo)
 
     print("temp = "+str(thermo.temp))
+
+    time += timestep
 
   microphys.finalize()
 

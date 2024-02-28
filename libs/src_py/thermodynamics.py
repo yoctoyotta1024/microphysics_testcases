@@ -39,12 +39,15 @@ class Thermodynamics:
       press (float): Pressure (Pa).
       temp (float): Temperature (K).
       rho (float): Density of moist air (kg/m3)
-      qvap (float): Specific water vapor content (kg/kg)
-      qcond (float): Specific cloud water content (kg/kg)
-      qice (float): Specific cloud ice content (kg/kg)
-      qrain (float): Specific rain content (kg/kg)
-      qsnow (float): Specific snow content kg/kg)
-      qgrau (float): Specific graupel content (kg/kg)
+      massmix_ratios (tuple): specific content of vapour and condensates,
+                                in order: [
+                                qvap (float): Specific water vapor content (kg/kg),
+                                qcond (float): Specific cloud water content (kg/kg),
+                                qice (float): Specific cloud ice content (kg/kg),
+                                qrain (float): Specific rain content (kg/kg),
+                                qsnow (float): Specific snow content kg/kg),
+                                qgrau (float): Specific graupel content (kg/kg)
+                                ]
 
   '''
 
@@ -66,9 +69,4 @@ class Thermodynamics:
     self.press = press
     self.temp = temp
     self.rho = rho
-    self.qvap = qvap
-    self.qcond = qcond
-    self.qice = qice
-    self.qrain = qrain
-    self.qsnow = qsnow
-    self.qgrau = qgrau
+    self.massmix_ratios = [qvap, qcond, qice, qrain, qsnow, qgrau]
