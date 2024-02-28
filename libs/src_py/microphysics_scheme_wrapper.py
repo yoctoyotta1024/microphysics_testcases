@@ -63,6 +63,7 @@ class MicrophysicsSchemeWrapper:
     self.dz = dz
     self.qnc = qnc
     self.microphys = MicrophysicsScheme()
+    self.name = "Wrapper around "+self.microphys.name
 
   def initialize(self) -> int:
     """Initialise the microphysics scheme.

@@ -24,29 +24,46 @@ import pathlib
 path = str(pathlib.Path(__file__).parent.resolve())
 sys.path.append(path+'/../libs/') # add path to src_py to PATH
 
-from src_py.microphysics_scheme import MicrophysicsSchemeWrapper
+from src_py.thermodynamics import Thermodynamics
+from src_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
 def main():
-  """Run an example of using the MicrophysicsScheme class.
+  """Run an example of using the MicrophysicsScheme class through the
+  MicrophysicsSchemeWrapper class.
 
-  This function demonstrates an example usage of the MicrophysicsScheme class.
-  It creates an instance of the MicrophysicsScheme class, initializes it,
-  loops over series of computations using the `run` method, and finalizes it.
+  This function demonstrates an example usage of the microphysics scheme wrapped by the
+  MicrophysicsSchemeWrapper class. It creates an instance of the MicrophysicsSchemeWrapper class,
+  initializes it, loops over series of computations using the `run` method, and finalizes it.
   """
 
+  press = 101325
+  temp = 288.15
+  rho = 1.225
+  qvap = 0.015
+  qcond = 0.0
+  qice = 0.0
+  qrain = 0.0
+  qsnow = 0.0
+  qgrau = 0.0
+  thermo = Thermodynamics(press, temp, rho, qvap, qcond, qice, qrain, qsnow, qgrau)
+
+  nvec = 1
+  ke = 1
+  ivstart = 0
+  dz = 10
+  qnc = 500
   microphys = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
   print("\n--- Example of using: "+microphys.name+" ---\n")
 
   microphys.initialize()
 
-  some_value = 0
-  for step in range(0, 10):
+  for timestep in range(0.0, 10.0, 1.0):
     # for 10 steps print value returned by microphysics
 
-    some_value = microphys.run(some_value)
+    thermo = microphys.run(timestep, thermo)
 
-    print("i = "+str(some_value))
+    print("temp = "+str(thermo.temp))
 
   microphys.finalize()
 
