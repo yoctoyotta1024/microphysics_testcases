@@ -19,14 +19,6 @@ File Description:
 
 from .adiabatic_expansion import AdiabaticExpansion
 
-def timestep_0dparcel(time, time_end, timestep, thermo, microphys_scheme, parcel_dynamics):
-
-  while time <= time_end:
-
-    thermo = parcel_dynamics.run(time, thermo)
-    thermo = microphys_scheme.run(time, thermo)
-    time += timestep
-
 def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
   """Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.
 
@@ -48,5 +40,11 @@ def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
 
   ### run dynamics + microphysics from time to time_end
   microphys_scheme.initialize()
-  timestep_0dparcel(time, time_end, timestep, thermo, microphys_scheme, parcel_dynamics)
+
+  while time <= time_end:
+
+    thermo = parcel_dynamics.run(time, thermo)
+    thermo = microphys_scheme.run(time, thermo)
+    time += timestep
+
   microphys_scheme.finalize()
