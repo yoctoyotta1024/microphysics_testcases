@@ -30,4 +30,4 @@ def test_microphys():
 	assert microphys.run(0,1) == 1
 	assert microphys.run(0,2) == 2
 
-	assert microphys.finalize == 0
+	assert microphys.finalize() == 0
