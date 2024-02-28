@@ -24,6 +24,25 @@ import pathlib
 path = str(pathlib.Path(__file__).parent.resolve())
 sys.path.append(path+'/../libs/') # add path to src_py to PATH
 
-from src_py import microphysics_scheme
+from src_py.microphysics_scheme import MicrophysicsScheme
 
-microphys = microphys.MicrophysicsScheme()
+def main():
+
+  microphys = MicrophysicsScheme()
+
+  print("--- Example of using: "+microphys.name+" ---")
+
+  microphys.initialize()
+
+  some_value = 0
+  for step in range(0, 10):
+    # for 10 steps print value returned by microphysics
+
+    some_value = microphys.run(some_value)
+
+    print("i = "+str(some_value))
+
+  microphys.finalize()
+
+if __name__ == "__main__":
+    main()

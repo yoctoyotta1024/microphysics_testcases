@@ -27,7 +27,7 @@ class MicrophysicsScheme:
   def __init__(self):
     """Init the MicrophysicsScheme object (Python only) """
 
-    self.name = "Python mock microphysics class"
+    self.name = "Python Mock Microphysics Class"
 
   def initialize(self):
     """Initialize the microphysics scheme.
