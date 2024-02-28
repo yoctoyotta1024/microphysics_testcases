@@ -35,26 +35,18 @@ class MicrophysicsScheme:
 
     This method performs the initialization steps necessary for the microphysics scheme.
 
-    Returns:
-        int: 0 upon successful initialization.
     """
 
     print("microphysics initialisation")
-
-    return 0
 
   def finalize(self):
     """Finalize the microphysics scheme.
 
     This method performs the finalization steps for the microphysics scheme.
 
-    Returns:
-        int: 0 upon successful finalization.
     """
 
     print("microphysics finalisation")
-
-    return 0
 
   def run(self, nvec, ke, ivstart, dt, dz, t, rho, p, qv, qc, qi, qr, qs, qg, qnc):
     """Run the microphysics computations.

@@ -64,13 +64,31 @@ class MicrophysicsSchemeWrapper:
     self.qnc = qnc
     self.microphys = MicrophysicsScheme()
 
-  def initialize(self):
-    """Initialize the microphysics scheme."""
+  def initialize(self) -> int:
+    """Initialise the microphysics scheme.
+
+    This method calls the microphysics initialisation
+
+    Returns:
+        int: 0 upon successful initialisation
+    """
+
     self.microphys.initialize()
 
-  def finalize(self):
-    """Finalize the microphysics scheme."""
+    return 0
+
+  def finalize(self) -> int:
+    """Finalise the microphysics scheme.
+
+    This method calls the microphysics finalisation.
+
+    Returns:
+        int: 0 upon successful finalisation.
+    """
+
     self.microphys.finalize()
+
+    return 0
 
   def run(self, timestep: float, thermo: Thermodynamics) -> Thermodynamics:
     """Run the microphysics computations.
