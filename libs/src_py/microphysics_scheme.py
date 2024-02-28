@@ -55,7 +55,7 @@ class MicrophysicsScheme:
 
     return 0
 
-  def run(self, nvec, ke, ivstart, dt, dz, t, rho, p, qv, qc, qi, qr, qs, qg, qnc, prr_gsp, pflx):
+  def run(self, nvec, ke, ivstart, dt, dz, t, rho, p, qv, qc, qi, qr, qs, qg, qnc):
     """Run the microphysics computations.
 
     This method executes the microphysics computations.
@@ -68,5 +68,8 @@ class MicrophysicsScheme:
     """
 
     print("run microphysics")
+
+    prr_gsp = 0.001
+    pflx = 0.01
 
     return t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx
