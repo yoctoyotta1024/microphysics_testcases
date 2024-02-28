@@ -19,8 +19,15 @@ tests fot phyon microphysics module
 '''
 
 
-import numpy as np
-from libs.src_py import microphysics_scheme
+from libs.src_py.microphysics_scheme import MicrophysicsScheme
 
-def test_area_circle():
-	assert microphysics_scheme.area_circle(1.0) == np.pi
+def test_microphys():
+
+	microphys = MicrophysicsScheme()
+
+	assert microphys.initialize() == 0
+
+	assert microphys.run(0) == 1
+	assert microphys.run(1) == 2
+
+	assert microphys.finalize() == 0

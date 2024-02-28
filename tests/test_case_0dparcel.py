@@ -23,6 +23,6 @@ import sys
 import pathlib
 import numpy as np
 
-path = str(pathlib.Path(__file__).parent.resolve())
-sys.path.append(path+'/../build/') # add path to microphys to PATH
-from libs.src_py import microphys
+# path = str(pathlib.Path(__file__).parent.resolve())
+# sys.path.append(path+'/../build/') # add path to microphys to PATH
+# from libs.src_py import microphysics_scheme
