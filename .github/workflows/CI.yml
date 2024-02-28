@@ -30,7 +30,6 @@ jobs:
 
       - name: Install Pybind11
         run: |
-          git submodule add https://github.com/pybind/pybind11.git extern/pybind11
           git submodule update --init
       - name: Build Pybind11 module for C++ code
         run: |
