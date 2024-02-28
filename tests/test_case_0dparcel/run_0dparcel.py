@@ -25,8 +25,7 @@ def timestep_0dparcel(time, time_end, timestep, thermo, microphys_scheme, parcel
 
     thermo = parcel_dynamics.run(time, thermo)
     thermo = microphys_scheme.run(time, thermo)
-
-  time += timestep
+    time += timestep
 
 def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
 
