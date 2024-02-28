@@ -21,22 +21,47 @@ File Description:
 import numpy as np
 
 class MicrophysicsScheme:
-  def __init__():
-    name = "Python mock microphysics class"
+  """A class representing a Python mock microphysics scheme."""
 
-  def initialize():
+  def __init__(self):
+    """Init the MicrophysicsScheme object (Python only) """
+
+    self.name = "Python mock microphysics class"
+
+  def initialize(self):
+    """Initialize the microphysics scheme.
+
+    This method performs the initialization steps necessary for the microphysics scheme.
+
+    Returns:
+        int: 0 upon successful initialization.
+    """
 
     print("microphysics initialisation")
 
     return 0
 
-  def finalize():
+  def finalize(self):
+    """Finalize the microphysics scheme.
+
+    This method performs the finalization steps for the microphysics scheme.
+
+    Returns:
+        int: 0 upon successful finalization.
+    """
 
     print("microphysics finalisation")
 
     return 0
 
-  def run():
+  def run(self):
+    """Run the microphysics computations.
+
+    This method executes the microphysics computations.
+
+    Returns:
+        int: 0 upon successful execution.
+    """
 
     print("run microphysics")
 
