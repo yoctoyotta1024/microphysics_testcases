@@ -36,6 +36,20 @@ def print_message(time, thermo):
 
   print(msg)
 
+def timestep_model(time_init, time_end, timestep, thermo, microphys):
+  """run timestepping of microphysics and print a statement about the returned
+  thermodynamics at each timestep.
+
+  """
+  time = time_init
+  while time <= time_end:
+
+    print_message(time, thermo)
+
+    thermo = microphys.run(timestep, thermo)
+
+    time += timestep
+
 def main():
   """Run an example of using the MicrophysicsScheme class through the
   MicrophysicsSchemeWrapper class.
@@ -44,6 +58,10 @@ def main():
   MicrophysicsSchemeWrapper class. It creates an instance of the MicrophysicsSchemeWrapper class,
   initializes it, loops over series of computations using the `run` method, and finalizes it.
   """
+
+  time_init = 0.0
+  time_end = 10.0
+  timestep = 1.0
 
   temp = 288.15
   rho = 1.225
@@ -67,17 +85,7 @@ def main():
 
   microphys.initialize()
 
-  ### run 11 steps and print value of temperature returned by microphysics
-  time = 0.0
-  time_end = 10.0
-  timestep = 1.0
-  while time <= time_end:
-
-    print_message(time, thermo)
-
-    thermo = microphys.run(timestep, thermo)
-
-    time += timestep
+  timestep_model(time_init, time_end, timestep, thermo, microphys)
 
   microphys.finalize()
 
