@@ -46,9 +46,7 @@ def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
   ### type of dynamics parcel will undergo
   parcel_dynamics = AdiabaticExpansion()
 
-  ### run dynamics + microphysics
+  ### run dynamics + microphysics from time to time_end
   microphys_scheme.initialize()
-
   timestep_0dparcel(time, time_end, timestep, thermo, microphys_scheme, parcel_dynamics)
-
   microphys_scheme.finalize()
