@@ -19,11 +19,16 @@ test package for tests of mock C++ module via Python bindings
 '''
 
 
+import sys
+import pathlib
 import numpy as np
+
+path = str(pathlib.Path(__file__).parent.resolve())
+sys.path.append(path+'/../build/') # add path to mock_cxx to PATH
 import mock_cxx as m
 
 def test_area_circle():
-       assert m.area_circle(4.0) == np.pi*4.0*4.0
+     assert m.area_circle(4.0) == np.pi*4.0*4.0
 
 def test_add():
-    assert m.add(1, 2) == 3
+     assert m.add(1, 2) == 3
