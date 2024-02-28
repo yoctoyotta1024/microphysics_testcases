@@ -18,6 +18,16 @@ File Description:
 class for driving adiabatic expansion test case
 '''
 
+def run_0dparcel_adiabatic_expansion(time_init, time_end, timestep, thermo_init, expansion, microphys):
+
+  time = time_init
+  thermo = thermo_init
+  while time <= time_end:
+
+    thermo = microphys.run(time, thermo)
+    thermo = expansion.run(time, thermo)
+
+    time += timestep
 
 class AdiabaticExpansion():
   """A class for driving the adiabatic expansion of a volume of air"""
