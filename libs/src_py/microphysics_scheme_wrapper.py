@@ -81,10 +81,10 @@ class MicrophysicsSchemeWrapper:
 
     Args:
         timestep (float): Time-step for integration of microphysics (s)
-        thermo (Thermo): Thermodynamic properties.
+        thermo (Thermodynamics): Thermodynamic properties.
 
     Returns:
-        Thermo: Updated thermodynamic properties after microphysics computations.
+        Thermodynamics: Updated thermodynamic properties after microphysics computations.
 
     """
 
