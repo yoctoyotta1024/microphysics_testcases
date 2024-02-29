@@ -22,10 +22,25 @@ class for driving adiabatic expansion/contraction test case
 import numpy as np
 
 class AdiabaticMotion():
-  """A class for driving the adiabatic expansion/contraction of a volume of air"""
+  """
+  A class for driving the adiabatic expansion/contraction of a volume of air.
+
+   Attributes:
+       amp (float): Amplitude of pressure sinusoid [Pa].
+       omega (float): Angular frequency of pressure sinusoid (tau is time period) [radians s^-1].
+       cp_dry (float): Specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K).
+       rgas_dry (float): Specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K).
+       epsilon (float): Ratio of gas constants, dry air / water vapour (approx. 0.622).
+   """
 
   def __init__(self, amp, tau):
-    """Init the AdiabaticMotion object """
+    """
+    Initialize the AdiabaticMotion object.
+
+    Args:
+        amp (float): Amplitude of pressure sinusoid [Pa].
+        tau (float): Time period of the pressure sinusoid [s].
+    """
 
     rgas_univ = 8.314462618   # universal molar gas constant [J/Kg/K]
     mr_dry = 0.028966216      # molecular mass of dry air [Kg/mol]
@@ -39,18 +54,50 @@ class AdiabaticMotion():
     self.omega = 2.0 * np.pi / tau # angular frequency of pressure sinusio (tau is time period) [radians s^-1]
 
   def dpress_dtime(self, time):
+    """
+    Calculate the rate of change of pressure with respect to time.
+
+    Args:
+        time (float): Current time [s].
+
+    Returns:
+        float: Rate of change of pressure with respect to time [Pa/s].
+    """
 
     dpress_dt = - self.omega * self.amp * np.cos(self.omega * time)
 
     return dpress_dt
 
   def dtemp_dtime(self, rho, dpress_dt):
+    """
+    Calculate the rate of change of temperature with respect to time.
+
+    Args:
+        rho (float): Density of air [Kg/m^3].
+        dpress_dt (float): Rate of change of pressure with respect to time [Pa/s].
+
+    Returns:
+        float: Rate of change of temperature with respect to time [K/s].
+    """
 
     dtemp_dt = dpress_dt / rho / self.cp_dry
 
     return dtemp_dt
 
   def drho_dtime(self, temp, rho, qvap, dpress_dt, dtemp_dt):
+    """
+    Calculate the rate of change of density with respect to time.
+
+    Args:
+        temp (float): Temperature of air [K].
+        rho (float): Density of air [Kg/m^3].
+        qvap (float): Mass mixing ratio of water vapor [Kg/Kg].
+        dpress_dt (float): Rate of change of pressure with respect to time [Pa/s].
+        dtemp_dt (float): Rate of change of temperature with respect to time [K/s].
+
+    Returns:
+        float: Rate of change of density with respect to time [Kg/m^3/s].
+    """
 
     rgas_eff = self.rgas_dry * (1 + qvap / self.epsilon)
 
@@ -62,10 +109,19 @@ class AdiabaticMotion():
     return drho_dt
 
   def run(self, time, timestep, thermo):
-    """Run the adiabatic motion computations.
+    """
+    Run the adiabatic motion computations.
 
-    This method executes the adiabatic expansion/contraction computations.
+    This method integrates the equations from time to time+timestep for adiabatic
+    expansion/contraction of a parcel of air.
 
+    Args:
+        time (float): Current time [s].
+        timestep (float): Time step size for the simulation [s].
+        thermo (Thermodynamics): Object representing the thermodynamic state of the air.
+
+    Returns:
+        Thermodynamics: Updated thermodynamic state of the air.
     """
 
     qvap = thermo.massmix_ratios[0]
