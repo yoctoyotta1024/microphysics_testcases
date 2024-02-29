@@ -8,7 +8,7 @@ Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Wednesday 28th February 2024
+Last Modified: Thursday 29th February 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -88,5 +88,12 @@ class MicrophysicsScheme:
 
     prr_gsp = 0.001
     pflx = 0.01
+
+    qv += 1.0
+    qc += 2.0
+    qi += 3.0
+    qr += 4.0
+    qs += 5.0
+    qg += 6.0
 
     return t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx
