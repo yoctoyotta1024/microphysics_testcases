@@ -60,6 +60,8 @@ class AdiabaticMotion():
     Args:
         time (float): Current time [s].
 
+    \frac{dP}{dt} = - \omega \cdot A \cdot \cos(\omega \cdot t)
+
     Returns:
         float: Rate of change of pressure with respect to time [Pa/s].
     """
