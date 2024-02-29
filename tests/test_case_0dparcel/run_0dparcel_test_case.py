@@ -20,8 +20,7 @@ File Description:
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-from .adiabatic_motion import AdiabaticMotion
-from libs.src_py.output_thermodynamics import OutputThermodynamics
+from .run_0dparcel_model import run_0dparcel_model
 
 def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme,
                            binpath, run_name):
@@ -37,47 +36,6 @@ def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys
   assert(run_name)
   plot_0dparcel_thermodynamics(output, binpath, run_name)
   print("------------------------")
-
-def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
-  """Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.
-
-  This function runs a 0-D parcel model with the given initial thermodynamic conditions, and
-  microphysics scheme from time to time_end with a constant timestep using some set parcel
-  dynamics.
-
-  Parameters:
-      time (float): Initial time for the simulation (s).
-      time_end (float): End time for the simulation (s).
-      timestep (float): Timestep for the simulation (s).
-      thermo (Thermodynamics): Initial thermodynamic conditions.
-      microphys_scheme: Microphysics scheme to use.
-
-  """
-
-  ### data to output during model run
-  out = OutputThermodynamics()
-
-  ### type of dynamics parcel will undergo
-  amp = 10000 # amplitude of pressure sinusoid [Pa]
-  tau = 60 # time period of pressure sinusiod [s]
-  parcel_dynamics = AdiabaticMotion(amp, tau)
-
-  ### run dynamics + microphysics from time to time_end
-  microphys_scheme.initialize()
-
-  out.output_thermodynamics(time, thermo)
-  while time <= time_end:
-
-    thermo = parcel_dynamics.run(time, timestep, thermo)
-    thermo = microphys_scheme.run(timestep, thermo)
-
-    out.output_thermodynamics(time, thermo)
-
-    time += timestep
-
-  microphys_scheme.finalize()
-
-  return out.finalize()
 
 def plot_0dparcel_thermodynamics(out, binpath, run_name):
 
