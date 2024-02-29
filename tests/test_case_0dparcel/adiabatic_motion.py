@@ -74,7 +74,12 @@ class AdiabaticMotion:
 
     The rate of change of pressure with respect to time is calculated from the equation:
 
-    .. math:: \\frac{dP}{dt} = - \omega \cdot A \cdot \cos(\omega \cdot t)
+    .. math:: \\frac{dP}{dt} = - \omega \cdot A \cos(\omega t)
+
+    so that pressure evolution follows:
+
+    .. math:: P(t) = P_{\\rm init} - A \sin(\omega t)
+
 
     Returns:
         float: Rate of change of pressure with respect to time [Pa/s].
@@ -132,7 +137,7 @@ class AdiabaticMotion:
     where
 
     .. math::
-      P = \\rho R_{\\rm dry} (1 + \\frac{q_{\\rm v}}{\\epsilon}) T
+      P = \\rho R_{\\rm dry} \\left(1 + \\frac{q_{\\rm v}}{\\epsilon}\\right) T
 
     assuming :math:`q_{\\rm v} \\approx r_{\\rm v}`, i.e. :math:`q_{\\rm dry} \gg  q_{\\rm v}`.
 

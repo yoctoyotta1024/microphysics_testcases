@@ -24,6 +24,9 @@ def dry_potential_temperature(temp, press):
 
   This function calculates the potential temperature for dry air given the temperature and pressure.
 
+  .. math::
+        \\theta_{\\rm{dry}} = \\rho R_{\\rm dry} (1 + \\frac{q_{\\rm v}}{\\epsilon}) T
+
   Args:
       temp (array-like): Temperature values (K).
       press (array-like): Pressure values (Pa).

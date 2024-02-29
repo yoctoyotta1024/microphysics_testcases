@@ -1,5 +1,5 @@
-Thermodynamic Calculations / Equations
-======================================
+Calculations
+============
 
 .. automodule::  libs.src_py.calcs
    :members:

@@ -8,3 +8,4 @@ Python Package
    output_thermodynamics
    mock_microphysics_scheme
    microphysics_scheme_wrapper
+   calcs
