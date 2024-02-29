@@ -1,7 +1,7 @@
 0-D Parcel Test Case: Adiabatic Motion
 ======================================
 
-.. automodule:: tests.test_case_0dparcel.adiabatic_motion
+.. autoclass:: tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion
    :members:
    :undoc-members:
    :private-members:

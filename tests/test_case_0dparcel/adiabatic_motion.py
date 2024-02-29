@@ -21,21 +21,26 @@ class for driving adiabatic expansion/contraction test case
 
 import numpy as np
 
-class AdiabaticMotion():
-  """
-  A class for driving the adiabatic expansion/contraction of a volume of air.
+class AdiabaticMotion:
+  """A class for driving the adiabatic expansion/contraction of a volume of air.
 
-   Attributes:
-       amp (float): Amplitude of pressure sinusoid [Pa].
-       omega (float): Angular frequency of pressure sinusoid (tau is time period) [radians s^-1].
-       cp_dry (float): Specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K).
-       rgas_dry (float): Specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K).
-       epsilon (float): Ratio of gas constants, dry air / water vapour (approx. 0.622).
-   """
+  Class for adiabatic sinusoidal pressure change of parcel of air.
+
+  Args:
+          amp (float): Amplitude of pressure sinusoid [Pa].
+          tau (float): Time period of the pressure sinusoid [s].
+
+  Attributes:
+      amp (float): Amplitude of pressure sinusoid [Pa].
+      omega (float): Angular frequency of pressure sinusoid (tau is time period) [radians s^-1].
+      cp_dry (float): Specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K).
+      rgas_dry (float): Specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K).
+      epsilon (float): Ratio of gas constants, dry air / water vapour (approx. 0.622).
+
+  """
 
   def __init__(self, amp, tau):
-    """
-    Initialize the AdiabaticMotion object.
+    """Initialize the AdiabaticMotion object.
 
     Args:
         amp (float): Amplitude of pressure sinusoid [Pa].
@@ -60,7 +65,9 @@ class AdiabaticMotion():
     Args:
         time (float): Current time [s].
 
-    \frac{dP}{dt} = - \omega \cdot A \cdot \cos(\omega \cdot t)
+    The rate of change of pressure with respect to time can be calculated using the equation:
+
+    .. math:: \\frac{dP}{dt} = - \omega \cdot A \cdot \cos(\omega \cdot t)
 
     Returns:
         float: Rate of change of pressure with respect to time [Pa/s].

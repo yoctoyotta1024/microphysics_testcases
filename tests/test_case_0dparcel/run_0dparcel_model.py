@@ -25,8 +25,8 @@ def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
   """Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.
 
   This function runs a 0-D parcel model with the given initial thermodynamic conditions, and
-  microphysics scheme from time to time_end with a constant timestep using some set parcel
-  dynamics.
+  microphysics scheme from time to time_end with a constant timestep using some AdiabaticMotion
+  for the parcel dynamics.
 
   Parameters:
       time (float): Initial time for the simulation (s).
@@ -35,6 +35,8 @@ def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
       thermo (Thermodynamics): Initial thermodynamic conditions.
       microphys_scheme: Microphysics scheme to use.
 
+  Returns:
+        OutputThermodynamics: Output containing thermodynamic data from the model run.
   """
 
   ### data to output during model run
