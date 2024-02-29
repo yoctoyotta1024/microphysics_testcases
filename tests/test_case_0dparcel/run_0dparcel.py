@@ -50,3 +50,5 @@ def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
     time += timestep
 
   microphys_scheme.finalize()
+
+  return thermo_output
