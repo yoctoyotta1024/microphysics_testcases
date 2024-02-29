@@ -53,6 +53,7 @@ class OutputThermodynamics:
   content (mass mixing ratio) of vapour and condensates.
 
   Attributes:
+      time (OutputVariable): time (s).
       temp (OutputVariable): Temperature (K).
       rho (OutputVariable): Density of moist air (kg/m3)
       press (OutputVariable): Pressure (Pa).
@@ -68,9 +69,12 @@ class OutputThermodynamics:
   def __init__(self):
     '''Initialize a thermodynamics output object.'''
 
+    self.time = OutputVariable('time', 's', [])
+
     self.temp = OutputVariable('temp', 'K', [])
     self.rho = OutputVariable('rho', 'Kg m-3', [])
     self.press = OutputVariable('press', 'Pa', [])
+
     self.qvap = OutputVariable('qvap', 'Kg/Kg', [])
     self.qcond = OutputVariable('qcond', 'Kg/Kg', [])
     self.qice = OutputVariable('qice', 'Kg/Kg', [])
@@ -78,8 +82,10 @@ class OutputThermodynamics:
     self.qsnow = OutputVariable('qsnow', 'Kg/Kg', [])
     self.qgrau = OutputVariable('qgrau', 'Kg/Kg', [])
 
-  def output_thermodynamics(self, thermo: Thermodynamics):
+  def output_thermodynamics(self, time: float, thermo: Thermodynamics):
     '''operator to output thermodynamics from thermo to each variable in thermodynamics output.'''
+
+    self.time.write(time)
 
     self.temp.write(thermo.temp)
     self.rho.write(thermo.rho)
@@ -92,6 +98,6 @@ class OutputThermodynamics:
     self.qsnow.write(thermo.massmix_ratios[4])
     self.qgrau.write(thermo.massmix_ratios[5])
 
-  def __call__(self, thermo: Thermodynamics):
+  def __call__(self, time: float, thermo: Thermodynamics):
     ''' callable for using class as operator() '''
-    self.output_thermodynamics(thermo)
+    self.output_thermodynamics(time, thermo)
