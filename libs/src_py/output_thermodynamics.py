@@ -23,7 +23,7 @@ import numpy as np
 
 from .thermodynamics import Thermodynamics
 
-class OutputVariable():
+class OutputVariable:
   '''Class is method to output a variable with some of its metadata.
 
   Attributes:

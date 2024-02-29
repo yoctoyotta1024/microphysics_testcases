@@ -1,5 +1,5 @@
-Wrapper for Python Mock Microphysics Module
-===========================================
+Wrapper for Python Mock Microphysics Scheme
+============================================
 
 .. autoclass:: libs.src_py.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper
    :members:

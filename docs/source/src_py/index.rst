@@ -5,5 +5,6 @@ Python Package
    :maxdepth: 2
 
    thermodynamics
-   microphysics_scheme
+   output_thermodynamics
+   mock_microphysics_scheme
    microphysics_scheme_wrapper

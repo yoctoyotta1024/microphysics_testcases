@@ -2,13 +2,13 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: microphysics_scheme_wrapper.py
+File: mock_microphysics_scheme_wrapper.py
 Project: src_py
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Wednesday 28th February 2024
+Last Modified: Thursday 29th February 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -19,8 +19,9 @@ wrapper function for an instance of MicrophysicsScheme so it can be used by gene
 and run scripts
 '''
 
+
 from .thermodynamics import Thermodynamics
-from .microphysics_scheme import MicrophysicsScheme
+from .mock_microphysics_scheme import MicrophysicsScheme
 
 class MicrophysicsSchemeWrapper:
   """A class wrapping around Python MicrophysicsScheme for compatibility purposes.
