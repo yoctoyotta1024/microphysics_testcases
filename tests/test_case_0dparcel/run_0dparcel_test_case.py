@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: run_0dparcel.py
+File: run_0dparcel_test_case.py
 Project: test_case_0dparcel
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
@@ -17,10 +17,24 @@ https://opensource.org/licenses/BSD-3-Clause
 File Description:
 '''
 
-
+from pathlib import Path
 import matplotlib.pyplot as plt
+
 from .adiabatic_motion import AdiabaticMotion
 from libs.src_py.output_thermodynamics import OutputThermodynamics
+
+def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme, binpath):
+  '''Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.
+  Then save/plot data from model provided path to bin exists.'''
+
+  print("\n--- Running 0-D Parcel Model ---")
+  output = run_0dparcel_model(time_init, time_end, timestep, thermo_init, microphys_scheme)
+  print("--------------------------------")
+
+  print("--- Plotting Results ---")
+  assert (Path(binpath).exists())
+  plot_0dparcel_thermodynamics(output, binpath)
+  print("------------------------")
 
 def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
   """Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.
@@ -63,16 +77,6 @@ def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
 
   return out
 
-def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme, savedir):
+def plot_0dparcel_thermodynamics(output, binpath):
 
-  output = run_0dparcel_model(time_init, time_end, timestep, thermo_init, microphys_scheme)
-
-  print(output.temp.value)
-  print(output.rho.value)
-  print(output.press.value)
-  print(output.qvap.value)
-  print(output.qcond.value)
-  print(output.qice.value)
-  print(output.qrain.value)
-  print(output.qsnow.value)
-  print(output.qgrau.value)
+  print("saving plots in: "+binpath)
