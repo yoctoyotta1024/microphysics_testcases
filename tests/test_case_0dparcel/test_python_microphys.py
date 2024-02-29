@@ -74,11 +74,11 @@ def test_python_microphys():
   rho = 1.225
   press = 101325
   qvap = 0.015
-  qcond = 0.0
-  qice = 0.0
-  qrain = 0.0
-  qsnow = 0.0
-  qgrau = 0.0
+  qcond = 0.0001
+  qice = 0.0002
+  qrain = 0.0003
+  qsnow = 0.0004
+  qgrau = 0.0005
   thermo_init = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
 
   ### microphysics scheme to use (within a wrapper)
