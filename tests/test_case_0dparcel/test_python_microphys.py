@@ -18,6 +18,9 @@ File Description:
 mock test case for adiabatic motion of a parcel of air (0-D model)
 '''
 
+
+from pathlib import Path
+
 from .run_0dparcel import run_0dparcel_test_case
 from libs.src_py.thermodynamics import Thermodynamics
 from libs.src_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
@@ -54,6 +57,10 @@ def test_python_microphys():
 
   """
 
+  ### directory to save data and plots in after test
+  savedir = str(Path(__file__).parent.resolve())+"/bin/" # i.e. current directory + /bin/
+  Path(savedir).mkdir(parents=False, exist_ok=True)
+
   ### time parameters
   time_init = 0.0 # [s]
   time_end = 10.0 # [s]
@@ -80,4 +87,4 @@ def test_python_microphys():
   microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
   ### Perform 0-D parcel model test case using chosen setup
-  run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme)
+  run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme, savedir)

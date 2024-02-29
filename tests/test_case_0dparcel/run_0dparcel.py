@@ -17,6 +17,8 @@ https://opensource.org/licenses/BSD-3-Clause
 File Description:
 '''
 
+
+import matplotlib.pyplot as plt
 from .adiabatic_motion import AdiabaticMotion
 from libs.src_py.output_thermodynamics import OutputThermodynamics
 
@@ -61,6 +63,16 @@ def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
 
   return out
 
-def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme):
+def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme, savedir):
 
   output = run_0dparcel_model(time_init, time_end, timestep, thermo_init, microphys_scheme)
+
+  print(output.temp.value)
+  print(output.rho.value)
+  print(output.press.value)
+  print(output.qvap.value)
+  print(output.qcond.value)
+  print(output.qice.value)
+  print(output.qrain.value)
+  print(output.qsnow.value)
+  print(output.qgrau.value)
