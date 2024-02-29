@@ -18,7 +18,7 @@ File Description:
 mock test case for adiabatic motion of a parcel of air (0-D model)
 '''
 
-from .run_0dparcel import run_0dparcel
+from .run_0dparcel import run_0dparcel_test_case
 from libs.src_py.thermodynamics import Thermodynamics
 from libs.src_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
@@ -79,5 +79,5 @@ def test_python_microphys():
   qnc = 500
   microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
-  ### Run 0D parcel model with chosen setup
-  run_0dparcel(time_init, time_end, timestep, thermo_init, microphys_scheme)
+  ### Perform 0-D parcel model test case using chosen setup
+  run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme)

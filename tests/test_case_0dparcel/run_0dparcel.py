@@ -20,7 +20,7 @@ File Description:
 from .adiabatic_motion import AdiabaticMotion
 from libs.src_py.output_thermodynamics import OutputThermodynamics
 
-def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
+def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
   """Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.
 
   This function runs a 0-D parcel model with the given initial thermodynamic conditions, and
@@ -60,3 +60,7 @@ def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
   microphys_scheme.finalize()
 
   return out
+
+def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme):
+
+  output = run_0dparcel_model(time_init, time_end, timestep, thermo_init, microphys_scheme)
