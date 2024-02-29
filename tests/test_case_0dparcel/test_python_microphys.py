@@ -66,7 +66,7 @@ def test_python_microphys():
 
   ### time parameters
   time_init = 0.0 # [s]
-  time_end = 540.0 # [s]
+  time_end = 1200.0 # [s]
   timestep = 1.0 # [s]
 
   ### initial thermodynamic conditions

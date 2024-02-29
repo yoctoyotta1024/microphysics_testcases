@@ -70,9 +70,12 @@ class AdiabaticMotion():
 
     qvap = thermo.massmix_ratios[0]
 
-    delta_press = self.dpress_dtime(time) * timestep
-    delta_temp = self.dtemp_dtime(thermo.rho, delta_press)
-    delta_rho = self.drho_dtime(thermo.temp, thermo.rho, qvap, delta_press, delta_temp)
+    dpress_dt = self.dpress_dtime(time)
+    dtemp_dt = self.dtemp_dtime(thermo.rho, dpress_dt)
+
+    delta_press = dpress_dt * timestep
+    delta_temp = dtemp_dt * timestep
+    delta_rho = self.drho_dtime(thermo.temp, thermo.rho, qvap, dpress_dt, dtemp_dt) * timestep
 
     thermo.press += delta_press
     thermo.temp += delta_temp
