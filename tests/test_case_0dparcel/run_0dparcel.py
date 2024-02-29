@@ -18,6 +18,7 @@ File Description:
 '''
 
 from .adiabatic_motion import AdiabaticMotion
+from libs.src_py.observe_thermodynamics import ObserveThermodynamics
 
 def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
   """Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.
@@ -35,6 +36,9 @@ def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
 
   """
 
+  ### data to output during model run
+  obs = ObserveThermodynamics()
+
   ### type of dynamics parcel will undergo
   amp = 10000 # amplitude of pressure sinusoid [Pa]
   tau = 10 # time period of pressure sinusiod [s]
@@ -43,12 +47,17 @@ def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
   ### run dynamics + microphysics from time to time_end
   microphys_scheme.initialize()
 
+  obs.write_thermodynamics(thermo)
   while time <= time_end:
 
     thermo = parcel_dynamics.run(time, timestep, thermo)
     thermo = microphys_scheme.run(timestep, thermo)
+
+    obs.write_thermodynamics(thermo)
+
     time += timestep
+
 
   microphys_scheme.finalize()
 
-  return thermo_output
+  return obs
