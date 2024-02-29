@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Thursday 29th February 2024
+Last Modified: Friday 1st March 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -24,16 +24,42 @@ from .run_0dparcel_model import run_0dparcel_model
 
 def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme,
                            binpath, run_name):
-  '''Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.
-  Then save/plot data from model provided path to bin exists.'''
+  """Run test case for a 0-D parcel model.
+
+  This function runs a 0-D parcel model with a specified microphysics scheme and parcel dynamics
+  given the initial thermodynamics. The data is then saved/plotted in the binpath directory
+  using the run_name as a label.'''
+
+  Args:
+      time_init (float):
+        Initial time for the simulation (s).
+      time_end (float):
+        End time for the simulation (s).
+      timestep (float):
+        Timestep for the simulation (s).
+      thermo_init (Thermodynamics):
+        Initial thermodynamic conditions.
+      microphys_scheme:
+        Microphysics scheme to use in test run.
+      binpath (str):
+        Path to the directory where data/plots will be saved.
+      run_name (str):
+        Name of the test run (used for labeling output).
+
+  Raises:
+      AssertionError: If the specified binpath does not exist or if run_name is empty.
+
+  Returns:
+      None
+  """
 
   print("\n--- Running 0-D Parcel Model ---")
   out = run_0dparcel_model(time_init, time_end, timestep, thermo_init, microphys_scheme)
   print("--------------------------------")
 
   print("--- Plotting Results ---")
-  assert(Path(binpath).exists())
-  assert(run_name)
+  assert(Path(binpath).exists()), "The specified binpath does not exist."
+  assert(run_name), "The run_name cannot be empty."
   plot_0dparcel_thermodynamics(out, binpath, run_name)
   plot_0dparcel_massmix_ratios(out, binpath, run_name)
   print("------------------------")
@@ -62,8 +88,8 @@ def plot_0dparcel_thermodynamics(out, binpath, run_name):
 
 def plot_0dparcel_massmix_ratios(out, binpath, run_name):
 
-  assert(Path(binpath).exists())
-  assert(run_name)
+  assert(Path(binpath).exists()), "The specified binpath does not exist."
+  assert(run_name), "The run_name cannot be empty."
   print("plotting "+run_name+" and saving plots in: "+binpath)
 
   fig, axs = plt.subplots(nrows=2, ncols=3, sharex=True)
