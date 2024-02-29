@@ -19,6 +19,8 @@ class for storing thermodynamics output during model run
 '''
 
 
+import numpy as np
+
 from .thermodynamics import Thermodynamics
 
 class OutputVariable():
@@ -27,24 +29,27 @@ class OutputVariable():
   Attributes:
       name (string): name of variable.
       units (string): units of variable.
-      value (any): value of variable; must be able to be appended to
+      values (any): values of variable; must be able to be appended to
   '''
 
-  def __init__(self, name, units, value):
+  def __init__(self, name, units, values):
     '''Initialise OutputVariable instance
 
     Parameters:
         name (string): name of variable.
         units (string): units of variable.
-        value (any): value of variable; must be able to be appended to
+        values (any): values of variable; must be able to be appended to
     '''
 
     self.name = name
     self.units = units
-    self.value = value
+    self.values = values
 
   def write(self, val):
-    self.value.append(val)
+    self.values.append(val)
+
+  def finalize(self):
+    self.values = np.asarray(self.values)
 
 class OutputThermodynamics:
   '''Class is method and store for thermodynamic variables output during model timestep.
@@ -70,11 +75,9 @@ class OutputThermodynamics:
     '''Initialize a thermodynamics output object.'''
 
     self.time = OutputVariable('time', 's', [])
-
     self.temp = OutputVariable('temp', 'K', [])
     self.rho = OutputVariable('rho', 'Kg m-3', [])
     self.press = OutputVariable('press', 'Pa', [])
-
     self.qvap = OutputVariable('qvap', 'Kg/Kg', [])
     self.qcond = OutputVariable('qcond', 'Kg/Kg', [])
     self.qice = OutputVariable('qice', 'Kg/Kg', [])
@@ -86,11 +89,9 @@ class OutputThermodynamics:
     '''operator to output thermodynamics from thermo to each variable in thermodynamics output.'''
 
     self.time.write(time)
-
     self.temp.write(thermo.temp)
     self.rho.write(thermo.rho)
     self.press.write(thermo.press)
-
     self.qvap.write(thermo.massmix_ratios[0])
     self.qcond.write(thermo.massmix_ratios[1])
     self.qice.write(thermo.massmix_ratios[2])
@@ -101,3 +102,17 @@ class OutputThermodynamics:
   def __call__(self, time: float, thermo: Thermodynamics):
     ''' callable for using class as operator() '''
     self.output_thermodynamics(time, thermo)
+
+  def finalize(self):
+    '''finalize every variable in thermodynamics'''
+
+    self.time.finalize()
+    self.temp.finalize()
+    self.rho.finalize()
+    self.press.finalize()
+    self.qvap.finalize()
+    self.qcond.finalize()
+    self.qice.finalize()
+    self.qrain.finalize()
+    self.qsnow.finalize()
+    self.qgrau.finalize()

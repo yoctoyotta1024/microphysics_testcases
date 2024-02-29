@@ -57,13 +57,16 @@ def test_python_microphys():
 
   """
 
+  ### label for test case to name data/plots with
+  run_name = "python_microphys_0dparcel"
+
   ### path to directory to save data/plots in after model run
   binpath = str(Path(__file__).parent.resolve())+"/bin/" # i.e. current directory + /bin/
   Path(binpath).mkdir(parents=False, exist_ok=True)
 
   ### time parameters
   time_init = 0.0 # [s]
-  time_end = 10.0 # [s]
+  time_end = 120.0 # [s]
   timestep = 1.0 # [s]
 
   ### initial thermodynamic conditions
@@ -87,4 +90,5 @@ def test_python_microphys():
   microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
   ### Perform 0-D parcel model test case using chosen setup
-  run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme, binpath)
+  run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme,
+                         binpath, run_name)
