@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Wednesday 28th February 2024
+Last Modified: Thursday 29th February 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -17,7 +17,7 @@ https://opensource.org/licenses/BSD-3-Clause
 File Description:
 '''
 
-from .adiabatic_expansion import AdiabaticExpansion
+from .adiabatic_motion import AdiabaticMotion
 
 def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
   """Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.

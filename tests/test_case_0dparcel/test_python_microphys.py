@@ -8,14 +8,14 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Wednesday 28th February 2024
+Last Modified: Thursday 29th February 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-mock test case for adiabatic expansion of a parcel of air (0-D model)
+mock test case for adiabatic motion of a parcel of air (0-D model)
 '''
 
 from .run_0dparcel import run_0dparcel
