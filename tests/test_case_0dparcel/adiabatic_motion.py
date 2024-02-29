@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Thursday 29th February 2024
+Last Modified: Friday 1st March 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -24,7 +24,7 @@ import numpy as np
 class AdiabaticMotion:
   """A class for driving the adiabatic expansion/contraction of a volume of air.
 
-  Class for adiabatic sinusoidal pressure change of parcel of air.
+  Enacts adiabatic sinusoidal pressure change of parcel of air.
 
   Args:
       amp (float):
@@ -157,9 +157,12 @@ class AdiabaticMotion:
     expansion/contraction of a parcel of air.
 
     Args:
-        time (float): Current time [s].
-        timestep (float): Time step size for the simulation [s].
-        thermo (Thermodynamics): Object representing the thermodynamic state of the air.
+        time (float):
+          Current time [s].
+        timestep (float):
+          Time step size for the simulation [s].
+        thermo (Thermodynamics):
+          Object representing the thermodynamic state of the air.
 
     Returns:
         Thermodynamics: Updated thermodynamic state of the air.

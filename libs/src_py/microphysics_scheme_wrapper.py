@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: mock_microphysics_scheme_wrapper.py
+File: microphysics_scheme_wrapper.py
 Project: src_py
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
@@ -31,19 +31,30 @@ class MicrophysicsSchemeWrapper:
   wrappers around methods to initialize, finalize, and run the microphysics.
 
   Args:
-      nvec (int): Number of horizontal points.
-      ke (int): Number of grid points in vertical direction.
-      ivstart (int): Start index for horizontal direction.
-      dz (float): Layer thickness of full levels (m).
-      qnc (float): Cloud number concentration.
+      nvec (int):
+        Number of horizontal points.
+      ke (int):
+        Number of grid points in vertical direction.
+      ivstart (int):
+        Start index for horizontal direction.
+      dz (float):
+        Layer thickness of full levels (m).
+      qnc (float):
+        Cloud number concentration.
 
   Attributes:
-      nvec (int): Number of horizontal points.
-      ke (int): Number of grid points in vertical direction.
-      ivstart (int): Start index for horizontal direction.
-      dz (float): Layer thickness of full levels (m).
-      qnc (float): Cloud number concentration.
-      microphys (MicrophysicsScheme): instance of Python MicrophysicsScheme.
+      nvec (int):
+        Number of horizontal points.
+      ke (int):
+        Number of grid points in vertical direction.
+      ivstart (int):
+        Start index for horizontal direction.
+      dz (float):
+        Layer thickness of full levels (m).
+      qnc (float):
+        Cloud number concentration.
+      microphys (MicrophysicsScheme):
+        instance of Python MicrophysicsScheme.
 
   """
 
@@ -51,11 +62,16 @@ class MicrophysicsSchemeWrapper:
     """Initialize the MicrophysicsSchemeWrapper object.
 
     Args:
-      nvec (int): Number of horizontal points.
-      ke (int): Number of grid points in vertical direction.
-      ivstart (int): Start index for horizontal direction.
-      dz (float): Layer thickness of full levels (m).
-      qnc (float): Cloud number concentration.
+      nvec (int):
+        Number of horizontal points.
+      ke (int):
+        Number of grid points in vertical direction.
+      ivstart (int):
+        Start index for horizontal direction.
+      dz (float):
+        Layer thickness of full levels (m).
+      qnc (float):
+        Cloud number concentration.
 
     """
     self.nvec = nvec
@@ -96,12 +112,13 @@ class MicrophysicsSchemeWrapper:
     """Run the microphysics computations.
 
     This method is a wrapper of the MicrophysicsScheme object's run function to call the
-    microphysics computations in a way that's compatible with the scripts and tests in this rest
-    of this project.
+    microphysics computations in a way that's compatible with the test and scripts in this project.
 
     Args:
-        timestep (float): Time-step for integration of microphysics (s)
-        thermo (Thermodynamics): Thermodynamic properties.
+        timestep (float):
+          Time-step for integration of microphysics (s)
+        thermo (Thermodynamics):
+          Thermodynamic properties.
 
     Returns:
         Thermodynamics: Updated thermodynamic properties after microphysics computations.

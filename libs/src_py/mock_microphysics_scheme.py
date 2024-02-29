@@ -54,21 +54,36 @@ class MicrophysicsScheme:
     This method executes the microphysics computations.
 
     Parameters:
-        nvec (int): Number of horizontal points.
-        ke (int): Number of grid points in vertical direction.
-        ivstart (int): Start index for horizontal direction.
-        dt (float): Times-tep for integration of microphysics (s)
-        dz (float): Layer thickness of full levels (m).
-        t (float): Temperature (K).
-        rho (float): Density of moist air (kg/m3)
-        p (float): Pressure (Pa).
-        qv (float): Specific water vapor content (kg/kg)
-        qc (float): Specific cloud water content (kg/kg)
-        qi (float): Specific cloud ice content (kg/kg)
-        qr (float): Specific rain content (kg/kg)
-        qs (float): Specific snow content kg/kg)
-        qg (float): Specific graupel content (kg/kg)
-        qnc (float): Cloud number concentration.
+        nvec (int):
+          Number of horizontal points.
+        ke (int):
+          Number of grid points in vertical direction.
+        ivstart (int):
+          Start index for horizontal direction.
+        dt (float):
+          Times-tep for integration of microphysics (s)
+        dz (float):
+          Layer thickness of full levels (m).
+        t (float):
+          Temperature (K).
+        rho (float):
+          Density of moist air (kg/m3)
+        p (float):
+          Pressure (Pa).
+        qv (float):
+          Specific water vapor content (kg/kg)
+        qc (float):
+          Specific cloud water content (kg/kg)
+        qi (float):
+          Specific cloud ice content (kg/kg)
+        qr (float):
+          Specific rain content (kg/kg)
+        qs (float):
+          Specific snow content kg/kg)
+        qg (float):
+          Specific graupel content (kg/kg)
+        qnc (float):
+          Cloud number concentration.
 
     Returns:
         Tuple[float, float, float, float, float, float, float, float, float]:
@@ -84,16 +99,14 @@ class MicrophysicsScheme:
 
     """
 
-    print("run microphysics")
-
-    prr_gsp = 0.001
-    pflx = 0.01
-
     qv += 1.0
     qc += 2.0
     qi += 3.0
     qr += 4.0
     qs += 5.0
     qg += 6.0
+
+    prr_gsp = 0.001
+    pflx = 0.01
 
     return t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx

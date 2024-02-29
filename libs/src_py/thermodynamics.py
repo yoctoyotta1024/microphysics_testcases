@@ -25,29 +25,42 @@ class Thermodynamics:
   content (mass mixing ratio) of vapour and condensates.
 
   Parameters:
-      temp (float): Temperature (K).
-      rho (float): Density of moist air (kg/m3)
-      press (float): Pressure (Pa).
-      qvap (float): Specific water vapor content (kg/kg)
-      qcond (float): Specific cloud water content (kg/kg)
-      qice (float): Specific cloud ice content (kg/kg)
-      qrain (float): Specific rain content (kg/kg)
-      qsnow (float): Specific snow content kg/kg)
-      qgrau (float): Specific graupel content (kg/kg)
+      temp (float):
+        Temperature (K).
+      rho (float):
+        Density of moist air (kg/m3).
+      press (float):
+        Pressure (Pa).
+      qvap (float):
+        Specific water vapor content (kg/kg).
+      qcond (float):
+        Specific cloud water content (kg/kg).
+      qice (float):
+        Specific cloud ice content (kg/kg).
+      qrain (float):
+        Specific rain content (kg/kg).
+      qsnow (float):
+        Specific snow content kg/kg).
+      qgrau (float):
+        Specific graupel content (kg/kg).
 
   Attributes:
-      temp (float): Temperature (K).
-      rho (float): Density of moist air (kg/m3)
-      press (float): Pressure (Pa).
-      massmix_ratios (tuple): specific content of vapour and condensates,
-                                in order: [
-                                qvap (float): Specific water vapor content (kg/kg),
-                                qcond (float): Specific cloud water content (kg/kg),
-                                qice (float): Specific cloud ice content (kg/kg),
-                                qrain (float): Specific rain content (kg/kg),
-                                qsnow (float): Specific snow content kg/kg),
-                                qgrau (float): Specific graupel content (kg/kg)
-                                ]
+      temp (float):
+        Temperature (K).
+      rho (float):
+        Density of moist air (kg/m3).
+      press (float):
+        Pressure (Pa).
+      massmix_ratios (tuple):
+        Specific content of vapour and condensates (see below).
+
+    massmax_ratios consists of the following:
+            massmix_ratios[0] = qvap (float): Specific water vapor content (kg/kg)\n
+            massmix_ratios[1] = qcond (float): Specific cloud water content (kg/kg)\n
+            massmix_ratios[2] = qice (float): Specific cloud ice content (kg/kg)\n
+            massmix_ratios[3] = qrain (float): Specific rain content (kg/kg)\n
+            massmix_ratios[4] = qsnow (float): Specific snow content kg/kg)\n
+            massmix_ratios[5] = qgrau (float): Specific graupel content (kg/kg)\n.
 
   '''
 

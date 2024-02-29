@@ -8,7 +8,7 @@ Created Date: Thursday 29th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Thursday 29th February 2024
+Last Modified: Friday 1st March 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -24,31 +24,43 @@ import numpy as np
 from .thermodynamics import Thermodynamics
 
 class OutputVariable:
-  '''Class is method to output a variable with some of its metadata.
+  """Class to output a variable with some of its metadata.
 
   Attributes:
-      name (string): name of variable.
-      units (string): units of variable.
-      values (any): values of variable; must be able to be appended to
-  '''
+      name (string):
+        Name of variable.
+      units (string):
+        Units of variable.
+      values (any):
+        Values of variable; must be able to be appended to.
+  """
 
   def __init__(self, name, units, values):
-    '''Initialise OutputVariable instance
+    """Initialise OutputVariable instance
 
     Parameters:
-        name (string): name of variable.
-        units (string): units of variable.
-        values (any): values of variable; must be able to be appended to
-    '''
+      name (string):
+        Name of variable.
+      units (string):
+        Units of variable.
+      values (any):
+        Values of variable; must be able to be appended to.
+    """
 
     self.name = name
     self.units = units
     self.values = values
 
   def write(self, val):
+    '''Append a value to the list of variable values.
+
+    Parameters:
+      val (any): Value to append.
+    '''
     self.values.append(val)
 
   def finalize(self):
+    '''Convert values to a NumPy array.'''
     self.values = np.asarray(self.values)
 
 class OutputThermodynamics:
@@ -58,21 +70,30 @@ class OutputThermodynamics:
   content (mass mixing ratio) of vapour and condensates.
 
   Attributes:
-      time (OutputVariable): time (s).
-      temp (OutputVariable): Temperature (K).
-      rho (OutputVariable): Density of moist air (kg/m3)
-      press (OutputVariable): Pressure (Pa).
-      qvap (OutputVariable): Specific water vapor content (kg/kg)
-      qcond (OutputVariable): Specific cloud water content (kg/kg)
-      qice (OutputVariable): Specific cloud ice content (kg/kg)
-      qrain (OutputVariable): Specific rain content (kg/kg)
-      qsnow (OutputVariable): Specific snow content kg/kg)
-      qgrau (OutputVariable): Specific graupel content (kg/kg)
-
+      time (OutputVariable):
+        time (s).
+      temp (OutputVariable):
+        Temperature (K).
+      rho (OutputVariable):
+        Density of moist air (kg/m3).
+      press (OutputVariable):
+        Pressure (Pa).
+      qvap (OutputVariable):
+        Specific water vapor content (kg/kg).
+      qcond (OutputVariable):
+        Specific cloud water content (kg/kg).
+      qice (OutputVariable):
+        Specific cloud ice content (kg/kg).
+      qrain (OutputVariable):
+        Specific rain content (kg/kg).
+      qsnow (OutputVariable):
+        Specific snow content kg/kg).
+      qgrau (OutputVariable):
+        Specific graupel content (kg/kg).
   '''
 
   def __init__(self):
-    '''Initialize a thermodynamics output object.'''
+    '''Initialize a ThermodynamicsOutput object.'''
 
     self.time = OutputVariable('time', 's', [])
     self.temp = OutputVariable('temp', 'K', [])
@@ -86,8 +107,20 @@ class OutputThermodynamics:
     self.qgrau = OutputVariable('qgrau', 'Kg/Kg', [])
 
   def output_thermodynamics(self, time: float, thermo: Thermodynamics):
-    '''operator to output thermodynamics from thermo to each variable in thermodynamics output.'''
+    """output thermodynamics from thermo to each variable in thermodynamics output.
 
+    This method writes time and thermodynamic variables from thermo such as temperature, density,
+    pressure, and specific mass mixing ratios to the respective output variables.
+
+    Parameters:
+        time (float):
+          The time at which the thermodynamic variables are output (s).
+        thermo (Thermodynamics):
+          An instance of the Thermodynamics class containing the thermodynamic variables to output.
+
+    Returns:
+        None
+    """
     self.time.write(time)
     self.temp.write(thermo.temp)
     self.rho.write(thermo.rho)
@@ -100,12 +133,29 @@ class OutputThermodynamics:
     self.qgrau.write(thermo.massmix_ratios[5])
 
   def __call__(self, time: float, thermo: Thermodynamics):
-    ''' callable for using class as operator() '''
+    """Invoke the object as a function to call the `output_thermodynamics` method.
+
+    Parameters:
+        time (float):
+          The time at which the thermodynamic variables are output (s).
+        thermo (Thermodynamics):
+          An instance of the Thermodynamics class containing the thermodynamic variables to output.
+
+    Returns:
+        None
+    """
     self.output_thermodynamics(time, thermo)
 
   def finalize(self):
-    '''finalize every variable in thermodynamics'''
+    """Finalize the thermodynamics output.
 
+    This method finalizes the output of thermodynamic variables by calling the `finalize` method
+    of each output variable, e.g. to ensure that all variables are properly formatted
+    for further use or analysis.
+
+    Returns:
+        None
+    """
     self.time.finalize()
     self.temp.finalize()
     self.rho.finalize()
