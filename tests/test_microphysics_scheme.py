@@ -8,7 +8,7 @@ Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Wednesday 28th February 2024
+Last Modified: Thursday 29th February 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -19,7 +19,7 @@ mock unit tests for Python microphysics module
 '''
 
 
-from libs.src_py.microphysics_scheme import MicrophysicsScheme
+from libs.src_py.mock_microphysics_scheme import MicrophysicsScheme
 from libs.src_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 from libs.src_py.thermodynamics import Thermodynamics
 
