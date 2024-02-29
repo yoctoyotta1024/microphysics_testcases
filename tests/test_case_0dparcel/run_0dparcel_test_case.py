@@ -21,6 +21,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 from .run_0dparcel_model import run_0dparcel_model
+from libs.src_py import thermo_equations as eqns
 
 def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme,
                            binpath, run_name):
@@ -65,6 +66,25 @@ def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys
   print("------------------------")
 
 def plot_0dparcel_thermodynamics(out, binpath, run_name):
+  """Plot thermodynamic variables for a 0-D parcel model and save the plots.
+
+  This function plots the pressure, density, temperature, and potential temperature(s)
+  of a run of the 0-D parcel model as a function of time and then saves the plots as a PNG image.
+
+  Args:
+      out (OutputThermodynamics):
+        OutputThermodynamics object containing the thermodynamic data.
+      binpath (str):
+        Path to the directory where the plots will be saved.
+      run_name (str):
+        Name of the test run to use in naming saved image.
+
+  Raises:
+      AssertionError: If the specified binpath does not exist or if run_name is empty.
+
+  Returns:
+      None
+  """
 
   assert(Path(binpath).exists())
   assert(run_name)
@@ -87,6 +107,26 @@ def plot_0dparcel_thermodynamics(out, binpath, run_name):
   save_figure(fig, binpath, figname)
 
 def plot_0dparcel_massmix_ratios(out, binpath, run_name):
+  """Plot mass mixing ratios for a 0-D parcel model and save the plots.
+
+  This function plots the mass mixing ratios of water vapor, cloud liquid, cloud ice,
+  rain, snow, and graupel for a run of the 0-D parcel model as a function of time and then
+  saves the plots as a PNG image.
+
+  Args:
+      out (OutputThermodynamics):
+        OutputThermodynamics object containing the mass mixing ratio data.
+      binpath (str):
+        Path to the directory where the plots will be saved.
+      run_name (str):
+        Name of the test run to use in naming saved image.
+
+  Raises:
+      AssertionError: If the specified binpath does not exist or if run_name is empty.
+
+  Returns:
+      None
+  """
 
   assert(Path(binpath).exists()), "The specified binpath does not exist."
   assert(run_name), "The run_name cannot be empty."
@@ -112,29 +152,48 @@ def plot_0dparcel_massmix_ratios(out, binpath, run_name):
 
 
 def plot_variable_on_axis(ax, time, var):
+  """Plot a variable against time on an axis.
 
+  Args:
+      ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the variable.
+      time (array-like): Time values (x axis).
+      var (OutputVariable): The variable to be plotted (y axis).
+
+  Returns:
+      None
+  """
   ax.plot(time, var.values)
   ax.set_ylabel(var.name+" /"+var.units)
 
 def plot_thetas_on_axis(ax, time, temp, press):
+  """Plot potential temperature(s) on a specified axis.
 
-  theta_dry = dry_potential_temperature(temp.values, press.values)
+  This function calculates and plots potential temperature(s) against time on a specified axis.
+
+  Args:
+      ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the potential temperature(s).
+      time (array-like): Time values (x axis).
+      temp (OutputVariable): Temperature variable.
+      press (OutputVariable): Pressure variable.
+
+  Returns:
+      None
+  """
+  theta_dry = eqns.dry_potential_temperature(temp.values, press.values)
   ax.plot(time, theta_dry, label="dry")
   ax.legend()
   ax.set_ylabel("potential temperature /"+temp.units)
 
-def dry_potential_temperature(temp, press):
-
-  rgas_univ = 8.314462618   # universal molar gas constant [J/Kg/K]
-  mr_dry = 0.028966216      # molecular mass of dry air [Kg/mol]
-  cp_dry = 1004.64     # specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K)
-  rgas_dry = rgas_univ / mr_dry   # specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K)
-
-  theta_dry = temp * (press[0] / press) ** (rgas_dry / cp_dry)
-
-  return theta_dry
-
 def save_figure(fig, binpath, figname):
+  """Save a Matplotlib figure as a PNG file with high resolution and tight bounding box.
 
+  Args:
+      fig (matplotlib.figure.Figure): The Matplotlib figure to be saved.
+      binpath (str): The directory where the figure will be saved.
+      figname (str): The name of the PNG file to save in binpath directory.
+
+  Returns:
+      None
+  """
   fig.savefig(binpath+"/"+figname,dpi=400, bbox_inches="tight", facecolor='w', format="png")
   print("Figure .png saved as: "+binpath+"/"+figname)

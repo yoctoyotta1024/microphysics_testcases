@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Thursday 29th February 2024
+Last Modified: Friday 1st March 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -26,12 +26,12 @@ from libs.src_py.thermodynamics import Thermodynamics
 from libs.src_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
 def test_python_microphys():
-  """runs 0-D parcel model test using Python microphysics scheme (which is a mock-up of the
-  muphys-cpp graupel class for ICON).
+  """runs 0-D parcel model test using Python mock microphysics scheme (a mock-up of the muphys-cpp
+  graupel class for ICON).
 
   This function sets up initial conditions and parameters for running a 0-D parcel model
-  test case using the Python microphysics scheme (via a wrapper). It then runs the 0-D parcel
-  model with the chosen setup.
+  test case using the Python mock microphysics scheme (via a wrapper). It then runs the
+  0-D parcel test case as specified.
 
   Test Parameters:
       Timestepping:
