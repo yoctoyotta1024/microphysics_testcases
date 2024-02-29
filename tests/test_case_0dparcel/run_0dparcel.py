@@ -43,7 +43,7 @@ def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
 
   while time <= time_end:
 
-    thermo = parcel_dynamics.run(timestep, thermo)
+    thermo = parcel_dynamics.run(time, timestep, thermo)
     thermo = microphys_scheme.run(timestep, thermo)
     time += timestep
 
