@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: thermo_equations.py
+File: calcs.py
 Project: src_py
 Created Date: Friday 1st March 2024
 Author: Clara Bayley (CB)
@@ -15,6 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
+functions for calculations of some quantities e.g. potential temperature(s)
 '''
 
 

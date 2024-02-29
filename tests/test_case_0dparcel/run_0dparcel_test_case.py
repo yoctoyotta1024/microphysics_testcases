@@ -21,7 +21,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 from .run_0dparcel_model import run_0dparcel_model
-from libs.src_py import thermo_equations as eqns
+from libs.src_py import calcs
 
 def run_0dparcel_test_case(time_init, time_end, timestep, thermo_init, microphys_scheme,
                            binpath, run_name):
@@ -179,7 +179,7 @@ def plot_thetas_on_axis(ax, time, temp, press):
   Returns:
       None
   """
-  theta_dry = eqns.dry_potential_temperature(temp.values, press.values)
+  theta_dry = calcs.dry_potential_temperature(temp.values, press.values)
   ax.plot(time, theta_dry, label="dry")
   ax.legend()
   ax.set_ylabel("potential temperature /"+temp.units)
