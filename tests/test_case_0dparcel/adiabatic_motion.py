@@ -68,17 +68,17 @@ class AdiabaticMotion:
     self.omega = 2.0 * np.pi / tau # angular frequency of pressure sinusio (tau is time period) [radians s^-1]
 
   def dpress_dtime(self, time):
-    """Calculate the rate of change of pressure with respect to time.
+    r"""Calculate the rate of change of pressure with respect to time.
 
     The rate of change of pressure with respect to time is calculated from the equation:
 
-    .. math:: \\frac{dP}{dt} = - \omega \cdot A \cos(\omega t)
+    .. math:: \frac{dP}{dt} = - \omega \cdot A \cos(\omega t)
 
     so that pressure evolution follows:
 
-    .. math:: P(t) = P_{\\rm init} - A \sin(\omega t)
+    .. math:: P(t) = P_{\rm init} - A \sin(\omega t)
 
-    where :math:`P_{\\rm init} = P(t=t_{\\rm{init}})`
+    where :math:`P_{\rm init} = P(t=t_{\rm{init}})`
 
     Args:
         time (float): Current time [s].
@@ -91,16 +91,16 @@ class AdiabaticMotion:
 
     return dpress_dt
 
-  def dtemp_dtime(self, rho, dpress_dt):
-    """Calculate the rate of change of temperature with respect to time.
+  def dtemp_dtime(self, time, rho0):
+    r"""Calculate the rate of change of temperature with respect to time.
 
     The rate of change of temperature with respect to time is calculated from the equation:
 
-    .. math:: \\frac{dT}{dt} = \\frac{1}{\\rho c_{\\rm p, dry}} \\frac{dP}{dt}
+    .. math:: \frac{dT}{dt} = \frac{1}{\rho c_{\rm p, dry}} \frac{dP}{dt}
 
-    assuming :math:`c_{\\rm p} \\approx c_{\\rm p, dry}`,
-    i.e. :math:`q_{\\rm dry}c_{\\rm p, dry} \gg  q_{\\rm v}c_{\\rm p, v}`,
-    and :math:`q_{\\rm dry}c_{\\rm p, dry} \gg  q_{\\rm v}c_{\\rm k}` for all condensates :math:`k`.
+    assuming :math:`c_{\rm p} \approx c_{\rm p, dry}`,
+    i.e. :math:`q_{\rm dry}c_{\rm p, dry} \gg  q_{\rm v}c_{\rm p, v}`,
+    and :math:`q_{\rm dry}c_{\rm p, dry} \gg  q_{\rm v}c_{\rm k}` for all condensates :math:`k`.
 
     Args:
         rho (float):
@@ -111,25 +111,27 @@ class AdiabaticMotion:
     Returns:
         float: Rate of change of temperature with respect to time [K/s].
     """
-    dtemp_dt = dpress_dt / rho / self.cp_dry
+
+    dpress_dt = self.dpress_dtime(time)
+    dtemp_dt = dpress_dt / rho0 / self.cp_dry
 
     return dtemp_dt
 
-  def drho_dtime(self, temp, rho, qvap, dpress_dt, dtemp_dt):
-    """
+  def drho_dtime(self, time, qvap, temp0, rho0):
+    r"""
     Calculate the rate of change of density with respect to time.
 
     The rate of change of temperature with respect to time is calculated from the equation:
 
     .. math::
-      \\frac{d\\rho}{dt} = \\frac{\\rho}{P} \\frac{dP}{dt} - \\frac{\\rho}{T} \\frac{dT}{dt}
+      \frac{d\rho}{dt} = \frac{\rho}{P} \frac{dP}{dt} - \frac{\rho}{T} \frac{dT}{dt}
 
     where
 
     .. math::
-      P = \\rho R_{\\rm dry} \\left(1 + \\frac{q_{\\rm v}}{\\epsilon}\\right) T
+      P = \rho R_{\rm dry} \left(1 + \frac{q_{\rm v}}{\epsilon}\right) T
 
-    assuming :math:`q_{\\rm v} \\approx r_{\\rm v}`, i.e. :math:`q_{\\rm dry} \gg  q_{\\rm v}`.
+    assuming :math:`q_{\rm v} \approx r_{\rm v}`, i.e. :math:`q_{\rm dry} \gg  q_{\rm v}`.
 
     Args:
         temp (float):
@@ -149,8 +151,11 @@ class AdiabaticMotion:
 
     rgas_eff = self.rgas_dry * (1 + qvap / self.epsilon)
 
-    drho_dt_temp = - dtemp_dt * rho / temp
-    drho_dt_press = dpress_dt / rgas_eff / temp
+    dpress_dt = self.dpress_dtime(time)
+    dtemp_dt = self.dtemp_dtime(time, rho0)
+
+    drho_dt_temp = - dtemp_dt * rho0 / temp0
+    drho_dt_press = dpress_dt / rgas_eff / temp0
 
     drho_dt = drho_dt_press + drho_dt_temp
 
@@ -178,12 +183,9 @@ class AdiabaticMotion:
     t0, t1 = time, time+timestep
     qvap = thermo.massmix_ratios[0]
 
-    dpress_dt = self.dpress_dtime(time)
-    dtemp_dt = self.dtemp_dtime(thermo.rho, dpress_dt)
-
-    delta_press = integrate.quad(self.dpress_dtime, t0, t1, args=())[0]
-    delta_temp = dtemp_dt * timestep
-    delta_rho = self.drho_dtime(thermo.temp, thermo.rho, qvap, dpress_dt, dtemp_dt) * timestep
+    delta_press = integrate.quad(self.dpress_dtime, t0, t1)[0]
+    delta_temp = integrate.quad(self.dtemp_dtime, t0, t1, args=(thermo.rho))[0]
+    delta_rho = integrate.quad(self.drho_dtime, t0, t1, args=(qvap, thermo.temp, thermo.rho))[0]
 
     thermo.press += delta_press
     thermo.temp += delta_temp

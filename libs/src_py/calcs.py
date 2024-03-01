@@ -20,15 +20,15 @@ functions for calculations of some quantities e.g. potential temperature(s)
 
 
 def dry_potential_temperature(temp, press):
-  """Calculate the potential temperature for dry air.
+  r"""Calculate the potential temperature for dry air.
 
   This function calculates the potential temperature for dry air given the temperature and pressure.
 
   .. math::
-        \\theta_{\\rm{dry}} = T \\left( \\frac{P_{\\rm ref}}{P} \\right)
-            ^{ \\frac{R_{\\rm{dry}}}{c_{\\rm{p, dry}}} }
+        \theta_{\rm{dry}} = T \left( \frac{P_{\rm ref}}{P} \right)
+            ^{ \frac{R_{\rm{dry}}}{c_{\rm{p, dry}}} }
 
-  where :math:`P_{\\rm ref}` is the first pressure in press array.
+  where :math:`P_{\rm ref}` is the first pressure in press array.
 
   Args:
     temp (array-like):
