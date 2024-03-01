@@ -49,7 +49,7 @@ def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
 
   ### type of dynamics parcel will undergo
   amp = 11325 # amplitude of pressure sinusoid [Pa]
-  tau = 60 # time period of pressure sinusiod [s]
+  tau = 120 # time period of pressure sinusiod [s]
   parcel_dynamics = AdiabaticMotion(amp, tau)
 
   ### run dynamics + microphysics from time to time_end
