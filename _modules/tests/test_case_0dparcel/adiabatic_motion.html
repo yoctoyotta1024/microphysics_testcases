@@ -1,0 +1,476 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+        <title>tests.test_case_0dparcel.adiabatic_motion - Microphysics Test Cases 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Microphysics Test Cases 0.0.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Microphysics Test Cases 0.0.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/getstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/ourdocs.html">Our Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/ourtests.html">Our Tests</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../src_py/index.html">Python Package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Python Package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/thermodynamics.html">Python Thermodynamics Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/output_thermodynamics.html">Python Output Thermodynamics Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/mock_microphysics_scheme.html">Python Mock Microphysics Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/microphysics_scheme_wrapper.html">Wrapper for Python Mock Microphysics Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/calcs.html">Calculations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../src_cxx/index.html">C++ Package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of C++ Package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_cxx/mock.html">C++ Mock Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tests/index.html">Microphysics Test Cases</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Microphysics Test Cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tests/test_case_0dparcel/index.html">0-D Parcel Test Case</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 0-D Parcel Test Case</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tests/test_case_0dparcel/run_0dparcel_test_case.html">0-D Model Test Case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tests/test_case_0dparcel/run_0dparcel_model.html">Run 0-D Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tests/test_case_0dparcel/adiabatic_motion.html">Adiabatic Motion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/yoctoyotta1024/microphysics_testcases.git">GitHub Repo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/contact.html">Contact Us!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for tests.test_case_0dparcel.adiabatic_motion</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
+
+<span class="sd">----- Microphysics Test Cases -----</span>
+<span class="sd">File: adiabatic_motion.py</span>
+<span class="sd">Project: test_case_0dparcel</span>
+<span class="sd">Created Date: Wednesday 28th February 2024</span>
+<span class="sd">Author: Clara Bayley (CB)</span>
+<span class="sd">Additional Contributors:</span>
+<span class="sd">-----</span>
+<span class="sd">Last Modified: Friday 1st March 2024</span>
+<span class="sd">Modified By: CB</span>
+<span class="sd">-----</span>
+<span class="sd">License: BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License</span>
+<span class="sd">https://opensource.org/licenses/BSD-3-Clause</span>
+<span class="sd">-----</span>
+<span class="sd">File Description:</span>
+<span class="sd">class for driving adiabatic expansion/contraction test case</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
+
+<div class="viewcode-block" id="AdiabaticMotion">
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion">[docs]</a>
+<span class="k">class</span> <span class="nc">AdiabaticMotion</span><span class="p">:</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;A class for driving the adiabatic expansion/contraction of a volume of air.</span>
+
+<span class="sd">  Enacts adiabatic sinusoidal pressure change of parcel of air.</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">      amp (float):</span>
+<span class="sd">        Amplitude of pressure sinusoid [Pa].</span>
+<span class="sd">      tau (float):</span>
+<span class="sd">        Time period of the pressure sinusoid [s].</span>
+
+<span class="sd">  Attributes:</span>
+<span class="sd">      amp (float):</span>
+<span class="sd">        Amplitude of pressure sinusoid [Pa].</span>
+<span class="sd">      omega (float):</span>
+<span class="sd">        Angular frequency of pressure sinusoid (tau is time period) [radians s^-1].</span>
+<span class="sd">      cp_dry (float):</span>
+<span class="sd">        Specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K).</span>
+<span class="sd">      rgas_dry (float):</span>
+<span class="sd">        Specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K).</span>
+<span class="sd">      epsilon (float):</span>
+<span class="sd">        Ratio of gas constants, dry air / water vapour (approx. 0.622).</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amp</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the AdiabaticMotion object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        amp (float):</span>
+<span class="sd">          Amplitude of pressure sinusoid [Pa].</span>
+<span class="sd">        tau (float):</span>
+<span class="sd">          Time period of the pressure sinusoid [s].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">rgas_univ</span> <span class="o">=</span> <span class="mf">8.314462618</span>   <span class="c1"># universal molar gas constant [J/Kg/K]</span>
+    <span class="n">mr_dry</span> <span class="o">=</span> <span class="mf">0.028966216</span>      <span class="c1"># molecular mass of dry air [Kg/mol]</span>
+    <span class="n">mr_water</span> <span class="o">=</span> <span class="mf">0.01801528</span>     <span class="c1"># molecular mass of water [Kg/mol]</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">cp_dry</span> <span class="o">=</span> <span class="mf">1004.64</span>     <span class="c1"># specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">rgas_dry</span> <span class="o">=</span> <span class="n">rgas_univ</span> <span class="o">/</span> <span class="n">mr_dry</span>   <span class="c1"># specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">mr_water</span> <span class="o">/</span> <span class="n">mr_dry</span>     <span class="c1"># ratio of gas constants, dry air / water vapour (approx. 0.622)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">amp</span> <span class="o">=</span> <span class="n">amp</span> <span class="c1"># amplitude of pressure sinusoid [Pa]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">tau</span> <span class="c1"># angular frequency of pressure sinusio (tau is time period) [radians s^-1]</span>
+
+<div class="viewcode-block" id="AdiabaticMotion.dpress_dtime">
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.dpress_dtime">[docs]</a>
+  <span class="k">def</span> <span class="nf">dpress_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the rate of change of pressure with respect to time.</span>
+
+<span class="sd">    The rate of change of pressure with respect to time is calculated from the equation:</span>
+
+<span class="sd">    .. math:: \frac{dP}{dt} = - \omega \cdot A \cos(\omega t)</span>
+
+<span class="sd">    so that pressure evolution follows:</span>
+
+<span class="sd">    .. math:: P(t) = P_{\rm init} - A \sin(\omega t)</span>
+
+<span class="sd">    where :math:`P_{\rm init} = P(t=t_{\rm{init}})`</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        time (float): Current time [s].</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: Rate of change of pressure with respect to time [Pa/s].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dpress_dt</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dpress_dt</span></div>
+
+
+<div class="viewcode-block" id="AdiabaticMotion.dtemp_dtime">
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.dtemp_dtime">[docs]</a>
+  <span class="k">def</span> <span class="nf">dtemp_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the rate of change of temperature with respect to time.</span>
+
+<span class="sd">    The rate of change of temperature with respect to time is calculated from the equation:</span>
+
+<span class="sd">    .. math:: \frac{dT}{dt} = \frac{1}{\rho c_{\rm p, dry}} \frac{dP}{dt}</span>
+
+<span class="sd">    assuming :math:`c_{\rm p} \approx c_{\rm p, dry}`,</span>
+<span class="sd">    i.e. :math:`q_{\rm dry}c_{\rm p, dry} \gg  q_{\rm v}c_{\rm p, v}`,</span>
+<span class="sd">    and :math:`q_{\rm dry}c_{\rm p, dry} \gg  q_{\rm v}c_{\rm k}` for all condensates :math:`k`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        rho (float):</span>
+<span class="sd">          Density of air [Kg/m^3].</span>
+<span class="sd">        dpress_dt (float):</span>
+<span class="sd">          Rate of change of pressure with respect to time [Pa/s].</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: Rate of change of temperature with respect to time [K/s].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dtemp_dt</span> <span class="o">=</span> <span class="n">dpress_dt</span> <span class="o">/</span> <span class="n">rho</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">cp_dry</span>
+
+    <span class="k">return</span> <span class="n">dtemp_dt</span></div>
+
+
+<div class="viewcode-block" id="AdiabaticMotion.drho_dtime">
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.drho_dtime">[docs]</a>
+  <span class="k">def</span> <span class="nf">drho_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qvap</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the rate of change of density with respect to time.</span>
+
+<span class="sd">    The rate of change of temperature with respect to time is calculated from the equation:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">      \frac{d\rho}{dt} = \frac{\rho}{P} \frac{dP}{dt} - \frac{\rho}{T} \frac{dT}{dt}</span>
+
+<span class="sd">    where</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">      P = \rho R_{\rm dry} \left(1 + \frac{q_{\rm v}}{\epsilon}\right) T</span>
+
+<span class="sd">    assuming :math:`q_{\rm v} \approx r_{\rm v}`, i.e. :math:`q_{\rm dry} \gg  q_{\rm v}`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        temp (float):</span>
+<span class="sd">          Temperature of air [K].</span>
+<span class="sd">        rho (float):</span>
+<span class="sd">          Density of air [Kg/m^3].</span>
+<span class="sd">        qvap (float):</span>
+<span class="sd">          Mass mixing ratio of water vapor [Kg/Kg].</span>
+<span class="sd">        dpress_dt (float):</span>
+<span class="sd">          Rate of change of pressure with respect to time [Pa/s].</span>
+<span class="sd">        dtemp_dt (float):</span>
+<span class="sd">          Rate of change of temperature with respect to time [K/s].</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: Rate of change of density with respect to time [Kg/m^3/s].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">rgas_eff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rgas_dry</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">qvap</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+
+    <span class="n">drho_dt_temp</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dtemp_dt</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">/</span> <span class="n">temp</span>
+    <span class="n">drho_dt_press</span> <span class="o">=</span> <span class="n">dpress_dt</span> <span class="o">/</span> <span class="n">rgas_eff</span> <span class="o">/</span> <span class="n">temp</span>
+
+    <span class="n">drho_dt</span> <span class="o">=</span> <span class="n">drho_dt_press</span> <span class="o">+</span> <span class="n">drho_dt_temp</span>
+
+    <span class="k">return</span> <span class="n">drho_dt</span></div>
+
+
+<div class="viewcode-block" id="AdiabaticMotion.adiabatic_odes">
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.adiabatic_odes">[docs]</a>
+  <span class="k">def</span> <span class="nf">adiabatic_odes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">qvap</span><span class="p">):</span>
+
+    <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">press</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">dpress_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpress_dtime</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">dtemp_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtemp_dtime</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">)</span>
+    <span class="n">drho_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drho_dtime</span><span class="p">(</span><span class="n">qvap</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">drho_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="AdiabaticMotion.run">
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.run">[docs]</a>
+  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run the adiabatic motion computations.</span>
+
+<span class="sd">    This method integrates the equations from time to time+timestep for adiabatic</span>
+<span class="sd">    expansion/contraction of a parcel of air.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        time (float):</span>
+<span class="sd">          Current time [s].</span>
+<span class="sd">        timestep (float):</span>
+<span class="sd">          Time step size for the simulation [s].</span>
+<span class="sd">        thermo (Thermodynamics):</span>
+<span class="sd">          Object representing the thermodynamic state of the air.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Thermodynamics: Updated thermodynamic state of the air.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">time</span><span class="o">+</span><span class="n">timestep</span>
+    <span class="n">qvap</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">thermo</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span> <span class="n">thermo</span><span class="o">.</span><span class="n">rho</span><span class="p">,</span> <span class="n">thermo</span><span class="o">.</span><span class="n">press</span><span class="p">]</span>
+    <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">press</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adiabatic_odes</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="p">[</span><span class="n">t0</span><span class="p">,</span><span class="n">t1</span><span class="p">],</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">qvap</span><span class="p">,))[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">thermo</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span>
+    <span class="n">thermo</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
+    <span class="n">thermo</span><span class="o">.</span><span class="n">press</span> <span class="o">=</span> <span class="n">press</span>
+
+    <span class="k">return</span> <span class="n">thermo</span></div>
+</div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; (2024) MPI-M, Clara Bayley
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 01 March 2024</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

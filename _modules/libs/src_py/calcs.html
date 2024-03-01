@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
-        <title>libs.src_py.mock - Microphysics Test Cases 0.0.0 documentation</title>
+        <title>libs.src_py.calcs - Microphysics Test Cases 0.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -159,11 +159,24 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/ourdocs.html">Our Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/ourtests.html">Our Tests</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../src_py/index.html">Python Package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Python Package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../src_py/mock.html">Python Mock Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/thermodynamics.html">Python Thermodynamics Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/output_thermodynamics.html">Python Output Thermodynamics Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/mock_microphysics_scheme.html">Python Mock Microphysics Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/microphysics_scheme_wrapper.html">Wrapper for Python Mock Microphysics Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src_py/calcs.html">Calculations</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../src_cxx/index.html">C++ Package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of C++ Package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../src_cxx/mock.html">C++ Mock Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tests/index.html">Microphysics Test Cases</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Microphysics Test Cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tests/test_case_0dparcel/index.html">0-D Parcel Test Case</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 0-D Parcel Test Case</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tests/test_case_0dparcel/run_0dparcel_test_case.html">0-D Model Test Case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tests/test_case_0dparcel/run_0dparcel_model.html">Run 0-D Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tests/test_case_0dparcel/adiabatic_motion.html">Adiabatic Motion</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/yoctoyotta1024/microphysics_testcases.git">GitHub Repo</a></li>
@@ -203,59 +216,59 @@
           </label>
         </div>
         <article role="main">
-          <h1>Source code for libs.src_py.mock</h1><div class="highlight"><pre>
+          <h1>Source code for libs.src_py.calcs</h1><div class="highlight"><pre>
 <span></span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
 <span class="sd">----- Microphysics Test Cases -----</span>
-<span class="sd">File: mock.py</span>
+<span class="sd">File: calcs.py</span>
 <span class="sd">Project: src_py</span>
-<span class="sd">Created Date: Tuesday 27th February 2024</span>
+<span class="sd">Created Date: Friday 1st March 2024</span>
 <span class="sd">Author: Clara Bayley (CB)</span>
 <span class="sd">Additional Contributors:</span>
 <span class="sd">-----</span>
-<span class="sd">Last Modified: Tuesday 27th February 2024</span>
+<span class="sd">Last Modified: Friday 1st March 2024</span>
 <span class="sd">Modified By: CB</span>
 <span class="sd">-----</span>
 <span class="sd">License: BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License</span>
 <span class="sd">https://opensource.org/licenses/BSD-3-Clause</span>
 <span class="sd">-----</span>
 <span class="sd">File Description:</span>
+<span class="sd">functions for calculations of some quantities e.g. potential temperature(s)</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="viewcode-block" id="dry_potential_temperature">
+<a class="viewcode-back" href="../../../src_py/calcs.html#libs.src_py.calcs.dry_potential_temperature">[docs]</a>
+<span class="k">def</span> <span class="nf">dry_potential_temperature</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">press</span><span class="p">):</span>
+<span class="w">  </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the potential temperature for dry air.</span>
 
-<div class="viewcode-block" id="hello_world">
-<a class="viewcode-back" href="../../../src_py/mock.html#libs.src_py.mock.hello_world">[docs]</a>
-<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Prints &#39;Hello World!&#39;.</span>
+<span class="sd">  This function calculates the potential temperature for dry air given the temperature and pressure.</span>
 
-<span class="sd">  This function doesn&#39;t take any parameters.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+<span class="sd">  .. math::</span>
+<span class="sd">        \theta_{\rm{dry}} = T \left( \frac{P_{\rm ref}}{P} \right)</span>
+<span class="sd">            ^{ \frac{R_{\rm{dry}}}{c_{\rm{p, dry}}} }</span>
 
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span></div>
+<span class="sd">  where :math:`P_{\rm ref}` is the first pressure in press array.</span>
 
-
-<div class="viewcode-block" id="area_circle">
-<a class="viewcode-back" href="../../../src_py/mock.html#libs.src_py.mock.area_circle">[docs]</a>
-<span class="k">def</span> <span class="nf">area_circle</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Calculate the area of a circle.</span>
-
-<span class="sd">  Parameters:</span>
-<span class="sd">      radius (float): The radius of the circle.</span>
+<span class="sd">  Args:</span>
+<span class="sd">    temp (array-like):</span>
+<span class="sd">        Temperature values (K).</span>
+<span class="sd">    press (array-like):</span>
+<span class="sd">        Pressure values (Pa).</span>
 
 <span class="sd">  Returns:</span>
-<span class="sd">      float: The area of the circle.</span>
-
-<span class="sd">  Examples:</span>
-<span class="sd">    &gt;&gt;&gt; area_circle(4.0)</span>
-<span class="sd">    50.26548245743669...</span>
+<span class="sd">      array-like: The potential temperature (K).</span>
 <span class="sd">  &quot;&quot;&quot;</span>
 
-  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span></div>
+  <span class="n">rgas_univ</span> <span class="o">=</span> <span class="mf">8.314462618</span>   <span class="c1"># universal molar gas constant [J/Kg/K]</span>
+  <span class="n">mr_dry</span> <span class="o">=</span> <span class="mf">0.028966216</span>      <span class="c1"># molecular mass of dry air [Kg/mol]</span>
+  <span class="n">cp_dry</span> <span class="o">=</span> <span class="mf">1004.64</span>     <span class="c1"># specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K)</span>
+  <span class="n">rgas_dry</span> <span class="o">=</span> <span class="n">rgas_univ</span> <span class="o">/</span> <span class="n">mr_dry</span>   <span class="c1"># specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K)</span>
+
+  <span class="n">theta_dry</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">*</span> <span class="p">(</span><span class="n">press</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">press</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="n">rgas_dry</span> <span class="o">/</span> <span class="n">cp_dry</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">theta_dry</span></div>
 
 </pre></div>
         </article>
@@ -275,7 +288,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 28 February 2024</div>
+              Last updated on 01 March 2024</div>
           </div>
           <div class="right-details">
             

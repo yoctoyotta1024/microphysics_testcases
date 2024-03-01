@@ -31,6 +31,7 @@ Contents
    usage/ourtests
    src_py/index
    src_cxx/index
+   tests/index
 
    GitHub Repo <https://github.com/yoctoyotta1024/microphysics_testcases.git>
    usage/contributing
