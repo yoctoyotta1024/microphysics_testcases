@@ -20,6 +20,7 @@ class for driving adiabatic expansion/contraction test case
 
 
 import numpy as np
+import scipy.integrate as integrate
 
 class AdiabaticMotion:
   """A class for driving the adiabatic expansion/contraction of a volume of air.
@@ -174,12 +175,13 @@ class AdiabaticMotion:
         Thermodynamics: Updated thermodynamic state of the air.
     """
 
+    t0, t1 = time, time+timestep
     qvap = thermo.massmix_ratios[0]
 
     dpress_dt = self.dpress_dtime(time)
     dtemp_dt = self.dtemp_dtime(thermo.rho, dpress_dt)
 
-    delta_press = dpress_dt * timestep
+    delta_press = integrate.quad(self.dpress_dtime, t0, t1, args=())[0]
     delta_temp = dtemp_dt * timestep
     delta_rho = self.drho_dtime(thermo.temp, thermo.rho, qvap, dpress_dt, dtemp_dt) * timestep
 
