@@ -91,7 +91,7 @@ class AdiabaticMotion:
 
     return dpress_dt
 
-  def dtemp_dtime(self, time, rho0):
+  def dtemp_dtime(self, rho, dpress_dt):
     r"""Calculate the rate of change of temperature with respect to time.
 
     The rate of change of temperature with respect to time is calculated from the equation:
@@ -112,12 +112,11 @@ class AdiabaticMotion:
         float: Rate of change of temperature with respect to time [K/s].
     """
 
-    dpress_dt = self.dpress_dtime(time)
-    dtemp_dt = dpress_dt / rho0 / self.cp_dry
+    dtemp_dt = dpress_dt / rho / self.cp_dry
 
     return dtemp_dt
 
-  def drho_dtime(self, time, qvap, temp0, rho0):
+  def drho_dtime(self, qvap, temp, rho, dtemp_dt, dpress_dt):
     r"""
     Calculate the rate of change of density with respect to time.
 
@@ -151,15 +150,21 @@ class AdiabaticMotion:
 
     rgas_eff = self.rgas_dry * (1 + qvap / self.epsilon)
 
-    dpress_dt = self.dpress_dtime(time)
-    dtemp_dt = self.dtemp_dtime(time, rho0)
-
-    drho_dt_temp = - dtemp_dt * rho0 / temp0
-    drho_dt_press = dpress_dt / rgas_eff / temp0
+    drho_dt_temp = - dtemp_dt * rho / temp
+    drho_dt_press = dpress_dt / rgas_eff / temp
 
     drho_dt = drho_dt_press + drho_dt_temp
 
     return drho_dt
+
+  def adiabatic_odes(self, y, time, qvap):
+
+    temp, rho, press = y
+    dpress_dt = self.dpress_dtime(time)
+    dtemp_dt = self.dtemp_dtime(rho, dpress_dt)
+    drho_dt = self.drho_dtime(qvap, temp, rho, dtemp_dt, dpress_dt)
+
+    return [dtemp_dt, drho_dt, dpress_dt]
 
   def run(self, time, timestep, thermo):
     """
@@ -183,12 +188,11 @@ class AdiabaticMotion:
     t0, t1 = time, time+timestep
     qvap = thermo.massmix_ratios[0]
 
-    delta_press = integrate.quad(self.dpress_dtime, t0, t1)[0]
-    delta_temp = integrate.quad(self.dtemp_dtime, t0, t1, args=(thermo.rho))[0]
-    delta_rho = integrate.quad(self.drho_dtime, t0, t1, args=(qvap, thermo.temp, thermo.rho))[0]
+    y0 = [thermo.temp, thermo.rho, thermo.press]
+    temp, rho, press = integrate.odeint(self.adiabatic_odes, y0, [t0,t1], args=(qvap,))[1]
 
-    thermo.press += delta_press
-    thermo.temp += delta_temp
-    thermo.rho += delta_rho
+    thermo.temp = temp
+    thermo.rho = rho
+    thermo.press = press
 
     return thermo

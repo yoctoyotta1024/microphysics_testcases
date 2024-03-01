@@ -8,7 +8,7 @@ Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Thursday 29th February 2024
+Last Modified: Friday 1st March 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -99,12 +99,12 @@ class MicrophysicsScheme:
 
     """
 
-    qv += 1.0
-    qc += 2.0
-    qi += 3.0
-    qr += 4.0
-    qs += 5.0
-    qg += 6.0
+    qv += 0.0001
+    qc += 0.0002
+    qi += 0.0003
+    qr += 0.0004
+    qs += 0.0005
+    qg += 0.0006
 
     prr_gsp = 0.001
     pflx = 0.01

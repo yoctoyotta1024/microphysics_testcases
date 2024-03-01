@@ -66,19 +66,19 @@ def test_python_microphys():
 
   ### time parameters
   time_init = 0.0 # [s]
-  time_end = 1200.0 # [s]
-  timestep = 0.5 # [s]
+  time_end = 240.0 # [s]
+  timestep = 1.0 # [s]
 
   ### initial thermodynamic conditions
   temp = 288.15
   rho = 1.225
   press = 101325
-  qvap = 0.1
-  qcond = 0.2
-  qice = 0.3
-  qrain = 0.4
-  qsnow = 0.5
-  qgrau = 0.6
+  qvap = 0.01
+  qcond = 0.02
+  qice = 0.03
+  qrain = 0.04
+  qsnow = 0.05
+  qgrau = 0.06
   thermo_init = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
 
   ### microphysics scheme to use (within a wrapper)
