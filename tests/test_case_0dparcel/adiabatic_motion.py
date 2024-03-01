@@ -69,9 +69,6 @@ class AdiabaticMotion:
   def dpress_dtime(self, time):
     """Calculate the rate of change of pressure with respect to time.
 
-    Args:
-        time (float): Current time [s].
-
     The rate of change of pressure with respect to time is calculated from the equation:
 
     .. math:: \\frac{dP}{dt} = - \omega \cdot A \cos(\omega t)
@@ -80,6 +77,10 @@ class AdiabaticMotion:
 
     .. math:: P(t) = P_{\\rm init} - A \sin(\omega t)
 
+    where :math:`P_{\\rm init} = P(t=t_{\\rm{init}})`
+
+    Args:
+        time (float): Current time [s].
 
     Returns:
         float: Rate of change of pressure with respect to time [Pa/s].
@@ -92,12 +93,6 @@ class AdiabaticMotion:
   def dtemp_dtime(self, rho, dpress_dt):
     """Calculate the rate of change of temperature with respect to time.
 
-    Args:
-        rho (float):
-          Density of air [Kg/m^3].
-        dpress_dt (float):
-          Rate of change of pressure with respect to time [Pa/s].
-
     The rate of change of temperature with respect to time is calculated from the equation:
 
     .. math:: \\frac{dT}{dt} = \\frac{1}{\\rho c_{\\rm p, dry}} \\frac{dP}{dt}
@@ -105,6 +100,12 @@ class AdiabaticMotion:
     assuming :math:`c_{\\rm p} \\approx c_{\\rm p, dry}`,
     i.e. :math:`q_{\\rm dry}c_{\\rm p, dry} \gg  q_{\\rm v}c_{\\rm p, v}`,
     and :math:`q_{\\rm dry}c_{\\rm p, dry} \gg  q_{\\rm v}c_{\\rm k}` for all condensates :math:`k`.
+
+    Args:
+        rho (float):
+          Density of air [Kg/m^3].
+        dpress_dt (float):
+          Rate of change of pressure with respect to time [Pa/s].
 
     Returns:
         float: Rate of change of temperature with respect to time [K/s].
@@ -117,18 +118,6 @@ class AdiabaticMotion:
     """
     Calculate the rate of change of density with respect to time.
 
-    Args:
-        temp (float):
-          Temperature of air [K].
-        rho (float):
-          Density of air [Kg/m^3].
-        qvap (float):
-          Mass mixing ratio of water vapor [Kg/Kg].
-        dpress_dt (float):
-          Rate of change of pressure with respect to time [Pa/s].
-        dtemp_dt (float):
-          Rate of change of temperature with respect to time [K/s].
-
     The rate of change of temperature with respect to time is calculated from the equation:
 
     .. math::
@@ -140,6 +129,18 @@ class AdiabaticMotion:
       P = \\rho R_{\\rm dry} \\left(1 + \\frac{q_{\\rm v}}{\\epsilon}\\right) T
 
     assuming :math:`q_{\\rm v} \\approx r_{\\rm v}`, i.e. :math:`q_{\\rm dry} \gg  q_{\\rm v}`.
+
+    Args:
+        temp (float):
+          Temperature of air [K].
+        rho (float):
+          Density of air [Kg/m^3].
+        qvap (float):
+          Mass mixing ratio of water vapor [Kg/Kg].
+        dpress_dt (float):
+          Rate of change of pressure with respect to time [Pa/s].
+        dtemp_dt (float):
+          Rate of change of temperature with respect to time [K/s].
 
     Returns:
         float: Rate of change of density with respect to time [Kg/m^3/s].
