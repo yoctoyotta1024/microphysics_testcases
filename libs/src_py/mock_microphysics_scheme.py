@@ -29,6 +29,7 @@ class MicrophysicsScheme:
     """Init the MicrophysicsScheme object (Python only) """
 
     self.name = "Python mock-up of an instance of muphys-cpp's graupel for ICON"
+    self.n = 0
 
   def initialize(self):
     """Initialize the microphysics scheme.
@@ -99,12 +100,15 @@ class MicrophysicsScheme:
 
     """
 
-    qv += 0.0001
-    qc += 0.0002
-    qi += 0.0003
-    qr += 0.0004
-    qs += 0.0005
-    qg += 0.0006
+    ### some mock exchange of mass between vapour and condensate categories
+    if self.n % 50 == 0:
+      qv += (-1)**self.n * 0.001
+      qc += (-1)**(self.n+1) * 0.001
+      qi += (-1)**self.n * 0.002
+      qr += (-1)**(self.n+1) * 0.002
+      qs += (-1)**self.n * 0.0003
+      qg += (-1)**(self.n+1) * 0.0003
+    self.n += 1
 
     prr_gsp = 0.001
     pflx = 0.01
