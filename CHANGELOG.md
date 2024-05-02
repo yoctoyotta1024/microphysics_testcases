@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.2.4](https://github.com/yoctoyotta1024/microphysics_testcases/compare/a150c44cae41ec87062d690258bd70e7c9feb45d..v0.2.4) - 2024-05-02
+#### Bug Fixes
+- add git push post bump to try to update logs - ([a150c44](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a150c44cae41ec87062d690258bd70e7c9feb45d)) - clara.bayley
+
+- - -
+
 ## [v0.2.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/88b9b240173cccf4454e9f767f7cfb5d0a1a8fe3..v0.2.0) - 2024-05-02
 #### Bug Fixes
 - delete post bump hooks that fail when merging to main on github - ([e56d6ca](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e56d6cafc2f99f7c8448461afd0a630213970b9a)) - clara.bayley
