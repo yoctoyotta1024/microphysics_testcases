@@ -14,7 +14,9 @@ pre_bump_hooks = [
     "echo {{version}}",
 ]
 
-post_bump_hooks = []
+post_bump_hooks = [
+    "git push",
+]
 
 [git_hooks]
 
