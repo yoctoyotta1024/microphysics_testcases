@@ -22,7 +22,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='Microphysics Test Cases',
-    version='0.0.1',
+    version='X.Y.Z',
     packages=find_packages(),
     install_requires=[
         'pytest',
