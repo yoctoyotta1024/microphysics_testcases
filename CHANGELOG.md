@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 - - -
+## [v0.2.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/88b9b240173cccf4454e9f767f7cfb5d0a1a8fe3..v0.2.0) - 2024-05-02
+#### Bug Fixes
+- delete post bump hooks that fail when merging to main on github - ([e56d6ca](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e56d6cafc2f99f7c8448461afd0a630213970b9a)) - clara.bayley
+- bug fixes to fetch repo commmits in release with cocogitto - ([75232aa](https://github.com/yoctoyotta1024/microphysics_testcases/commit/75232aa03b0532f22f027249919ef1a1ab4b27de)) - clara.bayley
+- bug fixes to fetch repo commmits in release with cocogitto - ([0a79d9a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/0a79d9a09da85335ccbcbd338e5683635012fc68)) - clara.bayley
+- remove bad versioning in cmake - ([33c5443](https://github.com/yoctoyotta1024/microphysics_testcases/commit/33c544334267406721924955c5d111cc88d30283)) - clara.bayley
+#### Features
+- automatic versioning in cocogitto CI - ([37dc929](https://github.com/yoctoyotta1024/microphysics_testcases/commit/37dc9297a654e680997f63b5007d281c3c66ed25)) - clara.bayley
+- cocogitto ci occurs on pushes - ([bc7b5f1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/bc7b5f1d4b7f26f52e582bd25b3696e989d37b89)) - clara.bayley
+- new workflow in CI for cocogitto - ([88b9b24](https://github.com/yoctoyotta1024/microphysics_testcases/commit/88b9b240173cccf4454e9f767f7cfb5d0a1a8fe3)) - clara.bayley
+#### Miscellaneous Chores
+- **(version)** v0.1.0 - ([0f110d6](https://github.com/yoctoyotta1024/microphysics_testcases/commit/0f110d6144c5db762b7781179145cdcd0d871117)) - yoctoyotta1024
+- **(version)** v0.1.0 - ([aa0c4cb](https://github.com/yoctoyotta1024/microphysics_testcases/commit/aa0c4cb063166332da8226b91a1ca213442711f6)) - yoctoyotta1024
+- whitespace - ([e837b9e](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e837b9e352fd30c1efd548c6e4a99f7745d7c53b)) - clara.bayley
+
+- - -
+
 ## [v0.1.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/1fa6a4a9c3c16909212ae18c289fc367ea9e608d..v0.1.0) - 2024-05-02
 #### Bug Fixes
 - bug fixes to fetch repo commmits in release with cocogitto - ([75232aa](https://github.com/yoctoyotta1024/microphysics_testcases/commit/75232aa03b0532f22f027249919ef1a1ab4b27de)) - clara.bayley
