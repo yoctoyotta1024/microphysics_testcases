@@ -25,12 +25,18 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    name: semantic versioning release
     steps:
-      - name: Semver release
-        uses: cocogitto/cocogitto-action@v3
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: semver release with cocogitto
+        uses: oknozor/cocogitto-action@v3
         id: release
         with:
           release: true
+          check-latest-tag-only: true
           git-user: 'yoctoyotta1024'
           git-user-email: 'yoctoyotta1024@yahoo.com'
 
