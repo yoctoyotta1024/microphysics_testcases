@@ -25,7 +25,7 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    name: semantic versioning release
+    name: Perform semantic versioning release
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,3 +43,12 @@ jobs:
       # The version number is accessible as a github action output
       - name: Print version
         run: "echo '${{ steps.release.outputs.version }}'"
+
+      - name: Generate Changelog
+        run: cog changelog --at ${{ steps.release.outputs.version }} -t full_hash > GITHUB_CHANGELOG.md
+
+      - name: Upload github release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: GITHUB_CHANGELOG.md
+          tag_name: ${{ steps.release.outputs.version }}
