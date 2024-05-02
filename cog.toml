@@ -7,6 +7,9 @@ branch_whitelist = []
 skip_ci = "[skip ci]"
 skip_untracked = false
 tag_prefix = "v"
+pre_package_bump_hooks = []
+post_package_bump_hooks = []
+
 pre_bump_hooks = [
     "echo {{version}}",
 ]
@@ -15,9 +18,6 @@ post_bump_hooks = [
     "git push",
     "git push origin {{version}}",
 ]
-
-pre_package_bump_hooks = []
-post_package_bump_hooks = []
 
 [git_hooks]
 
