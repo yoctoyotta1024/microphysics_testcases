@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 - - -
+## [v0.1.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/2dab34dee899f70785c24ce97b45f3e5979a12d0..v0.1.1) - 2024-05-02
+#### Bug Fixes
+- manual versioning given X.Y.Z - ([3b38fac](https://github.com/yoctoyotta1024/microphysics_testcases/commit/3b38fac0c91b29a66fe2156ee9ade4a924681316)) - clara.bayley
+#### Miscellaneous Chores
+- whitespace - ([2dab34d](https://github.com/yoctoyotta1024/microphysics_testcases/commit/2dab34dee899f70785c24ce97b45f3e5979a12d0)) - clara.bayley
+
+- - -
+
 
 ## [v0.1.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/1fa6a4a9c3c16909212ae18c289fc367ea9e608d..v0.1.0) - 2024-05-02
 #### Features
