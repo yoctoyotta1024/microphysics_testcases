@@ -6,6 +6,7 @@ generate_mono_repository_global_tag = true
 branch_whitelist = []
 skip_ci = "[skip ci]"
 skip_untracked = false
+tag_prefix = "v"
 pre_bump_hooks = []
 post_bump_hooks = []
 pre_package_bump_hooks = []
@@ -17,7 +18,11 @@ post_package_bump_hooks = []
 
 [changelog]
 path = "CHANGELOG.md"
-authors = []
+template = "remote"
+remote = "github.com"
+repository = "microphysics_testcases"
+owner = "yoctoyotta1024"
+authors = [{ username = "yoctoyotta1024", signature = "Clara Bayley" }]
 
 [bump_profiles]
 
