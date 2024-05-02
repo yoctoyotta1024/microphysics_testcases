@@ -25,12 +25,13 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    name: semantic versioning release
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: semantic versioning release with cocogitto
+      - name: semver release with cocogitto
         uses: oknozor/cocogitto-action@v3
         id: release
         with:
