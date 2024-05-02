@@ -1,6 +1,6 @@
 name: cocogitto
 
-on: [pull_request]
+on: [push]
 
 jobs:
   cog_check_job:
@@ -10,8 +10,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # pick the pr HEAD instead of the merge commit
-          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Conventional commits compliance check
         uses: oknozor/cocogitto-action@v3
