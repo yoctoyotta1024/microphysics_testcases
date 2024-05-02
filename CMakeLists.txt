@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.18.0)
 project(project
   LANGUAGES CXX
   DESCRIPTION "Microphysics Test Cases by Clara Bayley and other developers"
-  VERSION X.Y.Z
 )
 
 ## Use the pybind11 package from .gitmodules
