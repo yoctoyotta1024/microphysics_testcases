@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.3.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/1d42a15e3026bf458db4a76d6ac3d155c8e1bbec..v0.3.0) - 2024-06-17
+#### Features
+- Thermodynamics uses np.arrays not floats for variables - ([7aea676](https://github.com/yoctoyotta1024/microphysics_testcases/commit/7aea676567a276125a6ce010dce1f23633c008b2)) - clara.bayley
+- Thermodynamics uses np.arrays not floats for variables - ([8d62ef7](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8d62ef7694c485833b31bd4b085a912b43fb5b00)) - clara.bayley
+#### Refactoring
+- make scripts and tests compatible with thermodyanmics as arrays - ([eafcc99](https://github.com/yoctoyotta1024/microphysics_testcases/commit/eafcc991d73f32e1900315378ae2576086e8ad67)) - clara.bayley
+- require reference pressure explictly for theta calc - ([1d42a15](https://github.com/yoctoyotta1024/microphysics_testcases/commit/1d42a15e3026bf458db4a76d6ac3d155c8e1bbec)) - clara.bayley
+
+- - -
+
 ## [v0.2.5](https://github.com/yoctoyotta1024/microphysics_testcases/compare/3d692d91d6215c455d1a5a7dcd04a7d3139ad285..v0.2.5) - 2024-05-02
 #### Bug Fixes
 - restore changelog - ([e45f803](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e45f8036669f701d9d2c663da473ab110c9b8602)) - clara.bayley
