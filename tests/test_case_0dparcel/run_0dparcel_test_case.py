@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Friday 1st March 2024
+Last Modified: Monday 17th June 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -98,7 +98,7 @@ def plot_0dparcel_thermodynamics(out, binpath, run_name):
   plot_variable_on_axis(axs[0], time, out.press)
   plot_variable_on_axis(axs[1], time, out.rho)
   plot_variable_on_axis(axs[2], time, out.temp)
-  plot_thetas_on_axis(axs[3], time, out.temp, out.press)
+  plot_thetas_on_axis(axs[3], time, out.temp, out.press, out.press.values[0])
 
   for ax in axs:
     ax.set_xlabel(out.time.name+" /"+out.time.units)
@@ -165,7 +165,7 @@ def plot_variable_on_axis(ax, time, var):
   ax.plot(time, var.values)
   ax.set_ylabel(var.name+" /"+var.units)
 
-def plot_thetas_on_axis(ax, time, temp, press):
+def plot_thetas_on_axis(ax, time, temp, press, press0):
   """Plot potential temperature(s) on a specified axis.
 
   This function calculates and plots potential temperature(s) against time on a specified axis.
@@ -179,7 +179,7 @@ def plot_thetas_on_axis(ax, time, temp, press):
   Returns:
       None
   """
-  theta_dry = calcs.dry_potential_temperature(temp.values, press.values)
+  theta_dry = calcs.dry_potential_temperature(temp.values, press.values, press0)
   ax.plot(time, theta_dry, label="dry")
   ax.set_ylim(theta_dry[0]-1, theta_dry[0]+1)
   ax.legend()

@@ -8,7 +8,7 @@ Created Date: Friday 1st March 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Friday 1st March 2024
+Last Modified: Monday 17th June 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -19,7 +19,7 @@ functions for calculations of some quantities e.g. potential temperature(s)
 '''
 
 
-def dry_potential_temperature(temp, press):
+def dry_potential_temperature(temp, press, press0):
   r"""Calculate the potential temperature for dry air.
 
   This function calculates the potential temperature for dry air given the temperature and pressure.
@@ -45,6 +45,6 @@ def dry_potential_temperature(temp, press):
   cp_dry = 1004.64     # specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K)
   rgas_dry = rgas_univ / mr_dry   # specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K)
 
-  theta_dry = temp * (press[0] / press) ** (rgas_dry / cp_dry)
+  theta_dry = temp * (press0 / press) ** (rgas_dry / cp_dry)
 
   return theta_dry
