@@ -27,42 +27,42 @@ class Thermodynamics:
   content (mass mixing ratio) of vapour and condensates.
 
   Parameters:
-    temp (float):
+    temp (np.array):
       Temperature (K).
-    rho (float):
+    rho (np.array):
       Density of moist air (kg/m3).
-    press (float):
+    press (np.array):
       Pressure (Pa).
-    qvap (float):
+    qvap (np.array):
       Specific water vapor content (kg/kg).
-    qcond (float):
+    qcond (np.array):
       Specific cloud water content (kg/kg).
-    qice (float):
+    qice (np.array):
       Specific cloud ice content (kg/kg).
-    qrain (float):
+    qrain (np.array):
       Specific rain content (kg/kg).
-    qsnow (float):
+    qsnow (np.array):
       Specific snow content kg/kg).
-    qgrau (float):
+    qgrau (np.array):
       Specific graupel content (kg/kg).
 
   Attributes:
-    temp (float):
+    temp (np.array):
       Temperature (K).
-    rho (float):
+    rho (np.array):
       Density of moist air (kg/m3).
-    press (float):
+    press (np.array):
       Pressure (Pa).
     massmix_ratios (tuple):
       Specific content of vapour and condensates (see below).
 
     massmax_ratios consists of the following:
-            massmix_ratios[0] = qvap (float): Specific water vapor content (kg/kg)\n
-            massmix_ratios[1] = qcond (float): Specific cloud water content (kg/kg)\n
-            massmix_ratios[2] = qice (float): Specific cloud ice content (kg/kg)\n
-            massmix_ratios[3] = qrain (float): Specific rain content (kg/kg)\n
-            massmix_ratios[4] = qsnow (float): Specific snow content kg/kg)\n
-            massmix_ratios[5] = qgrau (float): Specific graupel content (kg/kg).
+            massmix_ratios[0] = qvap (np.array): Specific water vapor content (kg/kg)\n
+            massmix_ratios[1] = qcond (np.array): Specific cloud water content (kg/kg)\n
+            massmix_ratios[2] = qice (np.array): Specific cloud ice content (kg/kg)\n
+            massmix_ratios[3] = qrain (np.array): Specific rain content (kg/kg)\n
+            massmix_ratios[4] = qsnow (np.array): Specific snow content kg/kg)\n
+            massmix_ratios[5] = qgrau (np.array): Specific graupel content (kg/kg).
 
   '''
 
