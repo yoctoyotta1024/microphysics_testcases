@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.4.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/8411a87f9b4849e7b833a31ec0e5b6e7067057cd..v0.4.0) - 2024-06-17
+#### Features
+- added more pre-commit hooks - ([8411a87](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8411a87f9b4849e7b833a31ec0e5b6e7067057cd)) - clara.bayley
+#### Miscellaneous Chores
+- note in file (to force version bump) - ([f02f385](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f02f385f7e02422574c5e1f4703492996194156c)) - clara.bayley
+- formatting python files with ruff linter and formatter - ([c4ddab9](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c4ddab92e5b66eea576b709f9884fb72e68701e6)) - clara.bayley
+
+- - -
+
 ## [v0.3.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/1d42a15e3026bf458db4a76d6ac3d155c8e1bbec..v0.3.0) - 2024-06-17
 #### Features
 - Thermodynamics uses np.arrays not floats for variables - ([7aea676](https://github.com/yoctoyotta1024/microphysics_testcases/commit/7aea676567a276125a6ce010dce1f23633c008b2)) - clara.bayley
