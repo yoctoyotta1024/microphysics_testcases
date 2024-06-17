@@ -1,4 +1,4 @@
-'''
+"""
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
@@ -15,17 +15,17 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-'''
+"""
 
 
 from setuptools import setup, find_packages
 
 setup(
-    name='Microphysics Test Cases',
-    version='X.Y.Z',
+    name="Microphysics Test Cases",
+    version="X.Y.Z",
     packages=find_packages(),
     install_requires=[
-        'pytest',
-        'sphinx',
+        "pytest",
+        "sphinx",
     ],
 )
