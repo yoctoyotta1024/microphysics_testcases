@@ -8,7 +8,7 @@ Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Thursday 29th February 2024
+Last Modified: Monday 17th June 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -31,8 +31,10 @@ from src_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 def print_message(time, thermo):
   """Print statement about the time and some thermodynamic variables."""
 
-  msg = "time = {:.1f}s: ".format(time)
-  msg += "[T, rho, P] = [{:.2f}K, {:.3f}Kgm^-3, {:.0f}Pa]".format(thermo.temp, thermo.rho, thermo.press)
+  msg = "time = {:.1f}s:\n".format(time)
+  msg += "   T = "+str(["{:.2f}K".format(x) for x in thermo.temp])+",\n"
+  msg += " rho = "+str(["{:.3f}Kgm^-3".format(x) for x in thermo.rho])+",\n"
+  msg += "   P = "+str(["{:.0f}Pa".format(x) for x in thermo.press])+",\n"
 
   print(msg)
 
@@ -63,15 +65,15 @@ def main():
   time_end = 10.0
   timestep = 1.0
 
-  temp = 288.15
-  rho = 1.225
-  press = 101325
-  qvap = 0.015
-  qcond = 0.0
-  qice = 0.0
-  qrain = 0.0
-  qsnow = 0.0
-  qgrau = 0.0
+  temp = np.array([288.15])
+  rho = np.array([1.225])
+  press = np.array([101325])
+  qvap = np.array([0.015])
+  qcond = np.array([0.0])
+  qice = np.array([0.0])
+  qrain = np.array([0.0])
+  qsnow = np.array([0.0])
+  qgrau = np.array([0.0])
   thermo = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
 
   nvec = 1

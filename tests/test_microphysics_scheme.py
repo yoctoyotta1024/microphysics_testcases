@@ -8,7 +8,7 @@ Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Thursday 29th February 2024
+Last Modified: Monday 17th June 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -18,6 +18,7 @@ File Description:
 mock unit tests for Python microphysics module
 '''
 
+import numpy as np
 
 from libs.src_py.mock_microphysics_scheme import MicrophysicsScheme
 from libs.src_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
@@ -69,15 +70,15 @@ def test_microphys_with_wrapper():
 	microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
 	timestep = 1.0
-	temp = 288.15
-	rho = 1.225
-	press = 101325
-	qvap = 0.015
-	qcond = 0.0001
-	qice = 0.0002
-	qrain = 0.0003
-	qsnow = 0.0004
-	qgrau = 0.0005
+	temp = np.array([288.15])
+	rho = np.array([1.225])
+	press = np.array([101325])
+	qvap = np.array([0.015])
+	qcond = np.array([0.0001])
+	qice = np.array([0.0002])
+	qrain = np.array([0.0003])
+	qsnow = np.array([0.0004])
+	qgrau = np.array([0.0005])
 
 	thermo = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
 
