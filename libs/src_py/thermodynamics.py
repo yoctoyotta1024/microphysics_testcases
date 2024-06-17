@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Friday 1st March 2024
+Last Modified: Monday 17th June 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -17,6 +17,7 @@ https://opensource.org/licenses/BSD-3-Clause
 File Description:
 '''
 
+import numpy as np
 
 class Thermodynamics:
   '''
@@ -65,19 +66,21 @@ class Thermodynamics:
 
   '''
 
-  def __init__(self, temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau):
+  def __init__(self, temp: np.ndarray, rho: np.ndarray, press: np.ndarray, qvap: np.ndarray,
+               qcond: np.ndarray, qice: np.ndarray, qrain: np.ndarray,
+               qsnow: np.ndarray, qgrau: np.ndarray):
     '''Initialize a thermodynamics object with the given variables
 
     Parameters:
-        press (float): Pressure (Pa).
-        temp (float): Temperature (K).
-        rho (float): Density of moist air (kg/m3)
-        qvap (float): Specific water vapor content (kg/kg)
-        qcond (float): Specific cloud water content (kg/kg)
-        qice (float): Specific cloud ice content (kg/kg)
-        qrain (float): Specific rain content (kg/kg)
-        qsnow (float): Specific snow content kg/kg)
-        qgrau (float): Specific graupel content (kg/kg)
+        press (np.array): Pressure (Pa).
+        temp (np.array): Temperature (K).
+        rho (np.array): Density of moist air (kg/m3)
+        qvap (np.array): Specific water vapor content (kg/kg)
+        qcond (np.array): Specific cloud water content (kg/kg)
+        qice (np.array): Specific cloud ice content (kg/kg)
+        qrain (np.array): Specific rain content (kg/kg)
+        qsnow (np.array): Specific snow content kg/kg)
+        qgrau (np.array): Specific graupel content (kg/kg)
 
     '''
     self.temp = temp
