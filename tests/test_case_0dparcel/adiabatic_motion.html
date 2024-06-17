@@ -356,19 +356,19 @@
 <p>assuming <span class="math notranslate nohighlight">\(q_{\rm v} \approx r_{\rm v}\)</span>, i.e. <span class="math notranslate nohighlight">\(q_{\rm dry} \gg  q_{\rm v}\)</span>.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>temp (float):</dt><dd><p>Temperature of air [K].</p>
+<dt>temp (np.ndarray):</dt><dd><p>Temperature of air [K].</p>
 </dd>
-<dt>rho (float):</dt><dd><p>Density of air [Kg/m^3].</p>
+<dt>rho (np.ndarray):</dt><dd><p>Density of air [Kg/m^3].</p>
 </dd>
-<dt>qvap (float):</dt><dd><p>Mass mixing ratio of water vapor [Kg/Kg].</p>
+<dt>qvap (np.ndarray):</dt><dd><p>Mass mixing ratio of water vapor [Kg/Kg].</p>
 </dd>
-<dt>dpress_dt (float):</dt><dd><p>Rate of change of pressure with respect to time [Pa/s].</p>
+<dt>dpress_dt (np.ndarray):</dt><dd><p>Rate of change of pressure with respect to time [Pa/s].</p>
 </dd>
-<dt>dtemp_dt (float):</dt><dd><p>Rate of change of temperature with respect to time [K/s].</p>
+<dt>dtemp_dt (np.ndarray):</dt><dd><p>Rate of change of temperature with respect to time [K/s].</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>float: Rate of change of density with respect to time [Kg/m^3/s].</p>
+<dt>Returns:</dt><dd><p>np.ndarray: Rate of change of density with respect to time [Kg/m^3/s].</p>
 </dd>
 </dl>
 </dd></dl>
@@ -387,13 +387,13 @@ i.e. <span class="math notranslate nohighlight">\(q_{\rm dry}c_{\rm p, dry} \gg 
 and <span class="math notranslate nohighlight">\(q_{\rm dry}c_{\rm p, dry} \gg  q_{\rm v}c_{\rm k}\)</span> for all condensates <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>rho (float):</dt><dd><p>Density of air [Kg/m^3].</p>
+<dt>rho (np.ndarray):</dt><dd><p>Density of air [Kg/m^3].</p>
 </dd>
-<dt>dpress_dt (float):</dt><dd><p>Rate of change of pressure with respect to time [Pa/s].</p>
+<dt>dpress_dt (np.ndarray):</dt><dd><p>Rate of change of pressure with respect to time [Pa/s].</p>
 </dd>
 </dl>
 </dd>
-<dt>Returns:</dt><dd><p>float: Rate of change of temperature with respect to time [K/s].</p>
+<dt>Returns:</dt><dd><p>np.ndarray: Rate of change of temperature with respect to time [K/s].</p>
 </dd>
 </dl>
 </dd></dl>

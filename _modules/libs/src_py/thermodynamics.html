@@ -275,7 +275,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for libs.src_py.thermodynamics</h1><div class="highlight"><pre>
-<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
 <span class="sd">----- Microphysics Test Cases -----</span>
@@ -292,80 +292,90 @@
 <span class="sd">https://opensource.org/licenses/BSD-3-Clause</span>
 <span class="sd">-----</span>
 <span class="sd">File Description:</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
 
 <div class="viewcode-block" id="Thermodynamics">
 <a class="viewcode-back" href="../../../src_py/thermodynamics.html#libs.src_py.thermodynamics.Thermodynamics">[docs]</a>
 <span class="k">class</span> <span class="nc">Thermodynamics</span><span class="p">:</span>
-<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">  Class stores the thermodynamic variables required to run microphysics schemes in this project.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class stores the thermodynamic variables required to run microphysics schemes in this project.</span>
 
-<span class="sd">  Thermodynamic variables include pressure, temperature, moist air density and the specific</span>
-<span class="sd">  content (mass mixing ratio) of vapour and condensates.</span>
-
-<span class="sd">  Parameters:</span>
-<span class="sd">    temp (np.array):</span>
-<span class="sd">      Temperature (K).</span>
-<span class="sd">    rho (np.array):</span>
-<span class="sd">      Density of moist air (kg/m3).</span>
-<span class="sd">    press (np.array):</span>
-<span class="sd">      Pressure (Pa).</span>
-<span class="sd">    qvap (np.array):</span>
-<span class="sd">      Specific water vapor content (kg/kg).</span>
-<span class="sd">    qcond (np.array):</span>
-<span class="sd">      Specific cloud water content (kg/kg).</span>
-<span class="sd">    qice (np.array):</span>
-<span class="sd">      Specific cloud ice content (kg/kg).</span>
-<span class="sd">    qrain (np.array):</span>
-<span class="sd">      Specific rain content (kg/kg).</span>
-<span class="sd">    qsnow (np.array):</span>
-<span class="sd">      Specific snow content kg/kg).</span>
-<span class="sd">    qgrau (np.array):</span>
-<span class="sd">      Specific graupel content (kg/kg).</span>
-
-<span class="sd">  Attributes:</span>
-<span class="sd">    temp (np.array):</span>
-<span class="sd">      Temperature (K).</span>
-<span class="sd">    rho (np.array):</span>
-<span class="sd">      Density of moist air (kg/m3).</span>
-<span class="sd">    press (np.array):</span>
-<span class="sd">      Pressure (Pa).</span>
-<span class="sd">    massmix_ratios (tuple):</span>
-<span class="sd">      Specific content of vapour and condensates (see below).</span>
-
-<span class="sd">    massmax_ratios consists of the following:</span>
-<span class="sd">            massmix_ratios[0] = qvap (np.array): Specific water vapor content (kg/kg)\n</span>
-<span class="sd">            massmix_ratios[1] = qcond (np.array): Specific cloud water content (kg/kg)\n</span>
-<span class="sd">            massmix_ratios[2] = qice (np.array): Specific cloud ice content (kg/kg)\n</span>
-<span class="sd">            massmix_ratios[3] = qrain (np.array): Specific rain content (kg/kg)\n</span>
-<span class="sd">            massmix_ratios[4] = qsnow (np.array): Specific snow content kg/kg)\n</span>
-<span class="sd">            massmix_ratios[5] = qgrau (np.array): Specific graupel content (kg/kg).</span>
-
-<span class="sd">  &#39;&#39;&#39;</span>
-
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">rho</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">press</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">qvap</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-               <span class="n">qcond</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">qice</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">qrain</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-               <span class="n">qsnow</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">qgrau</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Initialize a thermodynamics object with the given variables</span>
+<span class="sd">    Thermodynamic variables include pressure, temperature, moist air density and the specific</span>
+<span class="sd">    content (mass mixing ratio) of vapour and condensates.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        press (np.array): Pressure (Pa).</span>
-<span class="sd">        temp (np.array): Temperature (K).</span>
-<span class="sd">        rho (np.array): Density of moist air (kg/m3)</span>
-<span class="sd">        qvap (np.array): Specific water vapor content (kg/kg)</span>
-<span class="sd">        qcond (np.array): Specific cloud water content (kg/kg)</span>
-<span class="sd">        qice (np.array): Specific cloud ice content (kg/kg)</span>
-<span class="sd">        qrain (np.array): Specific rain content (kg/kg)</span>
-<span class="sd">        qsnow (np.array): Specific snow content kg/kg)</span>
-<span class="sd">        qgrau (np.array): Specific graupel content (kg/kg)</span>
+<span class="sd">      temp (np.array):</span>
+<span class="sd">        Temperature (K).</span>
+<span class="sd">      rho (np.array):</span>
+<span class="sd">        Density of moist air (kg/m3).</span>
+<span class="sd">      press (np.array):</span>
+<span class="sd">        Pressure (Pa).</span>
+<span class="sd">      qvap (np.array):</span>
+<span class="sd">        Specific water vapor content (kg/kg).</span>
+<span class="sd">      qcond (np.array):</span>
+<span class="sd">        Specific cloud water content (kg/kg).</span>
+<span class="sd">      qice (np.array):</span>
+<span class="sd">        Specific cloud ice content (kg/kg).</span>
+<span class="sd">      qrain (np.array):</span>
+<span class="sd">        Specific rain content (kg/kg).</span>
+<span class="sd">      qsnow (np.array):</span>
+<span class="sd">        Specific snow content kg/kg).</span>
+<span class="sd">      qgrau (np.array):</span>
+<span class="sd">        Specific graupel content (kg/kg).</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">press</span> <span class="o">=</span> <span class="n">press</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span> <span class="o">=</span> <span class="p">[</span><span class="n">qvap</span><span class="p">,</span> <span class="n">qcond</span><span class="p">,</span> <span class="n">qice</span><span class="p">,</span> <span class="n">qrain</span><span class="p">,</span> <span class="n">qsnow</span><span class="p">,</span> <span class="n">qgrau</span><span class="p">]</span></div>
+<span class="sd">    Attributes:</span>
+<span class="sd">      temp (np.array):</span>
+<span class="sd">        Temperature (K).</span>
+<span class="sd">      rho (np.array):</span>
+<span class="sd">        Density of moist air (kg/m3).</span>
+<span class="sd">      press (np.array):</span>
+<span class="sd">        Pressure (Pa).</span>
+<span class="sd">      massmix_ratios (tuple):</span>
+<span class="sd">        Specific content of vapour and condensates (see below).</span>
+
+<span class="sd">      massmax_ratios consists of the following:</span>
+<span class="sd">              massmix_ratios[0] = qvap (np.array): Specific water vapor content (kg/kg)\n</span>
+<span class="sd">              massmix_ratios[1] = qcond (np.array): Specific cloud water content (kg/kg)\n</span>
+<span class="sd">              massmix_ratios[2] = qice (np.array): Specific cloud ice content (kg/kg)\n</span>
+<span class="sd">              massmix_ratios[3] = qrain (np.array): Specific rain content (kg/kg)\n</span>
+<span class="sd">              massmix_ratios[4] = qsnow (np.array): Specific snow content kg/kg)\n</span>
+<span class="sd">              massmix_ratios[5] = qgrau (np.array): Specific graupel content (kg/kg).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">temp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">rho</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">press</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">qvap</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">qcond</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">qice</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">qrain</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">qsnow</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">qgrau</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a thermodynamics object with the given variables</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            press (np.array): Pressure (Pa).</span>
+<span class="sd">            temp (np.array): Temperature (K).</span>
+<span class="sd">            rho (np.array): Density of moist air (kg/m3)</span>
+<span class="sd">            qvap (np.array): Specific water vapor content (kg/kg)</span>
+<span class="sd">            qcond (np.array): Specific cloud water content (kg/kg)</span>
+<span class="sd">            qice (np.array): Specific cloud ice content (kg/kg)</span>
+<span class="sd">            qrain (np.array): Specific rain content (kg/kg)</span>
+<span class="sd">            qsnow (np.array): Specific snow content kg/kg)</span>
+<span class="sd">            qgrau (np.array): Specific graupel content (kg/kg)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">press</span> <span class="o">=</span> <span class="n">press</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span> <span class="o">=</span> <span class="p">[</span><span class="n">qvap</span><span class="p">,</span> <span class="n">qcond</span><span class="p">,</span> <span class="n">qice</span><span class="p">,</span> <span class="n">qrain</span><span class="p">,</span> <span class="n">qsnow</span><span class="p">,</span> <span class="n">qgrau</span><span class="p">]</span></div>
 
 </pre></div>
         </article>

@@ -275,7 +275,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for tests.test_case_0dparcel.run_0dparcel_test_case</h1><div class="highlight"><pre>
-<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
 <span class="sd">----- Microphysics Test Cases -----</span>
@@ -292,7 +292,7 @@
 <span class="sd">https://opensource.org/licenses/BSD-3-Clause</span>
 <span class="sd">-----</span>
 <span class="sd">File Description:</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -300,198 +300,212 @@
 <span class="kn">from</span> <span class="nn">.run_0dparcel_model</span> <span class="kn">import</span> <span class="n">run_0dparcel_model</span>
 <span class="kn">from</span> <span class="nn">libs.src_py</span> <span class="kn">import</span> <span class="n">calcs</span>
 
+
 <div class="viewcode-block" id="run_0dparcel_test_case">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/run_0dparcel_test_case.html#tests.test_case_0dparcel.run_0dparcel_test_case.run_0dparcel_test_case">[docs]</a>
-<span class="k">def</span> <span class="nf">run_0dparcel_test_case</span><span class="p">(</span><span class="n">time_init</span><span class="p">,</span> <span class="n">time_end</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo_init</span><span class="p">,</span> <span class="n">microphys_scheme</span><span class="p">,</span>
-                           <span class="n">binpath</span><span class="p">,</span> <span class="n">run_name</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Run test case for a 0-D parcel model.</span>
+<span class="k">def</span> <span class="nf">run_0dparcel_test_case</span><span class="p">(</span>
+    <span class="n">time_init</span><span class="p">,</span> <span class="n">time_end</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo_init</span><span class="p">,</span> <span class="n">microphys_scheme</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">run_name</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run test case for a 0-D parcel model.</span>
 
-<span class="sd">  This function runs a 0-D parcel model with a specified microphysics scheme and parcel dynamics</span>
-<span class="sd">  given the initial thermodynamics. The data is then saved/plotted in the binpath directory</span>
-<span class="sd">  using the run_name as a label.&#39;&#39;&#39;</span>
+<span class="sd">    This function runs a 0-D parcel model with a specified microphysics scheme and parcel dynamics</span>
+<span class="sd">    given the initial thermodynamics. The data is then saved/plotted in the binpath directory</span>
+<span class="sd">    using the run_name as a label.&#39;&#39;&#39;</span>
 
-<span class="sd">  Args:</span>
-<span class="sd">      time_init (float):</span>
-<span class="sd">        Initial time for the simulation (s).</span>
-<span class="sd">      time_end (float):</span>
-<span class="sd">        End time for the simulation (s).</span>
-<span class="sd">      timestep (float):</span>
-<span class="sd">        Timestep for the simulation (s).</span>
-<span class="sd">      thermo_init (Thermodynamics):</span>
-<span class="sd">        Initial thermodynamic conditions.</span>
-<span class="sd">      microphys_scheme:</span>
-<span class="sd">        Microphysics scheme to use in test run.</span>
-<span class="sd">      binpath (str):</span>
-<span class="sd">        Path to the directory where data/plots will be saved.</span>
-<span class="sd">      run_name (str):</span>
-<span class="sd">        Name of the test run (used for labeling output).</span>
+<span class="sd">    Args:</span>
+<span class="sd">        time_init (float):</span>
+<span class="sd">          Initial time for the simulation (s).</span>
+<span class="sd">        time_end (float):</span>
+<span class="sd">          End time for the simulation (s).</span>
+<span class="sd">        timestep (float):</span>
+<span class="sd">          Timestep for the simulation (s).</span>
+<span class="sd">        thermo_init (Thermodynamics):</span>
+<span class="sd">          Initial thermodynamic conditions.</span>
+<span class="sd">        microphys_scheme:</span>
+<span class="sd">          Microphysics scheme to use in test run.</span>
+<span class="sd">        binpath (str):</span>
+<span class="sd">          Path to the directory where data/plots will be saved.</span>
+<span class="sd">        run_name (str):</span>
+<span class="sd">          Name of the test run (used for labeling output).</span>
 
-<span class="sd">  Raises:</span>
-<span class="sd">      AssertionError: If the specified binpath does not exist or if run_name is empty.</span>
+<span class="sd">    Raises:</span>
+<span class="sd">        AssertionError: If the specified binpath does not exist or if run_name is empty.</span>
 
-<span class="sd">  Returns:</span>
-<span class="sd">      None</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Running 0-D Parcel Model ---&quot;</span><span class="p">)</span>
-  <span class="n">out</span> <span class="o">=</span> <span class="n">run_0dparcel_model</span><span class="p">(</span><span class="n">time_init</span><span class="p">,</span> <span class="n">time_end</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo_init</span><span class="p">,</span> <span class="n">microphys_scheme</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Running 0-D Parcel Model ---&quot;</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">run_0dparcel_model</span><span class="p">(</span>
+        <span class="n">time_init</span><span class="p">,</span> <span class="n">time_end</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo_init</span><span class="p">,</span> <span class="n">microphys_scheme</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span>
 
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Plotting Results ---&quot;</span><span class="p">)</span>
-  <span class="k">assert</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">binpath</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()),</span> <span class="s2">&quot;The specified binpath does not exist.&quot;</span>
-  <span class="k">assert</span><span class="p">(</span><span class="n">run_name</span><span class="p">),</span> <span class="s2">&quot;The run_name cannot be empty.&quot;</span>
-  <span class="n">plot_0dparcel_thermodynamics</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">run_name</span><span class="p">)</span>
-  <span class="n">plot_0dparcel_massmix_ratios</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">run_name</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------&quot;</span><span class="p">)</span></div>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Plotting Results ---&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">Path</span><span class="p">(</span><span class="n">binpath</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="s2">&quot;The specified binpath does not exist.&quot;</span>
+    <span class="k">assert</span> <span class="n">run_name</span><span class="p">,</span> <span class="s2">&quot;The run_name cannot be empty.&quot;</span>
+    <span class="n">plot_0dparcel_thermodynamics</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">run_name</span><span class="p">)</span>
+    <span class="n">plot_0dparcel_massmix_ratios</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">run_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------&quot;</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="plot_0dparcel_thermodynamics">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/run_0dparcel_test_case.html#tests.test_case_0dparcel.run_0dparcel_test_case.plot_0dparcel_thermodynamics">[docs]</a>
 <span class="k">def</span> <span class="nf">plot_0dparcel_thermodynamics</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">run_name</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Plot thermodynamic variables for a 0-D parcel model and save the plots.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot thermodynamic variables for a 0-D parcel model and save the plots.</span>
 
-<span class="sd">  This function plots the pressure, density, temperature, and potential temperature(s)</span>
-<span class="sd">  of a run of the 0-D parcel model as a function of time and then saves the plots as a PNG image.</span>
+<span class="sd">    This function plots the pressure, density, temperature, and potential temperature(s)</span>
+<span class="sd">    of a run of the 0-D parcel model as a function of time and then saves the plots as a PNG image.</span>
 
-<span class="sd">  Args:</span>
-<span class="sd">      out (OutputThermodynamics):</span>
-<span class="sd">        OutputThermodynamics object containing the thermodynamic data.</span>
-<span class="sd">      binpath (str):</span>
-<span class="sd">        Path to the directory where the plots will be saved.</span>
-<span class="sd">      run_name (str):</span>
-<span class="sd">        Name of the test run to use in naming saved image.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        out (OutputThermodynamics):</span>
+<span class="sd">          OutputThermodynamics object containing the thermodynamic data.</span>
+<span class="sd">        binpath (str):</span>
+<span class="sd">          Path to the directory where the plots will be saved.</span>
+<span class="sd">        run_name (str):</span>
+<span class="sd">          Name of the test run to use in naming saved image.</span>
 
-<span class="sd">  Raises:</span>
-<span class="sd">      AssertionError: If the specified binpath does not exist or if run_name is empty.</span>
+<span class="sd">    Raises:</span>
+<span class="sd">        AssertionError: If the specified binpath does not exist or if run_name is empty.</span>
 
-<span class="sd">  Returns:</span>
-<span class="sd">      None</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-  <span class="k">assert</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">binpath</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span>
-  <span class="k">assert</span><span class="p">(</span><span class="n">run_name</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;plotting &quot;</span><span class="o">+</span><span class="n">run_name</span><span class="o">+</span><span class="s2">&quot; and saving plots in: &quot;</span><span class="o">+</span><span class="n">binpath</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">Path</span><span class="p">(</span><span class="n">binpath</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">run_name</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;plotting &quot;</span> <span class="o">+</span> <span class="n">run_name</span> <span class="o">+</span> <span class="s2">&quot; and saving plots in: &quot;</span> <span class="o">+</span> <span class="n">binpath</span><span class="p">)</span>
 
-  <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-  <span class="n">figname</span> <span class="o">=</span> <span class="n">run_name</span><span class="o">+</span><span class="s2">&quot;_thermodynamics.png&quot;</span>
-  <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">figname</span> <span class="o">=</span> <span class="n">run_name</span> <span class="o">+</span> <span class="s2">&quot;_thermodynamics.png&quot;</span>
+    <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
-  <span class="n">time</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span>
-  <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">press</span><span class="p">)</span>
-  <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
-  <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">temp</span><span class="p">)</span>
-  <span class="n">plot_thetas_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">press</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">press</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">press</span><span class="p">)</span>
+    <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
+    <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">temp</span><span class="p">)</span>
+    <span class="n">plot_thetas_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">press</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">press</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-  <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot; /&quot;</span><span class="o">+</span><span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; /&quot;</span> <span class="o">+</span> <span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
 
-  <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-  <span class="n">save_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">figname</span><span class="p">)</span></div>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">save_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">figname</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="plot_0dparcel_massmix_ratios">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/run_0dparcel_test_case.html#tests.test_case_0dparcel.run_0dparcel_test_case.plot_0dparcel_massmix_ratios">[docs]</a>
 <span class="k">def</span> <span class="nf">plot_0dparcel_massmix_ratios</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">run_name</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Plot mass mixing ratios for a 0-D parcel model and save the plots.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot mass mixing ratios for a 0-D parcel model and save the plots.</span>
 
-<span class="sd">  This function plots the mass mixing ratios of water vapor, cloud liquid, cloud ice,</span>
-<span class="sd">  rain, snow, and graupel for a run of the 0-D parcel model as a function of time and then</span>
-<span class="sd">  saves the plots as a PNG image.</span>
+<span class="sd">    This function plots the mass mixing ratios of water vapor, cloud liquid, cloud ice,</span>
+<span class="sd">    rain, snow, and graupel for a run of the 0-D parcel model as a function of time and then</span>
+<span class="sd">    saves the plots as a PNG image.</span>
 
-<span class="sd">  Args:</span>
-<span class="sd">      out (OutputThermodynamics):</span>
-<span class="sd">        OutputThermodynamics object containing the mass mixing ratio data.</span>
-<span class="sd">      binpath (str):</span>
-<span class="sd">        Path to the directory where the plots will be saved.</span>
-<span class="sd">      run_name (str):</span>
-<span class="sd">        Name of the test run to use in naming saved image.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        out (OutputThermodynamics):</span>
+<span class="sd">          OutputThermodynamics object containing the mass mixing ratio data.</span>
+<span class="sd">        binpath (str):</span>
+<span class="sd">          Path to the directory where the plots will be saved.</span>
+<span class="sd">        run_name (str):</span>
+<span class="sd">          Name of the test run to use in naming saved image.</span>
 
-<span class="sd">  Raises:</span>
-<span class="sd">      AssertionError: If the specified binpath does not exist or if run_name is empty.</span>
+<span class="sd">    Raises:</span>
+<span class="sd">        AssertionError: If the specified binpath does not exist or if run_name is empty.</span>
 
-<span class="sd">  Returns:</span>
-<span class="sd">      None</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-  <span class="k">assert</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">binpath</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()),</span> <span class="s2">&quot;The specified binpath does not exist.&quot;</span>
-  <span class="k">assert</span><span class="p">(</span><span class="n">run_name</span><span class="p">),</span> <span class="s2">&quot;The run_name cannot be empty.&quot;</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;plotting &quot;</span><span class="o">+</span><span class="n">run_name</span><span class="o">+</span><span class="s2">&quot; and saving plots in: &quot;</span><span class="o">+</span><span class="n">binpath</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">Path</span><span class="p">(</span><span class="n">binpath</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="s2">&quot;The specified binpath does not exist.&quot;</span>
+    <span class="k">assert</span> <span class="n">run_name</span><span class="p">,</span> <span class="s2">&quot;The run_name cannot be empty.&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;plotting &quot;</span> <span class="o">+</span> <span class="n">run_name</span> <span class="o">+</span> <span class="s2">&quot; and saving plots in: &quot;</span> <span class="o">+</span> <span class="n">binpath</span><span class="p">)</span>
 
-  <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-  <span class="n">figname</span> <span class="o">=</span> <span class="n">run_name</span><span class="o">+</span><span class="s2">&quot;_massmix_ratios.png&quot;</span>
-  <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">figname</span> <span class="o">=</span> <span class="n">run_name</span> <span class="o">+</span> <span class="s2">&quot;_massmix_ratios.png&quot;</span>
+    <span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
-  <span class="n">time</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span>
-  <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qvap</span><span class="p">)</span>
-  <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qcond</span><span class="p">)</span>
-  <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qice</span><span class="p">)</span>
-  <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qrain</span><span class="p">)</span>
-  <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qsnow</span><span class="p">)</span>
-  <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qgrau</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qvap</span><span class="p">)</span>
+    <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qcond</span><span class="p">)</span>
+    <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qice</span><span class="p">)</span>
+    <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qrain</span><span class="p">)</span>
+    <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qsnow</span><span class="p">)</span>
+    <span class="n">plot_variable_on_axis</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">time</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">qgrau</span><span class="p">)</span>
 
-  <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot; /&quot;</span><span class="o">+</span><span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; /&quot;</span> <span class="o">+</span> <span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
 
-  <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-  <span class="n">save_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">figname</span><span class="p">)</span></div>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">save_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">figname</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="plot_variable_on_axis">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/run_0dparcel_test_case.html#tests.test_case_0dparcel.run_0dparcel_test_case.plot_variable_on_axis">[docs]</a>
 <span class="k">def</span> <span class="nf">plot_variable_on_axis</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Plot a variable against time on an axis.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot a variable against time on an axis.</span>
 
-<span class="sd">  Args:</span>
-<span class="sd">      ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the variable.</span>
-<span class="sd">      time (array-like): Time values (x axis).</span>
-<span class="sd">      var (OutputVariable): The variable to be plotted (y axis).</span>
+<span class="sd">    Args:</span>
+<span class="sd">        ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the variable.</span>
+<span class="sd">        time (array-like): Time values (x axis).</span>
+<span class="sd">        var (OutputVariable): The variable to be plotted (y axis).</span>
 
-<span class="sd">  Returns:</span>
-<span class="sd">      None</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot; /&quot;</span><span class="o">+</span><span class="n">var</span><span class="o">.</span><span class="n">units</span><span class="p">)</span></div>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; /&quot;</span> <span class="o">+</span> <span class="n">var</span><span class="o">.</span><span class="n">units</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="plot_thetas_on_axis">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/run_0dparcel_test_case.html#tests.test_case_0dparcel.run_0dparcel_test_case.plot_thetas_on_axis">[docs]</a>
 <span class="k">def</span> <span class="nf">plot_thetas_on_axis</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">press</span><span class="p">,</span> <span class="n">press0</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Plot potential temperature(s) on a specified axis.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot potential temperature(s) on a specified axis.</span>
 
-<span class="sd">  This function calculates and plots potential temperature(s) against time on a specified axis.</span>
+<span class="sd">    This function calculates and plots potential temperature(s) against time on a specified axis.</span>
 
-<span class="sd">  Args:</span>
-<span class="sd">      ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the potential temperature(s).</span>
-<span class="sd">      time (array-like): Time values (x axis).</span>
-<span class="sd">      temp (OutputVariable): Temperature variable.</span>
-<span class="sd">      press (OutputVariable): Pressure variable.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the potential temperature(s).</span>
+<span class="sd">        time (array-like): Time values (x axis).</span>
+<span class="sd">        temp (OutputVariable): Temperature variable.</span>
+<span class="sd">        press (OutputVariable): Pressure variable.</span>
 
-<span class="sd">  Returns:</span>
-<span class="sd">      None</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="n">theta_dry</span> <span class="o">=</span> <span class="n">calcs</span><span class="o">.</span><span class="n">dry_potential_temperature</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">press</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">press0</span><span class="p">)</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">theta_dry</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;dry&quot;</span><span class="p">)</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">theta_dry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta_dry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;potential temperature /&quot;</span><span class="o">+</span><span class="n">temp</span><span class="o">.</span><span class="n">units</span><span class="p">)</span></div>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">theta_dry</span> <span class="o">=</span> <span class="n">calcs</span><span class="o">.</span><span class="n">dry_potential_temperature</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">press</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">press0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">theta_dry</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;dry&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">theta_dry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">theta_dry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;potential temperature /&quot;</span> <span class="o">+</span> <span class="n">temp</span><span class="o">.</span><span class="n">units</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="save_figure">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/run_0dparcel_test_case.html#tests.test_case_0dparcel.run_0dparcel_test_case.save_figure">[docs]</a>
 <span class="k">def</span> <span class="nf">save_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">binpath</span><span class="p">,</span> <span class="n">figname</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Save a Matplotlib figure as a PNG file with high resolution and tight bounding box.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save a Matplotlib figure as a PNG file with high resolution and tight bounding box.</span>
 
-<span class="sd">  Args:</span>
-<span class="sd">      fig (matplotlib.figure.Figure): The Matplotlib figure to be saved.</span>
-<span class="sd">      binpath (str): The directory where the figure will be saved.</span>
-<span class="sd">      figname (str): The name of the PNG file to save in binpath directory.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        fig (matplotlib.figure.Figure): The Matplotlib figure to be saved.</span>
+<span class="sd">        binpath (str): The directory where the figure will be saved.</span>
+<span class="sd">        figname (str): The name of the PNG file to save in binpath directory.</span>
 
-<span class="sd">  Returns:</span>
-<span class="sd">      None</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">binpath</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">figname</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Figure .png saved as: &quot;</span><span class="o">+</span><span class="n">binpath</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">figname</span><span class="p">)</span></div>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+        <span class="n">binpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">figname</span><span class="p">,</span>
+        <span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+        <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span>
+        <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Figure .png saved as: &quot;</span> <span class="o">+</span> <span class="n">binpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">figname</span><span class="p">)</span></div>
 
 </pre></div>
         </article>

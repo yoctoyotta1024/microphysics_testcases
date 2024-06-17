@@ -275,7 +275,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for tests.test_case_0dparcel.run_0dparcel_model</h1><div class="highlight"><pre>
-<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
 <span class="sd">----- Microphysics Test Cases -----</span>
@@ -292,62 +292,62 @@
 <span class="sd">https://opensource.org/licenses/BSD-3-Clause</span>
 <span class="sd">-----</span>
 <span class="sd">File Description:</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <span class="kn">from</span> <span class="nn">.adiabatic_motion</span> <span class="kn">import</span> <span class="n">AdiabaticMotion</span>
 <span class="kn">from</span> <span class="nn">libs.src_py.output_thermodynamics</span> <span class="kn">import</span> <span class="n">OutputThermodynamics</span>
 
+
 <div class="viewcode-block" id="run_0dparcel_model">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/run_0dparcel_model.html#tests.test_case_0dparcel.run_0dparcel_model.run_0dparcel_model">[docs]</a>
 <span class="k">def</span> <span class="nf">run_0dparcel_model</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">time_end</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">,</span> <span class="n">microphys_scheme</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.</span>
 
-<span class="sd">  This function runs a 0-D parcel model with the given initial thermodynamic conditions, and</span>
-<span class="sd">  microphysics scheme from time to time_end with a constant timestep using an instance of</span>
-<span class="sd">  AdiabaticMotion for the parcel dynamics.</span>
+<span class="sd">    This function runs a 0-D parcel model with the given initial thermodynamic conditions, and</span>
+<span class="sd">    microphysics scheme from time to time_end with a constant timestep using an instance of</span>
+<span class="sd">    AdiabaticMotion for the parcel dynamics.</span>
 
-<span class="sd">  Parameters:</span>
-<span class="sd">      time (float):</span>
-<span class="sd">        Initial time for the simulation (s).</span>
-<span class="sd">      time_end (float):</span>
-<span class="sd">        End time for the simulation (s).</span>
-<span class="sd">      timestep (float):</span>
-<span class="sd">        Timestep for the simulation (s).</span>
-<span class="sd">      thermo (Thermodynamics):</span>
-<span class="sd">        Initial thermodynamic conditions.</span>
-<span class="sd">      microphys_scheme:</span>
-<span class="sd">        Microphysics scheme to use.</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        time (float):</span>
+<span class="sd">          Initial time for the simulation (s).</span>
+<span class="sd">        time_end (float):</span>
+<span class="sd">          End time for the simulation (s).</span>
+<span class="sd">        timestep (float):</span>
+<span class="sd">          Timestep for the simulation (s).</span>
+<span class="sd">        thermo (Thermodynamics):</span>
+<span class="sd">          Initial thermodynamic conditions.</span>
+<span class="sd">        microphys_scheme:</span>
+<span class="sd">          Microphysics scheme to use.</span>
 
-<span class="sd">  Returns:</span>
-<span class="sd">        OutputThermodynamics: Output containing thermodynamic data from the model run.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+<span class="sd">    Returns:</span>
+<span class="sd">          OutputThermodynamics: Output containing thermodynamic data from the model run.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-  <span class="c1">### data to output during model run</span>
-  <span class="n">out</span> <span class="o">=</span> <span class="n">OutputThermodynamics</span><span class="p">()</span>
+    <span class="c1">### data to output during model run</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">OutputThermodynamics</span><span class="p">()</span>
 
-  <span class="c1">### type of dynamics parcel will undergo</span>
-  <span class="n">amp</span> <span class="o">=</span> <span class="mi">11325</span> <span class="c1"># amplitude of pressure sinusoid [Pa]</span>
-  <span class="n">tau</span> <span class="o">=</span> <span class="mi">120</span> <span class="c1"># time period of pressure sinusiod [s]</span>
-  <span class="n">parcel_dynamics</span> <span class="o">=</span> <span class="n">AdiabaticMotion</span><span class="p">(</span><span class="n">amp</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span>
+    <span class="c1">### type of dynamics parcel will undergo</span>
+    <span class="n">amp</span> <span class="o">=</span> <span class="mi">11325</span>  <span class="c1"># amplitude of pressure sinusoid [Pa]</span>
+    <span class="n">tau</span> <span class="o">=</span> <span class="mi">120</span>  <span class="c1"># time period of pressure sinusiod [s]</span>
+    <span class="n">parcel_dynamics</span> <span class="o">=</span> <span class="n">AdiabaticMotion</span><span class="p">(</span><span class="n">amp</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span>
 
-  <span class="c1">### run dynamics + microphysics from time to time_end</span>
-  <span class="n">microphys_scheme</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-
-  <span class="n">out</span><span class="o">.</span><span class="n">output_thermodynamics</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
-  <span class="k">while</span> <span class="n">time</span> <span class="o">&lt;=</span> <span class="n">time_end</span><span class="p">:</span>
-
-    <span class="n">thermo</span> <span class="o">=</span> <span class="n">parcel_dynamics</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
-    <span class="n">thermo</span> <span class="o">=</span> <span class="n">microphys_scheme</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
+    <span class="c1">### run dynamics + microphysics from time to time_end</span>
+    <span class="n">microphys_scheme</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 
     <span class="n">out</span><span class="o">.</span><span class="n">output_thermodynamics</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">time</span> <span class="o">&lt;=</span> <span class="n">time_end</span><span class="p">:</span>
+        <span class="n">thermo</span> <span class="o">=</span> <span class="n">parcel_dynamics</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
+        <span class="n">thermo</span> <span class="o">=</span> <span class="n">microphys_scheme</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
 
-    <span class="n">time</span> <span class="o">+=</span> <span class="n">timestep</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">output_thermodynamics</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
 
-  <span class="n">microphys_scheme</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="n">time</span> <span class="o">+=</span> <span class="n">timestep</span>
 
-  <span class="n">out</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-  <span class="k">return</span> <span class="n">out</span></div>
+    <span class="n">microphys_scheme</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+
+    <span class="n">out</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">out</span></div>
 
 </pre></div>
         </article>

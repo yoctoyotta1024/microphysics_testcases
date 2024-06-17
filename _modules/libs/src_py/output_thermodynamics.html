@@ -275,7 +275,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for libs.src_py.output_thermodynamics</h1><div class="highlight"><pre>
-<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
 <span class="sd">----- Microphysics Test Cases -----</span>
@@ -293,172 +293,174 @@
 <span class="sd">-----</span>
 <span class="sd">File Description:</span>
 <span class="sd">class for storing thermodynamics output during model run</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">.thermodynamics</span> <span class="kn">import</span> <span class="n">Thermodynamics</span>
 
+
 <div class="viewcode-block" id="OutputVariable">
 <a class="viewcode-back" href="../../../src_py/output_thermodynamics.html#libs.src_py.output_thermodynamics.OutputVariable">[docs]</a>
 <span class="k">class</span> <span class="nc">OutputVariable</span><span class="p">:</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Class to output a variable with some of its metadata.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class to output a variable with some of its metadata.</span>
 
-<span class="sd">  Attributes:</span>
-<span class="sd">      name (string):</span>
-<span class="sd">        Name of variable.</span>
-<span class="sd">      units (string):</span>
-<span class="sd">        Units of variable.</span>
-<span class="sd">      values (any):</span>
-<span class="sd">        Values of variable; must be able to be appended to.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialise OutputVariable instance</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">      name (string):</span>
-<span class="sd">        Name of variable.</span>
-<span class="sd">      units (string):</span>
-<span class="sd">        Units of variable.</span>
-<span class="sd">      values (any):</span>
-<span class="sd">        Values of variable; must be able to be appended to.</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        name (string):</span>
+<span class="sd">          Name of variable.</span>
+<span class="sd">        units (string):</span>
+<span class="sd">          Units of variable.</span>
+<span class="sd">        values (any):</span>
+<span class="sd">          Values of variable; must be able to be appended to.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">units</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise OutputVariable instance</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">          name (string):</span>
+<span class="sd">            Name of variable.</span>
+<span class="sd">          units (string):</span>
+<span class="sd">            Units of variable.</span>
+<span class="sd">          values (any):</span>
+<span class="sd">            Values of variable; must be able to be appended to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
 
 <div class="viewcode-block" id="OutputVariable.write">
 <a class="viewcode-back" href="../../../src_py/output_thermodynamics.html#libs.src_py.output_thermodynamics.OutputVariable.write">[docs]</a>
-  <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Append a value to the list of variable values.</span>
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Append a value to the list of variable values.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">      val (any): Value to append.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span></div>
+<span class="sd">        Parameters:</span>
+<span class="sd">          val (any): Value to append.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="OutputVariable.finalize">
 <a class="viewcode-back" href="../../../src_py/output_thermodynamics.html#libs.src_py.output_thermodynamics.OutputVariable.finalize">[docs]</a>
-  <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Convert values to a NumPy array.&#39;&#39;&#39;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert values to a NumPy array.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></div>
 </div>
+
 
 
 <div class="viewcode-block" id="OutputThermodynamics">
 <a class="viewcode-back" href="../../../src_py/output_thermodynamics.html#libs.src_py.output_thermodynamics.OutputThermodynamics">[docs]</a>
 <span class="k">class</span> <span class="nc">OutputThermodynamics</span><span class="p">:</span>
-<span class="w">  </span><span class="sd">&#39;&#39;&#39;Class is method and store for thermodynamic variables output during model timestep.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class is method and store for thermodynamic variables output during model timestep.</span>
 
-<span class="sd">  Thermodynamic variables include pressure, temperature, moist air density and the specific</span>
-<span class="sd">  content (mass mixing ratio) of vapour and condensates.</span>
+<span class="sd">    Thermodynamic variables include pressure, temperature, moist air density and the specific</span>
+<span class="sd">    content (mass mixing ratio) of vapour and condensates.</span>
 
-<span class="sd">  Attributes:</span>
-<span class="sd">      time (OutputVariable):</span>
-<span class="sd">        time (s).</span>
-<span class="sd">      temp (OutputVariable):</span>
-<span class="sd">        Temperature (K).</span>
-<span class="sd">      rho (OutputVariable):</span>
-<span class="sd">        Density of moist air (kg/m3).</span>
-<span class="sd">      press (OutputVariable):</span>
-<span class="sd">        Pressure (Pa).</span>
-<span class="sd">      qvap (OutputVariable):</span>
-<span class="sd">        Specific water vapor content (kg/kg).</span>
-<span class="sd">      qcond (OutputVariable):</span>
-<span class="sd">        Specific cloud water content (kg/kg).</span>
-<span class="sd">      qice (OutputVariable):</span>
-<span class="sd">        Specific cloud ice content (kg/kg).</span>
-<span class="sd">      qrain (OutputVariable):</span>
-<span class="sd">        Specific rain content (kg/kg).</span>
-<span class="sd">      qsnow (OutputVariable):</span>
-<span class="sd">        Specific snow content kg/kg).</span>
-<span class="sd">      qgrau (OutputVariable):</span>
-<span class="sd">        Specific graupel content (kg/kg).</span>
-<span class="sd">  &#39;&#39;&#39;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        time (OutputVariable):</span>
+<span class="sd">          time (s).</span>
+<span class="sd">        temp (OutputVariable):</span>
+<span class="sd">          Temperature (K).</span>
+<span class="sd">        rho (OutputVariable):</span>
+<span class="sd">          Density of moist air (kg/m3).</span>
+<span class="sd">        press (OutputVariable):</span>
+<span class="sd">          Pressure (Pa).</span>
+<span class="sd">        qvap (OutputVariable):</span>
+<span class="sd">          Specific water vapor content (kg/kg).</span>
+<span class="sd">        qcond (OutputVariable):</span>
+<span class="sd">          Specific cloud water content (kg/kg).</span>
+<span class="sd">        qice (OutputVariable):</span>
+<span class="sd">          Specific cloud ice content (kg/kg).</span>
+<span class="sd">        qrain (OutputVariable):</span>
+<span class="sd">          Specific rain content (kg/kg).</span>
+<span class="sd">        qsnow (OutputVariable):</span>
+<span class="sd">          Specific snow content kg/kg).</span>
+<span class="sd">        qgrau (OutputVariable):</span>
+<span class="sd">          Specific graupel content (kg/kg).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Initialize a ThermodynamicsOutput object.&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a ThermodynamicsOutput object.&quot;&quot;&quot;</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;temp&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;rho&#39;</span><span class="p">,</span> <span class="s1">&#39;Kg m-3&#39;</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">press</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;press&#39;</span><span class="p">,</span> <span class="s1">&#39;Pa&#39;</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qvap</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;qvap&#39;</span><span class="p">,</span> <span class="s1">&#39;Kg/Kg&#39;</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qcond</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;qcond&#39;</span><span class="p">,</span> <span class="s1">&#39;Kg/Kg&#39;</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qice</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;qice&#39;</span><span class="p">,</span> <span class="s1">&#39;Kg/Kg&#39;</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qrain</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;qrain&#39;</span><span class="p">,</span> <span class="s1">&#39;Kg/Kg&#39;</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qsnow</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;qsnow&#39;</span><span class="p">,</span> <span class="s1">&#39;Kg/Kg&#39;</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qgrau</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s1">&#39;qgrau&#39;</span><span class="p">,</span> <span class="s1">&#39;Kg/Kg&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;Kg m-3&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">press</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;press&quot;</span><span class="p">,</span> <span class="s2">&quot;Pa&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qvap</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;qvap&quot;</span><span class="p">,</span> <span class="s2">&quot;Kg/Kg&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qcond</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;qcond&quot;</span><span class="p">,</span> <span class="s2">&quot;Kg/Kg&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qice</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;qice&quot;</span><span class="p">,</span> <span class="s2">&quot;Kg/Kg&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qrain</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;qrain&quot;</span><span class="p">,</span> <span class="s2">&quot;Kg/Kg&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qsnow</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;qsnow&quot;</span><span class="p">,</span> <span class="s2">&quot;Kg/Kg&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qgrau</span> <span class="o">=</span> <span class="n">OutputVariable</span><span class="p">(</span><span class="s2">&quot;qgrau&quot;</span><span class="p">,</span> <span class="s2">&quot;Kg/Kg&quot;</span><span class="p">,</span> <span class="p">[])</span>
 
 <div class="viewcode-block" id="OutputThermodynamics.output_thermodynamics">
 <a class="viewcode-back" href="../../../src_py/output_thermodynamics.html#libs.src_py.output_thermodynamics.OutputThermodynamics.output_thermodynamics">[docs]</a>
-  <span class="k">def</span> <span class="nf">output_thermodynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">thermo</span><span class="p">:</span> <span class="n">Thermodynamics</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;output thermodynamics from thermo to each variable in thermodynamics output.</span>
+    <span class="k">def</span> <span class="nf">output_thermodynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">thermo</span><span class="p">:</span> <span class="n">Thermodynamics</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;output thermodynamics from thermo to each variable in thermodynamics output.</span>
 
-<span class="sd">    This method writes time and thermodynamic variables from thermo such as temperature, density,</span>
-<span class="sd">    pressure, and specific mass mixing ratios to the respective output variables.</span>
+<span class="sd">        This method writes time and thermodynamic variables from thermo such as temperature, density,</span>
+<span class="sd">        pressure, and specific mass mixing ratios to the respective output variables.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        time (float):</span>
-<span class="sd">          The time at which the thermodynamic variables are output (s).</span>
-<span class="sd">        thermo (Thermodynamics):</span>
-<span class="sd">          An instance of the Thermodynamics class containing the thermodynamic variables to output.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            time (float):</span>
+<span class="sd">              The time at which the thermodynamic variables are output (s).</span>
+<span class="sd">            thermo (Thermodynamics):</span>
+<span class="sd">              An instance of the Thermodynamics class containing the thermodynamic variables to output.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        None</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">temp</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">press</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">press</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qvap</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qcond</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qice</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qrain</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qsnow</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qgrau</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span></div>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">temp</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">press</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">press</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qvap</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qcond</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qice</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qrain</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qsnow</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qgrau</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span></div>
 
 
-  <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">thermo</span><span class="p">:</span> <span class="n">Thermodynamics</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Invoke the object as a function to call the `output_thermodynamics` method.</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">thermo</span><span class="p">:</span> <span class="n">Thermodynamics</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Invoke the object as a function to call the `output_thermodynamics` method.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        time (float):</span>
-<span class="sd">          The time at which the thermodynamic variables are output (s).</span>
-<span class="sd">        thermo (Thermodynamics):</span>
-<span class="sd">          An instance of the Thermodynamics class containing the thermodynamic variables to output.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            time (float):</span>
+<span class="sd">              The time at which the thermodynamic variables are output (s).</span>
+<span class="sd">            thermo (Thermodynamics):</span>
+<span class="sd">              An instance of the Thermodynamics class containing the thermodynamic variables to output.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        None</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">output_thermodynamics</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_thermodynamics</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
 
 <div class="viewcode-block" id="OutputThermodynamics.finalize">
 <a class="viewcode-back" href="../../../src_py/output_thermodynamics.html#libs.src_py.output_thermodynamics.OutputThermodynamics.finalize">[docs]</a>
-  <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finalize the thermodynamics output.</span>
+    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Finalize the thermodynamics output.</span>
 
-<span class="sd">    This method finalizes the output of thermodynamic variables by calling the `finalize` method</span>
-<span class="sd">    of each output variable, e.g. to ensure that all variables are properly formatted</span>
-<span class="sd">    for further use or analysis.</span>
+<span class="sd">        This method finalizes the output of thermodynamic variables by calling the `finalize` method</span>
+<span class="sd">        of each output variable, e.g. to ensure that all variables are properly formatted</span>
+<span class="sd">        for further use or analysis.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        None</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">press</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qvap</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qcond</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qice</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qrain</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qsnow</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qgrau</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span></div>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">press</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qvap</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qcond</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qice</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qrain</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qsnow</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qgrau</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span></div>
 </div>
 
 </pre></div>

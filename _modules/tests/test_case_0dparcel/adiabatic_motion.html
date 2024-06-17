@@ -275,7 +275,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for tests.test_case_0dparcel.adiabatic_motion</h1><div class="highlight"><pre>
-<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
 <span class="sd">----- Microphysics Test Cases -----</span>
@@ -285,7 +285,7 @@
 <span class="sd">Author: Clara Bayley (CB)</span>
 <span class="sd">Additional Contributors:</span>
 <span class="sd">-----</span>
-<span class="sd">Last Modified: Friday 1st March 2024</span>
+<span class="sd">Last Modified: Monday 17th June 2024</span>
 <span class="sd">Modified By: CB</span>
 <span class="sd">-----</span>
 <span class="sd">License: BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License</span>
@@ -293,202 +293,210 @@
 <span class="sd">-----</span>
 <span class="sd">File Description:</span>
 <span class="sd">class for driving adiabatic expansion/contraction test case</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
 
+
 <div class="viewcode-block" id="AdiabaticMotion">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion">[docs]</a>
 <span class="k">class</span> <span class="nc">AdiabaticMotion</span><span class="p">:</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;A class for driving the adiabatic expansion/contraction of a volume of air.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for driving the adiabatic expansion/contraction of a volume of air.</span>
 
-<span class="sd">  Enacts adiabatic sinusoidal pressure change of parcel of air.</span>
-
-<span class="sd">  Args:</span>
-<span class="sd">      amp (float):</span>
-<span class="sd">        Amplitude of pressure sinusoid [Pa].</span>
-<span class="sd">      tau (float):</span>
-<span class="sd">        Time period of the pressure sinusoid [s].</span>
-
-<span class="sd">  Attributes:</span>
-<span class="sd">      amp (float):</span>
-<span class="sd">        Amplitude of pressure sinusoid [Pa].</span>
-<span class="sd">      omega (float):</span>
-<span class="sd">        Angular frequency of pressure sinusoid (tau is time period) [radians s^-1].</span>
-<span class="sd">      cp_dry (float):</span>
-<span class="sd">        Specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K).</span>
-<span class="sd">      rgas_dry (float):</span>
-<span class="sd">        Specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K).</span>
-<span class="sd">      epsilon (float):</span>
-<span class="sd">        Ratio of gas constants, dry air / water vapour (approx. 0.622).</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amp</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the AdiabaticMotion object.</span>
+<span class="sd">    Enacts adiabatic sinusoidal pressure change of parcel of air.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        amp (float):</span>
 <span class="sd">          Amplitude of pressure sinusoid [Pa].</span>
 <span class="sd">        tau (float):</span>
 <span class="sd">          Time period of the pressure sinusoid [s].</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        amp (float):</span>
+<span class="sd">          Amplitude of pressure sinusoid [Pa].</span>
+<span class="sd">        omega (float):</span>
+<span class="sd">          Angular frequency of pressure sinusoid (tau is time period) [radians s^-1].</span>
+<span class="sd">        cp_dry (float):</span>
+<span class="sd">          Specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K).</span>
+<span class="sd">        rgas_dry (float):</span>
+<span class="sd">          Specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K).</span>
+<span class="sd">        epsilon (float):</span>
+<span class="sd">          Ratio of gas constants, dry air / water vapour (approx. 0.622).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">rgas_univ</span> <span class="o">=</span> <span class="mf">8.314462618</span>   <span class="c1"># universal molar gas constant [J/Kg/K]</span>
-    <span class="n">mr_dry</span> <span class="o">=</span> <span class="mf">0.028966216</span>      <span class="c1"># molecular mass of dry air [Kg/mol]</span>
-    <span class="n">mr_water</span> <span class="o">=</span> <span class="mf">0.01801528</span>     <span class="c1"># molecular mass of water [Kg/mol]</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amp</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the AdiabaticMotion object.</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">cp_dry</span> <span class="o">=</span> <span class="mf">1004.64</span>     <span class="c1"># specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">rgas_dry</span> <span class="o">=</span> <span class="n">rgas_univ</span> <span class="o">/</span> <span class="n">mr_dry</span>   <span class="c1"># specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">mr_water</span> <span class="o">/</span> <span class="n">mr_dry</span>     <span class="c1"># ratio of gas constants, dry air / water vapour (approx. 0.622)</span>
+<span class="sd">        Args:</span>
+<span class="sd">            amp (float):</span>
+<span class="sd">              Amplitude of pressure sinusoid [Pa].</span>
+<span class="sd">            tau (float):</span>
+<span class="sd">              Time period of the pressure sinusoid [s].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">amp</span> <span class="o">=</span> <span class="n">amp</span> <span class="c1"># amplitude of pressure sinusoid [Pa]</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">tau</span> <span class="c1"># angular frequency of pressure sinusio (tau is time period) [radians s^-1]</span>
+        <span class="n">rgas_univ</span> <span class="o">=</span> <span class="mf">8.314462618</span>  <span class="c1"># universal molar gas constant [J/Kg/K]</span>
+        <span class="n">mr_dry</span> <span class="o">=</span> <span class="mf">0.028966216</span>  <span class="c1"># molecular mass of dry air [Kg/mol]</span>
+        <span class="n">mr_water</span> <span class="o">=</span> <span class="mf">0.01801528</span>  <span class="c1"># molecular mass of water [Kg/mol]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cp_dry</span> <span class="o">=</span> <span class="mf">1004.64</span>  <span class="c1"># specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rgas_dry</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">rgas_univ</span> <span class="o">/</span> <span class="n">mr_dry</span>
+        <span class="p">)</span>  <span class="c1"># specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">mr_water</span> <span class="o">/</span> <span class="n">mr_dry</span>
+        <span class="p">)</span>  <span class="c1"># ratio of gas constants, dry air / water vapour (approx. 0.622)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">amp</span> <span class="o">=</span> <span class="n">amp</span>  <span class="c1"># amplitude of pressure sinusoid [Pa]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">tau</span>
+        <span class="p">)</span>  <span class="c1"># angular frequency of pressure sinusio (tau is time period) [radians s^-1]</span>
 
 <div class="viewcode-block" id="AdiabaticMotion.dpress_dtime">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.dpress_dtime">[docs]</a>
-  <span class="k">def</span> <span class="nf">dpress_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the rate of change of pressure with respect to time.</span>
+    <span class="k">def</span> <span class="nf">dpress_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the rate of change of pressure with respect to time.</span>
 
-<span class="sd">    The rate of change of pressure with respect to time is calculated from the equation:</span>
+<span class="sd">        The rate of change of pressure with respect to time is calculated from the equation:</span>
 
-<span class="sd">    .. math:: \frac{dP}{dt} = - \omega \cdot A \cos(\omega t)</span>
+<span class="sd">        .. math:: \frac{dP}{dt} = - \omega \cdot A \cos(\omega t)</span>
 
-<span class="sd">    so that pressure evolution follows:</span>
+<span class="sd">        so that pressure evolution follows:</span>
 
-<span class="sd">    .. math:: P(t) = P_{\rm init} - A \sin(\omega t)</span>
+<span class="sd">        .. math:: P(t) = P_{\rm init} - A \sin(\omega t)</span>
 
-<span class="sd">    where :math:`P_{\rm init} = P(t=t_{\rm{init}})`</span>
+<span class="sd">        where :math:`P_{\rm init} = P(t=t_{\rm{init}})`</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        time (float): Current time [s].</span>
+<span class="sd">        Args:</span>
+<span class="sd">            time (float): Current time [s].</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        float: Rate of change of pressure with respect to time [Pa/s].</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Rate of change of pressure with respect to time [Pa/s].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="n">dpress_dt</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">dpress_dt</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">dpress_dt</span></div>
+        <span class="k">return</span> <span class="n">dpress_dt</span></div>
 
 
 <div class="viewcode-block" id="AdiabaticMotion.dtemp_dtime">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.dtemp_dtime">[docs]</a>
-  <span class="k">def</span> <span class="nf">dtemp_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the rate of change of temperature with respect to time.</span>
+    <span class="k">def</span> <span class="nf">dtemp_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the rate of change of temperature with respect to time.</span>
 
-<span class="sd">    The rate of change of temperature with respect to time is calculated from the equation:</span>
+<span class="sd">        The rate of change of temperature with respect to time is calculated from the equation:</span>
 
-<span class="sd">    .. math:: \frac{dT}{dt} = \frac{1}{\rho c_{\rm p, dry}} \frac{dP}{dt}</span>
+<span class="sd">        .. math:: \frac{dT}{dt} = \frac{1}{\rho c_{\rm p, dry}} \frac{dP}{dt}</span>
 
-<span class="sd">    assuming :math:`c_{\rm p} \approx c_{\rm p, dry}`,</span>
-<span class="sd">    i.e. :math:`q_{\rm dry}c_{\rm p, dry} \gg  q_{\rm v}c_{\rm p, v}`,</span>
-<span class="sd">    and :math:`q_{\rm dry}c_{\rm p, dry} \gg  q_{\rm v}c_{\rm k}` for all condensates :math:`k`.</span>
+<span class="sd">        assuming :math:`c_{\rm p} \approx c_{\rm p, dry}`,</span>
+<span class="sd">        i.e. :math:`q_{\rm dry}c_{\rm p, dry} \gg  q_{\rm v}c_{\rm p, v}`,</span>
+<span class="sd">        and :math:`q_{\rm dry}c_{\rm p, dry} \gg  q_{\rm v}c_{\rm k}` for all condensates :math:`k`.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        rho (float):</span>
-<span class="sd">          Density of air [Kg/m^3].</span>
-<span class="sd">        dpress_dt (float):</span>
-<span class="sd">          Rate of change of pressure with respect to time [Pa/s].</span>
+<span class="sd">        Args:</span>
+<span class="sd">            rho (np.ndarray):</span>
+<span class="sd">              Density of air [Kg/m^3].</span>
+<span class="sd">            dpress_dt (np.ndarray):</span>
+<span class="sd">              Rate of change of pressure with respect to time [Pa/s].</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        float: Rate of change of temperature with respect to time [K/s].</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Rate of change of temperature with respect to time [K/s].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="n">dtemp_dt</span> <span class="o">=</span> <span class="n">dpress_dt</span> <span class="o">/</span> <span class="n">rho</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">cp_dry</span>
+        <span class="n">dtemp_dt</span> <span class="o">=</span> <span class="n">dpress_dt</span> <span class="o">/</span> <span class="n">rho</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">cp_dry</span>
 
-    <span class="k">return</span> <span class="n">dtemp_dt</span></div>
+        <span class="k">return</span> <span class="n">dtemp_dt</span></div>
 
 
 <div class="viewcode-block" id="AdiabaticMotion.drho_dtime">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.drho_dtime">[docs]</a>
-  <span class="k">def</span> <span class="nf">drho_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qvap</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculate the rate of change of density with respect to time.</span>
+    <span class="k">def</span> <span class="nf">drho_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qvap</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the rate of change of density with respect to time.</span>
 
-<span class="sd">    The rate of change of temperature with respect to time is calculated from the equation:</span>
+<span class="sd">        The rate of change of temperature with respect to time is calculated from the equation:</span>
 
-<span class="sd">    .. math::</span>
-<span class="sd">      \frac{d\rho}{dt} = \frac{\rho}{P} \frac{dP}{dt} - \frac{\rho}{T} \frac{dT}{dt}</span>
+<span class="sd">        .. math::</span>
+<span class="sd">          \frac{d\rho}{dt} = \frac{\rho}{P} \frac{dP}{dt} - \frac{\rho}{T} \frac{dT}{dt}</span>
 
-<span class="sd">    where</span>
+<span class="sd">        where</span>
 
-<span class="sd">    .. math::</span>
-<span class="sd">      P = \rho R_{\rm dry} \left(1 + \frac{q_{\rm v}}{\epsilon}\right) T</span>
+<span class="sd">        .. math::</span>
+<span class="sd">          P = \rho R_{\rm dry} \left(1 + \frac{q_{\rm v}}{\epsilon}\right) T</span>
 
-<span class="sd">    assuming :math:`q_{\rm v} \approx r_{\rm v}`, i.e. :math:`q_{\rm dry} \gg  q_{\rm v}`.</span>
+<span class="sd">        assuming :math:`q_{\rm v} \approx r_{\rm v}`, i.e. :math:`q_{\rm dry} \gg  q_{\rm v}`.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        temp (float):</span>
-<span class="sd">          Temperature of air [K].</span>
-<span class="sd">        rho (float):</span>
-<span class="sd">          Density of air [Kg/m^3].</span>
-<span class="sd">        qvap (float):</span>
-<span class="sd">          Mass mixing ratio of water vapor [Kg/Kg].</span>
-<span class="sd">        dpress_dt (float):</span>
-<span class="sd">          Rate of change of pressure with respect to time [Pa/s].</span>
-<span class="sd">        dtemp_dt (float):</span>
-<span class="sd">          Rate of change of temperature with respect to time [K/s].</span>
+<span class="sd">        Args:</span>
+<span class="sd">            temp (np.ndarray):</span>
+<span class="sd">              Temperature of air [K].</span>
+<span class="sd">            rho (np.ndarray):</span>
+<span class="sd">              Density of air [Kg/m^3].</span>
+<span class="sd">            qvap (np.ndarray):</span>
+<span class="sd">              Mass mixing ratio of water vapor [Kg/Kg].</span>
+<span class="sd">            dpress_dt (np.ndarray):</span>
+<span class="sd">              Rate of change of pressure with respect to time [Pa/s].</span>
+<span class="sd">            dtemp_dt (np.ndarray):</span>
+<span class="sd">              Rate of change of temperature with respect to time [K/s].</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        float: Rate of change of density with respect to time [Kg/m^3/s].</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Rate of change of density with respect to time [Kg/m^3/s].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="n">rgas_eff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rgas_dry</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">qvap</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+        <span class="n">rgas_eff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rgas_dry</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">qvap</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
 
-    <span class="n">drho_dt_temp</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dtemp_dt</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">/</span> <span class="n">temp</span>
-    <span class="n">drho_dt_press</span> <span class="o">=</span> <span class="n">dpress_dt</span> <span class="o">/</span> <span class="n">rgas_eff</span> <span class="o">/</span> <span class="n">temp</span>
+        <span class="n">drho_dt_temp</span> <span class="o">=</span> <span class="o">-</span><span class="n">dtemp_dt</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">/</span> <span class="n">temp</span>
+        <span class="n">drho_dt_press</span> <span class="o">=</span> <span class="n">dpress_dt</span> <span class="o">/</span> <span class="n">rgas_eff</span> <span class="o">/</span> <span class="n">temp</span>
 
-    <span class="n">drho_dt</span> <span class="o">=</span> <span class="n">drho_dt_press</span> <span class="o">+</span> <span class="n">drho_dt_temp</span>
+        <span class="n">drho_dt</span> <span class="o">=</span> <span class="n">drho_dt_press</span> <span class="o">+</span> <span class="n">drho_dt_temp</span>
 
-    <span class="k">return</span> <span class="n">drho_dt</span></div>
+        <span class="k">return</span> <span class="n">drho_dt</span></div>
 
 
 <div class="viewcode-block" id="AdiabaticMotion.adiabatic_odes">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.adiabatic_odes">[docs]</a>
-  <span class="k">def</span> <span class="nf">adiabatic_odes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">qvap</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">adiabatic_odes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">qvap</span><span class="p">):</span>
+        <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">press</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="n">dpress_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpress_dtime</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">dtemp_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtemp_dtime</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">)</span>
+        <span class="n">drho_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drho_dtime</span><span class="p">(</span><span class="n">qvap</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">)</span>
 
-    <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">press</span> <span class="o">=</span> <span class="n">y</span>
-    <span class="n">dpress_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpress_dtime</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
-    <span class="n">dtemp_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtemp_dtime</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">)</span>
-    <span class="n">drho_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drho_dtime</span><span class="p">(</span><span class="n">qvap</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="p">[</span><span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">drho_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">drho_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="AdiabaticMotion.run">
 <a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.run">[docs]</a>
-  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Run the adiabatic motion computations.</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run the adiabatic motion computations.</span>
 
-<span class="sd">    This method integrates the equations from time to time+timestep for adiabatic</span>
-<span class="sd">    expansion/contraction of a parcel of air.</span>
+<span class="sd">        This method integrates the equations from time to time+timestep for adiabatic</span>
+<span class="sd">        expansion/contraction of a parcel of air.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        time (float):</span>
-<span class="sd">          Current time [s].</span>
-<span class="sd">        timestep (float):</span>
-<span class="sd">          Time step size for the simulation [s].</span>
-<span class="sd">        thermo (Thermodynamics):</span>
-<span class="sd">          Object representing the thermodynamic state of the air.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            time (float):</span>
+<span class="sd">              Current time [s].</span>
+<span class="sd">            timestep (float):</span>
+<span class="sd">              Time step size for the simulation [s].</span>
+<span class="sd">            thermo (Thermodynamics):</span>
+<span class="sd">              Object representing the thermodynamic state of the air.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Thermodynamics: Updated thermodynamic state of the air.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Thermodynamics: Updated thermodynamic state of the air.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">time</span><span class="o">+</span><span class="n">timestep</span>
-    <span class="n">qvap</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">time</span> <span class="o">+</span> <span class="n">timestep</span>
+        <span class="n">qvap</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">thermo</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span> <span class="n">thermo</span><span class="o">.</span><span class="n">rho</span><span class="p">,</span> <span class="n">thermo</span><span class="o">.</span><span class="n">press</span><span class="p">]</span>
-    <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">press</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adiabatic_odes</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="p">[</span><span class="n">t0</span><span class="p">,</span><span class="n">t1</span><span class="p">],</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">qvap</span><span class="p">,))[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">thermo</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span> <span class="n">thermo</span><span class="o">.</span><span class="n">rho</span><span class="p">,</span> <span class="n">thermo</span><span class="o">.</span><span class="n">press</span><span class="p">]</span>
+        <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">press</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">adiabatic_odes</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="p">[</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">],</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">qvap</span><span class="p">,)</span>
+        <span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="n">thermo</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span>
-    <span class="n">thermo</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
-    <span class="n">thermo</span><span class="o">.</span><span class="n">press</span> <span class="o">=</span> <span class="n">press</span>
+        <span class="n">thermo</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span>
+        <span class="n">thermo</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
+        <span class="n">thermo</span><span class="o">.</span><span class="n">press</span> <span class="o">=</span> <span class="n">press</span>
 
-    <span class="k">return</span> <span class="n">thermo</span></div>
+        <span class="k">return</span> <span class="n">thermo</span></div>
 </div>
 
 </pre></div>

@@ -275,7 +275,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for libs.src_py.microphysics_scheme_wrapper</h1><div class="highlight"><pre>
-<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
 <span class="sd">----- Microphysics Test Cases -----</span>
@@ -294,138 +294,153 @@
 <span class="sd">File Description:</span>
 <span class="sd">wrapper function for an instance of MicrophysicsScheme so it can be used by generic test cases</span>
 <span class="sd">and run scripts</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <span class="kn">from</span> <span class="nn">.thermodynamics</span> <span class="kn">import</span> <span class="n">Thermodynamics</span>
 <span class="kn">from</span> <span class="nn">.mock_microphysics_scheme</span> <span class="kn">import</span> <span class="n">MicrophysicsScheme</span>
 
+
 <div class="viewcode-block" id="MicrophysicsSchemeWrapper">
 <a class="viewcode-back" href="../../../src_py/microphysics_scheme_wrapper.html#libs.src_py.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper">[docs]</a>
 <span class="k">class</span> <span class="nc">MicrophysicsSchemeWrapper</span><span class="p">:</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;A class wrapping around Python MicrophysicsScheme for compatibility purposes.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class wrapping around Python MicrophysicsScheme for compatibility purposes.</span>
 
-<span class="sd">  This class wraps around the MicrophysicsScheme class to provide compatibility with the Python</span>
-<span class="sd">  run scripts and tests in this project. It initializes a MicrophysicsScheme object and provides</span>
-<span class="sd">  wrappers around methods to initialize, finalize, and run the microphysics.</span>
-
-<span class="sd">  Args:</span>
-<span class="sd">      nvec (int):</span>
-<span class="sd">        Number of horizontal points.</span>
-<span class="sd">      ke (int):</span>
-<span class="sd">        Number of grid points in vertical direction.</span>
-<span class="sd">      ivstart (int):</span>
-<span class="sd">        Start index for horizontal direction.</span>
-<span class="sd">      dz (float):</span>
-<span class="sd">        Layer thickness of full levels (m).</span>
-<span class="sd">      qnc (float):</span>
-<span class="sd">        Cloud number concentration.</span>
-
-<span class="sd">  Attributes:</span>
-<span class="sd">      nvec (int):</span>
-<span class="sd">        Number of horizontal points.</span>
-<span class="sd">      ke (int):</span>
-<span class="sd">        Number of grid points in vertical direction.</span>
-<span class="sd">      ivstart (int):</span>
-<span class="sd">        Start index for horizontal direction.</span>
-<span class="sd">      dz (float):</span>
-<span class="sd">        Layer thickness of full levels (m).</span>
-<span class="sd">      qnc (float):</span>
-<span class="sd">        Cloud number concentration.</span>
-<span class="sd">      microphys (MicrophysicsScheme):</span>
-<span class="sd">        instance of Python MicrophysicsScheme.</span>
-
-<span class="sd">  &quot;&quot;&quot;</span>
-
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nvec</span><span class="p">,</span> <span class="n">ke</span><span class="p">,</span> <span class="n">ivstart</span><span class="p">,</span> <span class="n">dz</span><span class="p">,</span> <span class="n">qnc</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the MicrophysicsSchemeWrapper object.</span>
+<span class="sd">    This class wraps around the MicrophysicsScheme class to provide compatibility with the Python</span>
+<span class="sd">    run scripts and tests in this project. It initializes a MicrophysicsScheme object and provides</span>
+<span class="sd">    wrappers around methods to initialize, finalize, and run the microphysics.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">      nvec (int):</span>
-<span class="sd">        Number of horizontal points.</span>
-<span class="sd">      ke (int):</span>
-<span class="sd">        Number of grid points in vertical direction.</span>
-<span class="sd">      ivstart (int):</span>
-<span class="sd">        Start index for horizontal direction.</span>
-<span class="sd">      dz (float):</span>
-<span class="sd">        Layer thickness of full levels (m).</span>
-<span class="sd">      qnc (float):</span>
-<span class="sd">        Cloud number concentration.</span>
+<span class="sd">        nvec (int):</span>
+<span class="sd">          Number of horizontal points.</span>
+<span class="sd">        ke (int):</span>
+<span class="sd">          Number of grid points in vertical direction.</span>
+<span class="sd">        ivstart (int):</span>
+<span class="sd">          Start index for horizontal direction.</span>
+<span class="sd">        dz (float):</span>
+<span class="sd">          Layer thickness of full levels (m).</span>
+<span class="sd">        qnc (float):</span>
+<span class="sd">          Cloud number concentration.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        nvec (int):</span>
+<span class="sd">          Number of horizontal points.</span>
+<span class="sd">        ke (int):</span>
+<span class="sd">          Number of grid points in vertical direction.</span>
+<span class="sd">        ivstart (int):</span>
+<span class="sd">          Start index for horizontal direction.</span>
+<span class="sd">        dz (float):</span>
+<span class="sd">          Layer thickness of full levels (m).</span>
+<span class="sd">        qnc (float):</span>
+<span class="sd">          Cloud number concentration.</span>
+<span class="sd">        microphys (MicrophysicsScheme):</span>
+<span class="sd">          instance of Python MicrophysicsScheme.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">nvec</span> <span class="o">=</span> <span class="n">nvec</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">ke</span> <span class="o">=</span> <span class="n">ke</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">ivstart</span> <span class="o">=</span> <span class="n">ivstart</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">dz</span> <span class="o">=</span> <span class="n">dz</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">qnc</span> <span class="o">=</span> <span class="n">qnc</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">microphys</span> <span class="o">=</span> <span class="n">MicrophysicsScheme</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Wrapper around &quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">microphys</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nvec</span><span class="p">,</span> <span class="n">ke</span><span class="p">,</span> <span class="n">ivstart</span><span class="p">,</span> <span class="n">dz</span><span class="p">,</span> <span class="n">qnc</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the MicrophysicsSchemeWrapper object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          nvec (int):</span>
+<span class="sd">            Number of horizontal points.</span>
+<span class="sd">          ke (int):</span>
+<span class="sd">            Number of grid points in vertical direction.</span>
+<span class="sd">          ivstart (int):</span>
+<span class="sd">            Start index for horizontal direction.</span>
+<span class="sd">          dz (float):</span>
+<span class="sd">            Layer thickness of full levels (m).</span>
+<span class="sd">          qnc (float):</span>
+<span class="sd">            Cloud number concentration.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nvec</span> <span class="o">=</span> <span class="n">nvec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ke</span> <span class="o">=</span> <span class="n">ke</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ivstart</span> <span class="o">=</span> <span class="n">ivstart</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dz</span> <span class="o">=</span> <span class="n">dz</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qnc</span> <span class="o">=</span> <span class="n">qnc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">microphys</span> <span class="o">=</span> <span class="n">MicrophysicsScheme</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Wrapper around &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">microphys</span><span class="o">.</span><span class="n">name</span>
 
 <div class="viewcode-block" id="MicrophysicsSchemeWrapper.initialize">
 <a class="viewcode-back" href="../../../src_py/microphysics_scheme_wrapper.html#libs.src_py.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.initialize">[docs]</a>
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialise the microphysics scheme.</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise the microphysics scheme.</span>
 
-<span class="sd">    This method calls the microphysics initialisation</span>
+<span class="sd">        This method calls the microphysics initialisation</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        int: 0 upon successful initialisation</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            int: 0 upon successful initialisation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">microphys</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">microphys</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="mi">0</span></div>
+        <span class="k">return</span> <span class="mi">0</span></div>
 
 
 <div class="viewcode-block" id="MicrophysicsSchemeWrapper.finalize">
 <a class="viewcode-back" href="../../../src_py/microphysics_scheme_wrapper.html#libs.src_py.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.finalize">[docs]</a>
-  <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finalise the microphysics scheme.</span>
+    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Finalise the microphysics scheme.</span>
 
-<span class="sd">    This method calls the microphysics finalisation.</span>
+<span class="sd">        This method calls the microphysics finalisation.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        int: 0 upon successful finalisation.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            int: 0 upon successful finalisation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">microphys</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">microphys</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="mi">0</span></div>
+        <span class="k">return</span> <span class="mi">0</span></div>
 
 
 <div class="viewcode-block" id="MicrophysicsSchemeWrapper.run">
 <a class="viewcode-back" href="../../../src_py/microphysics_scheme_wrapper.html#libs.src_py.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.run">[docs]</a>
-  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestep</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">thermo</span><span class="p">:</span> <span class="n">Thermodynamics</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Thermodynamics</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the microphysics computations.</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestep</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">thermo</span><span class="p">:</span> <span class="n">Thermodynamics</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Thermodynamics</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the microphysics computations.</span>
 
-<span class="sd">    This method is a wrapper of the MicrophysicsScheme object&#39;s run function to call the</span>
-<span class="sd">    microphysics computations in a way that&#39;s compatible with the test and scripts in this project.</span>
+<span class="sd">        This method is a wrapper of the MicrophysicsScheme object&#39;s run function to call the</span>
+<span class="sd">        microphysics computations in a way that&#39;s compatible with the test and scripts in this project.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        timestep (float):</span>
-<span class="sd">          Time-step for integration of microphysics (s)</span>
-<span class="sd">        thermo (Thermodynamics):</span>
-<span class="sd">          Thermodynamic properties.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            timestep (float):</span>
+<span class="sd">              Time-step for integration of microphysics (s)</span>
+<span class="sd">            thermo (Thermodynamics):</span>
+<span class="sd">              Thermodynamic properties.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Thermodynamics: Updated thermodynamic properties after microphysics computations.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Thermodynamics: Updated thermodynamic properties after microphysics computations.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="n">dt</span> <span class="o">=</span> <span class="n">timestep</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">temp</span>
-    <span class="n">rho</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">rho</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">press</span>
-    <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">timestep</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">temp</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">rho</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">press</span>
+        <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span>
 
-    <span class="n">t</span><span class="p">,</span> <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span><span class="p">,</span> <span class="n">prr_gsp</span><span class="p">,</span> <span class="n">pflx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">microphys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nvec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ke</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ivstart</span><span class="p">,</span>
-                                                                  <span class="n">dt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dz</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span>
-                                                                  <span class="n">p</span><span class="p">,</span> <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">qnc</span><span class="p">)</span>
+        <span class="n">t</span><span class="p">,</span> <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span><span class="p">,</span> <span class="n">prr_gsp</span><span class="p">,</span> <span class="n">pflx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">microphys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nvec</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ke</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ivstart</span><span class="p">,</span>
+            <span class="n">dt</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dz</span><span class="p">,</span>
+            <span class="n">t</span><span class="p">,</span>
+            <span class="n">rho</span><span class="p">,</span>
+            <span class="n">p</span><span class="p">,</span>
+            <span class="n">qv</span><span class="p">,</span>
+            <span class="n">qc</span><span class="p">,</span>
+            <span class="n">qi</span><span class="p">,</span>
+            <span class="n">qr</span><span class="p">,</span>
+            <span class="n">qs</span><span class="p">,</span>
+            <span class="n">qg</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">qnc</span><span class="p">,</span>
+        <span class="p">)</span>
 
-    <span class="n">thermo</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">t</span>
-    <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span> <span class="o">=</span> <span class="p">[</span><span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span><span class="p">]</span>
+        <span class="n">thermo</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">t</span>
+        <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span> <span class="o">=</span> <span class="p">[</span><span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span><span class="p">]</span>
 
-    <span class="k">return</span> <span class="n">thermo</span></div>
+        <span class="k">return</span> <span class="n">thermo</span></div>
 </div>
 
 </pre></div>

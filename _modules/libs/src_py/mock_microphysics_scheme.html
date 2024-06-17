@@ -275,7 +275,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for libs.src_py.mock_microphysics_scheme</h1><div class="highlight"><pre>
-<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
 <span class="sd">----- Microphysics Test Cases -----</span>
@@ -285,7 +285,7 @@
 <span class="sd">Author: Clara Bayley (CB)</span>
 <span class="sd">Additional Contributors:</span>
 <span class="sd">-----</span>
-<span class="sd">Last Modified: Friday 1st March 2024</span>
+<span class="sd">Last Modified: Monday 17th June 2024</span>
 <span class="sd">Modified By: CB</span>
 <span class="sd">-----</span>
 <span class="sd">License: BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License</span>
@@ -293,114 +293,113 @@
 <span class="sd">-----</span>
 <span class="sd">File Description:</span>
 <span class="sd">class for mock microphysics scheme in Python</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <div class="viewcode-block" id="MicrophysicsScheme">
 <a class="viewcode-back" href="../../../src_py/mock_microphysics_scheme.html#libs.src_py.mock_microphysics_scheme.MicrophysicsScheme">[docs]</a>
 <span class="k">class</span> <span class="nc">MicrophysicsScheme</span><span class="p">:</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;A class representing a Python microphysics scheme which is a mock-up of the muphys-cpp graupel</span>
-<span class="sd">  class for ICON.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class representing a Python microphysics scheme which is a mock-up of the muphys-cpp graupel</span>
+<span class="sd">    class for ICON.&quot;&quot;&quot;</span>
 
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Init the MicrophysicsScheme object (Python only) &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init the MicrophysicsScheme object (Python only)&quot;&quot;&quot;</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Python mock-up of an instance of muphys-cpp&#39;s graupel for ICON&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Python mock-up of an instance of muphys-cpp&#39;s graupel for ICON&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
 
 <div class="viewcode-block" id="MicrophysicsScheme.initialize">
 <a class="viewcode-back" href="../../../src_py/mock_microphysics_scheme.html#libs.src_py.mock_microphysics_scheme.MicrophysicsScheme.initialize">[docs]</a>
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the microphysics scheme.</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the microphysics scheme.</span>
 
-<span class="sd">    This method performs the initialization steps necessary for the microphysics scheme.</span>
+<span class="sd">        This method performs the initialization steps necessary for the microphysics scheme.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;microphysics initialisation&quot;</span><span class="p">)</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;microphysics initialisation&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MicrophysicsScheme.finalize">
 <a class="viewcode-back" href="../../../src_py/mock_microphysics_scheme.html#libs.src_py.mock_microphysics_scheme.MicrophysicsScheme.finalize">[docs]</a>
-  <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finalize the microphysics scheme.</span>
+    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Finalize the microphysics scheme.</span>
 
-<span class="sd">    This method performs the finalization steps for the microphysics scheme.</span>
+<span class="sd">        This method performs the finalization steps for the microphysics scheme.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;microphysics finalisation&quot;</span><span class="p">)</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;microphysics finalisation&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MicrophysicsScheme.run">
 <a class="viewcode-back" href="../../../src_py/mock_microphysics_scheme.html#libs.src_py.mock_microphysics_scheme.MicrophysicsScheme.run">[docs]</a>
-  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nvec</span><span class="p">,</span> <span class="n">ke</span><span class="p">,</span> <span class="n">ivstart</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dz</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span><span class="p">,</span> <span class="n">qnc</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the microphysics computations.</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nvec</span><span class="p">,</span> <span class="n">ke</span><span class="p">,</span> <span class="n">ivstart</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dz</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span><span class="p">,</span> <span class="n">qnc</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the microphysics computations.</span>
 
-<span class="sd">    This method executes the microphysics computations.</span>
+<span class="sd">        This method executes the microphysics computations.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        nvec (int):</span>
-<span class="sd">          Number of horizontal points.</span>
-<span class="sd">        ke (int):</span>
-<span class="sd">          Number of grid points in vertical direction.</span>
-<span class="sd">        ivstart (int):</span>
-<span class="sd">          Start index for horizontal direction.</span>
-<span class="sd">        dt (float):</span>
-<span class="sd">          Times-tep for integration of microphysics (s)</span>
-<span class="sd">        dz (float):</span>
-<span class="sd">          Layer thickness of full levels (m).</span>
-<span class="sd">        t (float):</span>
-<span class="sd">          Temperature (K).</span>
-<span class="sd">        rho (float):</span>
-<span class="sd">          Density of moist air (kg/m3)</span>
-<span class="sd">        p (float):</span>
-<span class="sd">          Pressure (Pa).</span>
-<span class="sd">        qv (float):</span>
-<span class="sd">          Specific water vapor content (kg/kg)</span>
-<span class="sd">        qc (float):</span>
-<span class="sd">          Specific cloud water content (kg/kg)</span>
-<span class="sd">        qi (float):</span>
-<span class="sd">          Specific cloud ice content (kg/kg)</span>
-<span class="sd">        qr (float):</span>
-<span class="sd">          Specific rain content (kg/kg)</span>
-<span class="sd">        qs (float):</span>
-<span class="sd">          Specific snow content kg/kg)</span>
-<span class="sd">        qg (float):</span>
-<span class="sd">          Specific graupel content (kg/kg)</span>
-<span class="sd">        qnc (float):</span>
-<span class="sd">          Cloud number concentration.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            nvec (int):</span>
+<span class="sd">              Number of horizontal points.</span>
+<span class="sd">            ke (int):</span>
+<span class="sd">              Number of grid points in vertical direction.</span>
+<span class="sd">            ivstart (int):</span>
+<span class="sd">              Start index for horizontal direction.</span>
+<span class="sd">            dt (float):</span>
+<span class="sd">              Times-tep for integration of microphysics (s)</span>
+<span class="sd">            dz (float):</span>
+<span class="sd">              Layer thickness of full levels (m).</span>
+<span class="sd">            t (np.ndarray):</span>
+<span class="sd">              Temperature (K).</span>
+<span class="sd">            rho (np.ndarray):</span>
+<span class="sd">              Density of moist air (kg/m3)</span>
+<span class="sd">            p (np.ndarray):</span>
+<span class="sd">              Pressure (Pa).</span>
+<span class="sd">            qv (np.ndarray):</span>
+<span class="sd">              Specific water vapor content (kg/kg)</span>
+<span class="sd">            qc (np.ndarray):</span>
+<span class="sd">              Specific cloud water content (kg/kg)</span>
+<span class="sd">            qi (np.ndarray):</span>
+<span class="sd">              Specific cloud ice content (kg/kg)</span>
+<span class="sd">            qr (np.ndarray):</span>
+<span class="sd">              Specific rain content (kg/kg)</span>
+<span class="sd">            qs (np.ndarray):</span>
+<span class="sd">              Specific snow content kg/kg)</span>
+<span class="sd">            qg (np.ndarray):</span>
+<span class="sd">              Specific graupel content (kg/kg)</span>
+<span class="sd">            qnc (np.ndarray):</span>
+<span class="sd">              Cloud number concentration.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Tuple[float, float, float, float, float, float, float, float, float]:</span>
-<span class="sd">            - Updated temperature (K).</span>
-<span class="sd">            - Updated specific water vapor content (kg/kg)</span>
-<span class="sd">            - Updated specific cloud water content (kg/kg)</span>
-<span class="sd">            - Updated specific cloud ice content (kg/kg)</span>
-<span class="sd">            - Updated specific rain content (kg/kg)</span>
-<span class="sd">            - Updated specific snow content kg/kg)</span>
-<span class="sd">            - Updated specific graupel content kg/kg)</span>
-<span class="sd">            - Updated precipitation rate of rain, grid-scale (kg/(m2*s))</span>
-<span class="sd">            - Updated total precipitation flux</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray,</span>
+<span class="sd">            np.ndarray, np.ndarray, np.ndarray, np.ndarray]:</span>
+<span class="sd">                - Updated temperature (K).</span>
+<span class="sd">                - Updated specific water vapor content (kg/kg)</span>
+<span class="sd">                - Updated specific cloud water content (kg/kg)</span>
+<span class="sd">                - Updated specific cloud ice content (kg/kg)</span>
+<span class="sd">                - Updated specific rain content (kg/kg)</span>
+<span class="sd">                - Updated specific snow content kg/kg)</span>
+<span class="sd">                - Updated specific graupel content kg/kg)</span>
+<span class="sd">                - Updated precipitation rate of rain, grid-scale (kg/(m2*s))</span>
+<span class="sd">                - Updated total precipitation flux</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="c1">### some mock exchange of mass between vapour and condensate categories</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">%</span> <span class="mi">50</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-      <span class="n">qv</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">*</span> <span class="mf">0.001</span>
-      <span class="n">qc</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.001</span>
-      <span class="n">qi</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">*</span> <span class="mf">0.002</span>
-      <span class="n">qr</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.002</span>
-      <span class="n">qs</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">*</span> <span class="mf">0.0003</span>
-      <span class="n">qg</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.0003</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1">### some mock exchange of mass between vapour and condensate categories</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">%</span> <span class="mi">50</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">qv</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">*</span> <span class="mf">0.001</span>
+            <span class="n">qc</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.001</span>
+            <span class="n">qi</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">*</span> <span class="mf">0.002</span>
+            <span class="n">qr</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.002</span>
+            <span class="n">qs</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">*</span> <span class="mf">0.0003</span>
+            <span class="n">qg</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.0003</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="n">prr_gsp</span> <span class="o">=</span> <span class="mf">0.001</span>
-    <span class="n">pflx</span> <span class="o">=</span> <span class="mf">0.01</span>
+        <span class="n">prr_gsp</span> <span class="o">=</span> <span class="mf">0.001</span>
+        <span class="n">pflx</span> <span class="o">=</span> <span class="mf">0.01</span>
 
-    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span><span class="p">,</span> <span class="n">prr_gsp</span><span class="p">,</span> <span class="n">pflx</span></div>
+        <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">qg</span><span class="p">,</span> <span class="n">prr_gsp</span><span class="p">,</span> <span class="n">pflx</span></div>
 </div>
 
 </pre></div>
