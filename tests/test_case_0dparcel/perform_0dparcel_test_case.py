@@ -2,13 +2,13 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: run_0dparcel_test_case.py
+File: perform_0dparcel_test_case.py
 Project: test_case_0dparcel
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 17th June 2024
+Last Modified: Monday 2nd September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -20,11 +20,11 @@ File Description:
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-from .run_0dparcel_model import run_0dparcel_model
+from .run_0dparcel import run_0dparcel
 from libs.src_mock_py import calcs
 
 
-def run_0dparcel_test_case(
+def perform_0dparcel_test_case(
     time_init, time_end, timestep, thermo_init, microphys_scheme, binpath, run_name
 ):
     """Run test case for a 0-D parcel model.
@@ -57,9 +57,7 @@ def run_0dparcel_test_case(
     """
 
     print("\n--- Running 0-D Parcel Model ---")
-    out = run_0dparcel_model(
-        time_init, time_end, timestep, thermo_init, microphys_scheme
-    )
+    out = run_0dparcel(time_init, time_end, timestep, thermo_init, microphys_scheme)
     print("--------------------------------")
 
     print("--- Plotting Results ---")

@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Sunday 1st September 2024
+Last Modified: Monday 2nd September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -20,7 +20,7 @@ mock test case for adiabatic motion of a parcel of air (0-D model)
 
 from pathlib import Path
 
-from .run_0dparcel_test_case import run_0dparcel_test_case
+from .perform_0dparcel_test_case import perform_0dparcel_test_case
 from libs.src_mock_py.thermodynamics import Thermodynamics
 from libs.src_mock_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
@@ -92,6 +92,6 @@ def test_python_microphys():
     microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
     ### Perform 0-D parcel model test case using chosen setup
-    run_0dparcel_test_case(
+    perform_0dparcel_test_case(
         time_init, time_end, timestep, thermo_init, microphys_scheme, binpath, run_name
     )

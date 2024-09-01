@@ -11,6 +11,6 @@ for an example of this test case working.
 .. toctree::
    :maxdepth: 1
 
-   run_0dparcel_test_case
-   run_0dparcel_model
+   perform_0dparcel_test_case
+   run_0dparcel
    adiabatic_motion

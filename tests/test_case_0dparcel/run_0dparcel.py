@@ -2,13 +2,13 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: run_0dparcel_model.py
+File: run_0dparcel.py
 Project: test_case_0dparcel
 Created Date: Thursday 29th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Sunday 1st September 2024
+Last Modified: Monday 2nd September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -21,7 +21,7 @@ from .adiabatic_motion import AdiabaticMotion
 from libs.src_mock_py.output_thermodynamics import OutputThermodynamics
 
 
-def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
+def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
     """Run a 0-D parcel model with a specified microphysics scheme and parcel dynamics.
 
     This function runs a 0-D parcel model with the given initial thermodynamic conditions, and
