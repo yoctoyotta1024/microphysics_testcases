@@ -15,7 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-mock test case for adiabatic motion of a parcel of air (0-D model)
+perform test case for 0-D parcel model with mock python microphysics scheme
 """
 
 from pathlib import Path
