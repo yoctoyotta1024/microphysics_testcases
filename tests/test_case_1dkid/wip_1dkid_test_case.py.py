@@ -31,14 +31,6 @@ def label(options, nr, dz, dt):
     return f"nr={nr}_dz={dz}_dt={dt}_opt={options}"
 
 
-def adapt_dt(nr, dz, NRS0, DZS0, BASE_DT):
-    r_ratio = NRS0 / nr
-    z_ratio = dz / DZS0
-    if r_ratio == 1 or z_ratio == 1:
-        return BASE_DT * r_ratio * z_ratio
-    return BASE_DT * min(r_ratio, z_ratio)
-
-
 # %% Easy Callable Settings
 
 ### path to directory to save data/plots in after model run
@@ -52,7 +44,7 @@ DZS0 = 100 * kid.si.m
 AUTO_DT = 0  # note: dt = AUTO_DT -> adaptive timestepping
 
 ### settings for grid, timesteps and KiD
-dt = AUTO_DT
+dt = BASE_DT / 2
 dz = 25 * kid.si.m
 nr = 1  # note: nr=1 -> bulk scheme microphysics
 RHOD_VERTVELO = 3 * kid.si.m / kid.si.s * kid.si.kg / kid.si.m**3
@@ -66,8 +58,6 @@ R_MAX = 20.2 * kid.si.um
 # %% Run 1-D KiD Model
 options = Options(n_iters=3, nonoscillatory=True)
 outputs = {}
-if dt == AUTO_DT:
-    dt = adapt_dt(nr, dz, NRS0, DZS0, BASE_DT)
 key = label(options, nr, dz, dt)
 
 settings = kid.Settings(
