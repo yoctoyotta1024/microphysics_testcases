@@ -7,6 +7,7 @@ sphinxcontrib-applehelp
 sphinxcontrib-htmlhelp
 breathe
 
+numba
 numpy
 scipy
 matplotlib
