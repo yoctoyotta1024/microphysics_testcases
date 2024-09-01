@@ -11,3 +11,5 @@ numpy
 scipy
 matplotlib
 xarray
+PyMPDATA
+PyMPDATA-examples
