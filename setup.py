@@ -17,7 +17,6 @@ https://opensource.org/licenses/BSD-3-Clause
 File Description:
 """
 
-
 from setuptools import setup, find_packages
 
 setup(

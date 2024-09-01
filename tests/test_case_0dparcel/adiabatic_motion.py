@@ -18,7 +18,6 @@ File Description:
 class for driving adiabatic expansion/contraction test case
 """
 
-
 import numpy as np
 import scipy.integrate as integrate
 
