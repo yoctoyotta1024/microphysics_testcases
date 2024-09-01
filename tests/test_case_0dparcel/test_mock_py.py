@@ -61,10 +61,8 @@ def test_python_microphys():
     run_name = "python_microphys_0dparcel"
 
     ### path to directory to save data/plots in after model run
-    binpath = (
-        str(Path(__file__).parent.resolve()) + "/bin/"
-    )  # i.e. current directory + /bin/
-    Path(binpath).mkdir(parents=False, exist_ok=True)
+    binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/
+    binpath.mkdir(parents=False, exist_ok=True)
 
     ### time parameters
     time_init = 0.0  # [s]
