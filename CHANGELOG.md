@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.4.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/f30018fb88007d96f83c96c5cf903653689406a2..v0.4.1) - 2024-09-01
+#### Bug Fixes
+- fix sphinx latest version issues with deprecated utils functions removed - ([f70d9a4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f70d9a4da5dfa60a0ee9fd0036d1063ccc0ff19e)) - clara.bayley
+- limit sphinx version due to bug - ([ad2d9d5](https://github.com/yoctoyotta1024/microphysics_testcases/commit/ad2d9d5c99e1e90462a82df398ed064815866e1e)) - clara.bayley
+#### Miscellaneous Chores
+- formatting - ([b76cd96](https://github.com/yoctoyotta1024/microphysics_testcases/commit/b76cd9681ed900b4687fe87f4e3aa36e57100135)) - clara.bayley
+#### Refactoring
+- rename .yml -> .yaml - ([b583c7c](https://github.com/yoctoyotta1024/microphysics_testcases/commit/b583c7cc3bb962865b848dab563890e8c9094423)) - clara.bayley
+- rename env in yaml - ([c542e3f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c542e3fc0d3d303051d42035a3a8bf7fa3b12ece)) - clara.bayley
+- add more precommit hooks and descriptions - ([f30018f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f30018fb88007d96f83c96c5cf903653689406a2)) - clara.bayley
+
+- - -
+
 ## [v0.4.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/8411a87f9b4849e7b833a31ec0e5b6e7067057cd..v0.4.0) - 2024-06-17
 #### Features
 - added more pre-commit hooks - ([8411a87](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8411a87f9b4849e7b833a31ec0e5b6e7067057cd)) - clara.bayley
