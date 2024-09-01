@@ -15,6 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
+interface called by a test to run the 0-D parcel and then plot the results.
 """
 
 from pathlib import Path

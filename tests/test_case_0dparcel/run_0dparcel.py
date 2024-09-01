@@ -15,6 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
+run 0-D parcel model by timestepping and outputting data
 """
 
 from .adiabatic_motion import AdiabaticMotion
