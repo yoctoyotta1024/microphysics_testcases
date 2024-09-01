@@ -1,4 +1,4 @@
-name: myenv
+name: microtestsenv
 dependencies:
     - python>=3.9
     - pytest
