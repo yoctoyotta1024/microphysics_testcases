@@ -18,6 +18,7 @@ File Description:
 run 1-D KiD rainshaft model by timestepping and outputting data
 """
 
+from .kid_dynamics import KiDDynamics
 from libs.src_mock_py.output_thermodynamics import OutputThermodynamics
 
 
@@ -48,14 +49,14 @@ def run_1dkid(time, time_end, timestep, thermo, microphys_scheme):
     out = OutputThermodynamics()
 
     # ### type of dynamics rainshaft will undergo
-    # parcel_dynamics = WIP
+    parcel_dynamics = KiDDynamics()
 
     ### run dynamics + microphysics from time to time_end
     microphys_scheme.initialize()
 
     out.output_thermodynamics(time, thermo)
     while time <= time_end:
-        # thermo = parcel_dynamics.run(time, timestep, thermo)
+        thermo = parcel_dynamics.run(time, timestep, thermo)
         thermo = microphys_scheme.run(timestep, thermo)
 
         out.output_thermodynamics(time, thermo)
