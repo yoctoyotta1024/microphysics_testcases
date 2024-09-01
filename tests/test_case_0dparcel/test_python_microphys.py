@@ -21,8 +21,8 @@ mock test case for adiabatic motion of a parcel of air (0-D model)
 from pathlib import Path
 
 from .run_0dparcel_test_case import run_0dparcel_test_case
-from libs.src_py.thermodynamics import Thermodynamics
-from libs.src_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+from libs.src_mock_py.thermodynamics import Thermodynamics
+from libs.src_mock_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
 
 def test_python_microphys():

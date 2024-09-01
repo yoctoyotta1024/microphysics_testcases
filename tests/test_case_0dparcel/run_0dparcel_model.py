@@ -8,7 +8,7 @@ Created Date: Thursday 29th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Friday 1st March 2024
+Last Modified: Sunday 1st September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -18,7 +18,7 @@ File Description:
 """
 
 from .adiabatic_motion import AdiabaticMotion
-from libs.src_py.output_thermodynamics import OutputThermodynamics
+from libs.src_mock_py.output_thermodynamics import OutputThermodynamics
 
 
 def run_0dparcel_model(time, time_end, timestep, thermo, microphys_scheme):
