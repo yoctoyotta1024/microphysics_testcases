@@ -29,8 +29,8 @@ Contents
    usage/getstart
    usage/ourdocs
    usage/ourtests
-   src_py/index
-   src_cxx/index
+   src_mock_py/index
+   src_mock_cxx/index
    tests/index
 
    GitHub Repo <https://github.com/yoctoyotta1024/microphysics_testcases.git>
