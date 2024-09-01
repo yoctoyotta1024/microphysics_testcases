@@ -2,13 +2,13 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: test_microphysics_scheme.py
+File: test_mock_py_microphysics_scheme.py
 Project: tests
 Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 17th June 2024
+Last Modified: Sunday 1st September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
