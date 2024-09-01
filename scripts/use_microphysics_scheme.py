@@ -18,7 +18,6 @@ File Description:
 Example of how a microphysics scheme can be used.
 """
 
-
 import sys
 import pathlib
 import numpy as np

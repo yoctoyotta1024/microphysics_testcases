@@ -18,7 +18,6 @@ File Description:
 class for storing thermodynamics output during model run
 """
 
-
 import numpy as np
 
 from .thermodynamics import Thermodynamics

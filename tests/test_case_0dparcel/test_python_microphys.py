@@ -18,7 +18,6 @@ File Description:
 mock test case for adiabatic motion of a parcel of air (0-D model)
 """
 
-
 from pathlib import Path
 
 from .run_0dparcel_test_case import run_0dparcel_test_case

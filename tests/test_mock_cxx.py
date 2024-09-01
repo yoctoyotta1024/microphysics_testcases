@@ -18,7 +18,6 @@ File Description:
 test package for tests of mock C++ module via Python bindings
 """
 
-
 import sys
 import pathlib
 import numpy as np
