@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 
 from .run_0dparcel import run_0dparcel
 from libs.thermo import formulae
+from libs.utility_functions import plot_utilities
 
 
 def perform_0dparcel_test_case(
@@ -108,7 +109,7 @@ def plot_0dparcel_thermodynamics(out, binpath, run_name):
         ax.set_xlabel(out.time.name + " /" + out.time.units)
 
     fig.tight_layout()
-    save_figure(fig, binpath, figname)
+    plot_utilities.save_figure(fig, binpath, figname)
 
 
 def plot_0dparcel_massmix_ratios(out, binpath, run_name):
@@ -153,7 +154,7 @@ def plot_0dparcel_massmix_ratios(out, binpath, run_name):
         ax.set_xlabel(out.time.name + " /" + out.time.units)
 
     fig.tight_layout()
-    save_figure(fig, binpath, figname)
+    plot_utilities.save_figure(fig, binpath, figname)
 
 
 def plot_variable_on_axis(ax, time, var):
@@ -190,25 +191,3 @@ def plot_thetas_on_axis(ax, time, temp, press, press0):
     ax.set_ylim(theta_dry[0] - 1, theta_dry[0] + 1)
     ax.legend()
     ax.set_ylabel("potential temperature /" + temp.units)
-
-
-def save_figure(fig, binpath, figname):
-    """Save a Matplotlib figure as a PNG file with high resolution and tight bounding box.
-
-    Args:
-        fig (matplotlib.figure.Figure): The Matplotlib figure to be saved.
-        binpath (str): The directory where the figure will be saved.
-        figname (str): The name of the PNG file to save in binpath directory.
-
-    Returns:
-        None
-    """
-    filename = binpath / figname
-    fig.savefig(
-        filename,
-        dpi=400,
-        bbox_inches="tight",
-        facecolor="w",
-        format="png",
-    )
-    print("Figure .png saved as: " + str(binpath) + "/" + figname)
