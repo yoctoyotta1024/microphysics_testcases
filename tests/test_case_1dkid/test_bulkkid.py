@@ -39,10 +39,65 @@ File Description:
 # %% Function definitions
 import numpy as np
 from pathlib import Path
+from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
 from PyMPDATA_examples.Shipway_and_Hill_2012 import si
 
 from .perform_1dkid_test_case import perform_1dkid_test_case
 from libs.src_mock_py.thermodynamics import Thermodynamics
+
+
+class WrappedKiDBulkMicrophysics:
+    def __init__(self):
+        """Initialize the WrappedKiDBulkMicrophysics object."""
+        self.microphys = "KiDBulkMicrophysics"
+        self.name = "Wrapper around " + self.microphys.name
+
+    def initialize(self) -> int:
+        """Initialise the microphysics scheme.
+
+        This method calls the microphysics initialisation
+
+        Returns:
+            int: 0 upon successful initialisation
+        """
+        return 0
+
+    def finalize(self) -> int:
+        """Finalise the microphysics scheme.
+
+        This method calls the microphysics finalisation.
+
+        Returns:
+            int: 0 upon successful finalisation.
+        """
+        return 0
+
+    def run(self, timestep: float, thermo: Thermodynamics) -> Thermodynamics:
+        """Run the microphysics computations.
+
+        This method is a wrapper of the MicrophysicsScheme object's run function to call the
+        microphysics computations in a way that's compatible with the test and scripts in this project.
+
+        Args:
+            timestep (float):
+              Time-step for integration of microphysics (s)
+            thermo (Thermodynamics):
+              Thermodynamic properties.
+
+        Returns:
+            Thermodynamics: Updated thermodynamic properties after microphysics computations.
+
+        """
+        qvap = thermo.massmix_ratios[0]
+        pvs = kid.formulae.pvs_Celsius(thermo.temp - kid.const.T0)
+        relh = kid.formulae.pv(thermo.press, qvap) / pvs
+
+        dql_cond = np.maximum(0, qvap * (1 - 1 / relh))
+
+        thermo.massmix_ratios[0] -= dql_cond
+        thermo.massmix_ratios[1] += dql_cond
+
+        return thermo
 
 
 def test_mock_py_0dparcel():
@@ -74,7 +129,7 @@ def test_mock_py_0dparcel():
     )
 
     ### microphysics scheme to use (within a wrapper)
-    microphys_scheme = None  # TODO(CB): extract microphysics scheme
+    microphys_scheme = WrappedKiDBulkMicrophysics()
 
     ### Perform test of 1-D KiD rainshaft model using chosen setup
     perform_1dkid_test_case(
