@@ -100,9 +100,9 @@ def plot_0dparcel_thermodynamics(out, binpath, run_name):
     axs = axs.flatten()
 
     time = out.time.values
-    plot_variable_on_axis(axs[0], time, out.press)
-    plot_variable_on_axis(axs[1], time, out.rho)
-    plot_variable_on_axis(axs[2], time, out.temp)
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[0], out, "press")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[1], out, "rho")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[2], out, "temp")
     plot_thetas_on_axis(axs[3], time, out.temp, out.press, out.press.values[0])
 
     for ax in axs:
@@ -142,34 +142,18 @@ def plot_0dparcel_massmix_ratios(out, binpath, run_name):
     figname = run_name + "_massmix_ratios.png"
     axs = axs.flatten()
 
-    time = out.time.values
-    plot_variable_on_axis(axs[0], time, out.qvap)
-    plot_variable_on_axis(axs[1], time, out.qcond)
-    plot_variable_on_axis(axs[2], time, out.qice)
-    plot_variable_on_axis(axs[3], time, out.qrain)
-    plot_variable_on_axis(axs[4], time, out.qsnow)
-    plot_variable_on_axis(axs[5], time, out.qgrau)
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[0], out, "qvap")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[1], out, "qcond")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[2], out, "qice")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[3], out, "qrain")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[4], out, "qsnow")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[5], out, "qgrau")
 
     for ax in axs:
         ax.set_xlabel(out.time.name + " /" + out.time.units)
 
     fig.tight_layout()
     plot_utilities.save_figure(fig, binpath, figname)
-
-
-def plot_variable_on_axis(ax, time, var):
-    """Plot a variable against time on an axis.
-
-    Args:
-        ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the variable.
-        time (array-like): Time values (x axis).
-        var (OutputVariable): The variable to be plotted (y axis).
-
-    Returns:
-        None
-    """
-    ax.plot(time, var.values)
-    ax.set_ylabel(var.name + " /" + var.units)
 
 
 def plot_thetas_on_axis(ax, time, temp, press, press0):
