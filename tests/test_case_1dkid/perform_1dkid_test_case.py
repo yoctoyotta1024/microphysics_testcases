@@ -68,7 +68,6 @@ def perform_1dkid_test_case(
     assert Path(binpath).exists(), "The specified binpath does not exist."
     assert run_name, "The run_name cannot be empty."
     plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name)
-    # TODO(CB): make plots for KiD Test Case
     print("------------------------")
 
 
@@ -93,7 +92,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         z_delta,
         z_max,
         label,
-        mult=1e3,
+        mult=1e-3,
         threshold=1e-3,
         cmap="grey",
     )
@@ -108,7 +107,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         z_delta,
         z_max,
         label,
-        mult=1e3,
+        mult=1e-3,
         threshold=1e-3,
         cmap="grey",
     )
@@ -126,7 +125,6 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         z_delta,
         z_max,
         label,
-        mult=1e3,
         threshold=1e-3,
         cmap="grey",
     )
