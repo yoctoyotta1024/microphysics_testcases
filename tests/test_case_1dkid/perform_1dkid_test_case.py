@@ -136,23 +136,23 @@ def plot_kid_result(
     zgrid = zgrid / 1000  # [km]
 
     var = var * mult
-    lngth = var.shape[0] - 1
-    assert (lngth // fctr) * fctr == lngth
+    time_steps = var.shape[0] - 1
+    assert (
+        time_steps % fctr == 0
+    ), "number of timesteps must be divisible by coarsening factor"
 
     # coarsen temporal part by 'fctr' transpose var for plotting
-    tmp = np.empty((var.shape[1], lngth // fctr + 1))
-    tmp[:, 0] = var[0, :]
-    M, N = var[1:, :].shape
-    m, n = M, N // fctr
-    tmp[:, 1:] = var[1:, :].reshape((m, M // m, n, N // n)).mean(3).mean(1)
-    var = tmp
+    tmp = var[1:, :]
+    tmp = tmp.reshape(-1, fctr, tmp.shape[1])
+    tmp = tmp.mean(axis=1)
+    tmp = np.concatenate(((var[0, :],), tmp)).T
 
     if threshold is not None:
         var[var < threshold] = np.nan
     mesh = ax0.pcolormesh(
         tgrid,
         zgrid,
-        var,
+        tmp,
         cmap=cmap,
         rasterized=rasterized,
         vmin=None if rng is None else rng[0],
@@ -175,7 +175,7 @@ def plot_kid_result(
     last_t = -1
     for i, t in enumerate(time):
         t = t / 60  # [minutes]
-        x, z = var[:, i] * mult, zgrid.copy()
+        x, z = var[i, :] * mult, zgrid.copy()
         params = {"color": "black"}
         for line_t, line_s in lines.items():
             if last_t < line_t <= t:
