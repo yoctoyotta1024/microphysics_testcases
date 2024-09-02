@@ -57,13 +57,13 @@ def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
     microphys_scheme.initialize()
 
     out.output_thermodynamics(time, thermo)
-    while time <= time_end:
+    while time < time_end:
         thermo = parcel_dynamics.run(time, timestep, thermo)
         thermo = microphys_scheme.run(timestep, thermo)
 
-        out.output_thermodynamics(time, thermo)
-
         time += timestep
+
+        out.output_thermodynamics(time, thermo)
 
     microphys_scheme.finalize()
 
