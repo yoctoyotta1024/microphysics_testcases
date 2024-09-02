@@ -123,14 +123,5 @@ class KiDDynamics:
         self.mpdata["ql"].advector.get_component(0)[:] = advector_0
         self.mpdata["ql"].advance(1)
 
-        # # TODO(CB): move into microphysics module
-        # qvap = self.mpdata["qv"].advectee.get()
-        # pvs = kid.formulae.pvs_Celsius(self.temp - kid.const.T0)
-        # relh = kid.formulae.pv(self.press, qvap) / pvs
-        # qcond = self.mpdata["ql"].advectee.get()
-        # dql_cond = np.maximum(0, qvap * (1 - 1 / relh))
-        # qcond += dql_cond
-        # qvap -= dql_cond
-
         self.set_thermo(thermo)
         return thermo
