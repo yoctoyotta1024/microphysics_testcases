@@ -24,6 +24,20 @@ from ..thermo.thermodynamics import Thermodynamics
 from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
 
 
+def bulk_scheme_condensation(temp, press, qvap, qcond):
+    """enacts saturation adjustment on qvap and qcond for a very simple bulk
+    scheme to ensure relative humidity <= 100%"""
+    pvs = kid.formulae.pvs_Celsius(temp - kid.const.T0)
+    relh = kid.formulae.pv(press, qvap) / pvs
+
+    dql_cond = np.maximum(0, qvap * (1 - 1 / relh))
+
+    qvap -= dql_cond
+    qcond += dql_cond
+
+    return qvap, qcond
+
+
 # TODO(CB): add documentation
 class MicrophysicsSchemeWrapper:
     def __init__(self):
@@ -67,13 +81,13 @@ class MicrophysicsSchemeWrapper:
             Thermodynamics: Updated thermodynamic properties after microphysics computations.
 
         """
+
         qvap = thermo.massmix_ratios[0]
-        pvs = kid.formulae.pvs_Celsius(thermo.temp - kid.const.T0)
-        relh = kid.formulae.pv(thermo.press, qvap) / pvs
+        qcond = thermo.massmix_ratios[1]
 
-        dql_cond = np.maximum(0, qvap * (1 - 1 / relh))
+        qvap, qcond = bulk_scheme_condensation(thermo.temp, thermo.press, qvap, qcond)
 
-        thermo.massmix_ratios[0] -= dql_cond
-        thermo.massmix_ratios[1] += dql_cond
+        thermo.massmix_ratios[0] = qvap
+        thermo.massmix_ratios[1] = qcond
 
         return thermo
