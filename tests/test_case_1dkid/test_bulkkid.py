@@ -39,12 +39,10 @@ File Description:
 # %% Function definitions
 import numpy as np
 from pathlib import Path
-from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
+from PyMPDATA_examples.Shipway_and_Hill_2012 import si
 
 from .perform_1dkid_test_case import perform_1dkid_test_case
 from libs.src_mock_py.thermodynamics import Thermodynamics
-
-# %% Easy Callable Settings
 
 
 def test_mock_py_0dparcel():
@@ -63,10 +61,10 @@ def test_mock_py_0dparcel():
     binpath.mkdir(parents=False, exist_ok=True)
 
     ### time and grid parameters
-    z_delta = 25 * kid.si.m
-    z_max = 3200 * kid.si.m
-    timestep = 0.25 / 2 * kid.si.s
-    time_end = 15 * kid.si.minutes
+    z_delta = 25 * si.m
+    z_max = 3200 * si.m
+    timestep = 0.25 / 2 * si.s
+    time_end = 15 * si.minutes
 
     ### initial thermodynamic conditions
     assert z_max % z_delta == 0, "z limit is not a multiple of the grid spacing."
