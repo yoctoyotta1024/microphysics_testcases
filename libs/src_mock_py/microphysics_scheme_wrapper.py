@@ -19,7 +19,7 @@ wrapper function for an instance of MicrophysicsScheme so it can be used by gene
 and run scripts
 """
 
-from ..thermo import Thermodynamics
+from ..thermo.thermodynamics import Thermodynamics
 from .mock_microphysics_scheme import MicrophysicsScheme
 
 
