@@ -82,10 +82,12 @@ class MicrophysicsSchemeWrapper:
 
         """
 
+        temp = thermo.temp
+        press = thermo.press
         qvap = thermo.massmix_ratios[0]
         qcond = thermo.massmix_ratios[1]
 
-        qvap, qcond = bulk_scheme_condensation(thermo.temp, thermo.press, qvap, qcond)
+        qvap, qcond = bulk_scheme_condensation(temp, press, qvap, qcond)
 
         thermo.massmix_ratios[0] = qvap
         thermo.massmix_ratios[1] = qcond
