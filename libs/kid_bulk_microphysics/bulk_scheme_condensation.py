@@ -15,7 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-Simple bulk microphysics scheme to model condensation extracted from pyMPDATA
+Simple bulk microphysics scheme extracted from pyMPDATA
 Shipway and Hill 2012 example for 1-D KiD rainshaft model
 """
 
@@ -26,7 +26,10 @@ from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
 
 def bulk_scheme_condensation(temp, press, qvap, qcond):
     """enacts saturation adjustment on qvap and qcond for a very simple bulk
-    scheme to ensure relative humidity <= 100%"""
+    scheme to ensure relative humidity <= 100%. Extracted from pyMPDATA
+    KiD Bulk Microphysics Scheme (nr=1) for Condensation
+    from Shipway and Hill 2012 example for a 1-D KiD rainshaft model.
+    """
     pvs = kid.formulae.pvs_Celsius(temp - kid.const.T0)
     relh = kid.formulae.pv(press, qvap) / pvs
 
@@ -42,7 +45,7 @@ def bulk_scheme_condensation(temp, press, qvap, qcond):
 class MicrophysicsSchemeWrapper:
     def __init__(self):
         """Initialize the WrappedKiDBulkMicrophysics object."""
-        self.microphys = "KiDBulkMicrophysics"
+        self.microphys = "pyMPDATA KiD Bulk Microphysics Scheme for Condensation"
         self.name = "Wrapper around " + self.microphys
 
     def initialize(self) -> int:
