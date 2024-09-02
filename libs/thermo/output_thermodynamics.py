@@ -147,6 +147,18 @@ class OutputThermodynamics:
         """
         self.output_thermodynamics(time, thermo)
 
+    def __getitem__(self, key):
+        """
+        Get the value of an attribute by its name using bracket notation.
+
+        Parameters:
+            key (str): The name of the attribute to access.
+
+        Returns:
+            object: The value of the attribute if it exists, otherwise None.
+        """
+        return getattr(self, key, None)
+
     def finalize(self):
         """Finalize the thermodynamics output.
 
