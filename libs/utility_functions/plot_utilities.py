@@ -18,6 +18,8 @@ File Description:
 Helpful functions for plotting
 """
 
+from ..thermo.output_thermodynamics import OutputThermodynamics
+
 
 def save_figure(fig, binpath, figname):
     """Save a Matplotlib figure as a PNG file with high resolution and tight bounding box.
@@ -39,3 +41,19 @@ def save_figure(fig, binpath, figname):
         format="png",
     )
     print("Figure .png saved as: " + str(binpath) + "/" + figname)
+
+
+def plot_thermodynamics_output_timeseries(ax, out: OutputThermodynamics, var: str):
+    """Plot a variable against time on an axis.
+
+    Args:
+        ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the variable.
+        out (OutputThermodynamics): OutputThermodynamics containing time (x axis)
+                                    and OutputVaribale "var" (y axis).
+        var (str): Name of the variable to be plotted (y axis).
+
+    Returns:
+        None
+    """
+    ax.plot(out.time.values, out[var].values)
+    ax.set_ylabel(out[var].name + " /" + out[var].units)
