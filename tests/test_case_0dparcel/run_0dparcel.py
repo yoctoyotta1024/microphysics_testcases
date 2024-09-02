@@ -19,7 +19,7 @@ run 0-D parcel model by timestepping and outputting data
 """
 
 from .adiabatic_motion import AdiabaticMotion
-from libs.src_mock_py.output_thermodynamics import OutputThermodynamics
+from libs.thermo.output_thermodynamics import OutputThermodynamics
 
 
 def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):

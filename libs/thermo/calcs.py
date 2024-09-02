@@ -3,12 +3,12 @@ Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
 File: calcs.py
-Project: src_mock_py
+Project: thermo
 Created Date: Friday 1st March 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Sunday 1st September 2024
+Last Modified: Monday 2nd September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
