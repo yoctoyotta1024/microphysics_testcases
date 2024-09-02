@@ -101,4 +101,26 @@ class KiDDynamics:
         Returns:
             Thermodynamics: Updated thermodynamic state of the air.
         """
+        t = int(time / timestep)
+        assert time % timestep == 0, "Time not a multiple of the timestep."
+
+        GC = (
+            self.settings.rhod_w((t + 0.5) * self.settings.dt)
+            * self.settings.dt
+            / self.settings.dz
+        )
+
+        advector_0 = np.ones_like(self.settings.z_vec) * GC
+        self.mpdata["qv"].advector.get_component(0)[:] = advector_0
+        self.mpdata["qv"].advance(1)
+
+        qv = self.mpdata["qv"].advectee.get()
+        RH = kid.formulae.pv(self.prof["p"], qv) / self.prof["pvs"]
+
+        self.mpdata["ql"].advector.get_component(0)[:] = advector_0
+        ql = self.mpdata["ql"].advectee.get()
+        dql_cond = np.maximum(0, qv * (1 - 1 / RH))
+        ql += dql_cond
+        qv -= dql_cond
+
         return thermo
