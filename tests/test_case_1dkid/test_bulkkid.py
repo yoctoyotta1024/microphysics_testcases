@@ -50,7 +50,7 @@ class WrappedKiDBulkMicrophysics:
     def __init__(self):
         """Initialize the WrappedKiDBulkMicrophysics object."""
         self.microphys = "KiDBulkMicrophysics"
-        self.name = "Wrapper around " + self.microphys.name
+        self.name = "Wrapper around " + self.microphys
 
     def initialize(self) -> int:
         """Initialise the microphysics scheme.
