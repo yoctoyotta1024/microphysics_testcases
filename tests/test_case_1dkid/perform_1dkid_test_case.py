@@ -23,6 +23,7 @@ import numpy as np
 
 from .run_1dkid import run_1dkid
 from libs.utility_functions import plot_utilities
+from libs.thermo import formulae
 
 
 def perform_1dkid_test_case(
@@ -96,8 +97,39 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         threshold=1e-3,
         cmap="grey",
     )
-    savename = binpath / "kid1d_qvap.png"
-    plt.savefig(savename, bbox_inches="tight")
+
+    label = f"{out.qcond.name} [g/kg]"
+    plot_kid_result(
+        fig,
+        axs[1, 0],
+        axs[1, 1],
+        out.qcond.values,
+        out.time.values,
+        z_delta,
+        z_max,
+        label,
+        mult=1e3,
+        threshold=1e-3,
+        cmap="grey",
+    )
+
+    supersat = formulae.supersaturation(
+        out.temp.values, out.press.values, out.qvap.values
+    )
+    label = "supersaturation"
+    plot_kid_result(
+        fig,
+        axs[2, 0],
+        axs[2, 1],
+        supersat,
+        out.time.values,
+        z_delta,
+        z_max,
+        label,
+        mult=1e3,
+        threshold=1e-3,
+        cmap="grey",
+    )
 
     fig.tight_layout()
     plot_utilities.save_figure(fig, binpath, figname)
@@ -175,12 +207,13 @@ def plot_kid_result(
     last_t = -1
     for i, t in enumerate(time):
         t = t / 60  # [minutes]
-        x, z = var[i, :] * mult, zgrid.copy()
+        d = var[i, :] * mult
+        z = (zgrid[1:] + zgrid[:-1]) / 2
         params = {"color": "black"}
         for line_t, line_s in lines.items():
             if last_t < line_t <= t:
                 params["ls"] = line_s
                 params["color"] = colors[line_t]
-                ax1.step(x, z, where="mid", **params)
+                ax1.step(d, z, where="mid", **params)
                 ax0.axvline(t, **params)
         last_t = t

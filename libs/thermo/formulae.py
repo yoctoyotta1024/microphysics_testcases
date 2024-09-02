@@ -52,3 +52,13 @@ def dry_potential_temperature(temp, press, press0):
     theta_dry = temp * (press0 / press) ** (rgas_dry / cp_dry)
 
     return theta_dry
+
+
+def supersaturation(temp, press, qvap):
+    """supersaturaion as calculated by pyMPDATA-examples Shipway and Hill 2012"""
+    from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
+
+    pvs = kid.formulae.pvs_Celsius(temp - kid.const.T0)
+    relh = kid.formulae.pv(press, qvap) / pvs
+
+    return relh - 1
