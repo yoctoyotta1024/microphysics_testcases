@@ -10,4 +10,4 @@ microphysics scheme (with a suitable Python wrapper).
 
    thermodynamics
    output_thermodynamics
-   calcs
+   formulae

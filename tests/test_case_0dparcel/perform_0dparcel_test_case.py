@@ -22,7 +22,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 from .run_0dparcel import run_0dparcel
-from libs.thermo import calcs
+from libs.thermo import formulae
 
 
 def perform_0dparcel_test_case(
@@ -185,7 +185,7 @@ def plot_thetas_on_axis(ax, time, temp, press, press0):
     Returns:
         None
     """
-    theta_dry = calcs.dry_potential_temperature(temp.values, press.values, press0)
+    theta_dry = formulae.dry_potential_temperature(temp.values, press.values, press0)
     ax.plot(time, theta_dry, label="dry")
     ax.set_ylim(theta_dry[0] - 1, theta_dry[0] + 1)
     ax.legend()
