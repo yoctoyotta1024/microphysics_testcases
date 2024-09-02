@@ -1,7 +1,7 @@
 Calculations
 ============
 
-.. automodule::  libs.src_py.calcs
+.. automodule::  libs.thermo.calcs
    :members:
    :undoc-members:
    :private-members:

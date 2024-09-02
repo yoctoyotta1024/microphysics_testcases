@@ -29,6 +29,7 @@ Contents
    usage/getstart
    usage/ourdocs
    usage/ourtests
+   thermo/index
    src_mock_py/index
    src_mock_cxx/index
    tests/index
