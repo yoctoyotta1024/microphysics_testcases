@@ -30,7 +30,6 @@ def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     PyMPDATA Shipway and Hill 2012 example for the KiD dynamics.
 
     Parameters:
-
         z_delta (float):
           Grid spacing od 1-D column (m).
         z_max (float):
@@ -56,19 +55,19 @@ def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     kid_dynamics = KiDDynamics(z_delta, z_max, timestep, time_end)
 
     ### run dynamics + microphysics from time to time_end
-    microphys_scheme.initialize()
+    # microphys_scheme.initialize()
 
     out.output_thermodynamics(time, thermo)
 
     while time <= time_end:
         thermo = kid_dynamics.run(time, timestep, thermo)
-        thermo = microphys_scheme.run(timestep, thermo)
+        # thermo = microphys_scheme.run(timestep, thermo)
 
         out.output_thermodynamics(time, thermo)
 
         time += timestep
 
-    microphys_scheme.finalize()
+    # microphys_scheme.finalize()
 
     out.finalize()
     return out
