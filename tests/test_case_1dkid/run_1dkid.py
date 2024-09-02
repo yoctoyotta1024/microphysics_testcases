@@ -22,7 +22,7 @@ from .kid_dynamics import KiDDynamics
 from libs.src_mock_py.output_thermodynamics import OutputThermodynamics
 
 
-def run_1dkid(time, time_end, timestep, thermo, microphys_scheme):
+def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     """Run 1-D KiD rainshaft model with a specified microphysics scheme and KiD dynamics.
 
     This function runs a 1-D KiD rainshaft model with the given initial thermodynamic conditions,
@@ -30,8 +30,11 @@ def run_1dkid(time, time_end, timestep, thermo, microphys_scheme):
     PyMPDATA Shipway and Hill 2012 example for the KiD dynamics.
 
     Parameters:
-        time (float):
-          Initial time for the simulation (s).
+
+        z_delta (float):
+          Grid spacing od 1-D column (m).
+        z_max (float):
+          Upper limit of 1-D column (m).
         time_end (float):
           End time for the simulation (s).
         timestep (float):
@@ -44,19 +47,21 @@ def run_1dkid(time, time_end, timestep, thermo, microphys_scheme):
     Returns:
           OutputThermodynamics: Output containing thermodynamic data from the model run.
     """
+    time = 0.0
 
     ### data to output during model run
     out = OutputThermodynamics()
 
-    # ### type of dynamics rainshaft will undergo
-    parcel_dynamics = KiDDynamics()
+    ### type of dynamics rainshaft will undergo
+    kid_dynamics = KiDDynamics(z_delta, z_max, timestep, time_end)
 
     ### run dynamics + microphysics from time to time_end
     microphys_scheme.initialize()
 
     out.output_thermodynamics(time, thermo)
+
     while time <= time_end:
-        thermo = parcel_dynamics.run(time, timestep, thermo)
+        thermo = kid_dynamics.run(time, timestep, thermo)
         thermo = microphys_scheme.run(timestep, thermo)
 
         out.output_thermodynamics(time, thermo)
