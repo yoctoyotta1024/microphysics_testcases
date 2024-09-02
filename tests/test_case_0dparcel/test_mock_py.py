@@ -25,7 +25,7 @@ from libs.src_mock_py.thermodynamics import Thermodynamics
 from libs.src_mock_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
 
-def test_python_microphys():
+def test_mock_py_0dparcel():
     """runs 0-D parcel model test using Python mock microphysics scheme (a mock-up of the muphys-cpp
     graupel class for ICON).
 
