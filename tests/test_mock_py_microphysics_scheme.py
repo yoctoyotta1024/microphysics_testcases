@@ -22,7 +22,7 @@ import numpy as np
 
 from libs.src_mock_py.mock_microphysics_scheme import MicrophysicsScheme
 from libs.src_mock_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
-from libs.src_mock_py.thermodynamics import Thermodynamics
+from libs.thermo.thermodynamics import Thermodynamics
 
 
 def test_initialize():

@@ -21,7 +21,7 @@ perform test case for 0-D parcel model with mock python microphysics scheme
 from pathlib import Path
 
 from .perform_0dparcel_test_case import perform_0dparcel_test_case
-from libs.src_mock_py.thermodynamics import Thermodynamics
+from libs.thermo.thermodynamics import Thermodynamics
 from libs.src_mock_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
 

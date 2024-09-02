@@ -22,7 +22,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 from .run_0dparcel import run_0dparcel
-from libs.src_mock_py import calcs
+from libs.thermo import calcs
 
 
 def perform_0dparcel_test_case(
