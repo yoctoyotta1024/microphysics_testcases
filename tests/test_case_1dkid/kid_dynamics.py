@@ -29,29 +29,32 @@ class KiDDynamics:
     Class is wrapper around MPDATA driver of Shipway and Hill 2012 example in pyMPDATA.
     """
 
-    def __init__(self, nr, dz, dt, R_MIN, R_MAX, N_CCN_HALO):
+    def __init__(self, z_delta, z_max, timestep, t_end):
         """Initialize the KiDDynamics object."""
+        N_CCN_HALO = 500 / kid.si.mg
+        R_MIN = 1 * kid.si.um
+        R_MAX = 20.2 * kid.si.um
+
         RHOD_VERTVELO = 3 * kid.si.m / kid.si.s * kid.si.kg / kid.si.m**3
-        T_MAX = 15 * kid.si.minutes
         P0 = 1007 * kid.si.hPa
-        Z_MAX = 3200 * kid.si.m
+        NR = 1  # fixed value for bulk scheme microphysics
 
         self.options = Options(n_iters=3, nonoscillatory=True)
-        self.key = f"nr={nr}_dz={dz}_dt={dt}_opt={self.options}"
+        self.key = f"nr={NR}_dz={z_delta}_dt={timestep}_opt={self.options}"
         self.settings = kid.Settings(
             rhod_w_const=RHOD_VERTVELO,
-            nr=nr,
-            dt=dt,
-            dz=dz,
-            t_max=T_MAX,
+            nr=NR,
+            dt=timestep,
+            dz=z_delta,
+            t_max=t_end,
             r_min=R_MIN,
             r_max=R_MAX,
             p0=P0,
-            z_max=Z_MAX,
+            z_max=z_max,
         )
 
         self.mpdata = kid.MPDATA(
-            nr=nr,
+            nr=NR,
             nz=self.settings.nz,
             dt=self.settings.dt,
             qv_of_zZ_at_t0=lambda zZ: self.settings.qv(zZ * self.settings.dz),
@@ -62,11 +65,11 @@ class KiDDynamics:
             ),
         )
 
-        zmin = self.settings.dz / 2
-        zmax = (self.settings.nz - 1 / 2) * self.settings.dz
+        z1 = self.settings.dz / 2
+        z2 = (self.settings.nz - 1 / 2) * self.settings.dz
         z = np.linspace(
-            zmin,
-            zmax,
+            z1,
+            z2,
             self.settings.nz,
             endpoint=True,
         )
