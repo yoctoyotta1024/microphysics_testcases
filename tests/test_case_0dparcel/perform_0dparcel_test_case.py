@@ -92,7 +92,7 @@ def plot_0dparcel_thermodynamics(out, binpath, run_name):
 
     assert Path(binpath).exists()
     assert run_name
-    print("plotting " + run_name + " and saving plots in: " + binpath)
+    print("plotting " + run_name + " and saving plots in: " + str(binpath))
 
     fig, axs = plt.subplots(nrows=2, ncols=2, sharex=True)
     figname = run_name + "_thermodynamics.png"
@@ -135,7 +135,7 @@ def plot_0dparcel_massmix_ratios(out, binpath, run_name):
 
     assert Path(binpath).exists(), "The specified binpath does not exist."
     assert run_name, "The run_name cannot be empty."
-    print("plotting " + run_name + " and saving plots in: " + binpath)
+    print("plotting " + run_name + " and saving plots in: " + str(binpath))
 
     fig, axs = plt.subplots(nrows=2, ncols=3, sharex=True)
     figname = run_name + "_massmix_ratios.png"
@@ -203,11 +203,12 @@ def save_figure(fig, binpath, figname):
     Returns:
         None
     """
+    filename = binpath / figname
     fig.savefig(
-        binpath + "/" + figname,
+        filename,
         dpi=400,
         bbox_inches="tight",
         facecolor="w",
         format="png",
     )
-    print("Figure .png saved as: " + binpath + "/" + figname)
+    print("Figure .png saved as: " + str(binpath) + "/" + figname)
