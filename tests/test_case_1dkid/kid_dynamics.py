@@ -73,16 +73,22 @@ class KiDDynamics:
             self.settings.nz,
             endpoint=True,
         )
-        qv = self.mpdata["qv"].advectee.get()
-        self.prof = {}
-        self.prof["rhod"] = self.settings.rhod(z)
-        self.prof["T"] = kid.formulae.temperature(
-            self.prof["rhod"], self.settings.thd(z)
-        )
-        self.prof["p"] = kid.formulae.pressure(self.prof["rhod"], self.prof["T"], qv)
-        self.prof["pvs"] = kid.formulae.pvs_Celsius(self.prof["T"] - kid.const.T0)
+        qvap = self.mpdata["qv"].advectee.get()
+
+        self.rhod = self.settings.rhod(z)
+        self.temp = kid.formulae.temperature(self.rhod, self.settings.thd(z))
+        self.press = kid.formulae.pressure(self.rhod, self.temp, qvap)
 
         print(f"Simulating {self.settings.nt} timesteps using {self.key}")
+
+    def set_thermo(self, thermo):
+        thermo.temp = self.temp
+        thermo.rho = self.rhod
+        thermo.press = self.press
+        thermo.massmix_ratios[0] = self.mpdata["qv"].advectee.get()  # qvap
+        thermo.massmix_ratios[1] = self.mpdata["ql"].advectee.get()  # qcond
+
+        return thermo
 
     def run(self, time, timestep, thermo):
         """
@@ -109,18 +115,22 @@ class KiDDynamics:
             * self.settings.dt
             / self.settings.dz
         )
-
         advector_0 = np.ones_like(self.settings.z_vec) * GC
+
         self.mpdata["qv"].advector.get_component(0)[:] = advector_0
         self.mpdata["qv"].advance(1)
 
-        qv = self.mpdata["qv"].advectee.get()
-        RH = kid.formulae.pv(self.prof["p"], qv) / self.prof["pvs"]
-
         self.mpdata["ql"].advector.get_component(0)[:] = advector_0
-        ql = self.mpdata["ql"].advectee.get()
-        dql_cond = np.maximum(0, qv * (1 - 1 / RH))
-        ql += dql_cond
-        qv -= dql_cond
+        self.mpdata["ql"].advance(1)
 
+        # # TODO(CB): move into microphysics module
+        # qvap = self.mpdata["qv"].advectee.get()
+        # pvs = kid.formulae.pvs_Celsius(self.temp - kid.const.T0)
+        # relh = kid.formulae.pv(self.press, qvap) / pvs
+        # qcond = self.mpdata["ql"].advectee.get()
+        # dql_cond = np.maximum(0, qvap * (1 - 1 / relh))
+        # qcond += dql_cond
+        # qvap -= dql_cond
+
+        self.set_thermo(thermo)
         return thermo

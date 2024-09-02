@@ -46,8 +46,6 @@ def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     Returns:
           OutputThermodynamics: Output containing thermodynamic data from the model run.
     """
-    time = 0.0
-
     ### data to output during model run
     out = OutputThermodynamics()
 
@@ -57,8 +55,9 @@ def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     ### run dynamics + microphysics from time to time_end
     # microphys_scheme.initialize()
 
+    time = 0.0
+    kid_dynamics.set_thermo(thermo)
     out.output_thermodynamics(time, thermo)
-
     while time <= time_end:
         thermo = kid_dynamics.run(time, timestep, thermo)
         # thermo = microphys_scheme.run(timestep, thermo)
