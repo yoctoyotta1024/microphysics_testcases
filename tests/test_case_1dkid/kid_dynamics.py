@@ -18,6 +18,7 @@ File Description:
 class for driving KiD rainshaft test case
 """
 
+import numpy as np
 from PyMPDATA import Options
 from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
 
@@ -60,6 +61,23 @@ class KiDDynamics:
                 N_CCN_HALO, self.settings.dr, self.settings.dz
             ),
         )
+
+        zmin = self.settings.dz / 2
+        zmax = (self.settings.nz - 1 / 2) * self.settings.dz
+        z = np.linspace(
+            zmin,
+            zmax,
+            self.settings.nz,
+            endpoint=True,
+        )
+        qv = self.mpdata["qv"].advectee.get()
+        self.prof = {}
+        self.prof["rhod"] = self.settings.rhod(z)
+        self.prof["T"] = kid.formulae.temperature(
+            self.prof["rhod"], self.settings.thd(z)
+        )
+        self.prof["p"] = kid.formulae.pressure(self.prof["rhod"], self.prof["T"], qv)
+        self.prof["pvs"] = kid.formulae.pvs_Celsius(self.prof["T"] - kid.const.T0)
 
         print(f"Simulating {self.settings.nt} timesteps using {self.key}")
 

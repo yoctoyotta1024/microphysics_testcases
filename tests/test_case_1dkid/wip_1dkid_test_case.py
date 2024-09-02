@@ -47,15 +47,14 @@ R_MIN = 1 * kid.si.um
 R_MAX = 20.2 * kid.si.um
 
 # %% Run 1-D KiD Model
-
 kiddyn = KiDDynamics(nr, dz, dt, R_MIN, R_MAX, N_CCN_HALO)
+
 outputs = {}
 output = {
     k: np.zeros((kiddyn.settings.nz, kiddyn.settings.nt + 1))
     for k in ("qv", "S", "ql", "act_frac", "reldisp")
 }
 outputs[kiddyn.key] = output
-
 assert "t" not in output and "z" not in output
 output["t"] = np.linspace(
     0, kiddyn.settings.nt * kiddyn.settings.dt, kiddyn.settings.nt + 1, endpoint=True
@@ -68,13 +67,6 @@ output["z"] = np.linspace(
 )
 output["qv"][:, 0] = kiddyn.mpdata["qv"].advectee.get()
 
-prof = {}
-prof["rhod"] = kiddyn.settings.rhod(output["z"])
-prof["T"] = kid.formulae.temperature(prof["rhod"], kiddyn.settings.thd(output["z"]))
-prof["p"] = kid.formulae.pressure(prof["rhod"], prof["T"], output["qv"][:, 0])
-prof["pvs"] = kid.formulae.pvs_Celsius(prof["T"] - kid.const.T0)
-
-Gscl = prof["rhod"]
 
 for t in range(kiddyn.settings.nt):
     GC = (
@@ -87,7 +79,7 @@ for t in range(kiddyn.settings.nt):
     kiddyn.mpdata["qv"].advance(1)
 
     qv = kiddyn.mpdata["qv"].advectee.get()
-    RH = kid.formulae.pv(prof["p"], qv) / prof["pvs"]
+    RH = kid.formulae.pv(kiddyn.prof["p"], qv) / kiddyn.prof["pvs"]
 
     kiddyn.mpdata["ql"].advector.get_component(0)[:] = advector_0
     ql = kiddyn.mpdata["ql"].advectee.get()
