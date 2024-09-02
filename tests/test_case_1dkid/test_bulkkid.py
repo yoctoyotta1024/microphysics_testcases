@@ -46,6 +46,7 @@ from .perform_1dkid_test_case import perform_1dkid_test_case
 from libs.src_mock_py.thermodynamics import Thermodynamics
 
 
+# TODO(CB): move scheme to seperate file and add documentation
 class WrappedKiDBulkMicrophysics:
     def __init__(self):
         """Initialize the WrappedKiDBulkMicrophysics object."""
