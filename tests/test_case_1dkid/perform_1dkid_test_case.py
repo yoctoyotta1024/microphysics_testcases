@@ -77,15 +77,20 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
     print("plotting " + run_name + " and saving plots in: " + str(binpath))
 
     fig, axs = plt.subplots(
-        nrows=3, ncols=2, sharey=True, figsize=(9, 16), width_ratios=[3, 1]
+        nrows=6,
+        ncols=2,
+        figsize=(9, 16),
+        width_ratios=[3, 1],
+        height_ratios=[27, 1] * 3,
     )
     figname = run_name + "_moisture.png"
 
     # %% plot results
-    label = f"{out.qvap.name} [g/kg]"
+    label = f"{out.qvap.name} / g/kg"
     plot_kid_result(
         fig,
         axs[0, 0],
+        axs[1, 0],
         axs[0, 1],
         out.qvap.values,
         out.time.values,
@@ -97,11 +102,12 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         cmap="gray",
     )
 
-    label = f"{out.qcond.name} [g/kg]"
+    label = f"{out.qcond.name} / g/kg"
     plot_kid_result(
         fig,
-        axs[1, 0],
-        axs[1, 1],
+        axs[2, 0],
+        axs[3, 0],
+        axs[2, 1],
         out.qcond.values,
         out.time.values,
         z_delta,
@@ -115,20 +121,29 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
     supersat = formulae.supersaturation(
         out.temp.values, out.press.values, out.qvap.values
     )
-    label = "supersaturation [%]"
+    label = "supersaturation / %"
     plot_kid_result(
         fig,
-        axs[2, 0],
-        axs[2, 1],
+        axs[4, 0],
+        axs[5, 0],
+        axs[4, 1],
         supersat,
         out.time.values,
         z_delta,
         z_max,
         label,
         mult=100,
-        threshold=1e-3,
+        rng=(-0.25, 0.75),
         cmap="gray_r",
     )
+
+    for ax in [axs[2, 0], axs[4, 0]]:
+        ax.sharex(axs[0, 0])
+    for ax in axs[0::2, :]:
+        ax[0].sharey(axs[0, 0])
+        ax[1].sharey(axs[0, 0])
+    for ax in axs[1::2, 1]:
+        ax.remove()
 
     fig.tight_layout()
     plot_utilities.save_figure(fig, binpath, figname)
@@ -137,6 +152,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
 def plot_kid_result(
     fig,
     ax0,
+    cax0,
     ax1,
     var,
     time,
@@ -195,7 +211,7 @@ def plot_kid_result(
     ax0.set_ylabel("z / km")
     ax0.grid()
 
-    cbar = fig.colorbar(mesh, ax=ax0, shrink=0.8, location="top")
+    cbar = fig.colorbar(mesh, cax=cax0, shrink=0.8, location="bottom")
     cbar.set_label(label)
 
     ax1.set_xlabel(label)
