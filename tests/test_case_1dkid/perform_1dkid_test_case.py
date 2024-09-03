@@ -115,7 +115,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
     supersat = formulae.supersaturation(
         out.temp.values, out.press.values, out.qvap.values
     )
-    label = "supersaturation"
+    label = "supersaturation [%]"
     plot_kid_result(
         fig,
         axs[2, 0],
@@ -125,6 +125,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         z_delta,
         z_max,
         label,
+        mult=100,
         threshold=1e-3,
         cmap="gray_r",
     )
@@ -178,7 +179,7 @@ def plot_kid_result(
     tmp = np.concatenate(((var[0, :],), tmp)).T
 
     if threshold is not None:
-        var[var < threshold] = np.nan
+        tmp = np.where(tmp < threshold, np.nan, tmp)
     mesh = ax0.pcolormesh(
         tgrid,
         zgrid,
@@ -205,7 +206,7 @@ def plot_kid_result(
     last_t = -1
     for i, t in enumerate(time):
         t = t / 60  # [minutes]
-        d = var[i, :] * mult
+        d = var[i, :]
         z = (zgrid[1:] + zgrid[:-1]) / 2
         params = {"color": "black"}
         for line_t, line_s in lines.items():
