@@ -65,17 +65,14 @@ class KiDDynamics:
             ),
         )
 
-        z1 = self.settings.dz / 2
-        z2 = (self.settings.nz - 1 / 2) * self.settings.dz
-        z = np.linspace(
-            z1,
-            z2,
-            self.settings.nz,
-            endpoint=True,
-        )
+        nz = int(z_max / z_delta)
+        zfull = np.linspace(z_delta / 2, (nz - 1 / 2) * z_delta, nz, endpoint=True)
+        self.zhalf = np.linspace(0, nz * z_delta, nz + 1, endpoint=True)
 
-        self.rhod_prof = self.settings.rhod(z)
-        self.temp_prof = kid.formulae.temperature(self.rhod_prof, self.settings.thd(z))
+        self.rhod_prof = self.settings.rhod(zfull)
+        self.temp_prof = kid.formulae.temperature(
+            self.rhod_prof, self.settings.thd(zfull)
+        )
         qvap0 = self.mpdata["qv"].advectee.get()
         self.press_prof = kid.formulae.pressure(self.rhod_prof, self.temp_prof, qvap0)
 

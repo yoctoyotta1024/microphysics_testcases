@@ -93,7 +93,7 @@ class OutputThermodynamics:
           Specific graupel content (kg/kg).
     """
 
-    def __init__(self):
+    def __init__(self, zhalf=None, xhalf=None, yhalf=None):
         """Initialize a ThermodynamicsOutput object."""
 
         self.time = OutputVariable("time", "s", [])
@@ -106,6 +106,13 @@ class OutputThermodynamics:
         self.qrain = OutputVariable("qrain", "Kg/Kg", [])
         self.qsnow = OutputVariable("qsnow", "Kg/Kg", [])
         self.qgrau = OutputVariable("qgrau", "Kg/Kg", [])
+
+        if zhalf is not None:
+            self.zhalf = OutputVariable("zhalf", "m", zhalf)
+        if xhalf is not None:
+            self.xhalf = OutputVariable("xhalf", "m", xhalf)
+        if yhalf is not None:
+            self.yhalf = OutputVariable("yhalf", "m", yhalf)
 
     def output_thermodynamics(self, time: float, thermo: Thermodynamics):
         """output thermodynamics from thermo to each variable in thermodynamics output.
@@ -179,3 +186,10 @@ class OutputThermodynamics:
         self.qrain.finalize()
         self.qsnow.finalize()
         self.qgrau.finalize()
+
+        if self.hasattr("zhalf"):
+            self.zhalf.finalize()
+        if self.hasattr("xhalf"):
+            self.xhalf.finalize()
+        if self.hasattr("yhalf"):
+            self.yhalf.finalize()
