@@ -92,7 +92,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         z_delta,
         z_max,
         label,
-        mult=1e-3,
+        mult=1e3,
         threshold=1e-3,
         cmap="grey",
     )
@@ -107,7 +107,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         z_delta,
         z_max,
         label,
-        mult=1e-3,
+        mult=1e3,
         threshold=1e-3,
         cmap="grey",
     )
@@ -126,7 +126,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         z_max,
         label,
         threshold=1e-3,
-        cmap="grey",
+        cmap="grey_r",
     )
 
     fig.tight_layout()

@@ -56,7 +56,7 @@ def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     microphys_scheme.initialize()
 
     time = 0.0
-    kid_dynamics.set_thermo(thermo)
+    thermo = kid_dynamics.set_thermo(thermo)
     out.output_thermodynamics(time, thermo)
     while time < time_end:
         thermo = kid_dynamics.run(time, timestep, thermo)
