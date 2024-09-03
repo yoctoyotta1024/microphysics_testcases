@@ -94,7 +94,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         label,
         mult=1e3,
         threshold=1e-3,
-        cmap="grey",
+        cmap="gray",
     )
 
     label = f"{out.qcond.name} [g/kg]"
@@ -109,7 +109,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         label,
         mult=1e3,
         threshold=1e-3,
-        cmap="grey",
+        cmap="gray",
     )
 
     supersat = formulae.supersaturation(
@@ -126,7 +126,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         z_max,
         label,
         threshold=1e-3,
-        cmap="grey_r",
+        cmap="gray_r",
     )
 
     fig.tight_layout()

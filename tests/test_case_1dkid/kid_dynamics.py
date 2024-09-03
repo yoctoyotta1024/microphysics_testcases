@@ -73,18 +73,18 @@ class KiDDynamics:
             self.settings.nz,
             endpoint=True,
         )
-        qvap = self.mpdata["qv"].advectee.get()
 
-        self.rhod = self.settings.rhod(z)
-        self.temp = kid.formulae.temperature(self.rhod, self.settings.thd(z))
-        self.press = kid.formulae.pressure(self.rhod, self.temp, qvap)
+        self.rhod_prof = self.settings.rhod(z)
+        self.temp_prof = kid.formulae.temperature(self.rhod_prof, self.settings.thd(z))
+        qvap0 = self.mpdata["qv"].advectee.get()
+        self.press_prof = kid.formulae.pressure(self.rhod_prof, self.temp_prof, qvap0)
 
         print(f"Simulating {self.settings.nt} timesteps using {self.key}")
 
     def set_thermo(self, thermo):
-        thermo.temp = self.temp
-        thermo.rho = self.rhod
-        thermo.press = self.press
+        thermo.temp = self.temp_prof
+        thermo.rho = self.rhod_prof
+        thermo.press = self.press_prof
         thermo.massmix_ratios[0] = self.mpdata["qv"].advectee.get()  # qvap
         thermo.massmix_ratios[1] = self.mpdata["ql"].advectee.get()  # qcond
 
@@ -123,5 +123,5 @@ class KiDDynamics:
         self.mpdata["ql"].advector.get_component(0)[:] = advector_0
         self.mpdata["ql"].advance(1)
 
-        self.set_thermo(thermo)
+        thermo = self.set_thermo(thermo)
         return thermo
