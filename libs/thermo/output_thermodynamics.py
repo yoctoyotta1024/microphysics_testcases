@@ -35,7 +35,7 @@ class OutputVariable:
           Values of variable; must be able to be appended to.
     """
 
-    def __init__(self, name, units, values):
+    def __init__(self, name, units, shape):
         """Initialise OutputVariable instance
 
         Parameters:
@@ -43,25 +43,41 @@ class OutputVariable:
             Name of variable.
           units (string):
             Units of variable.
-          values (any):
-            Values of variable; must be able to be appended to.
+          shape (array of integers)
+            Shape of final array. Note that values are added by write function
+            as slices along first dimension (e.g. first dimension is time)
         """
 
         self.name = name
         self.units = units
-        self.values = values
+        self.values = np.zeros(shape)
+        self._i = 0
 
     def write(self, val):
-        """Append a value to the list of variable values.
+        """Copy values 'val' to the array in slice along its first dimension.
 
         Parameters:
-          val (any): Value to append.
+          val (any): Value(s) to append.
         """
-        self.values.append(val)
+        assert np.shape(self.values)[0] > self._i, "no space left in array"
+        assert (
+            np.shape(val) == np.shape(self.values)[1:]
+        ), "values to add must be complete slice along 0th dimension"
+        self.values[self._i] = val
+        self._i += 1
+
+    def set(self, val):
+        """Copy values 'val' to the entire array.
+
+        Parameters:
+          val (any): Value(s) of array.
+        """
+        self.values = val
+        self._i = np.nan  # destroy ability of write() function
 
     def finalize(self):
         """Convert values to a NumPy array."""
-        self.values = np.asarray(self.values)
+        print(self.name + " shape: " + str(self.values.shape))
 
 
 class OutputThermodynamics:
@@ -93,32 +109,35 @@ class OutputThermodynamics:
           Specific graupel content (kg/kg).
     """
 
-    def __init__(self, zhalf=None, xhalf=None, yhalf=None):
+    def __init__(self, shape, zhalf=None, xhalf=None, yhalf=None):
         """Initialize a ThermodynamicsOutput object."""
 
-        self.time = OutputVariable("time", "s", [])
-        self.temp = OutputVariable("temp", "K", [])
-        self.rho = OutputVariable("rho", "Kg m-3", [])
-        self.press = OutputVariable("press", "Pa", [])
-        self.qvap = OutputVariable("qvap", "Kg/Kg", [])
-        self.qcond = OutputVariable("qcond", "Kg/Kg", [])
-        self.qice = OutputVariable("qice", "Kg/Kg", [])
-        self.qrain = OutputVariable("qrain", "Kg/Kg", [])
-        self.qsnow = OutputVariable("qsnow", "Kg/Kg", [])
-        self.qgrau = OutputVariable("qgrau", "Kg/Kg", [])
+        self.time = OutputVariable("time", "s", [shape[0]])
+        self.temp = OutputVariable("temp", "K", shape)
+        self.rho = OutputVariable("rho", "Kg m-3", shape)
+        self.press = OutputVariable("press", "Pa", shape)
+        self.qvap = OutputVariable("qvap", "Kg/Kg", shape)
+        self.qcond = OutputVariable("qcond", "Kg/Kg", shape)
+        self.qice = OutputVariable("qice", "Kg/Kg", shape)
+        self.qrain = OutputVariable("qrain", "Kg/Kg", shape)
+        self.qsnow = OutputVariable("qsnow", "Kg/Kg", shape)
+        self.qgrau = OutputVariable("qgrau", "Kg/Kg", shape)
 
         if zhalf is not None:
-            self.zhalf = OutputVariable("zhalf", "m", zhalf)
+            self.zhalf = OutputVariable("zhalf", "m", [len(zhalf)])
+            self.zhalf.set(zhalf)
         else:
             self.zhalf = None
 
         if xhalf is not None:
-            self.xhalf = OutputVariable("xhalf", "m", xhalf)
+            self.xhalf = OutputVariable("xhalf", "m", [len(xhalf)])
+            self.xhalf.set(xhalf)
         else:
             self.xhalf = None
 
         if yhalf is not None:
-            self.yhalf = OutputVariable("yhalf", "m", yhalf)
+            self.yhalf = OutputVariable("yhalf", "m", [len(yhalf)])
+            self.yhalf.set(yhalf)
         else:
             self.yhalf = None
 
