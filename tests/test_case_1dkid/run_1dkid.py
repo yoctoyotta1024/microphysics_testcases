@@ -54,7 +54,10 @@ def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     microphys_scheme.initialize()
 
     ### data to output during model run
-    out = OutputThermodynamics(zhalf=kid_dynamics.zhalf)
+    ntime = int(time_end / timestep) + 1
+    nz = len(kid_dynamics.zhalf) - 1
+    shape = (ntime, nz)
+    out = OutputThermodynamics(shape, zhalf=kid_dynamics.zhalf)
 
     time = 0.0
     thermo = kid_dynamics.set_thermo(thermo)

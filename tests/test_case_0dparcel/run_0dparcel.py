@@ -46,7 +46,8 @@ def run_0dparcel(time, time_end, timestep, thermo, microphys_scheme):
     """
 
     ### data to output during model run
-    out = OutputThermodynamics()
+    ntime = int(time_end / timestep) + 1
+    out = OutputThermodynamics([ntime])
 
     ### type of dynamics parcel will undergo
     amp = 11325  # amplitude of pressure sinusoid [Pa]
