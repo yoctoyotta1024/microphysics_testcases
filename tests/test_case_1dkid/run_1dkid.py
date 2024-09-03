@@ -46,14 +46,15 @@ def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     Returns:
           OutputThermodynamics: Output containing thermodynamic data from the model run.
     """
-    ### data to output during model run
-    out = OutputThermodynamics()
 
     ### type of dynamics rainshaft will undergo
     kid_dynamics = KiDDynamics(z_delta, z_max, timestep, time_end)
 
     ### run dynamics + microphysics from time to time_end
     microphys_scheme.initialize()
+
+    ### data to output during model run
+    out = OutputThermodynamics(zhalf=kid_dynamics.zhalf)
 
     time = 0.0
     thermo = kid_dynamics.set_thermo(thermo)
