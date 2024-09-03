@@ -109,10 +109,18 @@ class OutputThermodynamics:
 
         if zhalf is not None:
             self.zhalf = OutputVariable("zhalf", "m", zhalf)
+        else:
+            self.zhalf = None
+
         if xhalf is not None:
             self.xhalf = OutputVariable("xhalf", "m", xhalf)
+        else:
+            self.xhalf = None
+
         if yhalf is not None:
             self.yhalf = OutputVariable("yhalf", "m", yhalf)
+        else:
+            self.yhalf = None
 
     def output_thermodynamics(self, time: float, thermo: Thermodynamics):
         """output thermodynamics from thermo to each variable in thermodynamics output.
@@ -187,9 +195,9 @@ class OutputThermodynamics:
         self.qsnow.finalize()
         self.qgrau.finalize()
 
-        if self.hasattr("zhalf"):
+        if self.zhalf is not None:
             self.zhalf.finalize()
-        if self.hasattr("xhalf"):
+        if self.xhalf is not None:
             self.xhalf.finalize()
-        if self.hasattr("yhalf"):
+        if self.yhalf is not None:
             self.yhalf.finalize()
