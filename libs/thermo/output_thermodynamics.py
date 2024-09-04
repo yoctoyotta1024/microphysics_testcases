@@ -110,7 +110,14 @@ class OutputThermodynamics:
     """
 
     def __init__(self, shape, zhalf=None, xhalf=None, yhalf=None):
-        """Initialize a ThermodynamicsOutput object."""
+        """Initialize an OutputThermodynamics object.
+
+        Args:
+            shape (tuple): Shape of the output variables, time is first dimension.
+            zhalf (np.ndarray, optional): Half-level z-coordinates (m). Defaults to None.
+            xhalf (np.ndarray, optional): Half-level x-coordinates (m). Defaults to None.
+            yhalf (np.ndarray, optional): Half-level y-coordinates (m). Defaults to None.
+        """
 
         self.time = OutputVariable("time", "s", [shape[0]])
         self.temp = OutputVariable("temp", "K", shape)
