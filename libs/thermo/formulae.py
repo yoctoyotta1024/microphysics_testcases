@@ -55,7 +55,20 @@ def dry_potential_temperature(temp, press, press0):
 
 
 def supersaturation(temp, press, qvap):
-    """supersaturaion as calculated by pyMPDATA-examples Shipway and Hill 2012"""
+    """
+    Calculate supersaturation based on the method described in PyMPDATA-examples
+
+    This function uses the calculations in the Shipway and Hill (2012) example from
+    PyMPDATA-examples library to compute the supersaturation.
+
+    Parameters:
+    temp (float): Temperature in Kelvin.
+    press (float): Pressure in Pascals.
+    qvap (float): Specific humidity (kg/kg).
+
+    Returns:
+    float: Supersaturation value.
+    """
     from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
 
     pvs = kid.formulae.pvs_Celsius(temp - kid.const.T0)
