@@ -121,7 +121,7 @@ class KiDDynamics:
         Returns:
             Thermodynamics: Updated thermodynamic state.
         """
-        assert timestep == self.dt, "Timestep must match initialised value."
+        assert timestep == self.settings.dt, "Timestep must match initialised value."
 
         t = int(time / timestep)
         assert time % timestep == 0, "Time not a multiple of the timestep."
