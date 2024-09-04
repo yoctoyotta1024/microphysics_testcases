@@ -25,10 +25,20 @@ from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
 
 
 def bulk_scheme_condensation(temp, press, qvap, qcond):
-    """enacts saturation adjustment on qvap and qcond for a very simple bulk
+    """
+    Enacts saturation adjustment on qvap and qcond for a very simple bulk
     scheme to ensure relative humidity <= 100%. Extracted from pyMPDATA
     KiD Bulk Microphysics Scheme (nr=1) for Condensation
     from Shipway and Hill 2012 example for a 1-D KiD rainshaft model.
+
+    Parameters:
+    temp (float): Temperature in Kelvin.
+    press (float): Pressure in Pascals.
+    qvap (float): Specific humidity of water vapor (kg/kg).
+    qcond (float): Specific humidity of condensed water (kg/kg).
+
+    Returns:
+    tuple: Adjusted specific humidities of water vapor and condensed water (qvap, qcond).
     """
     pvs = kid.formulae.pvs_Celsius(temp - kid.const.T0)
     relh = kid.formulae.pv(press, qvap) / pvs
@@ -41,7 +51,6 @@ def bulk_scheme_condensation(temp, press, qvap, qcond):
     return qvap, qcond
 
 
-# TODO(CB): add documentation
 class MicrophysicsSchemeWrapper:
     def __init__(self):
         """Initialize the WrappedKiDBulkMicrophysics object."""
@@ -75,14 +84,11 @@ class MicrophysicsSchemeWrapper:
         microphysics computations in a way that's compatible with the test and scripts in this project.
 
         Args:
-            timestep (float):
-              Time-step for integration of microphysics (s)
-            thermo (Thermodynamics):
-              Thermodynamic properties.
+            timestep (float): Time-step for integration of microphysics (s).
+            thermo (Thermodynamics): Thermodynamic properties.
 
         Returns:
             Thermodynamics: Updated thermodynamic properties after microphysics computations.
-
         """
 
         temp = thermo.temp
