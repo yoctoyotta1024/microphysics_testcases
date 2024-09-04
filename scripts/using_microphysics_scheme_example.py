@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: use_microphysics_scheme.py
+File: using_microphysics_scheme_example.py
 Project: scripts
 Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
