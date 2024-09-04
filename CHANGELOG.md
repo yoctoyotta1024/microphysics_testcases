@@ -2,6 +2,82 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.5.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/9d5dc7577f7f42454fc6e650f4111581f5271d7d..v0.5.0) - 2024-09-04
+#### Bug Fixes
+- fix assertion - ([1d4b63b](https://github.com/yoctoyotta1024/microphysics_testcases/commit/1d4b63bb308d65dfa3291dd466e18c479597bf6f)) - clara.bayley
+- use fixed output - ([7f9e8f2](https://github.com/yoctoyotta1024/microphysics_testcases/commit/7f9e8f2ddb3ab5687a47fb60af6936b4cd4bd2b9)) - clara.bayley
+- fix output with arrays written to - ([9c12aa2](https://github.com/yoctoyotta1024/microphysics_testcases/commit/9c12aa2e7e27d02a142ebfa3190b526231558a72)) - clara.bayley
+- minor bug fixes - ([4ca8c62](https://github.com/yoctoyotta1024/microphysics_testcases/commit/4ca8c6297ef643cb235a4afacc92c574fd5d4467)) - clara.bayley
+- minor bug fixes - ([4bbb31a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/4bbb31afdc325cc54905e88258cea57ba5f8c4f4)) - clara.bayley
+- minor bug fixes - ([012e83b](https://github.com/yoctoyotta1024/microphysics_testcases/commit/012e83bb04024287a8ed45809571368a2da4746e)) - clara.bayley
+- coarsen time for plotting - ([082c3aa](https://github.com/yoctoyotta1024/microphysics_testcases/commit/082c3aa164546045de6623f1b3bf98947afe4f69)) - clara.bayley
+- correct timestepping - ([c62f28f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c62f28fd737185137af33ebddcde9fe5ae75f178)) - clara.bayley
+- paths and string conversions - ([e2c95f4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e2c95f45551fa0b15c28c39ae3c3a9b9cf662f20)) - clara.bayley
+- import thermodynamics - ([bdf4513](https://github.com/yoctoyotta1024/microphysics_testcases/commit/bdf4513f6a96547c31faa8f08deb61ed52d182a3)) - clara.bayley
+#### Documentation
+- formatting - ([c75edb9](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c75edb988319ecd3d5e0d75182d47a7ed8ebb243)) - clara.bayley
+- added docstrings - ([8670288](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8670288f4dfac578cde073634c7b2fe010ceee6d)) - clara.bayley
+- rst files for 1d kid test case - ([6ae094e](https://github.com/yoctoyotta1024/microphysics_testcases/commit/6ae094ee6abb9b20d062d2292a2a63ef0d666ab7)) - clara.bayley
+- new docs for bulk microphysics scheme from KiD - ([c4572d1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c4572d1dd357b99e225b9bc023249a1af6ef0855)) - clara.bayley
+- new docs for bulk microphysics scheme from KiD - ([e137033](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e13703371652d6bf94a5f185ec29ca6366b441cb)) - clara.bayley
+- new docs for utilities module - ([013d502](https://github.com/yoctoyotta1024/microphysics_testcases/commit/013d50273ebeda744c4a23e3d604b050e63af9d5)) - clara.bayley
+- add docstrings - ([03d58f7](https://github.com/yoctoyotta1024/microphysics_testcases/commit/03d58f7f2d9de27ef783826782853915d28ef10f)) - clara.bayley
+- add docstring - ([1370e2a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/1370e2afbc4849641988c27e584f37feda97e714)) - clara.bayley
+- update to reflect file movements - ([48b68e1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/48b68e125228e6513742912ac85847934ec4ba16)) - clara.bayley
+- add link to kid doc - ([d382769](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d382769c21bc476a86c67796c9373dd713977d09)) - clara.bayley
+- fix formatting - ([fecaf6d](https://github.com/yoctoyotta1024/microphysics_testcases/commit/fecaf6d60759231d2d0e392001969ebd72f5d9f2)) - clara.bayley
+#### Features
+- 0-D parcel test for bulk scheme - ([c535ae2](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c535ae2e7b7b3e1bf8497ae7d6aad7632a0072ce)) - clara.bayley
+- new tests for pympdata bulk scheme - ([6def8a1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/6def8a1ff36d38ab93c783c67c8c277db448f33b)) - clara.bayley
+- possible to output z,x and y half - ([8137f10](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8137f1051a594503d147e5833825450c8cca353b)) - clara.bayley
+- new file for kid dynamics - ([91b5ca6](https://github.com/yoctoyotta1024/microphysics_testcases/commit/91b5ca6053e734bc20b7de254413f6f053db55b2)) - clara.bayley
+- new python file and requirements for KiD test case - ([654b057](https://github.com/yoctoyotta1024/microphysics_testcases/commit/654b05739fda01dcf050e51525faaa28106535ac)) - clara.bayley
+- initial doc for new test case - ([9d5dc75](https://github.com/yoctoyotta1024/microphysics_testcases/commit/9d5dc7577f7f42454fc6e650f4111581f5271d7d)) - clara.bayley
+#### Miscellaneous Chores
+- format header - ([7db2dcc](https://github.com/yoctoyotta1024/microphysics_testcases/commit/7db2dcc88c843b76d21ebec503f4fabc6f3fc58a)) - clara.bayley
+#### Refactoring
+- file renaming - ([1410828](https://github.com/yoctoyotta1024/microphysics_testcases/commit/1410828776a3e6ca863a144776a98ae5b65e56ff)) - clara.bayley
+- file rename - ([f325e96](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f325e9626d191b1a4b7fa6ad23e1587615e68c32)) - clara.bayley
+- file rename - ([8b125e6](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8b125e63048f2324fe68ee09e65986def43b2a62)) - clara.bayley
+- file rename - ([fbcfea8](https://github.com/yoctoyotta1024/microphysics_testcases/commit/fbcfea857bddccdbae0cd995ecb0506c9acc0f4c)) - clara.bayley
+- file rename and more docs - ([d25becf](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d25becf06564e682841b8a65c858ab225f044361)) - clara.bayley
+- beautify plots - ([f523339](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f52333955d4c6b1938ed0d6c0ed6e569e6ff7d14)) - clara.bayley
+- modify plotting - ([29f9746](https://github.com/yoctoyotta1024/microphysics_testcases/commit/29f97465c01c01a73a37f3c7a5791078fd4a1e54)) - clara.bayley
+- tidy scripts - ([d5afc87](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d5afc87be0b4be28edf278f6c37a468d30b5ede5)) - clara.bayley
+- work in progress plotting kid - ([ff696d5](https://github.com/yoctoyotta1024/microphysics_testcases/commit/ff696d5ecb72922deb0a56df0904a1b0121dafdf)) - clara.bayley
+- improve plotting - ([6272fff](https://github.com/yoctoyotta1024/microphysics_testcases/commit/6272fffdd6b704a151f989cbf0e39140a2feee8d)) - clara.bayley
+- add get item to class - ([99718a8](https://github.com/yoctoyotta1024/microphysics_testcases/commit/99718a800a3fdd62279510fe1c27b1e81f11da6a)) - clara.bayley
+- move plotting function into utilities - ([1cdbe5a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/1cdbe5a19bbac41c0a6fb0f39ea035141025c021)) - clara.bayley
+- move useful function into seperate module - ([0a194d1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/0a194d18ea11349b1806bbe90b2f8639b7df96c6)) - clara.bayley
+- file rename - ([c941b25](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c941b25cfbaee73a6da2ffcff8eb08c4c568160d)) - clara.bayley
+- more descriptive names and docstrings - ([a820275](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a820275701f0e1b2fc63be1b13223523bf65ab42)) - clara.bayley
+- extrac from thermo before args for clarity - ([d8c4bc9](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d8c4bc97d19fcf97b1743c18463fe4e6099bc6c0)) - clara.bayley
+- seperate wrapper from microphysics scheme - ([cd25af8](https://github.com/yoctoyotta1024/microphysics_testcases/commit/cd25af872676999e71a8bdf8ab78d49ba20f3674)) - clara.bayley
+- move bulk scheme to seperate file - ([40acd08](https://github.com/yoctoyotta1024/microphysics_testcases/commit/40acd08ad38a8b91ed4e482b2253d14f72630590)) - clara.bayley
+- move python files - ([5b360d1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/5b360d1a46303a99e4aea43e748db4bf24f50572)) - clara.bayley
+- create bulk microphysics scheme - ([3314253](https://github.com/yoctoyotta1024/microphysics_testcases/commit/33142536ee6d3f5c09c8e56edf63f226c16c37f6)) - clara.bayley
+- create bulk microphysics scheme - ([5b613a0](https://github.com/yoctoyotta1024/microphysics_testcases/commit/5b613a0ea1440889531c8aec74964489fa00d7fa)) - clara.bayley
+- create bulk microphysics scheme - ([d63d629](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d63d629f9d6f8696e240be791a0fdc7334319f1e)) - clara.bayley
+- kid influences thermo for output - ([67844f7](https://github.com/yoctoyotta1024/microphysics_testcases/commit/67844f7eaa346befdaacec0c127cff229f36d66b)) - clara.bayley
+- better imports - ([9e77680](https://github.com/yoctoyotta1024/microphysics_testcases/commit/9e776807dfc2e241d1568ac0ad708b4cf4a78d06)) - clara.bayley
+- rename test - ([fc2ee43](https://github.com/yoctoyotta1024/microphysics_testcases/commit/fc2ee43cf2179f02d703692f2a99ca48b1a2728d)) - clara.bayley
+- turn kid into test for pytest - ([81045a9](https://github.com/yoctoyotta1024/microphysics_testcases/commit/81045a915026c063c429c6c4a29788c038fa01b7)) - clara.bayley
+- use kid dynamics in run_kid1d - ([005d85c](https://github.com/yoctoyotta1024/microphysics_testcases/commit/005d85cd3cd2b153bbebb5a61a648717128ce4fc)) - clara.bayley
+- move kid into run function - ([18ba831](https://github.com/yoctoyotta1024/microphysics_testcases/commit/18ba8318b466dfe72bc5b2f5dd664afb6db48d1a)) - clara.bayley
+- rename and change init args - ([4a93991](https://github.com/yoctoyotta1024/microphysics_testcases/commit/4a93991211dfe9a7daf54120703cc10e49528223)) - clara.bayley
+- move prof into kid dynamics class - ([8dabc2f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8dabc2fecbd7aa6fa93cbb447fac0ef2d736ac02)) - clara.bayley
+- move init of kid into class - ([2c39323](https://github.com/yoctoyotta1024/microphysics_testcases/commit/2c39323fb11f071eabfda51fdcbeb048a0605301)) - clara.bayley
+- remove adaptive dt - ([a0f20c8](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a0f20c8f6ea53b088113ab2dd803be372d4bee19)) - clara.bayley
+- new files for organising test case - ([f496a58](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f496a588ff4a7febd3b792ede06fd81234e4d47c)) - clara.bayley
+- add file descriptions - ([133e03f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/133e03f2ae16cc795c761f87bb1cdd35472b97cd)) - clara.bayley
+- file renamings - ([5a05ee8](https://github.com/yoctoyotta1024/microphysics_testcases/commit/5a05ee88dc101b0e44e80cd100000f0fa270d162)) - clara.bayley
+- KiD working with default bulk scheme - ([46ff18d](https://github.com/yoctoyotta1024/microphysics_testcases/commit/46ff18d9ea59a25a26214634c0ee9b61795e4c1e)) - clara.bayley
+- improve use of path - ([4b9bf73](https://github.com/yoctoyotta1024/microphysics_testcases/commit/4b9bf7336c02a1df5fce5b0461f92faba71a31ac)) - clara.bayley
+- add numba requirement - ([deaf09e](https://github.com/yoctoyotta1024/microphysics_testcases/commit/deaf09e00d7951cf8bbcf246d038ee2d9067dcfe)) - clara.bayley
+- working to add kid test case - ([c081c13](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c081c13fa82fe701984d572a1385d0bd00ba53ad)) - clara.bayley
+
+- - -
+
 ## [v0.4.2](https://github.com/yoctoyotta1024/microphysics_testcases/compare/34b17e37a911a0e9d4ed9ec2a1dbfe95ec2c73e2..v0.4.2) - 2024-09-04
 #### Bug Fixes
 - Security vulnerability - ([dcb9243](https://github.com/yoctoyotta1024/microphysics_testcases/commit/dcb92433c1386b52656b66dc5ac09aa5982c7870)) - clara.bayley
