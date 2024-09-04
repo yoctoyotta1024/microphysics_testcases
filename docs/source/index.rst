@@ -29,10 +29,11 @@ Contents
    usage/getstart
    usage/ourdocs
    usage/ourtests
+   tests/index
    thermo/index
+   utility_functions/index
    src_mock_py/index
    src_mock_cxx/index
-   tests/index
 
    GitHub Repo <https://github.com/yoctoyotta1024/microphysics_testcases.git>
    usage/contributing
