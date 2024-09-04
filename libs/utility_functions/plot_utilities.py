@@ -8,7 +8,7 @@ Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 2nd September 2024
+Last Modified: Wednesday 4th September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -16,13 +16,15 @@ https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
 Helpful functions for plotting
+
 """
 
 from ..thermo.output_thermodynamics import OutputThermodynamics
 
 
 def save_figure(fig, binpath, figname):
-    """Save a Matplotlib figure as a PNG file with high resolution and tight bounding box.
+    """
+    Save a Matplotlib figure as a PNG file with high resolution and tight bounding box.
 
     Args:
         fig (matplotlib.figure.Figure): The Matplotlib figure to be saved.
@@ -31,6 +33,7 @@ def save_figure(fig, binpath, figname):
 
     Returns:
         None
+
     """
     filename = binpath / figname
     fig.savefig(
@@ -44,7 +47,8 @@ def save_figure(fig, binpath, figname):
 
 
 def plot_thermodynamics_output_timeseries(ax, out: OutputThermodynamics, var: str):
-    """Plot a variable against time on an axis.
+    """
+    Plot a variable against time on an axis.
 
     Args:
         ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the variable.
@@ -54,6 +58,7 @@ def plot_thermodynamics_output_timeseries(ax, out: OutputThermodynamics, var: st
 
     Returns:
         None
+
     """
     ax.plot(out.time.values, out[var].values)
     ax.set_ylabel(out[var].name + " /" + out[var].units)

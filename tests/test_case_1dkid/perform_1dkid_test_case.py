@@ -15,6 +15,8 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
+interface called by a test to run the 1-D KiD and then plot the results.
+
 """
 
 from pathlib import Path
@@ -29,7 +31,8 @@ from libs.thermo import formulae
 def perform_1dkid_test_case(
     z_delta, z_max, time_end, timestep, thermo_init, microphys_scheme, binpath, run_name
 ):
-    """Run test case for a 1-D KiD rainshaft model.
+    """
+    Run test case for a 1-D KiD rainshaft model.
 
     This function runs a 1-D KiD rainshaft model with a specified microphysics scheme and
     KiD dynamics given the initial thermodynamics. The data is then saved/plotted in the
@@ -50,6 +53,7 @@ def perform_1dkid_test_case(
 
     Returns:
         None
+
     """
 
     print("\n--- Running 1-D KiD Rainshaft Model ---")
@@ -81,6 +85,7 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
 
     Returns:
         None
+
     """
     assert Path(binpath).exists()
     assert run_name
@@ -211,6 +216,7 @@ def plot_kid_result(
     See Also:
     https://github.com/open-atmos/PyMPDATA/blob/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012/plot.py
     for the original source code.
+
     """
     lines = {3: ":", 6: "--", 9: "-", 12: "-."}
     colors = {3: "crimson", 6: "orange", 9: "navy", 12: "green"}
