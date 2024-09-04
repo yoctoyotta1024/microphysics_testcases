@@ -8,7 +8,7 @@ Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 2nd September 2024
+Last Modified: Wednesday 4th September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -167,7 +167,8 @@ def plot_kid_result(
 ):
     """function extracted from pyMPDATA plot.py script in
     Shipway and Hill 2012 example for 1-D KiD rainshaft.
-    (see https://github.com/open-atmos/PyMPDATA/blob/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012/plot.py)
+    See https://github.com/open-atmos/PyMPDATA/blob/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012/plot.py
+    for the original source code.
     """
     lines = {3: ":", 6: "--", 9: "-", 12: "-."}
     colors = {3: "crimson", 6: "orange", 9: "navy", 12: "green"}

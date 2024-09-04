@@ -3,12 +3,12 @@ Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
 File: bulk_scheme_condensation.py
-Project: kid_bulk_microphysics
+Project: pympdata_microphysics
 Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 2nd September 2024
+Last Modified: Wednesday 4th September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -28,8 +28,11 @@ def bulk_scheme_condensation(temp, press, qvap, qcond):
     """
     Enacts saturation adjustment on qvap and qcond for a very simple bulk
     scheme to ensure relative humidity <= 100%. Extracted from pyMPDATA
-    KiD Bulk Microphysics Scheme (nr=1) for Condensation
-    from Shipway and Hill 2012 example for a 1-D KiD rainshaft model.
+    Bulk (nr=1) Microphysics Scheme for condensation in
+    Shipway and Hill 2012 example for a 1-D KiD rainshaft model.
+
+    See https://github.com/open-atmos/PyMPDATA/tree/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012)
+    for the original source code.
 
     Parameters:
     temp (float): Temperature in Kelvin.

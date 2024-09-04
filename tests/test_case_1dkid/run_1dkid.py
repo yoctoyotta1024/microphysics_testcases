@@ -8,7 +8,7 @@ Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 2nd September 2024
+Last Modified: Wednesday 4th September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -25,9 +25,9 @@ from libs.thermo.output_thermodynamics import OutputThermodynamics
 def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     """Run 1-D KiD rainshaft model with a specified microphysics scheme and KiD dynamics.
 
-    This function runs a 1-D KiD rainshaft model with the given initial thermodynamic conditions,
-    and microphysics scheme from time to time_end with a constant timestep based on the
-    PyMPDATA Shipway and Hill 2012 example for the KiD dynamics.
+    This function runs a 1-D KiD rainshaft model with the given initial
+    thermodynamic conditions, and microphysics scheme from time to time_end with
+    a constant timestep based on the Shipway and Hill (2012) setup.
 
     Parameters:
         z_delta (float):
