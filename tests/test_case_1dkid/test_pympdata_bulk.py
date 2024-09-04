@@ -28,8 +28,6 @@ from libs.pympdata_microphysics.bulk_scheme_condensation import (
     MicrophysicsSchemeWrapper,
 )
 
-# TODO(CB): add documentation
-
 
 def test_pympdata_bulk_scheme_1dkid():
     """runs test of 1-D KiD rainshaft model using bulk scheme for condensation

@@ -33,25 +33,17 @@ def perform_1dkid_test_case(
 
     This function runs a 1-D KiD rainshaft model with a specified microphysics scheme and
     KiD dynamics given the initial thermodynamics. The data is then saved/plotted in the
-    binpath directory using the run_name as a label.'''
+    binpath directory using the run_name as a label.
 
     Args:
-        z_delta (float):
-          Grid spacing od 1-D column (m).
-        z_max (float):
-          Upper limit of 1-D column (m).
-        time_end (float):
-          End time for the simulation (s).
-        timestep (float):
-          Timestep for the simulation (s).
-        thermo_init (Thermodynamics):
-          Initial thermodynamic conditions.
-        microphys_scheme:
-          Microphysics scheme to use in test run.
-        binpath (str):
-          Path to the directory where data/plots will be saved.
-        run_name (str):
-          Name of the test run (used for labeling output).
+        z_delta (float): Grid spacing of 1-D column (m).
+        z_max (float): Upper limit of 1-D column (max half-cell) (m).
+        time_end (float): End time for the simulation (s).
+        timestep (float): Timestep for the simulation (s).
+        thermo_init (Thermodynamics): Initial thermodynamics.
+        microphys_scheme: Microphysics scheme to use in test run.
+        binpath (str): Path to the directory where data/plots will be saved.
+        run_name (str): Name of the test run (used for labeling output).
 
     Raises:
         AssertionError: If the specified binpath does not exist or if run_name is empty.
@@ -72,6 +64,24 @@ def perform_1dkid_test_case(
 
 
 def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
+    """
+    Plots the 1D Kinematic Driver (KID) results and saves the plots.
+
+    Parameters:
+        out: OutputThermodynamics
+            The dataset containing the output variables to plot (qvap, qcond, temp, press).
+        z_delta: float
+            The vertical resolution of the model.
+        z_max: float
+            The maximum height of the model domain.
+        binpath: str
+            The path where the plot images will be saved.
+        run_name: str
+            The name of the run, used for labeling the plots and the output file name.
+
+    Returns:
+        None
+    """
     assert Path(binpath).exists()
     assert run_name
     print("plotting " + run_name + " and saving plots in: " + str(binpath))
@@ -165,9 +175,41 @@ def plot_kid_result(
     cmap="copper",
     rasterized=False,
 ):
-    """function extracted from pyMPDATA plot.py script in
-    Shipway and Hill 2012 example for 1-D KiD rainshaft.
-    See https://github.com/open-atmos/PyMPDATA/blob/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012/plot.py
+    """
+    Function extracted from pyMPDATA-examples Shipway and Hill 2012 plot.py script for a1-D KiD rainshaft.
+
+    Parameters:
+    fig : matplotlib.figure.Figure
+        The figure object to plot on.
+    ax0 : matplotlib.axes.Axes
+        The first axes object for pcolormesh plot.
+    cax0 : matplotlib.axes.Axes
+        The axes object for the colorbar of ax0.
+    ax1 : matplotlib.axes.Axes
+        The second axes object for cross-section plot.
+    var : numpy.ndarray
+        The variable to be plotted, dimensions [time, height]
+    time : float
+        The time data to plot (will be coarsened by 'fctr', see code)
+    z_delta : float
+        The vertical resolution of the data.
+    z_max : float
+        The maximum vertical extent of the data (max half-cell).
+    label : str
+        The label for variable on the plot, e.g. for colourbar.
+    mult : float, optional
+        A multiplicative factor to apply to 'var' data values (default is 1.0).
+    threshold : float, optional
+        A threshold value for the data to plot (default is None).
+    rng : [float, float], optional
+        The range of data to plot (default is None).
+    cmap : str, optional
+        The colormap to be used for plotting (default is "copper").
+    rasterized : bool, optional
+        Whether to rasterize the plot (default is False).
+
+    See Also:
+    https://github.com/open-atmos/PyMPDATA/blob/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012/plot.py
     for the original source code.
     """
     lines = {3: ":", 6: "--", 9: "-", 12: "-."}

@@ -26,15 +26,22 @@ from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
 class KiDDynamics:
     """A class for driving the KiD rainshaft test case, based on Shipway and Hill 2012.
 
-    Class is wrapper around MPDATA driver of Shipway and Hill 2012 example in the
-    PyMPDATA-examples library.
+    This class is a wrapper around the MPDATA driver of the Shipway and Hill 2012 example
+    in the PyMPDATA-examples library.
 
     See https://github.com/open-atmos/PyMPDATA/tree/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012
     for the original source code.
     """
 
     def __init__(self, z_delta, z_max, timestep, t_end):
-        """Initialize the KiDDynamics object."""
+        """Initialize the KiDDynamics object.
+
+        Args:
+            z_delta (float): Vertical grid spacing [m].
+            z_max (float): Maximum height of the domain (top of half-cell) [m].
+            timestep (float): Size of time steps of simulation [s].
+            t_end (float): End time of the simulation [s].
+        """
         N_CCN_HALO = 500 / kid.si.mg
         R_MIN = 1 * kid.si.um
         R_MAX = 20.2 * kid.si.um
@@ -83,6 +90,14 @@ class KiDDynamics:
         print(f"Simulating {self.settings.nt} timesteps using {self.key}")
 
     def set_thermo(self, thermo):
+        """Set thermodynamics from the dynamics solver.
+
+        Args:
+            thermo (Thermodynamics): Object representing the thermodynamic state.
+
+        Returns:
+            Thermodynamics: Updated thermodynamic state.
+        """
         thermo.temp = self.temp_prof
         thermo.rho = self.rhod_prof
         thermo.press = self.press_prof
@@ -96,19 +111,18 @@ class KiDDynamics:
         Run the 1-D KiD motion computations.
 
         This method integrates the equations from time to time+timestep
-        for a 1-D KiD rainshaft.
+        for the dynamics of a 1-D KiD rainshaft.
 
         Args:
-            time (float):
-              Current time [s].
-            timestep (float):
-              Time step size for the simulation [s].
-            thermo (Thermodynamics):
-              Object representing the thermodynamic state of the air.
+            time (float): Current time [s].
+            timestep (float): Size of timestep for the simulation [s].
+            thermo (Thermodynamics): Object representing the thermodynamic state.
 
         Returns:
-            Thermodynamics: Updated thermodynamic state of the air.
+            Thermodynamics: Updated thermodynamic state.
         """
+        assert timestep == self.dt, "Timestep must match initialised value."
+
         t = int(time / timestep)
         assert time % timestep == 0, "Time not a multiple of the timestep."
 
