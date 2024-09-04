@@ -8,7 +8,7 @@ Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 2nd September 2024
+Last Modified: Wednesday 4th September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -24,23 +24,23 @@ from PyMPDATA_examples.Shipway_and_Hill_2012 import si
 
 from .perform_1dkid_test_case import perform_1dkid_test_case
 from libs.thermo.thermodynamics import Thermodynamics
-from libs.kid_bulk_microphysics.bulk_scheme_condensation import (
+from libs.pympdata_microphysics.bulk_scheme_condensation import (
     MicrophysicsSchemeWrapper,
 )
 
 # TODO(CB): add documentation
 
 
-def test_mock_py_0dparcel():
-    """runs test of 1-D KiD rainshaft model using bulk scheme extracted from pyMPDATA for
-    microphysics scheme.
+def test_pympdata_bulk_scheme_1dkid():
+    """runs test of 1-D KiD rainshaft model using bulk scheme for condensation
+    extracted from pyMPDATA for the microphysics scheme.
 
     This function sets up initial conditions and parameters for running a 1-D KiD rainshaft
     test case using the bulk microphysics scheme for condensation from the Shipway and Hill 2012
     pyMPDATA-examples example (via a wrapper). It then runs the test case as specified.
     """
     ### label for test case to name data/plots with
-    run_name = "bulkkid_microphys_1dkid"
+    run_name = "pympdata_bulkmicrophys_1dkid"
 
     ### path to directory to save data/plots in after model run
     binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/

@@ -8,7 +8,7 @@ Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 2nd September 2024
+Last Modified: Wednesday 4th September 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -26,7 +26,11 @@ from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
 class KiDDynamics:
     """A class for driving the KiD rainshaft test case, based on Shipway and Hill 2012.
 
-    Class is wrapper around MPDATA driver of Shipway and Hill 2012 example in pyMPDATA.
+    Class is wrapper around MPDATA driver of Shipway and Hill 2012 example in the
+    PyMPDATA-examples library.
+
+    See https://github.com/open-atmos/PyMPDATA/tree/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012
+    for the original source code.
     """
 
     def __init__(self, z_delta, z_max, timestep, t_end):
@@ -91,7 +95,8 @@ class KiDDynamics:
         """
         Run the 1-D KiD motion computations.
 
-        This method integrates the equations from time to time+timestep for a 1-D KiD rainshaft.
+        This method integrates the equations from time to time+timestep
+        for a 1-D KiD rainshaft.
 
         Args:
             time (float):
