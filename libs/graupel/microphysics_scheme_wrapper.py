@@ -6,7 +6,7 @@ File: microphysics_scheme_wrapper.py
 Project: src_mock_py
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
-Additional Contributors:
+Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
 Last Modified: Sunday 1st September 2024
 Modified By: CB
@@ -19,9 +19,14 @@ wrapper function for an instance of MicrophysicsScheme so it can be used by gene
 and run scripts
 """
 
+import os
+import sys
 import numpy as np
+from copy import deepcopy
+
 from ..thermo.thermodynamics import Thermodynamics
 
+sys.path.append(os.environ["PY_GRAUPEL_DIR"])
 import py_graupel
 
 class MicrophysicsSchemeWrapper:
@@ -126,18 +131,35 @@ class MicrophysicsSchemeWrapper:
 
         """
 
+        cp_thermo = deepcopy(thermo)
         dt = timestep
-        t = thermo.temp
-        rho = thermo.rho
-        p = thermo.press
-        qv, qc, qi, qr, qs, qg = thermo.massmix_ratios
+        t = cp_thermo.temp
+        rho = cp_thermo.rho
+        p = cp_thermo.press
+        qv, qc, qi, qr, qs, qg = cp_thermo.massmix_ratios
     
         prr_gsp = np.zeros(self.nvec, np.float64)
         pri_gsp = np.zeros(self.nvec, np.float64)
         prs_gsp = np.zeros(self.nvec, np.float64)
         prg_gsp = np.zeros(self.nvec, np.float64)
         pflx = np.zeros((self.ke, self.nvec), np.float64)
-       
+
+        # temporary variable
+        total_ice = qg + qs + qi
+        
+        # call saturation adjustment
+        py_graupel.saturation_adjustment(
+          ncells=self.nvec,
+          nlev=self.ke,
+          ta=t,
+          qv=qv,
+          qc=qc,
+          qr=qr,
+          total_ice=total_ice,
+          rho=rho,
+        )
+      
+       # call graupel
         self.microphys.run(
             ncells=self.nvec,
             nlev=self.ke,
@@ -160,7 +182,20 @@ class MicrophysicsSchemeWrapper:
             pflx=pflx
         )
 
-        thermo.temp = t
-        thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
+        
+        # call saturation adjustment
+        py_graupel.saturation_adjustment(
+          ncells=self.nvec,
+          nlev=self.ke,
+          ta=t,
+          qv=qv,
+          qc=qc,
+          qr=qr,
+          total_ice=total_ice,
+          rho=rho,
+        )
 
-        return thermo
+        cp_thermo.temp = t
+        cp_thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
+
+        return cp_thermo

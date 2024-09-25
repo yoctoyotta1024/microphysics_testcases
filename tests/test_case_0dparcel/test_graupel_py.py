@@ -21,12 +21,7 @@ perform test case for 0-D parcel model with mock python microphysics scheme
 import numpy as np
 from pathlib import Path
 
-import os
-import sys
-
-sys.path.append(os.environ["PY_GRAUPEL_DIR"])
 from libs.graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
-
 from .perform_0dparcel_test_case import perform_0dparcel_test_case
 from libs.thermo.thermodynamics import Thermodynamics
 

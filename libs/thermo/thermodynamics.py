@@ -20,7 +20,6 @@ File Description:
 import numpy as np
 from copy import deepcopy
 
-
 class Thermodynamics:
     """
     Class stores the thermodynamic variables required to run microphysics schemes in this project.
