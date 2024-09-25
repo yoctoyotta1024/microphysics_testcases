@@ -18,7 +18,7 @@ File Description:
 """
 
 import numpy as np
-
+from copy import deepcopy
 
 class Thermodynamics:
     """
@@ -93,7 +93,7 @@ class Thermodynamics:
             qgrau (np.array): Specific graupel content (kg/kg)
 
         """
-        self.temp = temp
-        self.rho = rho
-        self.press = press
-        self.massmix_ratios = [qvap, qcond, qice, qrain, qsnow, qgrau]
+        self.temp = deepcopy(temp)
+        self.rho = deepcopy(rho)
+        self.press = deepcopy(press)
+        self.massmix_ratios = deepcopy([qvap, qcond, qice, qrain, qsnow, qgrau])
