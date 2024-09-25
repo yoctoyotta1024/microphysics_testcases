@@ -19,20 +19,23 @@ mock unit tests for Python microphysics module
 """
 
 import numpy as np
+import os
+import sys
 
-from libs.src_mock_py.mock_microphysics_scheme import MicrophysicsScheme
-from libs.src_mock_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+sys.path.append(os.environ["PY_GRAUPEL_DIR"])
+from libs.graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper, py_graupel
+
 from libs.thermo.thermodynamics import Thermodynamics
 
-
 def test_initialize():
-    microphys = MicrophysicsScheme()
+
+    microphys = py_graupel.Graupel() 
 
     assert microphys.initialize() is None
 
 
 def test_finalize():
-    microphys = MicrophysicsScheme()
+    microphys = py_graupel.Graupel() 
 
     assert microphys.finalize() is None
 
@@ -60,8 +63,7 @@ def test_finalize_wrapper():
 
 
 def test_microphys_with_wrapper():
-    microphys = MicrophysicsScheme()
-
+    microphys = py_graupel.Graupel() 
     nvec = 1
     ke = 1
     ivstart = 0
@@ -82,22 +84,32 @@ def test_microphys_with_wrapper():
 
     thermo = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
 
-    t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx = microphys.run(
-        nvec,
-        ke,
-        ivstart,
-        timestep,
-        dz,
-        temp,
-        rho,
-        press,
-        qvap,
-        qcond,
-        qice,
-        qrain,
-        qsnow,
-        qgrau,
-        qnc,
+    prr_gsp = np.zeros(nvec, np.float64)
+    pri_gsp = np.zeros(nvec, np.float64)
+    prs_gsp = np.zeros(nvec, np.float64)
+    prg_gsp = np.zeros(nvec, np.float64)
+    pflx = np.zeros((ke, nvec), np.float64)
+
+    microphys.run(
+        ncells=nvec,
+        nlev=ke,
+        dt=timestep,
+        dz=dz,
+        t=temp,
+        rho=rho,
+        p=press,
+        qv=qvap,
+        qc=qcond,
+        qi=qice,
+        qr=qrain,
+        qs=qsnow,
+        qg=qgrau,
+        qnc=qnc,
+        prr_gsp=prr_gsp,
+        pri_gsp=pri_gsp,
+        prs_gsp=prs_gsp,
+        prg_gsp=prg_gsp,
+        pflx=pflx
     )
 
     result = microphys_wrapped.run(timestep, thermo)
