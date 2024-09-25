@@ -19,12 +19,9 @@ mock unit tests for Python microphysics module
 """
 
 import numpy as np
-import os
-import sys
+from copy import deepcopy
 
-sys.path.append(os.environ["PY_GRAUPEL_DIR"])
 from libs.graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper, py_graupel
-
 from libs.thermo.thermodynamics import Thermodynamics
 
 def test_initialize():
@@ -90,6 +87,21 @@ def test_microphys_with_wrapper():
     prg_gsp = np.zeros(nvec, np.float64)
     pflx = np.zeros((ke, nvec), np.float64)
 
+    # temporary variable
+    total_ice = qgrau + qsnow + qice
+      
+    # call saturation adjustment
+    py_graupel.saturation_adjustment(
+        ncells=nvec,
+        nlev=ke,
+        ta=temp,
+        qv=qvap,
+        qc=qcond,
+        qr=qrain,
+        total_ice=total_ice,
+        rho=rho,
+    )
+       
     microphys.run(
         ncells=nvec,
         nlev=ke,
@@ -111,8 +123,20 @@ def test_microphys_with_wrapper():
         prg_gsp=prg_gsp,
         pflx=pflx
     )
-
+ 
+    # call saturation adjustment
+    py_graupel.saturation_adjustment(
+        ncells=nvec,
+        nlev=ke,
+        ta=temp,
+        qv=qvap,
+        qc=qcond,
+        qr=qrain,
+        total_ice=total_ice,
+        rho=rho,
+    )
+       
     result = microphys_wrapped.run(timestep, thermo)
 
-    assert result.temp == t
-    assert result.massmix_ratios == [qv, qc, qi, qr, qs, qg]
+    assert result.temp == temp  
+    assert result.massmix_ratios == [qvap, qcond, qice, qrain, qsnow, qgrau]
