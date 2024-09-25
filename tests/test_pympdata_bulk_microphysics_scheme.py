@@ -72,6 +72,6 @@ def test_microphys_with_wrapper():
 
     qv, qc = bulk_scheme_condensation(temp, press, qvap, qcond)
 
-    thermo = microphys_wrapped.run(timestep, thermo)
+    result = microphys_wrapped.run(timestep, thermo)
 
-    assert thermo.massmix_ratios == [qv, qc, qice, qrain, qsnow, qgrau]
+    assert result.massmix_ratios == [qv, qc, qice, qrain, qsnow, qgrau]
