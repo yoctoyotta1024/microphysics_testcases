@@ -101,7 +101,7 @@ def test_microphys_with_wrapper():
         total_ice=total_ice,
         rho=rho,
     )
-       
+
     microphys.run(
         ncells=nvec,
         nlev=ke,

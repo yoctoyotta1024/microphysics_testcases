@@ -19,6 +19,7 @@ perform test case for 0-D parcel model with mock python microphysics scheme
 """
 
 from pathlib import Path
+import numpy as np
 
 from .perform_0dparcel_test_case import perform_0dparcel_test_case
 from libs.thermo.thermodynamics import Thermodynamics
@@ -70,15 +71,15 @@ def test_mock_py_0dparcel():
     timestep = 1.0  # [s]
 
     ### initial thermodynamic conditions
-    temp = 288.15
-    rho = 1.225
-    press = 101325
-    qvap = 0.01
-    qcond = 0.02
-    qice = 0.03
-    qrain = 0.04
-    qsnow = 0.05
-    qgrau = 0.06
+    temp = np.array([288.15], dtype=np.float64)
+    rho = np.array([1.225], dtype=np.float64)
+    press = np.array([101325], dtype=np.float64)
+    qvap = np.array([0.01], dtype=np.float64)
+    qcond = np.array([0.02], dtype=np.float64)
+    qice = np.array([0.03], dtype=np.float64)
+    qrain = np.array([0.04], dtype=np.float64)
+    qsnow = np.array([0.05], dtype=np.float64)
+    qgrau = np.array([0.06], dtype=np.float64)
     thermo_init = Thermodynamics(
         temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau
     )

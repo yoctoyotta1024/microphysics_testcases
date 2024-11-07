@@ -146,7 +146,7 @@ class MicrophysicsSchemeWrapper:
 
         # temporary variable
         total_ice = qg + qs + qi
-        
+
         # call saturation adjustment
         py_graupel.saturation_adjustment(
           ncells=self.nvec,
@@ -159,7 +159,7 @@ class MicrophysicsSchemeWrapper:
           rho=rho,
         )
       
-       # call graupel
+        # call graupel
         self.microphys.run(
             ncells=self.nvec,
             nlev=self.ke,
@@ -182,7 +182,6 @@ class MicrophysicsSchemeWrapper:
             pflx=pflx
         )
 
-        
         # call saturation adjustment
         py_graupel.saturation_adjustment(
           ncells=self.nvec,
@@ -194,7 +193,7 @@ class MicrophysicsSchemeWrapper:
           total_ice=total_ice,
           rho=rho,
         )
-
+  
         cp_thermo.temp = t
         cp_thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
 
