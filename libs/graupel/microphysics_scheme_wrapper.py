@@ -142,6 +142,7 @@ class MicrophysicsSchemeWrapper:
         pri_gsp = np.zeros(self.nvec, np.float64)
         prs_gsp = np.zeros(self.nvec, np.float64)
         prg_gsp = np.zeros(self.nvec, np.float64)
+        pre_gsp = np.zeros(self.nvec, np.float64)
         pflx = np.zeros((self.ke, self.nvec), np.float64)
 
         # temporary variable
@@ -179,7 +180,8 @@ class MicrophysicsSchemeWrapper:
             pri_gsp=pri_gsp,
             prs_gsp=prs_gsp,
             prg_gsp=prg_gsp,
-            pflx=pflx
+            pflx=pflx,
+            pre_gsp=pre_gsp,
         )
 
         # call saturation adjustment
