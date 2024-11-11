@@ -54,7 +54,7 @@ def test_pympdata_bulk_scheme_0dparcel():
     """
 
     ### label for test case to name data/plots with
-    run_name = "python_microphys_0dparcel"
+    run_name = "pympdata_bulkmicrophys_0dparcel"
 
     ### path to directory to save data/plots in after model run
     binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/
