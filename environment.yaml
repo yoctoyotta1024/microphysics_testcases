@@ -1,6 +1,6 @@
 name: microtestsenv
 dependencies:
-    - python>=3.9
+    - python>=3.9,<3.13
     - pytest
     - sphinx
     - conda-forge::doxygen>=1.10.0
