@@ -23,6 +23,8 @@ import numpy as np
 from ..thermo.thermodynamics import Thermodynamics
 from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
 
+from copy import deepcopy
+
 
 def bulk_scheme_condensation(temp, press, qvap, qcond):
     """
@@ -94,14 +96,15 @@ class MicrophysicsSchemeWrapper:
             Thermodynamics: Updated thermodynamic properties after microphysics computations.
         """
 
-        temp = thermo.temp
-        press = thermo.press
-        qvap = thermo.massmix_ratios[0]
-        qcond = thermo.massmix_ratios[1]
+        cp_thermo = deepcopy(thermo)
+        temp = cp_thermo.temp
+        press = cp_thermo.press
+        qvap = cp_thermo.massmix_ratios[0]
+        qcond = cp_thermo.massmix_ratios[1]
 
         qvap, qcond = bulk_scheme_condensation(temp, press, qvap, qcond)
 
-        thermo.massmix_ratios[0] = qvap
-        thermo.massmix_ratios[1] = qcond
+        cp_thermo.massmix_ratios[0] = qvap
+        cp_thermo.massmix_ratios[1] = qcond
 
-        return thermo
+        return cp_thermo

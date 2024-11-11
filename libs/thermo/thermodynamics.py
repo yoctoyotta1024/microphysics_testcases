@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 2nd September 2024
+Last Modified: Monday 11th November 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -18,6 +18,7 @@ File Description:
 """
 
 import numpy as np
+from copy import deepcopy
 
 
 class Thermodynamics:
@@ -93,7 +94,7 @@ class Thermodynamics:
             qgrau (np.array): Specific graupel content (kg/kg)
 
         """
-        self.temp = temp
-        self.rho = rho
-        self.press = press
-        self.massmix_ratios = [qvap, qcond, qice, qrain, qsnow, qgrau]
+        self.temp = deepcopy(temp)
+        self.rho = deepcopy(rho)
+        self.press = deepcopy(press)
+        self.massmix_ratios = deepcopy([qvap, qcond, qice, qrain, qsnow, qgrau])

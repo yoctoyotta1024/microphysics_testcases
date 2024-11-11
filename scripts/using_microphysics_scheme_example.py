@@ -8,7 +8,7 @@ Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 2nd September 2024
+Last Modified: Monday 11th November 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -81,7 +81,7 @@ def main():
     nvec = 1
     ke = 1
     ivstart = 0
-    dz = 10
+    dz = np.array([10])
     qnc = 500
     microphys = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 

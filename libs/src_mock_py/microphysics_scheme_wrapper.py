@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Sunday 1st September 2024
+Last Modified: Monday 11th November 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -21,6 +21,8 @@ and run scripts
 
 from ..thermo.thermodynamics import Thermodynamics
 from .mock_microphysics_scheme import MicrophysicsScheme
+
+from copy import deepcopy
 
 
 class MicrophysicsSchemeWrapper:
@@ -37,7 +39,7 @@ class MicrophysicsSchemeWrapper:
           Number of grid points in vertical direction.
         ivstart (int):
           Start index for horizontal direction.
-        dz (float):
+        dz (np.ndarray):
           Layer thickness of full levels (m).
         qnc (float):
           Cloud number concentration.
@@ -49,7 +51,7 @@ class MicrophysicsSchemeWrapper:
           Number of grid points in vertical direction.
         ivstart (int):
           Start index for horizontal direction.
-        dz (float):
+        dz (np.ndarray):
           Layer thickness of full levels (m).
         qnc (float):
           Cloud number concentration.
@@ -68,7 +70,7 @@ class MicrophysicsSchemeWrapper:
             Number of grid points in vertical direction.
           ivstart (int):
             Start index for horizontal direction.
-          dz (float):
+          dz (np.ndarray):
             Layer thickness of full levels (m).
           qnc (float):
             Cloud number concentration.
@@ -125,11 +127,12 @@ class MicrophysicsSchemeWrapper:
 
         """
 
+        cp_thermo = deepcopy(thermo)
         dt = timestep
-        t = thermo.temp
-        rho = thermo.rho
-        p = thermo.press
-        qv, qc, qi, qr, qs, qg = thermo.massmix_ratios
+        t = cp_thermo.temp
+        rho = cp_thermo.rho
+        p = cp_thermo.press
+        qv, qc, qi, qr, qs, qg = cp_thermo.massmix_ratios
 
         t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx = self.microphys.run(
             self.nvec,
@@ -149,7 +152,7 @@ class MicrophysicsSchemeWrapper:
             self.qnc,
         )
 
-        thermo.temp = t
-        thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
+        cp_thermo.temp = t
+        cp_thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
 
-        return thermo
+        return cp_thermo
