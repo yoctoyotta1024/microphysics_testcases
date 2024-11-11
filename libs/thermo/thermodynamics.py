@@ -29,42 +29,42 @@ class Thermodynamics:
     content (mass mixing ratio) of vapour and condensates.
 
     Parameters:
-      temp (np.array):
+      temp (np.ndarray):
         Temperature (K).
-      rho (np.array):
+      rho (np.ndarray):
         Density of moist air (kg/m3).
-      press (np.array):
+      press (np.ndarray):
         Pressure (Pa).
-      qvap (np.array):
+      qvap (np.ndarray):
         Specific water vapor content (kg/kg).
-      qcond (np.array):
+      qcond (np.ndarray):
         Specific cloud water content (kg/kg).
-      qice (np.array):
+      qice (np.ndarray):
         Specific cloud ice content (kg/kg).
-      qrain (np.array):
+      qrain (np.ndarray):
         Specific rain content (kg/kg).
-      qsnow (np.array):
+      qsnow (np.ndarray):
         Specific snow content kg/kg).
-      qgrau (np.array):
+      qgrau (np.ndarray):
         Specific graupel content (kg/kg).
 
     Attributes:
-      temp (np.array):
+      temp (np.ndarray):
         Temperature (K).
-      rho (np.array):
+      rho (np.ndarray):
         Density of moist air (kg/m3).
-      press (np.array):
+      press (np.ndarray):
         Pressure (Pa).
       massmix_ratios (tuple):
         Specific content of vapour and condensates (see below).
 
       massmax_ratios consists of the following:
-              massmix_ratios[0] = qvap (np.array): Specific water vapor content (kg/kg)\n
-              massmix_ratios[1] = qcond (np.array): Specific cloud water content (kg/kg)\n
-              massmix_ratios[2] = qice (np.array): Specific cloud ice content (kg/kg)\n
-              massmix_ratios[3] = qrain (np.array): Specific rain content (kg/kg)\n
-              massmix_ratios[4] = qsnow (np.array): Specific snow content kg/kg)\n
-              massmix_ratios[5] = qgrau (np.array): Specific graupel content (kg/kg).
+              massmix_ratios[0] = qvap (np.ndarray): Specific water vapor content (kg/kg)\n
+              massmix_ratios[1] = qcond (np.ndarray): Specific cloud water content (kg/kg)\n
+              massmix_ratios[2] = qice (np.ndarray): Specific cloud ice content (kg/kg)\n
+              massmix_ratios[3] = qrain (np.ndarray): Specific rain content (kg/kg)\n
+              massmix_ratios[4] = qsnow (np.ndarray): Specific snow content kg/kg)\n
+              massmix_ratios[5] = qgrau (np.ndarray): Specific graupel content (kg/kg).
 
     """
 
@@ -83,15 +83,15 @@ class Thermodynamics:
         """Initialize a thermodynamics object with the given variables
 
         Parameters:
-            press (np.array): Pressure (Pa).
-            temp (np.array): Temperature (K).
-            rho (np.array): Density of moist air (kg/m3)
-            qvap (np.array): Specific water vapor content (kg/kg)
-            qcond (np.array): Specific cloud water content (kg/kg)
-            qice (np.array): Specific cloud ice content (kg/kg)
-            qrain (np.array): Specific rain content (kg/kg)
-            qsnow (np.array): Specific snow content kg/kg)
-            qgrau (np.array): Specific graupel content (kg/kg)
+            press (np.ndarray): Pressure (Pa).
+            temp (np.ndarray): Temperature (K).
+            rho (np.ndarray): Density of moist air (kg/m3)
+            qvap (np.ndarray): Specific water vapor content (kg/kg)
+            qcond (np.ndarray): Specific cloud water content (kg/kg)
+            qice (np.ndarray): Specific cloud ice content (kg/kg)
+            qrain (np.ndarray): Specific rain content (kg/kg)
+            qsnow (np.ndarray): Specific snow content kg/kg)
+            qgrau (np.ndarray): Specific graupel content (kg/kg)
 
         """
         self.temp = deepcopy(temp)

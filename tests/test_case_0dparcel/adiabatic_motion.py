@@ -189,17 +189,29 @@ class AdiabaticMotion:
         Returns:
             Thermodynamics: Updated thermodynamic state of the air.
         """
+        assert (
+            thermo.temp.size == 1
+        ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
+        assert (
+            thermo.rho.size == 1
+        ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
+        assert (
+            thermo.press.size == 1
+        ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
+        assert (
+            thermo.massmix_ratios[0].size == 1
+        ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
 
         t0, t1 = time, time + timestep
-        qvap = thermo.massmix_ratios[0]
+        qvap = thermo.massmix_ratios[0][0]
 
-        y0 = [thermo.temp, thermo.rho, thermo.press]
+        y0 = [thermo.temp[0], thermo.rho[0], thermo.press[0]]
         temp, rho, press = integrate.odeint(
             self.adiabatic_odes, y0, [t0, t1], args=(qvap,)
         )[1]
 
-        thermo.temp = temp
-        thermo.rho = rho
-        thermo.press = press
+        thermo.temp = np.array([temp], dtype=np.float64)
+        thermo.rho = np.array([rho], dtype=np.float64)
+        thermo.press = np.array([press], dtype=np.float64)
 
         return thermo

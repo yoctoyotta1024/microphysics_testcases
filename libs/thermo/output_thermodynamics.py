@@ -31,7 +31,7 @@ class OutputVariable:
           Name of variable.
         units (string):
           Units of variable.
-        values (any):
+        values (np.ndarray):
           Values of variable; must be able to be appended to.
     """
 

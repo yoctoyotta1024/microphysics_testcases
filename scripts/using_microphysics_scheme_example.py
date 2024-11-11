@@ -67,21 +67,21 @@ def main():
     time_end = 10.0
     timestep = 1.0
 
-    temp = np.array([288.15])
-    rho = np.array([1.225])
-    press = np.array([101325])
-    qvap = np.array([0.015])
-    qcond = np.array([0.0])
-    qice = np.array([0.0])
-    qrain = np.array([0.0])
-    qsnow = np.array([0.0])
-    qgrau = np.array([0.0])
+    temp = np.array([288.15], dtype=np.float64)
+    rho = np.array([1.225], dtype=np.float64)
+    press = np.array([101325], dtype=np.float64)
+    qvap = np.array([0.015], dtype=np.float64)
+    qcond = np.array([0.0], dtype=np.float64)
+    qice = np.array([0.0], dtype=np.float64)
+    qrain = np.array([0.0], dtype=np.float64)
+    qsnow = np.array([0.0], dtype=np.float64)
+    qgrau = np.array([0.0], dtype=np.float64)
     thermo = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
 
     nvec = 1
     ke = 1
     ivstart = 0
-    dz = np.array([10])
+    dz = np.array([10], dtype=np.float64)
     qnc = 500
     microphys = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
