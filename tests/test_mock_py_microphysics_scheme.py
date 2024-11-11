@@ -100,7 +100,7 @@ def test_microphys_with_wrapper():
         qnc,
     )
 
-    thermo = microphys_wrapped.run(timestep, thermo)
+    result = microphys_wrapped.run(timestep, thermo)
 
-    assert thermo.temp == t
-    assert thermo.massmix_ratios == [qv, qc, qi, qr, qs, qg]
+    assert result.temp == t
+    assert result.massmix_ratios == [qv, qc, qi, qr, qs, qg]
