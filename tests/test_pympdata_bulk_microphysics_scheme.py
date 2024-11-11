@@ -28,10 +28,10 @@ from libs.thermo.thermodynamics import Thermodynamics
 
 
 def test_bulk_scheme_condensation():
-    temp = np.array([290])
-    press = np.array([10100])
-    qvap = np.array([0.999])
-    qcond = np.array([0.0002])
+    temp = np.array([290], dtype=np.float64)
+    press = np.array([10100], dtype=np.float64)
+    qvap = np.array([0.999], dtype=np.float64)
+    qcond = np.array([0.0002], dtype=np.float64)
     qvap, qcond = bulk_scheme_condensation(temp, press, qvap, qcond)
 
     qvap_correct = 0.30739488331808
@@ -58,15 +58,15 @@ def test_microphys_with_wrapper():
     microphys_wrapped = MicrophysicsSchemeWrapper()
 
     timestep = 1.0
-    temp = np.array([288.15])
-    rho = np.array([1.225])
-    press = np.array([101325])
-    qvap = np.array([0.015])
-    qcond = np.array([0.0001])
-    qice = np.array([0.0002])
-    qrain = np.array([0.0003])
-    qsnow = np.array([0.0004])
-    qgrau = np.array([0.0005])
+    temp = np.array([288.15], dtype=np.float64)
+    rho = np.array([1.225], dtype=np.float64)
+    press = np.array([101325], dtype=np.float64)
+    qvap = np.array([0.015], dtype=np.float64)
+    qcond = np.array([0.0001], dtype=np.float64)
+    qice = np.array([0.0002], dtype=np.float64)
+    qrain = np.array([0.0003], dtype=np.float64)
+    qsnow = np.array([0.0004], dtype=np.float64)
+    qgrau = np.array([0.0005], dtype=np.float64)
 
     thermo = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
 
