@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.5.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/c83d43e6564810b647ceabc501aed39b0ef628e9..v0.5.1) - 2024-11-11
+#### Bug Fixes
+- CI numba needs limited python version - ([3b53231](https://github.com/yoctoyotta1024/microphysics_testcases/commit/3b5323144a73becb2e24d11392190fee55fd950c)) - clara.bayley
+#### Refactoring
+- use arrays correctly in 0-d tests and docstrings - ([41ba03a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/41ba03af18facd3c1ca56b2b4549016c6dcb83d3)) - clara.bayley
+- correct label for 0dparcel microphysics tests - ([5792b85](https://github.com/yoctoyotta1024/microphysics_testcases/commit/5792b85937fcf75de4bb5137dfbc4e5923da4426)) - clara.bayley
+- make dz an array and use deepcopy - ([c83d43e](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c83d43e6564810b647ceabc501aed39b0ef628e9)) - clara.bayley
+
+- - -
+
 ## [v0.5.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/9d5dc7577f7f42454fc6e650f4111581f5271d7d..v0.5.0) - 2024-09-04
 #### Bug Fixes
 - fix assertion - ([1d4b63b](https://github.com/yoctoyotta1024/microphysics_testcases/commit/1d4b63bb308d65dfa3291dd466e18c479597bf6f)) - clara.bayley
