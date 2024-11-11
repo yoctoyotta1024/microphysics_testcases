@@ -8,7 +8,7 @@ Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Sunday 1st September 2024
+Last Modified: Monday 11th November 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -59,9 +59,9 @@ class MicrophysicsScheme:
               Number of grid points in vertical direction.
             ivstart (int):
               Start index for horizontal direction.
-            dt (float):
+            dt (np.ndarray):
               Times-tep for integration of microphysics (s)
-            dz (float):
+            dz (np.ndarray):
               Layer thickness of full levels (m).
             t (np.ndarray):
               Temperature (K).
