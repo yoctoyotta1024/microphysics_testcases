@@ -59,7 +59,7 @@ def test_mock_py_0dparcel():
     """
 
     ### label for test case to name data/plots with
-    run_name = "python_microphys_0dparcel"
+    run_name = "python_mockmicrophys_0dparcel"
 
     ### path to directory to save data/plots in after model run
     binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/
