@@ -43,7 +43,7 @@ class MicrophysicsSchemeWrapper:
           Number of grid points in vertical direction.
         ivstart (int):
           Start index for horizontal direction.
-        dz (float):
+        dz (np.ndarray):
           Layer thickness of full levels (m).
         qnc (float):
           Cloud number concentration.
@@ -55,7 +55,7 @@ class MicrophysicsSchemeWrapper:
           Number of grid points in vertical direction.
         ivstart (int):
           Start index for horizontal direction.
-        dz (float):
+        dz (np.ndarray):
           Layer thickness of full levels (m).
         qnc (float):
           Cloud number concentration.
@@ -74,7 +74,7 @@ class MicrophysicsSchemeWrapper:
             Number of grid points in vertical direction.
           ivstart (int):
             Start index for horizontal direction.
-          dz (float):
+          dz (np.ndarray):
             Layer thickness of full levels (m).
           qnc (float):
             Cloud number concentration.
@@ -83,7 +83,7 @@ class MicrophysicsSchemeWrapper:
         self.nvec = nvec
         self.ke = ke
         self.ivstart = ivstart
-        self.dz = np.array([dz], np.float64)
+        self.dz = dz
         self.qnc = qnc
         self.microphys = py_graupel.Graupel() 
         self.name = "Wrapper around " + "graupel" # self.microphys.name
