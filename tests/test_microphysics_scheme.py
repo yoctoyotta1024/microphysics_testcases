@@ -85,7 +85,8 @@ def test_microphys_with_wrapper():
     pri_gsp = np.zeros(nvec, np.float64)
     prs_gsp = np.zeros(nvec, np.float64)
     prg_gsp = np.zeros(nvec, np.float64)
-    pflx = np.zeros((ke, nvec), np.float64)
+    pre_gsp = np.zeros(nvec, np.float64)
+    pflx = np.zeros((nvec, ke), np.float64)
 
     # temporary variable
     total_ice = qgrau + qsnow + qice
@@ -121,7 +122,8 @@ def test_microphys_with_wrapper():
         pri_gsp=pri_gsp,
         prs_gsp=prs_gsp,
         prg_gsp=prg_gsp,
-        pflx=pflx
+        pflx=pflx,
+        pre_gsp=pre_gsp
     )
  
     # call saturation adjustment

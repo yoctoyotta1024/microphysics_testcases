@@ -138,12 +138,12 @@ class MicrophysicsSchemeWrapper:
         p = cp_thermo.press
         qv, qc, qi, qr, qs, qg = cp_thermo.massmix_ratios
     
-        prr_gsp = np.zeros(self.nvec, np.float64)
-        pri_gsp = np.zeros(self.nvec, np.float64)
-        prs_gsp = np.zeros(self.nvec, np.float64)
-        prg_gsp = np.zeros(self.nvec, np.float64)
-        pre_gsp = np.zeros(self.nvec, np.float64)
-        pflx = np.zeros((self.ke, self.nvec), np.float64)
+        prr_gsp = np.zeros(self.nvec, dtype=np.float64)
+        pri_gsp = np.zeros(self.nvec, dtype=np.float64)
+        prs_gsp = np.zeros(self.nvec, dtype=np.float64)
+        prg_gsp = np.zeros(self.nvec, dtype=np.float64)
+        pre_gsp = np.zeros(self.nvec, dtype=np.float64)
+        pflx = np.zeros((self.nvec, self.ke), np.float64)
 
         # temporary variable
         total_ice = qg + qs + qi
@@ -183,7 +183,6 @@ class MicrophysicsSchemeWrapper:
             pflx=pflx,
             pre_gsp=pre_gsp,
         )
-
         # call saturation adjustment
         py_graupel.saturation_adjustment(
           ncells=self.nvec,

@@ -17,7 +17,6 @@ https://opensource.org/licenses/BSD-3-Clause
 File Description:
 perform test case for 0-D parcel model with mock python microphysics scheme
 """
-
 import numpy as np
 from pathlib import Path
 import numpy as np
@@ -25,7 +24,6 @@ import numpy as np
 from libs.graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 from .perform_0dparcel_test_case import perform_0dparcel_test_case
 from libs.thermo.thermodynamics import Thermodynamics
-
 
 def test_graupel_py_0dparcel():
     """runs 0-D parcel model test using Python mock microphysics scheme (a mock-up of the muphys-cpp
@@ -60,7 +58,7 @@ def test_graupel_py_0dparcel():
     """
 
     ### label for test case to name data/plots with
-    run_name = "python_mockmicrophys_0dparcel"
+    run_name = "python_microphys_0dparcel"
 
     ### path to directory to save data/plots in after model run
     binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/
