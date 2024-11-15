@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 2nd September 2024
+Last Modified: Monday 11th November 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -18,8 +18,8 @@ File Description:
 perform test case for 0-D parcel model with mock python microphysics scheme
 """
 
-from pathlib import Path
 import numpy as np
+from pathlib import Path
 
 from .perform_0dparcel_test_case import perform_0dparcel_test_case
 from libs.thermo.thermodynamics import Thermodynamics
@@ -53,13 +53,13 @@ def test_mock_py_0dparcel():
           nvec (int): Number of horizontal points for the microphysics scheme.
           ke (float): Number of grid points in vertical direction for the microphysics scheme.
           ivstart (int): Start index for horizontal direction for the microphysics scheme.
-          dz (float): Layer thickness of full levels (m) for the microphysics scheme.
+          dz (np.ndarray): Layer thickness of full levels (m) for the microphysics scheme.
           qnc (float): Cloud number concentration.
 
     """
 
     ### label for test case to name data/plots with
-    run_name = "python_mock_microphys_0dparcel"
+    run_name = "python_mockmicrophys_0dparcel"
 
     ### path to directory to save data/plots in after model run
     binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/
@@ -88,7 +88,7 @@ def test_mock_py_0dparcel():
     nvec = 1
     ke = 1
     ivstart = 0
-    dz = 10
+    dz = np.array([10], dtype=np.float64)
     qnc = 500
     microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 

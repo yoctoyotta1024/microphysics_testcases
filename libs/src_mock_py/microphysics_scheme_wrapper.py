@@ -21,8 +21,9 @@ and run scripts
 
 from ..thermo.thermodynamics import Thermodynamics
 from .mock_microphysics_scheme import MicrophysicsScheme
+
 from copy import deepcopy
-import numpy as np
+
 
 class MicrophysicsSchemeWrapper:
     """A class wrapping around Python MicrophysicsScheme for compatibility purposes.
@@ -78,7 +79,7 @@ class MicrophysicsSchemeWrapper:
         self.nvec = nvec
         self.ke = ke
         self.ivstart = ivstart
-        self.dz = np.array([dz], dtype=np.float64)
+        self.dz = dz
         self.qnc = qnc
         self.microphys = MicrophysicsScheme()
         self.name = "Wrapper around " + self.microphys.name
@@ -150,7 +151,7 @@ class MicrophysicsSchemeWrapper:
             qg,
             self.qnc,
         )
-       
+
         cp_thermo.temp = t
         cp_thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
 
