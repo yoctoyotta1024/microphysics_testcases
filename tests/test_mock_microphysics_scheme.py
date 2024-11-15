@@ -8,7 +8,7 @@ Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Sunday 1st September 2024
+Last Modified: Monday 11th November 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -41,7 +41,7 @@ def test_initialize_wrapper():
     nvec = 1
     ke = 1
     ivstart = 0
-    dz = 10
+    dz = np.array([10], dtype=np.float64)
     qnc = 500
     microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
@@ -52,7 +52,7 @@ def test_finalize_wrapper():
     nvec = 1
     ke = 1
     ivstart = 0
-    dz = 10
+    dz = np.array([10], dtype=np.float64)
     qnc = 500
     microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
@@ -65,20 +65,20 @@ def test_microphys_with_wrapper():
     nvec = 1
     ke = 1
     ivstart = 0
-    dz = 10
+    dz = np.array([10], dtype=np.float64)
     qnc = 500
     microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
     timestep = 1.0
-    temp = np.array([288.15])
-    rho = np.array([1.225])
-    press = np.array([101325])
-    qvap = np.array([0.015])
-    qcond = np.array([0.0001])
-    qice = np.array([0.0002])
-    qrain = np.array([0.0003])
-    qsnow = np.array([0.0004])
-    qgrau = np.array([0.0005])
+    temp = np.array([288.15], dtype=np.float64)
+    rho = np.array([1.225], dtype=np.float64)
+    press = np.array([101325], dtype=np.float64)
+    qvap = np.array([0.015], dtype=np.float64)
+    qcond = np.array([0.0001], dtype=np.float64)
+    qice = np.array([0.0002], dtype=np.float64)
+    qrain = np.array([0.0003], dtype=np.float64)
+    qsnow = np.array([0.0004], dtype=np.float64)
+    qgrau = np.array([0.0005], dtype=np.float64)
 
     thermo = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
 
