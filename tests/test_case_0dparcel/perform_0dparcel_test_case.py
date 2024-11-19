@@ -172,6 +172,6 @@ def plot_thetas_on_axis(ax, time, temp, press, press0):
     """
     theta_dry = formulae.dry_potential_temperature(temp.values, press.values, press0)
     ax.plot(time, theta_dry, label="dry")
-    ax.set_ylim(theta_dry[0] - 1, theta_dry[0] + 1)
+    ax.set_ylim(theta_dry[0] - 10, theta_dry[0] + 10)
     ax.legend()
     ax.set_ylabel("potential temperature /" + temp.units)

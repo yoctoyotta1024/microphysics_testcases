@@ -75,10 +75,10 @@ def test_graupel_py_0dparcel():
     press = np.array([101325], dtype=np.float64)
     qvap = np.array([0.01], dtype=np.float64)
     qcond = np.array([0.02], dtype=np.float64)
-    qice = np.array([0.03], dtype=np.float64)
+    qice = np.array([0.0], dtype=np.float64)
     qrain = np.array([0.04], dtype=np.float64)
-    qsnow = np.array([0.05], dtype=np.float64)
-    qgrau = np.array([0.06], dtype=np.float64)
+    qsnow = np.array([0.0], dtype=np.float64)
+    qgrau = np.array([0.0], dtype=np.float64)
     thermo_init = Thermodynamics(
         temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau
     )
@@ -87,7 +87,7 @@ def test_graupel_py_0dparcel():
     nvec = 1
     ke = 1
     ivstart = 0
-    dz = np.array([10], dtype=np.float64)
+    dz = np.array([100], dtype=np.float64)
     qnc = 500
     microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
