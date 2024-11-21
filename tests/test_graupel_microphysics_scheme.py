@@ -19,20 +19,22 @@ mock unit tests for Python microphysics module
 """
 
 import numpy as np
-from copy import deepcopy
 
-from libs.graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper, py_graupel
+from libs.graupel.microphysics_scheme_wrapper import (
+    MicrophysicsSchemeWrapper,
+    py_graupel,
+)
 from libs.thermo.thermodynamics import Thermodynamics
 
-def test_initialize():
 
-    microphys = py_graupel.Graupel() 
+def test_initialize():
+    microphys = py_graupel.Graupel()
 
     assert microphys.initialize() is None
 
 
 def test_finalize():
-    microphys = py_graupel.Graupel() 
+    microphys = py_graupel.Graupel()
 
     assert microphys.finalize() is None
 
@@ -60,7 +62,7 @@ def test_finalize_wrapper():
 
 
 def test_microphys_with_wrapper():
-    microphys = py_graupel.Graupel() 
+    microphys = py_graupel.Graupel()
     nvec = 1
     ke = 1
     ivstart = 0
@@ -90,7 +92,7 @@ def test_microphys_with_wrapper():
 
     # temporary variable
     total_ice = qgrau + qsnow + qice
-      
+
     # call saturation adjustment
     py_graupel.saturation_adjustment(
         ncells=nvec,
@@ -123,9 +125,9 @@ def test_microphys_with_wrapper():
         prs_gsp=prs_gsp,
         prg_gsp=prg_gsp,
         pflx=pflx,
-        pre_gsp=pre_gsp
+        pre_gsp=pre_gsp,
     )
- 
+
     # call saturation adjustment
     py_graupel.saturation_adjustment(
         ncells=nvec,
@@ -137,8 +139,8 @@ def test_microphys_with_wrapper():
         total_ice=total_ice,
         rho=rho,
     )
-       
+
     result = microphys_wrapped.run(timestep, thermo)
 
-    assert result.temp == temp  
+    assert result.temp == temp
     assert result.massmix_ratios == [qvap, qcond, qice, qrain, qsnow, qgrau]

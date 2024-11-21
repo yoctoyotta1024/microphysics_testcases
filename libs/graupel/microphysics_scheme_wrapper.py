@@ -29,6 +29,7 @@ from ..thermo.thermodynamics import Thermodynamics
 sys.path.append(os.environ["PY_GRAUPEL_DIR"])
 import py_graupel
 
+
 class MicrophysicsSchemeWrapper:
     """A class wrapping around Python MicrophysicsScheme for compatibility purposes.
 
@@ -85,8 +86,8 @@ class MicrophysicsSchemeWrapper:
         self.ivstart = ivstart
         self.dz = dz
         self.qnc = qnc
-        self.microphys = py_graupel.Graupel() 
-        self.name = "Wrapper around " + "graupel" # self.microphys.name
+        self.microphys = py_graupel.Graupel()
+        self.name = "Wrapper around " + "graupel"  # self.microphys.name
 
     def initialize(self) -> int:
         """Initialise the microphysics scheme.
@@ -137,7 +138,7 @@ class MicrophysicsSchemeWrapper:
         rho = cp_thermo.rho
         p = cp_thermo.press
         qv, qc, qi, qr, qs, qg = cp_thermo.massmix_ratios
-    
+
         prr_gsp = np.zeros(self.nvec, dtype=np.float64)
         pri_gsp = np.zeros(self.nvec, dtype=np.float64)
         prs_gsp = np.zeros(self.nvec, dtype=np.float64)
@@ -150,39 +151,39 @@ class MicrophysicsSchemeWrapper:
 
         # call saturation adjustment
         py_graupel.saturation_adjustment(
-          ncells=self.nvec,
-          nlev=self.ke,
-          ta=t,
-          qv=qv,
-          qc=qc,
-          qr=qr,
-          total_ice=total_ice,
-          rho=rho,
+            ncells=self.nvec,
+            nlev=self.ke,
+            ta=t,
+            qv=qv,
+            qc=qc,
+            qr=qr,
+            total_ice=total_ice,
+            rho=rho,
         )
-      
+
         # call graupel
-#        self.microphys.run(
-#            ncells=self.nvec,
-#            nlev=self.ke,
-#            dt=dt,
-#            dz=self.dz,
-#            t=t,
-#            rho=rho,
-#            p=p,
-#            qv=qv,
-#            qc=qc,
-#            qi=qi,
-#            qr=qr,
-#            qs=qs,
-#            qg=qg,
-#            qnc=self.qnc,
-#            prr_gsp=prr_gsp,
-#            pri_gsp=pri_gsp,
-#            prs_gsp=prs_gsp,
-#            prg_gsp=prg_gsp,
-#            pflx=pflx,
-#            pre_gsp=pre_gsp,
-#        )
+        #        self.microphys.run(
+        #            ncells=self.nvec,
+        #            nlev=self.ke,
+        #            dt=dt,
+        #            dz=self.dz,
+        #            t=t,
+        #            rho=rho,
+        #            p=p,
+        #            qv=qv,
+        #            qc=qc,
+        #            qi=qi,
+        #            qr=qr,
+        #            qs=qs,
+        #            qg=qg,
+        #            qnc=self.qnc,
+        #            prr_gsp=prr_gsp,
+        #            pri_gsp=pri_gsp,
+        #            prs_gsp=prs_gsp,
+        #            prg_gsp=prg_gsp,
+        #            pflx=pflx,
+        #            pre_gsp=pre_gsp,
+        #        )
 
         # call graupel without precipitations
         self.microphys.run_no_precip(
@@ -207,21 +208,20 @@ class MicrophysicsSchemeWrapper:
             pflx=pflx,
             pre_gsp=pre_gsp,
         )
- 
+
         # call saturation adjustment
         py_graupel.saturation_adjustment(
-          ncells=self.nvec,
-          nlev=self.ke,
-          ta=t,
-          qv=qv,
-          qc=qc,
-          qr=qr,
-          total_ice=total_ice,
-          rho=rho,
+            ncells=self.nvec,
+            nlev=self.ke,
+            ta=t,
+            qv=qv,
+            qc=qc,
+            qr=qr,
+            total_ice=total_ice,
+            rho=rho,
         )
-  
+
         cp_thermo.temp = t
         cp_thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
 
         return cp_thermo
-

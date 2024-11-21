@@ -103,4 +103,4 @@ class Thermodynamics:
         print(self.temp)
         print(self.rho)
         print(self.press)
-        print(self.massmix_ratios)    
+        print(self.massmix_ratios)
