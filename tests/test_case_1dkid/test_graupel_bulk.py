@@ -9,7 +9,7 @@ Author: Clara Bayley (CB)
 Additional Contributors:
 -----
 Last Modified: Wednesday 4th September 2024
-Modified By: CB
+Modified By: Joerg Behrens, Georgiana Mania
 -----
 License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause

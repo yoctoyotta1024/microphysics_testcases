@@ -6,7 +6,7 @@ File: test_mock_py.py
 Project: test_case_0dparcel
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
-Additional Contributors:
+Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
 Last Modified: Monday 11th November 2024
 Modified By: CB

@@ -6,7 +6,7 @@ File: test_mock_py_microphysics_scheme.py
 Project: tests
 Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
-Additional Contributors:
+Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
 Last Modified: Monday 11th November 2024
 Modified By: CB
