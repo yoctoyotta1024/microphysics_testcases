@@ -26,7 +26,7 @@ path = str(pathlib.Path(__file__).parent.resolve())
 sys.path.append(path + "/../libs/")  # add path to python modules to PATH
 
 from thermo.thermodynamics import Thermodynamics
-from src_mock_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+from mock_microphys.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
 
 def print_message(time, thermo):

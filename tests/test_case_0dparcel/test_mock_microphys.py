@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: test_mock_py.py
+File: test_mock_microphys.py
 Project: test_case_0dparcel
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
@@ -23,7 +23,7 @@ from pathlib import Path
 
 from .perform_0dparcel_test_case import perform_0dparcel_test_case
 from libs.thermo.thermodynamics import Thermodynamics
-from libs.src_mock_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+from libs.mock_microphys.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
 
 def test_mock_py_0dparcel():
