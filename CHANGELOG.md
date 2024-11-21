@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.6.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/150373d55e0e6ff3450fa79144dc9cf2b93006c9..v0.6.0) - 2024-11-21
+#### Bug Fixes
+- run graupel tests only if PY_GRAUPEL_DIR is set - ([f812bf4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f812bf4ab3e2e634522dd4a1b6bd387aaee91126)) - Georgiana Mania
+- fix 1 bug - ([c59cdc1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c59cdc1ccf1c22ac24e5e859780ce895dd11b9b1)) - Georgiana Mania
+#### Features
+- debug info - ([f018581](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f0185813938d57f7ae6baabe1662b9c95a334581)) - Georgiana Mania
+- add sat adj - ([d963a02](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d963a0212f9a24d63fd30ef069f006f0dfcbc3fb)) - Georgiana Mania
+- first try to create pytests for ICON via python bindings - ([8fe7d3a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8fe7d3ac472ef2c2656800e23c57941a1ebe36e4)) - Georgiana Mania
+#### Miscellaneous Chores
+- code formatted - ([277dec2](https://github.com/yoctoyotta1024/microphysics_testcases/commit/277dec2e0d61335a4008faa4a80ea112ce6069f2)) - Georgiana Mania
+- cleanup - ([a73cc98](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a73cc9889d760282c7afc82611ce00e466aad6a0)) - Georgiana Mania
+- rebase leftover - ([4c5f928](https://github.com/yoctoyotta1024/microphysics_testcases/commit/4c5f928696572ef157f3ad479bed9d0a29a0e5db)) - Georgiana Mania
+- rebase on main - ([70ed2fe](https://github.com/yoctoyotta1024/microphysics_testcases/commit/70ed2fe389d3e1e3e526a2bcdffa2c156558f9d3)) - Georgiana Mania
+#### Refactoring
+- add args to conventional commits - ([5010d0a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/5010d0a5cc33beadf7baea344851f80ebafb1109)) - Georgiana Mania
+- add contributors - ([068bffe](https://github.com/yoctoyotta1024/microphysics_testcases/commit/068bffea0fa0cb3152244f3424d6e10303144e8b)) - Georgiana Mania
+- call graupel without precip - ([dead9a4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/dead9a43da4e84821d3705e962536087ab137234)) - Georgiana Mania
+- rename tests - ([c6137a7](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c6137a7f8075f2d2c52fe4bbdbea24d12643e5f7)) - Georgiana Mania
+- mirror latest interface & bugfixes as per MPI-M master - ([a14ff82](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a14ff82da52c20f224f30164dc300bc0f2bc2603)) - Georgiana Mania
+- revert using mock tests; adapt plots and tests to use np.arrays - ([e72fda7](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e72fda7ef50919414894316564ec9ac03f00d6c3)) - Georgiana Mania
+- reverted mock files - ([2e14be4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/2e14be46c8933fb9a88d1399b1d3c98561a1fd31)) - Georgiana Mania
+- rename thermo to result in tests - ([150373d](https://github.com/yoctoyotta1024/microphysics_testcases/commit/150373d55e0e6ff3450fa79144dc9cf2b93006c9)) - clara.bayley
+
+- - -
+
 ## [v0.5.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/c83d43e6564810b647ceabc501aed39b0ef628e9..v0.5.1) - 2024-11-11
 #### Bug Fixes
 - CI numba needs limited python version - ([3b53231](https://github.com/yoctoyotta1024/microphysics_testcases/commit/3b5323144a73becb2e24d11392190fee55fd950c)) - clara.bayley
