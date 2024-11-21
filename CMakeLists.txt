@@ -8,7 +8,7 @@ project(project
 add_subdirectory(extern/pybind11)
 
 ## Create the Python extension module from C++ source files
-set(SOURCES libs/src_mock_cxx/mock.cpp)
+set(SOURCES libs/mock_bindcxx/mock.cpp)
 pybind11_add_module(mock_cxx MODULE ${SOURCES})
 
 # ## Link any necessary libraries (if needed)

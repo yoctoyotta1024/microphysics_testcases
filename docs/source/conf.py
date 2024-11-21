@@ -73,7 +73,7 @@ exclude_patterns = []
 
 # Integrate doxygen with sphinx via breathe
 breathe_projects = {
-    "src_mock_cxx": "../build/doxygen/xml/",
+    "mock_bindcxx": "../build/doxygen/xml/",
 }
 
 breathe_default_project = "proj"

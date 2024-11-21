@@ -33,7 +33,7 @@ Contents
    thermo/index
    pympdata_bulk/index
    src_mock_py/index
-   src_mock_cxx/index
+   mock_bindcxx/index
    utility_functions/index
 
    GitHub Repo <https://github.com/yoctoyotta1024/microphysics_testcases.git>

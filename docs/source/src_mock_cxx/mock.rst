@@ -1,8 +1,8 @@
 C++ Mock Module
 ===============
 
-Header file: ``<libs/src_mock_cxx/mock.hpp>``
-`[source] <https://github.com/yoctoyotta1024/microphysics_testcases/blob/main/libs/src_mock_cxx/mock.hpp>`_
+Header file: ``<libs/mock_bindcxx/mock.hpp>``
+`[source] <https://github.com/yoctoyotta1024/microphysics_testcases/blob/main/libs/mock_bindcxx/mock.hpp>`_
 
 .. doxygenfunction:: area_circle
-   :project: src_mock_cxx
+   :project: mock_bindcxx
