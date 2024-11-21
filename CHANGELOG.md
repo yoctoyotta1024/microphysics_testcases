@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.7.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/7ee44daeae3669de34fc9f1e2c508d9d58e48ff5..v0.7.0) - 2024-11-21
+#### Bug Fixes
+- run satadj tests only if PY_GRAUPEL_DIR is set - ([af23c24](https://github.com/yoctoyotta1024/microphysics_testcases/commit/af23c2474778c24acddc6a90b249c5018f0c20b1)) - clara.bayley
+- missing pre-commit requirement - ([507ab94](https://github.com/yoctoyotta1024/microphysics_testcases/commit/507ab946d33092f30038a6b61f1cbce540fff414)) - clara.bayley
+- ensure python version of env works for ICON python bindings - ([3f4a3b4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/3f4a3b40f279f647813f4c9e2eef711b3abafa0b)) - clara.bayley
+- fix pre-commit hook - ([7ee44da](https://github.com/yoctoyotta1024/microphysics_testcases/commit/7ee44daeae3669de34fc9f1e2c508d9d58e48ff5)) - clara.bayley
+#### Features
+- more thermodynamic variables calculated and plotted in 0d parcel - ([067b11f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/067b11f2b4583e5f006fc1b401149d03e94202c9)) - clara.bayley
+- tests for satadj microphysics scheme - ([7077963](https://github.com/yoctoyotta1024/microphysics_testcases/commit/7077963596da1b063b0df2f27e6dabfb9369cd2b)) - clara.bayley
+- new wrapper for ICON saturation adjustment as microphysics scheme - ([3829323](https://github.com/yoctoyotta1024/microphysics_testcases/commit/382932380fe641c1023fb379a0b525ba12073744)) - clara.bayley
+#### Miscellaneous Chores
+- fix spelling Kg -> kg - ([e04b6aa](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e04b6aa1f95d38c30b24fb033c9dbc5140662c86)) - clara.bayley
+- formatting - ([2e08547](https://github.com/yoctoyotta1024/microphysics_testcases/commit/2e08547b0d3a2707f7b1800f012cccf06ac4b1df)) - clara.bayley
+
+- - -
+
 ## [v0.6.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/150373d55e0e6ff3450fa79144dc9cf2b93006c9..v0.6.0) - 2024-11-21
 #### Bug Fixes
 - run graupel tests only if PY_GRAUPEL_DIR is set - ([f812bf4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f812bf4ab3e2e634522dd4a1b6bd387aaee91126)) - Georgiana Mania
