@@ -21,7 +21,6 @@ and run scripts
 
 import os
 import sys
-import numpy as np
 from copy import deepcopy
 
 from ..thermo.thermodynamics import Thermodynamics
@@ -29,6 +28,7 @@ from ..thermo.thermodynamics import Thermodynamics
 sys.path.append(os.environ["PY_GRAUPEL_DIR"])
 # currently on Levante: export PY_GRAUPEL_DIR=/work/k20200/k202174/installed-muphys/lib64/
 import py_graupel
+
 
 class MicrophysicsSchemeWrapper:
     """A class wrapping around ICON's saturation adjustment as a MicrophysicsScheme
@@ -88,8 +88,10 @@ class MicrophysicsSchemeWrapper:
         self.ivstart = ivstart
         self.dz = dz
         self.qnc = qnc
-        self.microphys = py_graupel.Graupel() 
-        self.name = "Wrapper around " + "ICON Saturation Adjustment" # self.microphys.name
+        self.microphys = py_graupel.Graupel()
+        self.name = (
+            "Wrapper around " + "ICON Saturation Adjustment"
+        )  # self.microphys.name
 
     def initialize(self) -> int:
         """Initialise the microphysics scheme.
@@ -135,10 +137,8 @@ class MicrophysicsSchemeWrapper:
         """
 
         cp_thermo = deepcopy(thermo)
-        dt = timestep
         t = cp_thermo.temp
         rho = cp_thermo.rho
-        p = cp_thermo.press
         qv, qc, qi, qr, qs, qg = cp_thermo.massmix_ratios
 
         # temporary variable
@@ -146,16 +146,16 @@ class MicrophysicsSchemeWrapper:
 
         # call saturation adjustment
         py_graupel.saturation_adjustment(
-          ncells=self.nvec,
-          nlev=self.ke,
-          ta=t,
-          qv=qv,
-          qc=qc,
-          qr=qr,
-          total_ice=total_ice,
-          rho=rho,
+            ncells=self.nvec,
+            nlev=self.ke,
+            ta=t,
+            qv=qv,
+            qc=qc,
+            qr=qr,
+            total_ice=total_ice,
+            rho=rho,
         )
-  
+
         cp_thermo.temp = t
         cp_thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
 
