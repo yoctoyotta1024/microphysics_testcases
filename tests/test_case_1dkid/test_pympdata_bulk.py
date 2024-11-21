@@ -24,7 +24,7 @@ from PyMPDATA_examples.Shipway_and_Hill_2012 import si
 
 from .perform_1dkid_test_case import perform_1dkid_test_case
 from libs.thermo.thermodynamics import Thermodynamics
-from libs.pympdata_microphysics.bulk_scheme_condensation import (
+from libs.pympdata_bulk.bulk_scheme_condensation import (
     MicrophysicsSchemeWrapper,
 )
 
