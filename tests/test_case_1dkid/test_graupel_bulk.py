@@ -19,60 +19,65 @@ File Description:
 
 # %% Function definitions
 import numpy as np
-from pathlib import Path
-from PyMPDATA_examples.Shipway_and_Hill_2012 import si
+import os
 
-from .perform_1dkid_test_case import perform_1dkid_test_case
-from libs.thermo.thermodynamics import Thermodynamics
-from libs.graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+path = os.environ.get("PY_GRAUPEL_DIR")
+if path and path is not None:
+    from pathlib import Path
+    from PyMPDATA_examples.Shipway_and_Hill_2012 import si
 
+    from .perform_1dkid_test_case import perform_1dkid_test_case
+    from libs.thermo.thermodynamics import Thermodynamics
+    from libs.graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
-def test_pympdata_bulk_scheme_1dkid():
-    """runs test of 1-D KiD rainshaft model using bulk scheme for condensation
-    extracted from pyMPDATA for the microphysics scheme.
+    def test_pympdata_bulk_scheme_1dkid():
+        """runs test of 1-D KiD rainshaft model using bulk scheme for condensation
+        extracted from pyMPDATA for the microphysics scheme.
 
-    This function sets up initial conditions and parameters for running a 1-D KiD rainshaft
-    test case using the bulk microphysics scheme for condensation from the Shipway and Hill 2012
-    pyMPDATA-examples example (via a wrapper). It then runs the test case as specified.
-    """
-    ### label for test case to name data/plots with
-    run_name = "graupel_bulkmicrophys_1dkid"
+        This function sets up initial conditions and parameters for running a 1-D KiD rainshaft
+        test case using the bulk microphysics scheme for condensation from the Shipway and Hill 2012
+        pyMPDATA-examples example (via a wrapper). It then runs the test case as specified.
+        """
+        ### label for test case to name data/plots with
+        run_name = "graupel_bulkmicrophys_1dkid"
 
-    ### path to directory to save data/plots in after model run
-    binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/
-    binpath.mkdir(parents=False, exist_ok=True)
+        ### path to directory to save data/plots in after model run
+        binpath = (
+            Path(__file__).parent.resolve() / "bin"
+        )  # i.e. [current directory]/bin/
+        binpath.mkdir(parents=False, exist_ok=True)
 
-    ### time and grid parameters
-    z_delta = 25 * si.m
-    z_max = 3200 * si.m
-    timestep = 0.25 / 2 * si.s
-    time_end = 15 * si.minutes
+        ### time and grid parameters
+        z_delta = 25 * si.m
+        z_max = 3200 * si.m
+        timestep = 0.25 / 2 * si.s
+        time_end = 15 * si.minutes
 
-    ### initial thermodynamic conditions
-    assert z_max % z_delta == 0, "z limit is not a multiple of the grid spacing."
-    zeros = np.zeros(int(z_max / z_delta))
-    thermo_init = Thermodynamics(
-        zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros
-    )
+        ### initial thermodynamic conditions
+        assert z_max % z_delta == 0, "z limit is not a multiple of the grid spacing."
+        zeros = np.zeros(int(z_max / z_delta))
+        thermo_init = Thermodynamics(
+            zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros
+        )
 
-    ### microphysics scheme to use (within a wrapper)
-    nvec = 1
-    ke = 128
-    ivstart = 0
-    dz = np.array([25], dtype=np.float64)
-    qnc = 500
+        ### microphysics scheme to use (within a wrapper)
+        nvec = 1
+        ke = 128
+        ivstart = 0
+        dz = np.array([25], dtype=np.float64)
+        qnc = 500
 
-    ### Call graupel
-    microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
+        ### Call graupel
+        microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
-    ### Perform test of 1-D KiD rainshaft model using chosen setup
-    perform_1dkid_test_case(
-        z_delta,
-        z_max,
-        time_end,
-        timestep,
-        thermo_init,
-        microphys_scheme,
-        binpath,
-        run_name,
-    )
+        ### Perform test of 1-D KiD rainshaft model using chosen setup
+        perform_1dkid_test_case(
+            z_delta,
+            z_max,
+            time_end,
+            timestep,
+            thermo_init,
+            microphys_scheme,
+            binpath,
+            run_name,
+        )
