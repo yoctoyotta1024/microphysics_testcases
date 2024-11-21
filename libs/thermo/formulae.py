@@ -18,8 +18,11 @@ File Description:
 functions for calculations of some quantities e.g. potential temperature(s)
 """
 
+import numpy as np
+from typing import Optional
 
-def dry_potential_temperature(temp, press, press0):
+
+def dry_potential_temperature(temp: np.ndarray, press: np.ndarray):
     r"""Calculate the potential temperature for dry air.
 
     This function calculates the potential temperature for dry air given the temperature and pressure.
@@ -37,24 +40,84 @@ def dry_potential_temperature(temp, press, press0):
           Pressure values (Pa).
 
     Returns:
-        array-like: The potential temperature (K).
+        array-like: The dry potential temperature (K).
     """
+    from metpy.units import units
+    from metpy import calc
 
-    rgas_univ = 8.314462618  # universal molar gas constant [J/Kg/K]
-    mr_dry = 0.028966216  # molecular mass of dry air [Kg/mol]
-    cp_dry = (
-        1004.64  # specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K)
+    theta_dry = calc.potential_temperature(press * units.Pa, temp * units.kelvin)
+
+    return theta_dry.magnitude  # Kelvin
+
+
+def moist_equiv_potential_temperature(
+    temp: np.ndarray, press: np.ndarray, qvap: np.ndarray
+):
+    """
+    Calculate the moist potential temperature.
+
+    .. math::
+          \theta_e = \theta \cdot \exp\left(\frac{L_v \cdot q}{c_p \cdot T}\right)
+
+    Args:
+        temp (array-like):
+            Temperature values (K).
+        press (array-like):
+            Pressure values (Pa).
+        qvap (array-like):
+            Mixing ratio of water vapour (Kg/Kg)
+    Returns:
+        array-like: The moist potential temperature (K).
+    """
+    from metpy.units import units
+    from metpy import calc
+
+    relh = calc.relative_humidity_from_mixing_ratio(
+        press * units.Pa, temp * units.kelvin, qvap
     )
-    rgas_dry = (
-        rgas_univ / mr_dry
-    )  # specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K)
+    dewpoint = calc.dewpoint_from_relative_humidity(temp * units.kelvin, relh)
 
-    theta_dry = temp * (press0 / press) ** (rgas_dry / cp_dry)
+    theta_equiv = calc.equivalent_potential_temperature(
+        press * units.Pa, temp * units.kelvin, dewpoint
+    )
 
-    return theta_dry
+    return theta_equiv.magnitude  # Kelvin
 
 
-def supersaturation(temp, press, qvap):
+def moist_static_energy(
+    temp: np.ndarray, qvap: np.ndarray, height: Optional[np.ndarray] = None
+):
+    """
+    Calculate the moist static energy [kilojoule / kilogram]
+
+    .. math::
+          \theta_e = \theta \cdot \exp\left(\frac{L_v \cdot q}{c_p \cdot T}\right)
+
+    Args:
+        temp (array-like):
+            Temperature values (K).
+        press (array-like):
+            Pressure values (Pa).
+        qvap (array-like):
+            Mixing ratio of water vapour (Kg/Kg)
+    Returns:
+        array-like: The moist potential temperature (K).
+    """
+    from metpy.units import units
+    from metpy import calc
+
+    if height is None:
+        height = np.zeros(temp.shape)
+
+    specific_humidity = calc.specific_humidity_from_mixing_ratio(qvap)
+    mse = calc.moist_static_energy(
+        height * units.meters, temp * units.kelvin, specific_humidity
+    )
+
+    return mse.magnitude  # [kilojoule / kilogram]
+
+
+def supersaturation(temp: np.ndarray, press: np.ndarray, qvap: np.ndarray):
     """
     Calculate supersaturation based on the method described in PyMPDATA-examples
 
