@@ -32,7 +32,7 @@ Contents
    tests/index
    thermo/index
    pympdata_bulk/index
-   src_mock_py/index
+   mock_microphys/index
    mock_bindcxx/index
    utility_functions/index
 

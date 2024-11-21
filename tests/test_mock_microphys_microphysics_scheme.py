@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: test_mock_py_microphysics_scheme.py
+File: test_mock_microphys_microphysics_scheme.py
 Project: tests
 Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
@@ -20,8 +20,8 @@ mock unit tests for Python microphysics module
 
 import numpy as np
 
-from libs.src_mock_py.mock_microphysics_scheme import MicrophysicsScheme
-from libs.src_mock_py.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+from libs.mock_microphys.mock_microphysics_scheme import MicrophysicsScheme
+from libs.mock_microphys.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 from libs.thermo.thermodynamics import Thermodynamics
 
 
