@@ -3,7 +3,7 @@
  *
  * ----- Microphysics Test Cases -----
  * File: mock.cpp
- * Project: src_mock_cxx
+ * Project: mock_bindcxx
  * Created Date: Wednesday 28th February 2024
  * Author: Clara Bayley (CB)
  * Additional Contributors:

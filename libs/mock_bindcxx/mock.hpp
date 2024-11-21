@@ -3,7 +3,7 @@
  *
  * ----- Microphysics Test Cases -----
  * File: mock.hpp
- * Project: src_mock_cxx
+ * Project: mock_bindcxx
  * Created Date: Tuesday 27th February 2024
  * Author: Clara Bayley (CB)
  * Additional Contributors:
@@ -19,8 +19,8 @@
  */
 
 
-#ifndef LIBS_SRC_MOCK_CXX_MOCK_HPP_
-#define LIBS_SRC_MOCK_CXX_MOCK_HPP_
+#ifndef LIBS_MOCK_BINDCXX_MOCK_HPP_
+#define LIBS_MOCK_BINDCXX_MOCK_HPP_
 
 #include <numbers>
 #include <pybind11/pybind11.h>
@@ -52,4 +52,4 @@ inline int add(const int ii, const int jj) {
   return ii + jj;
 }
 
-#endif   // LIBS_SRC_MOCK_CXX_MOCK_HPP_
+#endif   // LIBS_MOCK_BINDCXX_MOCK_HPP_
