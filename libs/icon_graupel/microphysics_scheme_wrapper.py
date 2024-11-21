@@ -3,12 +3,12 @@ Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
 File: microphysics_scheme_wrapper.py
-Project: mock_microphys
+Project: icon_graupel
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
-Last Modified: Sunday 1st September 2024
+Last Modified: Friday 22nd November 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -31,10 +31,11 @@ import py_graupel
 
 
 class MicrophysicsSchemeWrapper:
-    """A class wrapping around Python MicrophysicsScheme for compatibility purposes.
+    """A class wrapping around C++ bindings to ICON's graupel one-moment MicrophysicsScheme
+    (wrapper for compatibility purposes).
 
-    This class wraps around the MicrophysicsScheme class to provide compatibility with the Python
-    run scripts and tests in this project. It initializes a MicrophysicsScheme object and provides
+    This class wraps around the graupel class to provide compatibility with the Python
+    run scripts and tests in this project. It initializes ICON's microphysics object and provides
     wrappers around methods to initialize, finalize, and run the microphysics.
 
     Args:

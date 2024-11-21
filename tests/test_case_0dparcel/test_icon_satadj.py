@@ -2,20 +2,21 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: test_mock_py.py
+File: test_icon_satadj.py
 Project: test_case_0dparcel
-Created Date: Wednesday 28th February 2024
+Created Date: Thursday 21st November
 Author: Clara Bayley (CB)
-Additional Contributors:
+Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
-Last Modified: Monday 11th November 2024
+Last Modified: Friday 22nd November
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-perform test case for 0-D parcel model with mock python microphysics scheme
+perform test case for 0-D parcel model with python bindings to saturation adjustment from
+ICON graupel one-moment bulk microphysics scheme
 """
 
 import os

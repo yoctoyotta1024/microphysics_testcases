@@ -2,7 +2,7 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: test_mock_py.py
+File: test_icon_graupel.py
 Project: test_case_0dparcel
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
@@ -15,7 +15,8 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-perform test case for 0-D parcel model with mock python microphysics scheme
+perform test case for 0-D parcel model with python bindings to ICON graupel
+one-moment bulk microphysics scheme
 """
 
 import numpy as np
@@ -28,13 +29,13 @@ if path and path is not None:
     from .perform_0dparcel_test_case import perform_0dparcel_test_case
     from libs.thermo.thermodynamics import Thermodynamics
 
-    def test_graupel_py_0dparcel():
-        """runs 0-D parcel model test using Python mock microphysics scheme (a mock-up of the muphys-cpp
-        graupel class for ICON).
+    def test_icon_graupel_0dparcel():
+        """runs 0-D parcel model test using ICON's one-moment bulk scheme
+        as a MicrophysicsScheme (with its "graupel" microphysics).
 
         This function sets up initial conditions and parameters for running a 0-D parcel model
-        test case using the Python mock microphysics scheme (via a wrapper). It then runs the
-        0-D parcel test case as specified.
+        test case using the ICON graupel microphysics scheme (via bindings and a wrapper).
+        It then runs the 0-D parcel test case as specified.
 
         Test Parameters:
             Timestepping:
@@ -61,7 +62,7 @@ if path and path is not None:
         """
 
         ### label for test case to name data/plots with
-        run_name = "python_microphys_0dparcel"
+        run_name = "icon_graupel_0dparcel"
 
         ### path to directory to save data/plots in after model run
         binpath = (

@@ -26,7 +26,7 @@ from libs.thermo.thermodynamics import Thermodynamics
 from libs.mock_microphys.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
 
-def test_mock_py_0dparcel():
+def test_mock_0dparcel():
     """runs 0-D parcel model test using Python mock microphysics scheme (a mock-up of the muphys-cpp
     graupel class for ICON).
 
@@ -59,7 +59,7 @@ def test_mock_py_0dparcel():
     """
 
     ### label for test case to name data/plots with
-    run_name = "python_mockmicrophys_0dparcel"
+    run_name = "mock_0dparcel"
 
     ### path to directory to save data/plots in after model run
     binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/

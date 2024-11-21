@@ -6,9 +6,9 @@ File: test_bulkkid.py
 Project: test_case_1dkid
 Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
-Additional Contributors:
+Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
-Last Modified: Wednesday 4th September 2024
+Last Modified: Thursday 21st November 2024
 Modified By: Joerg Behrens, Georgiana Mania
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -30,16 +30,16 @@ if path and path is not None:
     from libs.thermo.thermodynamics import Thermodynamics
     from libs.icon_graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
-    def test_pympdata_bulk_scheme_1dkid():
-        """runs test of 1-D KiD rainshaft model using bulk scheme for condensation
-        extracted from pyMPDATA for the microphysics scheme.
+    def test_icon_graupel_1dkid():
+        """runs test of 1-D KiD rainshaft model using ICON's one-moment "graupel"
+        bulk scheme for the microphysics.
 
         This function sets up initial conditions and parameters for running a 1-D KiD rainshaft
-        test case using the bulk microphysics scheme for condensation from the Shipway and Hill 2012
-        pyMPDATA-examples example (via a wrapper). It then runs the test case as specified.
+        test case using ICON's one-moment bulk microphysics scheme (with python bindings and
+        via a wrapper). It then runs the test case as specified.
         """
         ### label for test case to name data/plots with
-        run_name = "graupel_bulkmicrophys_1dkid"
+        run_name = "icon_graupel_1dkid"
 
         ### path to directory to save data/plots in after model run
         binpath = (

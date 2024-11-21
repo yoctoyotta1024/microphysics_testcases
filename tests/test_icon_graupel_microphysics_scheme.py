@@ -2,20 +2,20 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: test_mock_py_microphysics_scheme.py
+File: test_icon_graupel_microphysics_scheme.py
 Project: tests
 Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
-Last Modified: Monday 11th November 2024
+Last Modified: Friday 22nd November 2024
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-mock unit tests for Python microphysics module
+unit tests for Python bindings of ICON's graupel one-moment bulk microphysics scheme
 """
 
 import numpy as np

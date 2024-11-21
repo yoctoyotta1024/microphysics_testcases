@@ -3,7 +3,7 @@ Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
 File: __init__.py
-Project: pympdata_microphysics
+Project: pympdata_bulk
 Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
 Additional Contributors:

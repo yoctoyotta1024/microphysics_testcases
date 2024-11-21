@@ -6,7 +6,7 @@ File: test_bulkkid.py
 Project: test_case_1dkid
 Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
-Additional Contributors:
+Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
 Last Modified: Wednesday 4th September 2024
 Modified By: Joerg Behrens, Georgiana Mania
