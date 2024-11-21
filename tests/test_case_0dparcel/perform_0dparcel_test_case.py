@@ -101,9 +101,10 @@ def plot_0dparcel_thermodynamics(out, binpath, run_name):
 
     time = out.time.values
     plot_utilities.plot_thermodynamics_output_timeseries(axs[0], out, "press")
-    plot_utilities.plot_thermodynamics_output_timeseries(axs[1], out, "rho")
-    plot_utilities.plot_thermodynamics_output_timeseries(axs[2], out, "temp")
-    plot_thetas_on_axis(axs[3], time, out.temp, out.press, out.press.values[0])
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[0].twinx(), out, "rho")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[1], out, "temp")
+    plot_thetas_on_axis(axs[3], time, out.temp, out.press, out.qvap)
+    plot_mse_on_axis(axs[2], time, out.temp, out.qvap)
 
     for ax in axs:
         ax.set_xlabel(out.time.name + " /" + out.time.units)
@@ -138,16 +139,24 @@ def plot_0dparcel_massmix_ratios(out, binpath, run_name):
     assert run_name, "The run_name cannot be empty."
     print("plotting " + run_name + " and saving plots in: " + str(binpath))
 
-    fig, axs = plt.subplots(nrows=2, ncols=3, sharex=True)
+    fig, axs = plt.subplots(nrows=2, ncols=4, sharex=True)
     figname = run_name + "_massmix_ratios.png"
     axs = axs.flatten()
 
     plot_utilities.plot_thermodynamics_output_timeseries(axs[0], out, "qvap")
     plot_utilities.plot_thermodynamics_output_timeseries(axs[1], out, "qcond")
-    plot_utilities.plot_thermodynamics_output_timeseries(axs[2], out, "qice")
-    plot_utilities.plot_thermodynamics_output_timeseries(axs[3], out, "qrain")
-    plot_utilities.plot_thermodynamics_output_timeseries(axs[4], out, "qsnow")
-    plot_utilities.plot_thermodynamics_output_timeseries(axs[5], out, "qgrau")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[2], out, "qrain")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[4], out, "qice")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[5], out, "qsnow")
+    plot_utilities.plot_thermodynamics_output_timeseries(axs[6], out, "qgrau")
+
+    qtot_warm = out.qvap.values + out.qcond.values + out.qrain.values
+    axs[3].plot(out.time.values, qtot_warm)
+    axs[3].set_ylabel("q$_{v}$ + q$_{cond}$ + q$_{rain}$ / kg/kg")
+
+    qtot = qtot_warm + out.qice.values + out.qsnow.values + out.qgrau.values
+    axs[7].plot(out.time.values, qtot)
+    axs[7].set_ylabel("q$_{tot}$ / kg/kg")
 
     for ax in axs:
         ax.set_xlabel(out.time.name + " /" + out.time.units)
@@ -156,7 +165,27 @@ def plot_0dparcel_massmix_ratios(out, binpath, run_name):
     plot_utilities.save_figure(fig, binpath, figname)
 
 
-def plot_thetas_on_axis(ax, time, temp, press, press0):
+def plot_mse_on_axis(ax, time, temp, qvap):
+    """Plot moist static energy (MSE) on a specified axis.
+
+    This function calculates and plots MSE against time on a specified axis.
+
+    Args:
+        ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the MSE.
+        time (array-like): Time values (x axis).
+        temp (OutputVariable): Temperature variable.
+        press (OutputVariable): Pressure variable.
+
+    Returns:
+        None
+    """
+    mse = formulae.moist_static_energy(temp.values, qvap.values)
+
+    ax.plot(time, mse)
+    ax.set_ylabel("moist static energy /kJ/kg")
+
+
+def plot_thetas_on_axis(ax, time, temp, press, qvap):
     """Plot potential temperature(s) on a specified axis.
 
     This function calculates and plots potential temperature(s) against time on a specified axis.
@@ -170,8 +199,13 @@ def plot_thetas_on_axis(ax, time, temp, press, press0):
     Returns:
         None
     """
-    theta_dry = formulae.dry_potential_temperature(temp.values, press.values, press0)
+    theta_dry = formulae.dry_potential_temperature(temp.values, press.values)
+    theta_moist = formulae.moist_equiv_potential_temperature(
+        temp.values, press.values, qvap.values
+    )
+
     ax.plot(time, theta_dry, label="dry")
-    ax.set_ylim(theta_dry[0] - 10, theta_dry[0] + 10)
+    ax.plot(time, theta_moist, label="moist equiv.")
+    ax.set_ylim(theta_dry[0] - 50, theta_dry[0] + 50)
     ax.legend()
     ax.set_ylabel("potential temperature /" + temp.units)
