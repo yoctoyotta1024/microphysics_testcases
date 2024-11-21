@@ -31,7 +31,7 @@ Contents
    usage/ourtests
    tests/index
    thermo/index
-   pympdata_microphysics/index
+   pympdata_bulk/index
    src_mock_py/index
    src_mock_cxx/index
    utility_functions/index

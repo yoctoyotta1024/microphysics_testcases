@@ -6,9 +6,9 @@ Shipway and Hill (2012) example in the PyMPDATA-examples library.
 It's a 1-moment scheme modelling condensation via a
 simple supersaturation adjustment.
 
-.. autofunction:: libs.pympdata_microphysics.bulk_scheme_condensation.bulk_scheme_condensation
+.. autofunction:: libs.pympdata_bulk.bulk_scheme_condensation.bulk_scheme_condensation
 
-.. autoclass:: libs.pympdata_microphysics.bulk_scheme_condensation.MicrophysicsSchemeWrapper
+.. autoclass:: libs.pympdata_bulk.bulk_scheme_condensation.MicrophysicsSchemeWrapper
    :members:
    :undoc-members:
    :private-members:

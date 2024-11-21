@@ -20,7 +20,7 @@ unit tests for bulk microphysics scheme from pyMPDATA
 
 import numpy as np
 
-from libs.pympdata_microphysics.bulk_scheme_condensation import (
+from libs.pympdata_bulk.bulk_scheme_condensation import (
     bulk_scheme_condensation,
     MicrophysicsSchemeWrapper,
 )

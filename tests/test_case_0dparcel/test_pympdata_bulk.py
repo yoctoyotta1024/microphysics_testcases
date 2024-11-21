@@ -23,7 +23,7 @@ from pathlib import Path
 
 from .perform_0dparcel_test_case import perform_0dparcel_test_case
 from libs.thermo.thermodynamics import Thermodynamics
-from libs.pympdata_microphysics.bulk_scheme_condensation import (
+from libs.pympdata_bulk.bulk_scheme_condensation import (
     MicrophysicsSchemeWrapper,
 )
 
