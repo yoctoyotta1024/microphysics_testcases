@@ -24,7 +24,7 @@ from pathlib import Path
 
 path = os.environ.get("PY_GRAUPEL_DIR")
 if path and path is not None:
-    from libs.graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+    from libs.icon_graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
     from .perform_0dparcel_test_case import perform_0dparcel_test_case
     from libs.thermo.thermodynamics import Thermodynamics
 

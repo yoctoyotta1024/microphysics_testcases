@@ -28,7 +28,7 @@ if path and path is not None:
 
     from .perform_1dkid_test_case import perform_1dkid_test_case
     from libs.thermo.thermodynamics import Thermodynamics
-    from libs.graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+    from libs.icon_graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
     def test_pympdata_bulk_scheme_1dkid():
         """runs test of 1-D KiD rainshaft model using bulk scheme for condensation
