@@ -28,12 +28,12 @@ from libs.pympdata_bulk.bulk_scheme_condensation import (
 )
 
 
-def test_pympdata_bulk_scheme_0dparcel():
-    """runs 0-D parcel model test using Python mock microphysics scheme (a mock-up of the muphys-cpp
-    graupel class for ICON).
+def test_pympdata_bulk_0dparcel():
+    """runs 0-D parcel model test using Python pyMPDATA microphysics scheme
+    (only condensation part of saturation adjustment from bulk scheme).
 
     This function sets up initial conditions and parameters for running a 0-D parcel model
-    test case using the Python mock microphysics scheme (via a wrapper). It then runs the
+    test case using the pyMPDATA microphysics scheme (via a wrapper). It then runs the
     0-D parcel test case as specified.
 
     Test Parameters:
@@ -55,7 +55,7 @@ def test_pympdata_bulk_scheme_0dparcel():
     """
 
     ### label for test case to name data/plots with
-    run_name = "pympdata_bulkmicrophys_0dparcel"
+    run_name = "pympdata_bulk_0dparcel"
 
     ### path to directory to save data/plots in after model run
     binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/
