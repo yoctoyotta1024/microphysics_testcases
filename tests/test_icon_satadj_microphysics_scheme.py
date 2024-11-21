@@ -19,10 +19,13 @@ mock unit tests for Python microphysics module
 """
 
 import numpy as np
-from copy import deepcopy
 
-from libs.icon_satadj.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper, py_graupel
+from libs.icon_satadj.microphysics_scheme_wrapper import (
+    MicrophysicsSchemeWrapper,
+    py_graupel,
+)
 from libs.thermo.thermodynamics import Thermodynamics
+
 
 def test_initialize_wrapper():
     nvec = 1
@@ -69,7 +72,7 @@ def test_microphys_with_wrapper():
 
     # temporary variable
     total_ice = qgrau + qsnow + qice
-      
+
     # call saturation adjustment
     py_graupel.saturation_adjustment(
         ncells=nvec,
@@ -81,8 +84,8 @@ def test_microphys_with_wrapper():
         total_ice=total_ice,
         rho=rho,
     )
-       
+
     result = microphys_wrapped.run(timestep, thermo)
 
-    assert result.temp == temp  
+    assert result.temp == temp
     assert result.massmix_ratios == [qvap, qcond, qice, qrain, qsnow, qgrau]
