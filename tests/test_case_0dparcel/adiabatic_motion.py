@@ -39,9 +39,9 @@ class AdiabaticMotion:
         omega (float):
           Angular frequency of pressure sinusoid (tau is time period) [radians s^-1].
         cp_dry (float):
-          Specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K).
+          Specific heat capacity of water vapour [J/kg/K] (IAPWS97 at 273.15K).
         rgas_dry (float):
-          Specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K).
+          Specific gas constant for dry air [J/kg/K] (approx. 287 J/kg/K).
         epsilon (float):
           Ratio of gas constants, dry air / water vapour (approx. 0.622).
     """
@@ -56,14 +56,14 @@ class AdiabaticMotion:
               Time period of the pressure sinusoid [s].
         """
 
-        rgas_univ = 8.314462618  # universal molar gas constant [J/Kg/K]
-        mr_dry = 0.028966216  # molecular mass of dry air [Kg/mol]
-        mr_water = 0.01801528  # molecular mass of water [Kg/mol]
+        rgas_univ = 8.314462618  # universal molar gas constant [J/kg/K]
+        mr_dry = 0.028966216  # molecular mass of dry air [kg/mol]
+        mr_water = 0.01801528  # molecular mass of water [kg/mol]
 
-        self.cp_dry = 1004.64  # specific heat capacity of water vapour [J/Kg/K] (IAPWS97 at 273.15K)
+        self.cp_dry = 1004.64  # specific heat capacity of water vapour [J/kg/K] (IAPWS97 at 273.15K)
         self.rgas_dry = (
             rgas_univ / mr_dry
-        )  # specific gas constant for dry air [J/Kg/K] (approx. 287 J/Kg/K)
+        )  # specific gas constant for dry air [J/kg/K] (approx. 287 J/kg/K)
         self.epsilon = (
             mr_water / mr_dry
         )  # ratio of gas constants, dry air / water vapour (approx. 0.622)
@@ -110,7 +110,7 @@ class AdiabaticMotion:
 
         Args:
             rho (np.ndarray):
-              Density of air [Kg/m^3].
+              Density of air [kg/m^3].
             dpress_dt (np.ndarray):
               Rate of change of pressure with respect to time [Pa/s].
 
@@ -142,16 +142,16 @@ class AdiabaticMotion:
             temp (np.ndarray):
               Temperature of air [K].
             rho (np.ndarray):
-              Density of air [Kg/m^3].
+              Density of air [kg/m^3].
             qvap (np.ndarray):
-              Mass mixing ratio of water vapor [Kg/Kg].
+              Mass mixing ratio of water vapor [kg/kg].
             dpress_dt (np.ndarray):
               Rate of change of pressure with respect to time [Pa/s].
             dtemp_dt (np.ndarray):
               Rate of change of temperature with respect to time [K/s].
 
         Returns:
-            np.ndarray: Rate of change of density with respect to time [Kg/m^3/s].
+            np.ndarray: Rate of change of density with respect to time [kg/m^3/s].
         """
 
         rgas_eff = self.rgas_dry * (1 + qvap / self.epsilon)

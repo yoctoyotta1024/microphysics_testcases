@@ -34,7 +34,7 @@ def print_message(time, thermo):
 
     msg = "time = {:.1f}s:\n".format(time)
     msg += "   T = " + str(["{:.2f}K".format(x) for x in thermo.temp]) + ",\n"
-    msg += " rho = " + str(["{:.3f}Kgm^-3".format(x) for x in thermo.rho]) + ",\n"
+    msg += " rho = " + str(["{:.3f}kgm^-3".format(x) for x in thermo.rho]) + ",\n"
     msg += "   P = " + str(["{:.0f}Pa".format(x) for x in thermo.press]) + ",\n"
 
     print(msg)

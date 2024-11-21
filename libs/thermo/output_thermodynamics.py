@@ -121,14 +121,14 @@ class OutputThermodynamics:
 
         self.time = OutputVariable("time", "s", [shape[0]])
         self.temp = OutputVariable("temp", "K", shape)
-        self.rho = OutputVariable("rho", "Kg m-3", shape)
+        self.rho = OutputVariable("rho", "kg m-3", shape)
         self.press = OutputVariable("press", "Pa", shape)
-        self.qvap = OutputVariable("qvap", "Kg/Kg", shape)
-        self.qcond = OutputVariable("qcond", "Kg/Kg", shape)
-        self.qice = OutputVariable("qice", "Kg/Kg", shape)
-        self.qrain = OutputVariable("qrain", "Kg/Kg", shape)
-        self.qsnow = OutputVariable("qsnow", "Kg/Kg", shape)
-        self.qgrau = OutputVariable("qgrau", "Kg/Kg", shape)
+        self.qvap = OutputVariable("qvap", "kg/kg", shape)
+        self.qcond = OutputVariable("qcond", "kg/kg", shape)
+        self.qice = OutputVariable("qice", "kg/kg", shape)
+        self.qrain = OutputVariable("qrain", "kg/kg", shape)
+        self.qsnow = OutputVariable("qsnow", "kg/kg", shape)
+        self.qgrau = OutputVariable("qgrau", "kg/kg", shape)
 
         if zhalf is not None:
             self.zhalf = OutputVariable("zhalf", "m", [len(zhalf)])

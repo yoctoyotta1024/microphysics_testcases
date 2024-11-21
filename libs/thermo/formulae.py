@@ -65,7 +65,7 @@ def moist_equiv_potential_temperature(
         press (array-like):
             Pressure values (Pa).
         qvap (array-like):
-            Mixing ratio of water vapour (Kg/Kg)
+            Mixing ratio of water vapour (kg/kg)
     Returns:
         array-like: The moist potential temperature (K).
     """
@@ -99,7 +99,7 @@ def moist_static_energy(
         press (array-like):
             Pressure values (Pa).
         qvap (array-like):
-            Mixing ratio of water vapour (Kg/Kg)
+            Mixing ratio of water vapour (kg/kg)
     Returns:
         array-like: The moist potential temperature (K).
     """
