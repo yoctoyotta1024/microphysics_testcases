@@ -90,9 +90,6 @@ if path and path is not None:
         pre_gsp = np.zeros(nvec, np.float64)
         pflx = np.zeros((nvec, ke), np.float64)
 
-        # temporary variable
-        total_ice = qgrau + qsnow + qice
-
         # call saturation adjustment
         py_graupel.saturation_adjustment(
             ncells=nvec,
@@ -101,7 +98,7 @@ if path and path is not None:
             qv=qvap,
             qc=qcond,
             qr=qrain,
-            total_ice=total_ice,
+            total_ice=qgrau + qsnow + qice,
             rho=rho,
         )
 
@@ -136,7 +133,7 @@ if path and path is not None:
             qv=qvap,
             qc=qcond,
             qr=qrain,
-            total_ice=total_ice,
+            total_ice=qgrau + qsnow + qice,
             rho=rho,
         )
 
