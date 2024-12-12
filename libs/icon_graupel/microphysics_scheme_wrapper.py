@@ -147,9 +147,6 @@ class MicrophysicsSchemeWrapper:
         pre_gsp = np.zeros(self.nvec, dtype=np.float64)
         pflx = np.zeros((self.nvec, self.ke), np.float64)
 
-        # temporary variable
-        total_ice = qg + qs + qi
-
         # call saturation adjustment
         py_graupel.saturation_adjustment(
             ncells=self.nvec,
@@ -158,7 +155,7 @@ class MicrophysicsSchemeWrapper:
             qv=qv,
             qc=qc,
             qr=qr,
-            total_ice=total_ice,
+            total_ice=qg + qs + qi,
             rho=rho,
         )
 
@@ -218,7 +215,7 @@ class MicrophysicsSchemeWrapper:
             qv=qv,
             qc=qc,
             qr=qr,
-            total_ice=total_ice,
+            total_ice=qg + qs + qi,
             rho=rho,
         )
 
