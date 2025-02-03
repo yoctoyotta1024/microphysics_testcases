@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.7.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/1d43cc1967216f3d5b98c05bdb01b036ff6a8be9..v0.7.1) - 2025-02-03
+#### Bug Fixes
+- calls after ICON MPI-M update - ([bbb4a0c](https://github.com/yoctoyotta1024/microphysics_testcases/commit/bbb4a0cc446a3f457f78d223b8db2aa562e0c63c)) - Georgiana Mania
+#### Refactoring
+- rename files and correct headers and docstrings - ([41050ec](https://github.com/yoctoyotta1024/microphysics_testcases/commit/41050ec74f258804660e7f8c77e985229979dc95)) - clara.bayley
+- rename mock_py libs - ([bf96c10](https://github.com/yoctoyotta1024/microphysics_testcases/commit/bf96c10551033f6ecf74e8bdc07b189598c985ac)) - clara.bayley
+- rename mock_cxx libs - ([522cc47](https://github.com/yoctoyotta1024/microphysics_testcases/commit/522cc47a8006a5b93fcb5eba3e2715e13f4fc93c)) - clara.bayley
+- rename pympdata libs - ([d2ccad4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d2ccad4bc7650f471a0001d7932b27caef399405)) - clara.bayley
+- rename graupel libs -> icon_graupel - ([1d43cc1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/1d43cc1967216f3d5b98c05bdb01b036ff6a8be9)) - clara.bayley
+
+- - -
+
 ## [v0.7.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/7ee44daeae3669de34fc9f1e2c508d9d58e48ff5..v0.7.0) - 2024-11-21
 #### Bug Fixes
 - run satadj tests only if PY_GRAUPEL_DIR is set - ([af23c24](https://github.com/yoctoyotta1024/microphysics_testcases/commit/af23c2474778c24acddc6a90b249c5018f0c20b1)) - clara.bayley
