@@ -87,7 +87,7 @@ class MicrophysicsSchemeWrapper:
         self.ke = ke
         self.ivstart = ivstart
         self.dz = dz
-        self.qnc = qnc
+        self.qnc = np.float64(qnc)
         self.microphys = aes_muphys_py
         self.name = "Wrapper around " + "graupel"  # self.microphys.name
 
@@ -134,7 +134,7 @@ class MicrophysicsSchemeWrapper:
         """
 
         cp_thermo = deepcopy(thermo)
-        dt = timestep
+        dt = np.float64(timestep)
         t = cp_thermo.temp
         rho = cp_thermo.rho
         p = cp_thermo.press
@@ -174,13 +174,13 @@ class MicrophysicsSchemeWrapper:
             qr=qr,
             qs=qs,
             qg=qg,
-            qnc=np.array(self.qnc),
+            qnc=self.qnc,
             prr_gsp=prr_gsp,
             pri_gsp=pri_gsp,
             prs_gsp=prs_gsp,
             prg_gsp=prg_gsp,
-            pflx=pflx,
             pre_gsp=pre_gsp,
+            pflx=pflx,
         )
 
         # call graupel without precipitations
