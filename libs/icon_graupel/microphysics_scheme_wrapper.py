@@ -148,6 +148,7 @@ class MicrophysicsSchemeWrapper:
         pflx = np.zeros((self.nvec, self.ke), np.float64)
 
         # call saturation adjustment
+        total_ice = qg + qs + qi  # temporary variable
         aes_muphys_py.saturation_adjustment(
             ncells=self.nvec,
             nlev=self.ke,
@@ -155,7 +156,7 @@ class MicrophysicsSchemeWrapper:
             qv=qv,
             qc=qc,
             qr=qr,
-            total_ice=qg + qs + qi,
+            total_ice=total_ice,
             rho=rho,
         )
 
@@ -183,31 +184,8 @@ class MicrophysicsSchemeWrapper:
             pflx=pflx,
         )
 
-        # call graupel without precipitations
-        #     self.microphys.run_no_precip(
-        #         ncells=self.nvec,
-        #         nlev=self.ke,
-        #         dt=dt,
-        #         dz=self.dz,
-        #         t=t,
-        #         rho=rho,
-        #         p=p,
-        #         qv=qv,
-        #         qc=qc,
-        #         qi=qi,
-        #         qr=qr,
-        #         qs=qs,
-        #         qg=qg,
-        #         qnc=self.qnc,
-        #         prr_gsp=prr_gsp,
-        #         pri_gsp=pri_gsp,
-        #         prs_gsp=prs_gsp,
-        #         prg_gsp=prg_gsp,
-        #         pflx=pflx,
-        #         pre_gsp=pre_gsp,
-        #     )
-
         # call saturation adjustment
+        total_ice = qg + qs + qi  # temporary variable
         aes_muphys_py.saturation_adjustment(
             ncells=self.nvec,
             nlev=self.ke,
@@ -215,7 +193,7 @@ class MicrophysicsSchemeWrapper:
             qv=qv,
             qc=qc,
             qr=qr,
-            total_ice=qg + qs + qi,
+            total_ice=total_ice,
             rho=rho,
         )
 
