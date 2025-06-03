@@ -94,6 +94,7 @@ if path and path is not None:
         pflx = np.zeros((nvec, ke), np.float64)
 
         # call saturation adjustment
+        total_ice = qgrau + qsnow + qice  # temporary variable
         aes_muphys_py.saturation_adjustment(
             ncells=nvec,
             nlev=ke,
@@ -101,7 +102,7 @@ if path and path is not None:
             qv=qvap,
             qc=qcond,
             qr=qrain,
-            total_ice=qgrau + qsnow + qice,
+            total_ice=total_ice,
             rho=rho,
         )
 
@@ -128,10 +129,8 @@ if path and path is not None:
             pre_gsp=pre_gsp,
         )
 
-        # temporary variable
-        total_ice = qgrau + qsnow + qice
-
         # call saturation adjustment
+        total_ice = qgrau + qsnow + qice  # temporary variable
         aes_muphys_py.saturation_adjustment(
             ncells=nvec,
             nlev=ke,
@@ -139,7 +138,7 @@ if path and path is not None:
             qv=qvap,
             qc=qcond,
             qr=qrain,
-            total_ice=qgrau + qsnow + qice,
+            total_ice=total_ice,
             rho=rho,
         )
 

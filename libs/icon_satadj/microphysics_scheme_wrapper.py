@@ -141,10 +141,8 @@ class MicrophysicsSchemeWrapper:
         rho = cp_thermo.rho
         qv, qc, qi, qr, qs, qg = cp_thermo.massmix_ratios
 
-        # temporary variable
-        total_ice = qg + qs + qi
-
         # call saturation adjustment
+        total_ice = qg + qs + qi  # temporary variable
         aes_muphys_py.saturation_adjustment(
             ncells=self.nvec,
             nlev=self.ke,

@@ -73,10 +73,8 @@ if path and path is not None:
             temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau
         )
 
-        # temporary variable
-        total_ice = qgrau + qsnow + qice
-
         # call saturation adjustment
+        total_ice = qgrau + qsnow + qice  # temporary variable
         aes_muphys_py.saturation_adjustment(
             ncells=nvec,
             nlev=ke,
