@@ -26,7 +26,7 @@ path = os.environ.get("PY_GRAUPEL_DIR")
 if path and path is not None:
     from libs.icon_satadj.microphysics_scheme_wrapper import (
         MicrophysicsSchemeWrapper,
-        py_graupel,
+        aes_muphys_py,
     )
     from libs.thermo.thermodynamics import Thermodynamics
 
@@ -77,7 +77,7 @@ if path and path is not None:
         total_ice = qgrau + qsnow + qice
 
         # call saturation adjustment
-        py_graupel.saturation_adjustment(
+        aes_muphys_py.saturation_adjustment(
             ncells=nvec,
             nlev=ke,
             ta=temp,

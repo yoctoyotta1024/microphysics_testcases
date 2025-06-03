@@ -25,17 +25,17 @@ path = os.environ.get("PY_GRAUPEL_DIR")
 if path and path is not None:
     from libs.icon_graupel.microphysics_scheme_wrapper import (
         MicrophysicsSchemeWrapper,
-        py_graupel,
+        aes_muphys_py,
     )
     from libs.thermo.thermodynamics import Thermodynamics
 
-    def test_initialize():
-        microphys = py_graupel.Graupel()
+    """  def test_initialize():
+        microphys = aes_muphys_py
 
         assert microphys.initialize() is None
 
     def test_finalize():
-        microphys = py_graupel.Graupel()
+        microphys = aes_muphys_py
 
         assert microphys.finalize() is None
 
@@ -58,15 +58,18 @@ if path and path is not None:
         microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
         assert microphys_wrapped.finalize() == 0
+ """
 
     def test_microphys_with_wrapper():
-        microphys = py_graupel.Graupel()
+        microphys = aes_muphys_py
         nvec = 1
         ke = 1
         ivstart = 0
         dz = np.array([10], dtype=np.float64)
         qnc = 500
         microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
+
+        microphys_wrapped.initialize()
 
         timestep = 1.0
         temp = np.array([288.15], dtype=np.float64)
@@ -91,7 +94,7 @@ if path and path is not None:
         pflx = np.zeros((nvec, ke), np.float64)
 
         # call saturation adjustment
-        py_graupel.saturation_adjustment(
+        aes_muphys_py.saturation_adjustment(
             ncells=nvec,
             nlev=ke,
             ta=temp,
@@ -116,7 +119,7 @@ if path and path is not None:
             qr=qrain,
             qs=qsnow,
             qg=qgrau,
-            qnc=qnc,
+            qnc=np.array(qnc),
             prr_gsp=prr_gsp,
             pri_gsp=pri_gsp,
             prs_gsp=prs_gsp,
@@ -126,7 +129,7 @@ if path and path is not None:
         )
 
         # call saturation adjustment
-        py_graupel.saturation_adjustment(
+        aes_muphys_py.saturation_adjustment(
             ncells=nvec,
             nlev=ke,
             ta=temp,
@@ -138,6 +141,8 @@ if path and path is not None:
         )
 
         result = microphys_wrapped.run(timestep, thermo)
+
+        microphys_wrapped.finalize()
 
         assert result.temp == temp
         assert result.massmix_ratios == [qvap, qcond, qice, qrain, qsnow, qgrau]

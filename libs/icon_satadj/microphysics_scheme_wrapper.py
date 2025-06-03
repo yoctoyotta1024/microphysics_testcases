@@ -27,7 +27,7 @@ from ..thermo.thermodynamics import Thermodynamics
 
 sys.path.append(os.environ["PY_GRAUPEL_DIR"])
 # currently on Levante: export PY_GRAUPEL_DIR=/work/k20200/k202174/installed-muphys/lib64/
-import py_graupel
+import aes_muphys_py
 
 
 class MicrophysicsSchemeWrapper:
@@ -88,7 +88,7 @@ class MicrophysicsSchemeWrapper:
         self.ivstart = ivstart
         self.dz = dz
         self.qnc = qnc
-        self.microphys = py_graupel.Graupel()
+        self.microphys = aes_muphys_py
         self.name = (
             "Wrapper around " + "ICON Saturation Adjustment"
         )  # self.microphys.name
@@ -145,7 +145,7 @@ class MicrophysicsSchemeWrapper:
         total_ice = qg + qs + qi
 
         # call saturation adjustment
-        py_graupel.saturation_adjustment(
+        aes_muphys_py.saturation_adjustment(
             ncells=self.nvec,
             nlev=self.ke,
             ta=t,
