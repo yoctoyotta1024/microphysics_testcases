@@ -66,12 +66,12 @@ if path and path is not None:
         ke = 1
         ivstart = 0
         dz = np.array([10], dtype=np.float64)
-        qnc = 500
+        qnc = np.float64(500)
         microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
         microphys_wrapped.initialize()
 
-        timestep = 1.0
+        timestep = np.float64(1.0)
         temp = np.array([288.15], dtype=np.float64)
         rho = np.array([1.225], dtype=np.float64)
         press = np.array([101325], dtype=np.float64)
@@ -119,7 +119,7 @@ if path and path is not None:
             qr=qrain,
             qs=qsnow,
             qg=qgrau,
-            qnc=np.array(qnc),
+            qnc=qnc,
             prr_gsp=prr_gsp,
             pri_gsp=pri_gsp,
             prs_gsp=prs_gsp,
@@ -127,6 +127,9 @@ if path and path is not None:
             pflx=pflx,
             pre_gsp=pre_gsp,
         )
+
+        # temporary variable
+        total_ice = qgrau + qsnow + qice
 
         # call saturation adjustment
         aes_muphys_py.saturation_adjustment(
