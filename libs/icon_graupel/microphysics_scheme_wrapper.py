@@ -27,7 +27,8 @@ from copy import deepcopy
 from ..thermo.thermodynamics import Thermodynamics
 
 sys.path.append(os.environ["PY_GRAUPEL_DIR"])
-import py_graupel
+
+import aes_muphys_py
 
 
 class MicrophysicsSchemeWrapper:
@@ -87,7 +88,7 @@ class MicrophysicsSchemeWrapper:
         self.ivstart = ivstart
         self.dz = dz
         self.qnc = qnc
-        self.microphys = py_graupel.Graupel()
+        self.microphys = aes_muphys_py
         self.name = "Wrapper around " + "graupel"  # self.microphys.name
 
     def initialize(self) -> int:
@@ -98,7 +99,6 @@ class MicrophysicsSchemeWrapper:
         Returns:
             int: 0 upon successful initialisation
         """
-
         self.microphys.initialize()
 
         return 0
@@ -148,7 +148,7 @@ class MicrophysicsSchemeWrapper:
         pflx = np.zeros((self.nvec, self.ke), np.float64)
 
         # call saturation adjustment
-        py_graupel.saturation_adjustment(
+        aes_muphys_py.saturation_adjustment(
             ncells=self.nvec,
             nlev=self.ke,
             ta=t,
@@ -160,31 +160,7 @@ class MicrophysicsSchemeWrapper:
         )
 
         # call graupel
-        #        self.microphys.run(
-        #            ncells=self.nvec,
-        #            nlev=self.ke,
-        #            dt=dt,
-        #            dz=self.dz,
-        #            t=t,
-        #            rho=rho,
-        #            p=p,
-        #            qv=qv,
-        #            qc=qc,
-        #            qi=qi,
-        #            qr=qr,
-        #            qs=qs,
-        #            qg=qg,
-        #            qnc=self.qnc,
-        #            prr_gsp=prr_gsp,
-        #            pri_gsp=pri_gsp,
-        #            prs_gsp=prs_gsp,
-        #            prg_gsp=prg_gsp,
-        #            pflx=pflx,
-        #            pre_gsp=pre_gsp,
-        #        )
-
-        # call graupel without precipitations
-        self.microphys.run_no_precip(
+        self.microphys.run(
             ncells=self.nvec,
             nlev=self.ke,
             dt=dt,
@@ -198,7 +174,7 @@ class MicrophysicsSchemeWrapper:
             qr=qr,
             qs=qs,
             qg=qg,
-            qnc=self.qnc,
+            qnc=np.array(self.qnc),
             prr_gsp=prr_gsp,
             pri_gsp=pri_gsp,
             prs_gsp=prs_gsp,
@@ -207,8 +183,32 @@ class MicrophysicsSchemeWrapper:
             pre_gsp=pre_gsp,
         )
 
+        # call graupel without precipitations
+        #     self.microphys.run_no_precip(
+        #         ncells=self.nvec,
+        #         nlev=self.ke,
+        #         dt=dt,
+        #         dz=self.dz,
+        #         t=t,
+        #         rho=rho,
+        #         p=p,
+        #         qv=qv,
+        #         qc=qc,
+        #         qi=qi,
+        #         qr=qr,
+        #         qs=qs,
+        #         qg=qg,
+        #         qnc=self.qnc,
+        #         prr_gsp=prr_gsp,
+        #         pri_gsp=pri_gsp,
+        #         prs_gsp=prs_gsp,
+        #         prg_gsp=prg_gsp,
+        #         pflx=pflx,
+        #         pre_gsp=pre_gsp,
+        #     )
+
         # call saturation adjustment
-        py_graupel.saturation_adjustment(
+        aes_muphys_py.saturation_adjustment(
             ncells=self.nvec,
             nlev=self.ke,
             ta=t,
