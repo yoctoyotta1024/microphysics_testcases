@@ -2,13 +2,13 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: test_icon_graupel_microphysics_scheme.py
+File: test_icon_muphys_microphysics_scheme.py
 Project: tests
 Created Date: Tuesday 27th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
-Last Modified: Friday 22nd November 2024
+Last Modified: Wednesday 4th June 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -23,7 +23,7 @@ import os
 
 path = os.environ.get("AES_MUPHYS_PY_DIR")
 if path and path is not None:
-    from libs.icon_graupel.microphysics_scheme_wrapper import (
+    from libs.icon_muphys.microphysics_scheme_wrapper import (
         MicrophysicsSchemeWrapper,
         aes_muphys_py,
     )

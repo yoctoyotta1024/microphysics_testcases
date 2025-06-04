@@ -28,9 +28,9 @@ if path and path is not None:
 
     from .perform_1dkid_test_case import perform_1dkid_test_case
     from libs.thermo.thermodynamics import Thermodynamics
-    from libs.icon_graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+    from libs.icon_muphys.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
-    def test_icon_graupel_1dkid():
+    def test_icon_muphys_1dkid():
         """runs test of 1-D KiD rainshaft model using ICON AES one-moment bulk scheme for
         the microphysics.
 
