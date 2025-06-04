@@ -27,8 +27,8 @@ from libs.mock_microphys.microphysics_scheme_wrapper import MicrophysicsSchemeWr
 
 
 def test_mock_0dparcel():
-    """runs 0-D parcel model test using Python mock microphysics scheme (a mock-up of the muphys-cpp
-    graupel class for ICON).
+    """runs 0-D parcel model test using Python mock microphysics scheme
+    (a mock-up of the ICON AES one-moment bulk microphysics scheme).
 
     This function sets up initial conditions and parameters for running a 0-D parcel model
     test case using the Python mock microphysics scheme (via a wrapper). It then runs the

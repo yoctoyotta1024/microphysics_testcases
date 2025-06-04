@@ -20,13 +20,13 @@ class for mock microphysics scheme in Python
 
 
 class MicrophysicsScheme:
-    """A class representing a Python microphysics scheme which is a mock-up of the muphys-cpp graupel
-    class for ICON."""
+    """A class representing a Python microphysics scheme which is a mock-up of the ICON AES
+    one-moment microphysics scheme."""
 
     def __init__(self):
         """Init the MicrophysicsScheme object (Python only)"""
 
-        self.name = "Python mock-up of an instance of muphys-cpp's graupel for ICON"
+        self.name = "Python mock-up of an instance of ICON AES microphysics scheme"
         self.n = 0
 
     def initialize(self):

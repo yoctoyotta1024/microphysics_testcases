@@ -31,13 +31,13 @@ import aes_muphys_py
 
 
 class MicrophysicsSchemeWrapper:
-    """A class wrapping around ICON's saturation adjustment as a MicrophysicsScheme
-    (without graupel microphysics)
+    """A class wrapping around ICON AES saturation adjustment as a MicrophysicsScheme
+    (without AES microphysics)
 
     This class wraps around python bindings to the ICON one-moment saturation adjustment
     to provide compatibility with the Python run scripts and tests in this project. It
-    initializes the ICON MicrophysicsScheme object and provides
-    wrappers around methods to initialize, finalize, and run the microphysics.
+    initializes the ICON MicrophysicsScheme object and provides wrappers around methods to
+    initialize, finalize, and run the microphysics.
 
     Args:
         nvec (int):

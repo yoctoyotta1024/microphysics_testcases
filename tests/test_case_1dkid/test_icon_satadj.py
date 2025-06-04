@@ -31,10 +31,10 @@ if path and path is not None:
 
     def test_icon_satadj_scheme_1dkid():
         """runs test of 1-D KiD rainshaft model using python bindings for
-        ICON's saturation adjustment as the microphysics scheme.
+        ICON AES saturation adjustment as the microphysics scheme (without AES microphysics).
 
         This function sets up initial conditions and parameters for running a 1-D KiD rainshaft
-        test case using the saturation adjustment from ICON's one-moment bulk microphysics scheme.
+        test case using the saturation adjustment from ICON AES one-moment bulk microphysics scheme.
         It then runs the test case as specified.
         """
 
@@ -66,8 +66,6 @@ if path and path is not None:
         ivstart = 0
         dz = np.array([25], dtype=np.float64)
         qnc = 500
-
-        ### Call graupel
         microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
         ### Perform test of 1-D KiD rainshaft model using chosen setup

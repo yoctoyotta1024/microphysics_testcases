@@ -15,7 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-unit tests for Python bindings of ICON's graupel one-moment bulk microphysics scheme
+unit tests for Python bindings of ICON AES one-moment bulk microphysics scheme
 """
 
 import numpy as np
