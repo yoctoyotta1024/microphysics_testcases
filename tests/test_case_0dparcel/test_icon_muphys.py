@@ -26,7 +26,9 @@ from pathlib import Path
 path = os.environ.get("AES_MUPHYS_PY_DIR")
 if path and path is not None:
     from libs.icon_muphys.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
-    from .perform_0dparcel_test_case import perform_0dparcel_test_case
+    from libs.test_case_0dparcel.perform_0dparcel_test_case import (
+        perform_0dparcel_test_case,
+    )
     from libs.thermo.thermodynamics import Thermodynamics
 
     def test_icon_muphys_0dparcel():
