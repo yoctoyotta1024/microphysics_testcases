@@ -32,12 +32,12 @@ import aes_muphys_py
 
 
 class MicrophysicsSchemeWrapper:
-    """A class wrapping around C++ bindings to ICON's graupel one-moment MicrophysicsScheme
+    """A class wrapping around C++ bindings to ICON AES one-moment MicrophysicsScheme
     (wrapper for compatibility purposes).
 
-    This class wraps around the graupel class to provide compatibility with the Python
-    run scripts and tests in this project. It initializes ICON's microphysics object and provides
-    wrappers around methods to initialize, finalize, and run the microphysics.
+    This class wraps around the ICON AES microphysics to provide compatibility
+    with the Python run scripts and tests in this project. It initializes ICON AES microphysics
+    object and provides wrappers around methods to initialize, finalize, and run the microphysics.
 
     Args:
         nvec (int):
@@ -89,7 +89,7 @@ class MicrophysicsSchemeWrapper:
         self.dz = dz
         self.qnc = np.float64(qnc)
         self.microphys = aes_muphys_py
-        self.name = "Wrapper around " + "graupel"  # self.microphys.name
+        self.name = "Wrapper around " + "ICON AES microphysics"  # self.microphys.name
 
     def initialize(self) -> int:
         """Initialise the microphysics scheme.
@@ -160,7 +160,7 @@ class MicrophysicsSchemeWrapper:
             rho=rho,
         )
 
-        # call graupel
+        # call ICON AES microphysics
         self.microphys.run(
             ncells=self.nvec,
             nlev=self.ke,

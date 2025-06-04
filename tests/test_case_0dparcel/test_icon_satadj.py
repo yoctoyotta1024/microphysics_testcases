@@ -16,7 +16,7 @@ https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
 perform test case for 0-D parcel model with python bindings to saturation adjustment from
-ICON graupel one-moment bulk microphysics scheme
+ICON AES one-moment bulk microphysics scheme
 """
 
 import os
@@ -31,11 +31,11 @@ if path and path is not None:
     from libs.thermo.thermodynamics import Thermodynamics
 
     def test_icon_satadj_0dparcel():
-        """runs 0-D parcel model test using ICON's saturation adjustment as a MicrophysicsScheme
-        (without graupel microphysics).
+        """runs 0-D parcel model test using ICON saturation adjustment as a MicrophysicsScheme
+        (without AES microphysics).
 
         This function sets up initial conditions and parameters for running a 0-D parcel model
-        test case using a wrapper around python bindings to ICON's saturation adjustment.
+        test case using a wrapper around python bindings to ICON AES saturation adjustment.
         It then runs the 0-D parcel test case as specified.
 
         Test Parameters:

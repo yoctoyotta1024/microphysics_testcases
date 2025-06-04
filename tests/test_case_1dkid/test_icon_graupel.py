@@ -31,15 +31,15 @@ if path and path is not None:
     from libs.icon_graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
     def test_icon_graupel_1dkid():
-        """runs test of 1-D KiD rainshaft model using ICON's one-moment "graupel"
-        bulk scheme for the microphysics.
+        """runs test of 1-D KiD rainshaft model using ICON AES one-moment bulk scheme for
+        the microphysics.
 
         This function sets up initial conditions and parameters for running a 1-D KiD rainshaft
-        test case using ICON's one-moment bulk microphysics scheme (with python bindings and
+        test case using ICON AES one-moment bulk microphysics scheme (with python bindings and
         via a wrapper). It then runs the test case as specified.
         """
         ### label for test case to name data/plots with
-        run_name = "icon_graupel_1dkid"
+        run_name = "icon_muphys_1dkid"
 
         ### path to directory to save data/plots in after model run
         binpath = (
@@ -66,8 +66,6 @@ if path and path is not None:
         ivstart = 0
         dz = np.array([25], dtype=np.float64)
         qnc = 500
-
-        ### Call graupel
         microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
         ### Perform test of 1-D KiD rainshaft model using chosen setup

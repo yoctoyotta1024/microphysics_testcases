@@ -1,6 +1,6 @@
 name: microtestsenv
 dependencies:
-    - python=3.10 # stricly 3.10 for ICON Graupel bindings on Levante
+    - python=3.10 # stricly 3.10 for ICON AES_MUPHYS_PY bindings on Levante
     - pytest
     - sphinx
     - conda-forge::doxygen>=1.10.0

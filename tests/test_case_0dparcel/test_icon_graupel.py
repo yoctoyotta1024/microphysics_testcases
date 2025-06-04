@@ -15,7 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-perform test case for 0-D parcel model with python bindings to ICON graupel
+perform test case for 0-D parcel model with python bindings to ICON AES
 one-moment bulk microphysics scheme
 """
 
@@ -30,11 +30,11 @@ if path and path is not None:
     from libs.thermo.thermodynamics import Thermodynamics
 
     def test_icon_graupel_0dparcel():
-        """runs 0-D parcel model test using ICON's one-moment bulk scheme
-        as a MicrophysicsScheme (with its "graupel" microphysics).
+        """runs 0-D parcel model test using ICON AES one-moment bulk scheme
+        as a MicrophysicsScheme (with AES microphysics and saturation adjustment).
 
         This function sets up initial conditions and parameters for running a 0-D parcel model
-        test case using the ICON graupel microphysics scheme (via bindings and a wrapper).
+        test case using the ICON AES microphysics scheme (via bindings and a wrapper).
         It then runs the 0-D parcel test case as specified.
 
         Test Parameters:
@@ -62,7 +62,7 @@ if path and path is not None:
         """
 
         ### label for test case to name data/plots with
-        run_name = "icon_graupel_0dparcel"
+        run_name = "icon_muphys_0dparcel"
 
         ### path to directory to save data/plots in after model run
         binpath = (

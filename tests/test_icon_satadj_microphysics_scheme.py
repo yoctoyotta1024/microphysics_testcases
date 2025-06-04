@@ -15,7 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-unit tests for Python bindings to the saturation adjustment from ICON's
+unit tests for Python bindings to the saturation adjustment from ICON AES
 one-moment bulk microphysics scheme
 """
 
