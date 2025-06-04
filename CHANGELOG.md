@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.7.2](https://github.com/yoctoyotta1024/microphysics_testcases/compare/110a936d9f26ff446de776f8d721c2e63dfd0996..v0.7.2) - 2025-06-04
+#### Bug Fixes
+- add missing total_ice calculation - ([e89ab6f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e89ab6f777f8a888c0783f6b5ae627f2cc01a759)) - Georgiana Mania
+- float/double overloading problem - ([bc5db94](https://github.com/yoctoyotta1024/microphysics_testcases/commit/bc5db9456c0f4266c722da26dd4e0aeb28b5470b)) - Georgiana Mania
+#### Continuous Integration
+- update aritfacts - ([110a936](https://github.com/yoctoyotta1024/microphysics_testcases/commit/110a936d9f26ff446de776f8d721c2e63dfd0996)) - clara.bayley
+#### Performance Improvements
+- rename path to aes muphys python bindings - ([4358fc9](https://github.com/yoctoyotta1024/microphysics_testcases/commit/4358fc9a198e3a13f0db6b641b76fe8a8b50e50e)) - clara.bayley
+#### Refactoring
+- Update icon_graupel and icon_sat_adj based on ragnarok changes - ([a81e0ec](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a81e0ecb29a505dc442f10a8ef23f2e96f4569a6)) - Georgiana Mania
+
+- - -
+
 ## [v0.7.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/1d43cc1967216f3d5b98c05bdb01b036ff6a8be9..v0.7.1) - 2025-02-03
 #### Bug Fixes
 - calls after ICON MPI-M update - ([bbb4a0c](https://github.com/yoctoyotta1024/microphysics_testcases/commit/bbb4a0cc446a3f457f78d223b8db2aa562e0c63c)) - Georgiana Mania
