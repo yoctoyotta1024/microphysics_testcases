@@ -2,13 +2,13 @@
 Copyright (c) 2024 MPI-M, Clara Bayley
 
 ----- Microphysics Test Cases -----
-File: test_icon_graupel.py
+File: test_icon_muphys.py
 Project: test_case_0dparcel
 Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
-Last Modified: Monday 11th November 2024
+Last Modified: Wednesday 4th June 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -25,11 +25,11 @@ from pathlib import Path
 
 path = os.environ.get("AES_MUPHYS_PY_DIR")
 if path and path is not None:
-    from libs.icon_graupel.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+    from libs.icon_muphys.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
     from .perform_0dparcel_test_case import perform_0dparcel_test_case
     from libs.thermo.thermodynamics import Thermodynamics
 
-    def test_icon_graupel_0dparcel():
+    def test_icon_muphys_0dparcel():
         """runs 0-D parcel model test using ICON AES one-moment bulk scheme
         as a MicrophysicsScheme (with AES microphysics and saturation adjustment).
 
