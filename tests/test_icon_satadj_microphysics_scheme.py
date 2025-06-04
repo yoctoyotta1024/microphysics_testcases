@@ -21,6 +21,9 @@ one-moment bulk microphysics scheme
 
 import numpy as np
 import os
+import warnings
+
+from pathlib import Path
 
 path = os.environ.get("AES_MUPHYS_PY_DIR")
 if path and path is not None:
@@ -90,3 +93,8 @@ if path and path is not None:
 
         assert result.temp == temp
         assert result.massmix_ratios == [qvap, qcond, qice, qrain, qsnow, qgrau]
+
+else:
+    warnings.warn(
+        f"No ICON AES microphysics library found. Not running {Path(__file__).name}"
+    )

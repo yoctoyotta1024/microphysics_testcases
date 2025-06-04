@@ -19,10 +19,12 @@ File Description:
 
 import numpy as np
 import os
+import warnings
+
+from pathlib import Path
 
 path = os.environ.get("AES_MUPHYS_PY_DIR")
 if path and path is not None:
-    from pathlib import Path
     from PyMPDATA_examples.Shipway_and_Hill_2012 import si
 
     from libs.test_case_1dkid.perform_1dkid_test_case import perform_1dkid_test_case
@@ -78,3 +80,8 @@ if path and path is not None:
             binpath,
             run_name,
         )
+
+else:
+    warnings.warn(
+        f"No ICON AES microphysics library found. Not running 1-D KiD {Path(__file__).name}"
+    )

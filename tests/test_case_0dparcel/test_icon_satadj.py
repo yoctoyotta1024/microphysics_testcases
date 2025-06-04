@@ -20,11 +20,13 @@ ICON AES one-moment bulk microphysics scheme
 """
 
 import os
+import warnings
+
+from pathlib import Path
 
 path = os.environ.get("AES_MUPHYS_PY_DIR")
 if path and path is not None:
     import numpy as np
-    from pathlib import Path
 
     from libs.icon_satadj.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
     from libs.test_case_0dparcel.perform_0dparcel_test_case import (
@@ -110,3 +112,8 @@ if path and path is not None:
             binpath,
             run_name,
         )
+
+else:
+    warnings.warn(
+        f"No ICON AES microphysics library found. Not running 0-D parcel {Path(__file__).name}"
+    )
