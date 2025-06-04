@@ -26,7 +26,8 @@ from copy import deepcopy
 from ..thermo.thermodynamics import Thermodynamics
 
 sys.path.append(os.environ["AES_MUPHYS_PY_DIR"])
-# currently on Levante: export AES_MUPHYS_PY_DIR=/work/bm1183/m300950/aes_muphys_bindings/
+# currently on Levante, do:
+# export AES_MUPHYS_PY_DIR=/work/k20200/k202174/icon-mpim/ragnarok/build_py/src/aes_microphysics/
 import aes_muphys_py
 
 
