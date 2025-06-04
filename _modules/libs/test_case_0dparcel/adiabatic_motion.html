@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>tests.test_case_0dparcel.adiabatic_motion - Microphysics Test Cases 0.0.0 documentation</title>
+        <title>libs.test_case_0dparcel.adiabatic_motion - Microphysics Test Cases 0.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -265,7 +265,7 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <h1>Source code for tests.test_case_0dparcel.adiabatic_motion</h1><div class="highlight"><pre>
+          <h1>Source code for libs.test_case_0dparcel.adiabatic_motion</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
@@ -276,7 +276,7 @@
 <span class="sd">Author: Clara Bayley (CB)</span>
 <span class="sd">Additional Contributors:</span>
 <span class="sd">-----</span>
-<span class="sd">Last Modified: Monday 17th June 2024</span>
+<span class="sd">Last Modified: Wednesday 4th June 2025</span>
 <span class="sd">Modified By: CB</span>
 <span class="sd">-----</span>
 <span class="sd">License: BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License</span>
@@ -291,7 +291,7 @@
 
 
 <div class="viewcode-block" id="AdiabaticMotion">
-<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion">[docs]</a>
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#libs.test_case_0dparcel.adiabatic_motion.AdiabaticMotion">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">AdiabaticMotion</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for driving the adiabatic expansion/contraction of a volume of air.</span>
 
@@ -344,7 +344,7 @@
         <span class="p">)</span>  <span class="c1"># angular frequency of pressure sinusio (tau is time period) [radians s^-1]</span>
 
 <div class="viewcode-block" id="AdiabaticMotion.dpress_dtime">
-<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.dpress_dtime">[docs]</a>
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#libs.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.dpress_dtime">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">dpress_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the rate of change of pressure with respect to time.</span>
 
@@ -371,7 +371,7 @@
 
 
 <div class="viewcode-block" id="AdiabaticMotion.dtemp_dtime">
-<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.dtemp_dtime">[docs]</a>
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#libs.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.dtemp_dtime">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">dtemp_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the rate of change of temperature with respect to time.</span>
 
@@ -399,7 +399,7 @@
 
 
 <div class="viewcode-block" id="AdiabaticMotion.drho_dtime">
-<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.drho_dtime">[docs]</a>
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#libs.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.drho_dtime">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">drho_dtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qvap</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">dtemp_dt</span><span class="p">,</span> <span class="n">dpress_dt</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the rate of change of density with respect to time.</span>
@@ -443,7 +443,7 @@
 
 
 <div class="viewcode-block" id="AdiabaticMotion.adiabatic_odes">
-<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.adiabatic_odes">[docs]</a>
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#libs.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.adiabatic_odes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">adiabatic_odes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">qvap</span><span class="p">):</span>
         <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">press</span> <span class="o">=</span> <span class="n">y</span>
         <span class="n">dpress_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpress_dtime</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
@@ -454,7 +454,7 @@
 
 
 <div class="viewcode-block" id="AdiabaticMotion.run">
-<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#tests.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.run">[docs]</a>
+<a class="viewcode-back" href="../../../tests/test_case_0dparcel/adiabatic_motion.html#libs.test_case_0dparcel.adiabatic_motion.AdiabaticMotion.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run the adiabatic motion computations.</span>

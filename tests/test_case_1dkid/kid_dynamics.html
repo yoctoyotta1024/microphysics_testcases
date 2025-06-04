@@ -275,8 +275,8 @@
           <section id="kid-dynamics">
 <h1>KiD Dynamics<a class="headerlink" href="#kid-dynamics" title="Link to this heading">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="tests.test_case_1dkid.kid_dynamics.KiDDynamics">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.test_case_1dkid.kid_dynamics.</span></span><span class="sig-name descname"><span class="pre">KiDDynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tests/test_case_1dkid/kid_dynamics.html#KiDDynamics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_case_1dkid.kid_dynamics.KiDDynamics" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libs.test_case_1dkid.kid_dynamics.KiDDynamics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">libs.test_case_1dkid.kid_dynamics.</span></span><span class="sig-name descname"><span class="pre">KiDDynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libs/test_case_1dkid/kid_dynamics.html#KiDDynamics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class for driving the KiD rainshaft test case, based on Shipway and Hill 2012.</p>
 <p>This class is a wrapper around the MPDATA driver of the Shipway and Hill 2012 example
@@ -284,8 +284,8 @@ in the PyMPDATA-examples library.</p>
 <p>See <a class="reference external" href="https://github.com/open-atmos/PyMPDATA/tree/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012">https://github.com/open-atmos/PyMPDATA/tree/main/examples/PyMPDATA_examples/Shipway_and_Hill_2012</a>
 for the original source code.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.test_case_1dkid.kid_dynamics.KiDDynamics.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tests/test_case_1dkid/kid_dynamics.html#KiDDynamics.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_case_1dkid.kid_dynamics.KiDDynamics.run" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libs.test_case_1dkid.kid_dynamics.KiDDynamics.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libs/test_case_1dkid/kid_dynamics.html#KiDDynamics.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics.run" title="Link to this definition">¶</a></dt>
 <dd><p>Run the 1-D KiD motion computations.</p>
 <p>This method integrates the equations from time to time+timestep
 for the dynamics of a 1-D KiD rainshaft.</p>
@@ -300,8 +300,8 @@ thermo (Thermodynamics): Object representing the thermodynamic state.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo">
-<span class="sig-name descname"><span class="pre">set_thermo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thermo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tests/test_case_1dkid/kid_dynamics.html#KiDDynamics.set_thermo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tests.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo">
+<span class="sig-name descname"><span class="pre">set_thermo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thermo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libs/test_case_1dkid/kid_dynamics.html#KiDDynamics.set_thermo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo" title="Link to this definition">¶</a></dt>
 <dd><p>Set thermodynamics from the dynamics solver.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>thermo (Thermodynamics): Object representing the thermodynamic state.</p>
@@ -372,9 +372,9 @@ thermo (Thermodynamics): Object representing the thermodynamic state.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">KiD Dynamics</a><ul>
-<li><a class="reference internal" href="#tests.test_case_1dkid.kid_dynamics.KiDDynamics"><code class="docutils literal notranslate"><span class="pre">KiDDynamics</span></code></a><ul>
-<li><a class="reference internal" href="#tests.test_case_1dkid.kid_dynamics.KiDDynamics.run"><code class="docutils literal notranslate"><span class="pre">KiDDynamics.run()</span></code></a></li>
-<li><a class="reference internal" href="#tests.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo"><code class="docutils literal notranslate"><span class="pre">KiDDynamics.set_thermo()</span></code></a></li>
+<li><a class="reference internal" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics"><code class="docutils literal notranslate"><span class="pre">KiDDynamics</span></code></a><ul>
+<li><a class="reference internal" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics.run"><code class="docutils literal notranslate"><span class="pre">KiDDynamics.run()</span></code></a></li>
+<li><a class="reference internal" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo"><code class="docutils literal notranslate"><span class="pre">KiDDynamics.set_thermo()</span></code></a></li>
 </ul>
 </li>
 </ul>

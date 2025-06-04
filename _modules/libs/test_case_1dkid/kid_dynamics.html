@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>tests.test_case_1dkid.kid_dynamics - Microphysics Test Cases 0.0.0 documentation</title>
+        <title>libs.test_case_1dkid.kid_dynamics - Microphysics Test Cases 0.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -265,7 +265,7 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <h1>Source code for tests.test_case_1dkid.kid_dynamics</h1><div class="highlight"><pre>
+          <h1>Source code for libs.test_case_1dkid.kid_dynamics</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright (c) 2024 MPI-M, Clara Bayley</span>
 
@@ -276,7 +276,7 @@
 <span class="sd">Author: Clara Bayley (CB)</span>
 <span class="sd">Additional Contributors:</span>
 <span class="sd">-----</span>
-<span class="sd">Last Modified: Wednesday 4th September 2024</span>
+<span class="sd">Last Modified: Wednesday 4th June 2025</span>
 <span class="sd">Modified By: CB</span>
 <span class="sd">-----</span>
 <span class="sd">License: BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License</span>
@@ -292,7 +292,7 @@
 
 
 <div class="viewcode-block" id="KiDDynamics">
-<a class="viewcode-back" href="../../../tests/test_case_1dkid/kid_dynamics.html#tests.test_case_1dkid.kid_dynamics.KiDDynamics">[docs]</a>
+<a class="viewcode-back" href="../../../tests/test_case_1dkid/kid_dynamics.html#libs.test_case_1dkid.kid_dynamics.KiDDynamics">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">KiDDynamics</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for driving the KiD rainshaft test case, based on Shipway and Hill 2012.</span>
 
@@ -360,7 +360,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Simulating </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">nt</span><span class="si">}</span><span class="s2"> timesteps using </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="KiDDynamics.set_thermo">
-<a class="viewcode-back" href="../../../tests/test_case_1dkid/kid_dynamics.html#tests.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo">[docs]</a>
+<a class="viewcode-back" href="../../../tests/test_case_1dkid/kid_dynamics.html#libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_thermo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thermo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set thermodynamics from the dynamics solver.</span>
 
@@ -380,7 +380,7 @@
 
 
 <div class="viewcode-block" id="KiDDynamics.run">
-<a class="viewcode-back" href="../../../tests/test_case_1dkid/kid_dynamics.html#tests.test_case_1dkid.kid_dynamics.KiDDynamics.run">[docs]</a>
+<a class="viewcode-back" href="../../../tests/test_case_1dkid/kid_dynamics.html#libs.test_case_1dkid.kid_dynamics.KiDDynamics.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run the 1-D KiD motion computations.</span>
