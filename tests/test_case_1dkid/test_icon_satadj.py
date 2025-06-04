@@ -20,7 +20,7 @@ File Description:
 import numpy as np
 import os
 
-path = os.environ.get("PY_GRAUPEL_DIR")
+path = os.environ.get("AES_MUPHYS_PY_DIR")
 if path and path is not None:
     from pathlib import Path
     from PyMPDATA_examples.Shipway_and_Hill_2012 import si
