@@ -8,7 +8,7 @@ Created Date: Monday 2nd September 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Wednesday 4th September 2024
+Last Modified: Wednesday 4th June 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -17,12 +17,11 @@ https://opensource.org/licenses/BSD-3-Clause
 File Description:
 """
 
-# %% Function definitions
 import numpy as np
 from pathlib import Path
 from PyMPDATA_examples.Shipway_and_Hill_2012 import si
 
-from .perform_1dkid_test_case import perform_1dkid_test_case
+from libs.test_case_1dkid.perform_1dkid_test_case import perform_1dkid_test_case
 from libs.thermo.thermodynamics import Thermodynamics
 from libs.pympdata_bulk.bulk_scheme_condensation import (
     MicrophysicsSchemeWrapper,
