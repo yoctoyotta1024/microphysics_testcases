@@ -8,7 +8,7 @@ Created Date: Wednesday 28th February 2024
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 11th November 2024
+Last Modified: Wednesday 4th June 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -21,7 +21,9 @@ perform test case for 0-D parcel model with mock python microphysics scheme
 import numpy as np
 from pathlib import Path
 
-from .perform_0dparcel_test_case import perform_0dparcel_test_case
+from libs.test_case_0dparcel.perform_0dparcel_test_case import (
+    perform_0dparcel_test_case,
+)
 from libs.thermo.thermodynamics import Thermodynamics
 from libs.mock_microphys.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 

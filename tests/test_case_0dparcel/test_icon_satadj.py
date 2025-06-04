@@ -8,7 +8,7 @@ Created Date: Thursday 21st November
 Author: Clara Bayley (CB)
 Additional Contributors: Joerg Behrens, Georgiana Mania
 -----
-Last Modified: Friday 22nd November
+Last Modified: Wednesday 4th June 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -27,7 +27,9 @@ if path and path is not None:
     from pathlib import Path
 
     from libs.icon_satadj.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
-    from .perform_0dparcel_test_case import perform_0dparcel_test_case
+    from libs.test_case_0dparcel.perform_0dparcel_test_case import (
+        perform_0dparcel_test_case,
+    )
     from libs.thermo.thermodynamics import Thermodynamics
 
     def test_icon_satadj_0dparcel():
