@@ -21,7 +21,7 @@ unit tests for Python bindings of ICON's graupel one-moment bulk microphysics sc
 import numpy as np
 import os
 
-path = os.environ.get("PY_GRAUPEL_DIR")
+path = os.environ.get("AES_MUPHYS_PY_DIR")
 if path and path is not None:
     from libs.icon_graupel.microphysics_scheme_wrapper import (
         MicrophysicsSchemeWrapper,
