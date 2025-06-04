@@ -1,7 +1,7 @@
 Python Thermodynamics Module
 ============================
 
-.. autoclass:: libs.src_py.thermodynamics.Thermodynamics
+.. autoclass:: libs.thermo.thermodynamics.Thermodynamics
    :members:
    :undoc-members:
    :private-members:

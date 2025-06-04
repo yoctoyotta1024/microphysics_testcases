@@ -1,7 +1,7 @@
 Calculations
 ============
 
-.. automodule::  libs.src_py.calcs
+.. automodule::  libs.utility_functions.plot_utilities
    :members:
    :undoc-members:
    :private-members:
