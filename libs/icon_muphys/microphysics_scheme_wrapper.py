@@ -28,8 +28,9 @@ from copy import deepcopy
 
 from ..thermo.thermodynamics import Thermodynamics
 
-sys.path.append(os.environ["AES_MUPHYS_PY_DIR"])
-
+sys.path.append(
+    os.environ["AES_MUPHYS_PY_DIR"]
+)  # TODO(ALL): receive as argument to class
 import aes_muphys_py
 
 
