@@ -26,7 +26,9 @@ from copy import deepcopy
 
 from ..thermo.thermodynamics import Thermodynamics
 
-sys.path.append(os.environ["AES_MUPHYS_PY_DIR"])
+sys.path.append(
+    os.environ["AES_MUPHYS_PY_DIR"]
+)  # TODO(ALL): receive as argument to class
 # currently on Levante, do:
 # export AES_MUPHYS_PY_DIR=/work/k20200/k202174/icon-mpim/ragnarok/build_py/src/aes_microphysics/
 import aes_muphys_py
