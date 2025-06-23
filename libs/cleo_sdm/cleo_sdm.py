@@ -1,33 +1,45 @@
 """
-Copyright (c) 2025 MPI-M, Clara Bayley
+Copyright (c) 2024 MPI-M, Clara Bayley
 
-
------ CLEO -----
-File: cleo_sdm.py
-Project: python_bindings
-Created Date: Thursday 12th June 2025
+----- Microphysics Test Cases -----
+File: microphysics_scheme_wrapper.py
+Project: cleo_sdm
+Created Date: Monday 23rd June 2025
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Thursday 12th June 2025
+Last Modified: Monday 23rd June 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-class and functions for handing setup and running of CLEO via python bindings
+class and functions for handing setup and running of CLEO via python bindings adapted from
+CLEO v0.44.0 python_bindings example
 """
 
+from mpi4py import MPI
+
 import pycleo
+from pycleo import coupldyn_numpy
 
 
-def create_sdm(cleo_config, tsteps):
+def mpi_info(comm):
+    print("\n--- PYCLEO STATUS: MPI INFORMATION ---")
+    print(f"MPI version: {MPI.Get_version()}")
+    print(f"Processor name: {MPI.Get_processor_name()}")
+    print(f"Total processes: {comm.Get_size()}")
+    print(f"Process rank: {comm.Get_rank()}")
+    print("--------------------------------------")
+
+
+def create_sdm(config, tsteps):
     print("PYCLEO STATUS: creating GridboxMaps")
     gbxmaps = pycleo.create_cartesian_maps(
-        cleo_config.get_ngbxs(),
-        cleo_config.get_nspacedims(),
-        cleo_config.get_grid_filename(),
+        config.get_ngbxs(),
+        config.get_nspacedims(),
+        config.get_grid_filename(),
     )
 
     print("PYCLEO STATUS: creating Observer")
@@ -53,10 +65,10 @@ def create_sdm(cleo_config, tsteps):
     return sdm
 
 
-def prepare_to_timestep_sdm(pycleo, cleo_config, sdm):
+def prepare_to_timestep_sdm(config, sdm):
     print("PYCLEO STATUS: creating superdroplets")
     initsupers = pycleo.InitSupersFromBinary(
-        cleo_config.get_initsupersfrombinary(), sdm.gbxmaps
+        config.get_initsupersfrombinary(), sdm.gbxmaps
     )
     allsupers = pycleo.create_supers_from_binary(
         initsupers, sdm.gbxmaps.get_local_ngridboxes_hostcopy()
@@ -76,7 +88,7 @@ def prepare_to_timestep_sdm(pycleo, cleo_config, sdm):
 class CleoSDM:
     def __init__(
         self,
-        cleo_config,
+        config,
         t_start,
         timestep,
         press,
@@ -86,7 +98,7 @@ class CleoSDM:
     ):
         self.name = "CLEO SDM microphysics"
 
-        tsteps = pycleo.pycreate_timesteps(cleo_config)
+        tsteps = pycleo.pycreate_timesteps(config)
         assert (
             pycleo.realtime2step(timestep) == tsteps.get_couplstep()
         ), "timestep and SDM coupling not equal"
@@ -95,19 +107,17 @@ class CleoSDM:
             t_start
         )  # convert from seconds to model timesteps (!)
 
-        self.coupldyn = pycleo.coupldyn_numpy.NumpyDynamics(
+        self.coupldyn = coupldyn_numpy.NumpyDynamics(
             tsteps.get_couplstep(),
             press,
             temp,
             qvap,
             qcond,
         )
-        self.comms = pycleo.coupldyn_numpy.NumpyComms()
+        self.comms = coupldyn_numpy.NumpyComms()
 
-        self.sdm = create_sdm(pycleo, cleo_config, tsteps)
-        self.sdm, self.gbxs, self.allsupers = prepare_to_timestep_sdm(
-            pycleo, cleo_config, self.sdm
-        )
+        self.sdm = create_sdm(config, tsteps)
+        self.sdm, self.gbxs, self.allsupers = prepare_to_timestep_sdm(config, self.sdm)
 
     def run(self, timestep, thermo):
         timestep = pycleo.realtime2step(
