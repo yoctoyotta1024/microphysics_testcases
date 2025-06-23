@@ -1,6 +1,7 @@
 ##### Folders to ignore - files may be too large, too many, etc. #####
 build
 bin
+*.dat
 
 ##### Documentation Build Artifacts #####
 docs/source/_autosummary
