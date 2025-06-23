@@ -21,3 +21,6 @@ set_target_properties(mock_cxx PROPERTIES
   CXX_STANDARD 20
   CMAKE_CXX_STANDARD_REQUIRED ON
   CMAKE_CXX_EXTENSIONS ON)
+
+## Include CLEO libraries
+add_subdirectory(extern/cleo EXCLUDE_FROM_ALL)
