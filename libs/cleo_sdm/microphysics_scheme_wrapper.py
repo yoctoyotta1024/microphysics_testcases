@@ -15,12 +15,11 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
-wrapper function for an instance of MicrophysicsScheme so it can be used by generic test cases
-and run scripts
+wrapper function for an instance of CleoSDM microphysics ccheme so it can be used by
+generic test cases and run scripts
 """
 
 from ..thermo.thermodynamics import Thermodynamics
-from cleo_sdm import CleoSDM
 
 
 class MicrophysicsSchemeWrapper:
@@ -32,10 +31,23 @@ class MicrophysicsSchemeWrapper:
     object and provides wrappers around methods to initialize, finalize, and run the microphysics.
     """
 
-    def __init__(self):
+    def __init__(
+        self, path2pycleo, config_filename, t_start, timestep, press, temp, qvap, qcond
+    ):
         """Initialize the MicrophysicsSchemeWrapper object."""
-        self.microphys = CleoSDM()  # WIP
+        import sys
+
+        sys.path.append(str(path2pycleo))
+        import pycleo
+        from .cleo_sdm import CleoSDM
+
+        config = pycleo.Config(str(config_filename))
+        pycleo.pycleo_initialize(config)
+
+        self.microphys = CleoSDM(config, t_start, timestep, press, temp, qvap, qcond)
         self.name = "Wrapper around " + self.microphys.name
+
+        self.pycleo_finalize = pycleo.pycleo_finalize
 
     def initialize(self) -> int:
         """Initialise the microphysics scheme.
@@ -45,8 +57,6 @@ class MicrophysicsSchemeWrapper:
         Returns:
             int: 0 upon successful initialisation
         """
-
-        self.microphys.initialize()
 
         return 0
 
@@ -58,8 +68,6 @@ class MicrophysicsSchemeWrapper:
         Returns:
             int: 0 upon successful finalisation.
         """
-
-        self.microphys.finalize()
 
         return 0
 
@@ -83,3 +91,7 @@ class MicrophysicsSchemeWrapper:
         self.microphys.run(timestep, thermo)
 
         return thermo
+
+    def __del__(self):
+        self.microphys = 0  # destroys CleoSDM member
+        self.pycleo_finalize()
