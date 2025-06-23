@@ -16,3 +16,5 @@ xarray
 PyMPDATA
 PyMPDATA-examples
 metpy
+mpi4py
+ruamel.yaml
