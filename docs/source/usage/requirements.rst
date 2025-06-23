@@ -1,3 +1,5 @@
+.. _requirements:
+
 Requirements
 ============
 
@@ -23,7 +25,7 @@ CMake
 -----
 CMake minimum version 3.18.0.
 
-On Levante the default version is above 3.26.0 so this should be fine. In cas eyou have trouble,
+On Levante the default version is above 3.26.0 so this should be fine. In case you have trouble,
 you can use spack to find (and load) a higher version yourself (``spack find cmake``).
 
 Python
@@ -38,7 +40,7 @@ You can install Python packages to an existing Conda (or Micromamba) environment
 
 .. code-block:: console
 
-  $ micromamba env create --file=environment.yml
+  $ micromamba env create --file=environment.yaml
   $ micromamba activate [your environment]
 
 YAC
