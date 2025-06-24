@@ -44,7 +44,10 @@ To build the python bindings for the C++ Demo Package and CLEO you can simply do
 `` cmake -S ./ -B ./build && cd build && make mock_cxx pycleo``. However, you need to have certain
 :ref:`requirements <requirements>` fulfilled first (compiler versions etc.). On Levante, we
 therefore reccomend you use the bash helper script ``scripts/compile_bindings_levante.sh`` instead
-of directly calling cmake, e.g.
+of directly calling cmake.
+
+First activate the python environment you want to use. Then call the helper script with the source
+and build directories you want to use, e.g.
 
 .. code-block:: console
 
