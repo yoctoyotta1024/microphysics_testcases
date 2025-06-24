@@ -1,11 +1,11 @@
 # ----- CLEO -----
 # File: config.yaml
 # Project: src
-# Created Date: Monday 23rd June 2025
+# Created Date: Tuesday 24th June 2025
 # Author: Clara Bayley (CB)
 # Additional Contributors:
 # -----
-# Last Modified: Monday 23rd June 2025
+# Last Modified: Tuesday 24th June 2025
 # Modified By: CB
 # -----
 # License: BSD 3-Clause "New" or "Revised" License
@@ -22,36 +22,42 @@
 
 ### Kokkos Initialization Parameters ###
 kokkos_settings:
-  num_threads : 16                      # number of threads for host parallel backend
-  device_id :  0                        # device to use for device parallel backend
-  map_device_id_by : random             # select device for execution, either "mpi_rank" or "random"
+  num_threads: 16                                          # number of threads for host parallel backend
 
 ### SDM Runtime Parameters ###
 domain:
-  nspacedims : 2                        # no. of spatial dimensions to model
-  ngbxs : 9                             # total number of Gbxs
-  maxnsupers: 36                        # maximum number of SDs
+  nspacedims: 0                                            # no. of spatial dimensions to model
+  ngbxs: 1                                                 # total number of Gbxs
+  maxnsupers: 64                                           # maximum number of SDs
 
 timesteps:
-  CONDTSTEP : 1                         # time between SD condensation [s]
-  COLLTSTEP : 1                         # time between SD collision [s]
-  MOTIONTSTEP : 1                       # time between SDM motion [s]
-  COUPLTSTEP : 3                        # time between dynamic couplings [s]
-  OBSTSTEP : 3                          # time between SDM observations [s]
-  T_END : 10                            # time span of integration from 0s to T_END [s]
+  CONDTSTEP: 1                                             # time between SD condensation [s]
+  COLLTSTEP: 1                                             # time between SD collision [s]
+  MOTIONTSTEP: 1                                           # time between SDM motion [s]
+  COUPLTSTEP: 1                                            # time between dynamic couplings [s]
+  OBSTSTEP: 1000                                           # time between SDM observations [s]
+  T_END: 240                                               # time span of integration from 0s to T_END [s]
 
 ### Initialisation Parameters ###
 inputfiles:
   constants_filename : ./build/_deps/cleo-src/libs/cleoconstants.hpp  # name of file for values of physical constants
-  grid_filename : ./src/cleo_initial_conditions/test_generic/dimlessGBxboundaries.dat  # binary filename for initialisation of GBxs / GbxMaps
+  grid_filename : ./src/cleo_initial_conditions/0dparcel/dimlessGBxboundaries.dat  # binary filename for initialisation of GBxs / GbxMaps
 
 initsupers:
-  type: frombinary                                              # type of initialisation of super-droplets
-  initsupers_filename : ./src/cleo_initial_conditions/test_generic/dimlessSDsinit.dat  # binary filename for initialisation of SDs
-  initnsupers: 24
+  type: frombinary                                         # type of initialisation of super-droplets
+  initsupers_filename : ./src/cleo_initial_conditions/0dparcel/dimlessSDsinit.dat  # binary filename for initialisation of SDs
 
 ### Output Parameters ###
 outputdata:
-  setup_filename : ./build/bin/setup.txt     # .txt filename to copy configuration to
-  zarrbasedir : ./build/bin/pybind_sol.zarr  # zarr store base directory
+  setup_filename : ./build/bin/0dparcel_setup.txt     # .txt filename to copy configuration to
+  zarrbasedir : ./build/bin/0dparcel_sol.zarr  # zarr store base directory
   maxchunk : 2500000                         # maximum no. of elements in chunks of zarr store array
+
+### Microphysics Parameters ###
+microphysics:
+  condensation:
+    do_alter_thermo: true                                  # true = cond/evap alters the thermodynamic state
+    maxniters: 50                                          # maximum no. iterations of Newton Raphson Method
+    MINSUBTSTEP: 0.001                                     # minimum subtimestep in cases of substepping [s]
+    rtol: 0.0                                              # relative tolerance for implicit Euler integration
+    atol: 0.01                                             # absolute tolerance for implicit Euler integration
