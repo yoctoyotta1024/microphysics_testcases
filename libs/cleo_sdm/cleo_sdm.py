@@ -52,7 +52,9 @@ def create_sdm(config, tsteps):
     obs = pycleo.NullObserver()
 
     print("PYCLEO STATUS: creating MicrophysicalProcess")
-    micro = pycleo.NullMicrophysicalProcess()
+    micro = pycleo.pycreate_microphysical_process(
+        config, tsteps
+    )  # config gives microphysics
 
     print("PYCLEO STATUS: creating Superdroplet Movement")
     motion = pycleo.NullMotion()
@@ -63,9 +65,7 @@ def create_sdm(config, tsteps):
     )
 
     print("PYCLEO STATUS: creating SDM Methods")
-    sdm = pycleo.CartesianNullSDMMethods(
-        tsteps.get_couplstep(), gbxmaps, micro, move, obs
-    )
+    sdm = pycleo.CartesianSDMMethods(tsteps.get_couplstep(), gbxmaps, micro, move, obs)
 
     print(f"PYCLEO STATUS: SDM created with couplstep = {sdm.get_couplstep()}")
     return sdm
