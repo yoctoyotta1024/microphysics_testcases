@@ -110,5 +110,5 @@ class MicrophysicsSchemeWrapper:
         return thermo
 
     def __del__(self):
-        self.microphys = 0  # destroys CleoSDM member
+        self.microphys = None  # destroys CleoSDM member
         self.pycleo_finalize()
