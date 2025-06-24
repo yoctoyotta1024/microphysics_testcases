@@ -34,7 +34,7 @@ def cleo_path2pycleo(pytestconfig):
 
 @pytest.fixture(scope="module")
 def cleo_config_filename(pytestconfig):
-    return pytestconfig.getoption("cleo_config_filename")
+    return pytestconfig.getoption("cleo_test_generic_config_filename")
 
 
 # def test_initialize(): WIP
