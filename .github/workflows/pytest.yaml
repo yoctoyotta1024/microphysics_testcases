@@ -1,4 +1,4 @@
-name: python tests
+name: pytest
 
 on: [push, pull_request]
 
@@ -79,7 +79,7 @@ jobs:
           make -j 4
           make install
 
-  run_pytest:
+  execute_tests:
       runs-on: ubuntu-latest
       needs: setup
       steps:
@@ -111,7 +111,7 @@ jobs:
 
         - name: Build Pybind11 module for C++ code
           run: |
-            echo TODO(CB): fix CI MPI not found error
+            echo "TODO(CB: fix missing MPI error"
             cmake  -S ./ -B ./build \
               -DCMAKE_C_COMPILER=mpicc \
               -DCMAKE_CXX_COMPILER=mpic++ \
