@@ -32,7 +32,17 @@ class MicrophysicsSchemeWrapper:
     """
 
     def __init__(
-        self, path2pycleo, config_filename, t_start, timestep, press, temp, qvap, qcond
+        self,
+        path2pycleo,
+        config_filename,
+        t_start,
+        timestep,
+        press,
+        temp,
+        qvap,
+        qcond,
+        no_init=True,
+        no_final=True,
     ):
         """Initialize the MicrophysicsSchemeWrapper object."""
         import sys
@@ -42,12 +52,15 @@ class MicrophysicsSchemeWrapper:
         from .cleo_sdm import CleoSDM
 
         config = pycleo.Config(str(config_filename))
-        pycleo.pycleo_initialize(config)
+        if not no_init:
+            pycleo.pycleo_initialize(config)
 
         self.microphys = CleoSDM(config, t_start, timestep, press, temp, qvap, qcond)
         self.name = "Wrapper around " + self.microphys.name
 
-        self.pycleo_finalize = pycleo.pycleo_finalize
+        self.pycleo_finalize = lambda: None
+        if not no_final:
+            self.pycleo_finalize = pycleo.pycleo_finalize
 
     def initialize(self) -> int:
         """Initialise the microphysics scheme.
