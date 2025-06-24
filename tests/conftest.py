@@ -24,7 +24,7 @@ def pytest_addoption(parser):
 
     default_cleo_path2pycleo = Path.cwd() / "build" / "_deps" / "cleo-build" / "pycleo"
     default_cleo_test_generic_config_filename = (
-        Path.cwd() / "src" / "cleo_initial_conditions" / "test_generic" / "config.yaml"
+        Path.cwd() / "src" / "cleo_initial_conditions" / "generic" / "config.yaml"
     )
 
     parser.addoption(
