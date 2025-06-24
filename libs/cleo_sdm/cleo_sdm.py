@@ -124,7 +124,7 @@ class CleoSDM:
         self.sdm = create_sdm(config, tsteps)
         self.sdm, self.gbxs, self.allsupers = prepare_to_timestep_sdm(config, self.sdm)
 
-    def run(self, timestep, thermo):
+    def run(self, timestep):
         timestep = pycleo.realtime2step(
             timestep
         )  # convert from seconds to model timesteps (!)
@@ -153,4 +153,3 @@ class CleoSDM:
 
             self.t_sdm = t_sdm_next
         print(f"PYCLEO STATUS: end t_sdm = {self.t_sdm} [model timesteps]")
-        return thermo

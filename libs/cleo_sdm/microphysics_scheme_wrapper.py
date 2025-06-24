@@ -105,7 +105,7 @@ class MicrophysicsSchemeWrapper:
 
         """
 
-        self.microphys.run(timestep, thermo)
+        self.microphys.run(timestep)
 
         return thermo
 
