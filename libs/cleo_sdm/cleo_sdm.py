@@ -19,8 +19,13 @@ class and functions for handing setup and running of CLEO via python bindings ad
 CLEO v0.44.0 python_bindings example
 """
 
+import os
+import sys
 from mpi4py import MPI
 
+sys.path.append(os.environ["PYCLEO_DIR"])  # TODO(ALL): receive as argument to class?
+# currently on Levante, do:
+# export PYCLEO_DIR=/home/m/m300950/microphysics_testcases/build/_deps/cleo-build/pycleo/
 import pycleo
 from pycleo import coupldyn_numpy
 

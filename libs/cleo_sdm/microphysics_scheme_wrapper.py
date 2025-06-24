@@ -19,7 +19,16 @@ wrapper function for an instance of CleoSDM microphysics ccheme so it can be use
 generic test cases and run scripts
 """
 
+import os
+import sys
+
+from .cleo_sdm import CleoSDM
 from ..thermo.thermodynamics import Thermodynamics
+
+sys.path.append(os.environ["PYCLEO_DIR"])  # TODO(ALL): receive as argument to class?
+# currently on Levante, do:
+# export PYCLEO_DIR=/home/m/m300950/microphysics_testcases/build/_deps/cleo-build/pycleo/
+import pycleo
 
 
 class MicrophysicsSchemeWrapper:
@@ -33,7 +42,6 @@ class MicrophysicsSchemeWrapper:
 
     def __init__(
         self,
-        path2pycleo,
         config_filename,
         t_start,
         timestep,
@@ -45,14 +53,9 @@ class MicrophysicsSchemeWrapper:
         no_final=True,
     ):
         """Initialize the MicrophysicsSchemeWrapper object."""
-        import sys
-
-        sys.path.append(str(path2pycleo))
-        import pycleo
-        from .cleo_sdm import CleoSDM
-
         config = pycleo.Config(str(config_filename))
         if not no_init:
+            # TODO(CB): fix multiple kokkos initialise error -> remove option not to initialise?
             pycleo.pycleo_initialize(config)
 
         self.microphys = CleoSDM(config, t_start, timestep, press, temp, qvap, qcond)
@@ -60,6 +63,7 @@ class MicrophysicsSchemeWrapper:
 
         self.pycleo_finalize = lambda: None
         if not no_final:
+            # TODO(CB): fix multiple kokkos initialise error -> remove option not to finalize?
             self.pycleo_finalize = pycleo.pycleo_finalize
 
     def initialize(self) -> int:
