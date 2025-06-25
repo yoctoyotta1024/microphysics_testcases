@@ -62,6 +62,10 @@ class MicrophysicsSchemeWrapper:
         self.microphys = CleoSDM(config, t_start, timestep, press, temp, qvap, qcond)
         self.name = "Wrapper around " + self.microphys.name
 
+        # constants to de-dimensionalise thermodynamics
+        self.TEMP0 = 273.15  # Temperature [K]
+        self.P0 = 100000.0  # Pressure [Pa]
+
         self.pycleo_finalize = lambda: None
         if not no_final:
             # TODO(CB): fix multiple kokkos initialise error -> remove option not to finalize?
@@ -105,8 +109,15 @@ class MicrophysicsSchemeWrapper:
             Thermodynamics: Updated thermodynamic properties after microphysics computations.
 
         """
+        # de-dimensionlise variables
+        thermo.press = thermo.press / self.P0
+        thermo.temp = thermo.temp / self.TEMP0
 
         self.microphys.run(timestep)
+
+        # re-dimensionlise variables
+        thermo.press = thermo.press * self.P0
+        thermo.temp = thermo.temp * self.TEMP0
 
         return thermo
 
