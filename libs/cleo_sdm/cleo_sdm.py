@@ -16,16 +16,17 @@ https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
 class and functions for handing setup and running of CLEO via python bindings adapted from
-CLEO v0.44.0 python_bindings example
+CLEO v0.44.0 python_bindings example.
+NOTE: To use the wrapper, you must first export "PYCLEO_DIR". E.g. is python bindings are
+built in $HOME/microphysics_testcases/build/, do:
+export PYCLEO_DIR=$HOME/microphysics_testcases/build/_deps/cleo-build/pycleo/
 """
 
 import os
 import sys
 from mpi4py import MPI
 
-sys.path.append(os.environ["PYCLEO_DIR"])  # TODO(ALL): receive as argument to class?
-# currently on Levante, do:
-# export PYCLEO_DIR=/home/m/m300950/microphysics_testcases/build/_deps/cleo-build/pycleo/
+sys.path.append(os.environ["PYCLEO_DIR"])
 import pycleo
 from pycleo import coupldyn_numpy
 

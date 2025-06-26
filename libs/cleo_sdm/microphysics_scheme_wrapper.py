@@ -16,7 +16,10 @@ https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
 wrapper function for an instance of CleoSDM microphysics ccheme so it can be used by
-generic test cases and run scripts
+generic test cases and run scripts.
+NOTE: To use the wrapper, you must first export "PYCLEO_DIR". E.g. is python bindings are
+built in $HOME/microphysics_testcases/build/, do:
+export PYCLEO_DIR=$HOME/microphysics_testcases/build/_deps/cleo-build/pycleo/
 """
 
 import os
@@ -25,9 +28,7 @@ import sys
 from .cleo_sdm import CleoSDM
 from ..thermo.thermodynamics import Thermodynamics
 
-sys.path.append(os.environ["PYCLEO_DIR"])  # TODO(ALL): receive as argument to class?
-# currently on Levante, do:
-# export PYCLEO_DIR=/home/m/m300950/microphysics_testcases/build/_deps/cleo-build/pycleo/
+sys.path.append(os.environ["PYCLEO_DIR"])
 import pycleo
 
 
