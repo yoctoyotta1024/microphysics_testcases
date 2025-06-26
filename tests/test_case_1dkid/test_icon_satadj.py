@@ -17,28 +17,44 @@ https://opensource.org/licenses/BSD-3-Clause
 File Description:
 """
 
+import pytest
 import numpy as np
 import os
 import warnings
 
 from pathlib import Path
+from PyMPDATA_examples.Shipway_and_Hill_2012 import si
 
-path = os.environ.get("AES_MUPHYS_PY_DIR")
-if path and path is not None:
-    from PyMPDATA_examples.Shipway_and_Hill_2012 import si
 
-    from libs.test_case_1dkid.perform_1dkid_test_case import perform_1dkid_test_case
-    from libs.thermo.thermodynamics import Thermodynamics
-    from libs.icon_satadj.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
+@pytest.fixture(scope="module")
+def aes_muphys_py_dir(pytestconfig):
+    return pytestconfig.getoption("aes_muphys_py_dir")
 
-    def test_icon_satadj_scheme_1dkid():
-        """runs test of 1-D KiD rainshaft model using python bindings for
-        ICON AES saturation adjustment as the microphysics scheme (without AES microphysics).
 
-        This function sets up initial conditions and parameters for running a 1-D KiD rainshaft
-        test case using the saturation adjustment from ICON AES one-moment bulk microphysics scheme.
-        It then runs the test case as specified.
-        """
+@pytest.hookimpl(tryfirst=True)
+def test_aes_muphys_py_dir(aes_muphys_py_dir):
+    if not Path(aes_muphys_py_dir).is_dir():
+        warnings.warn(
+            f"No ICON AES microphysics library found. Not running {Path(__file__).name}"
+        )
+
+
+def test_icon_satadj_scheme_1dkid(aes_muphys_py_dir):
+    """runs test of 1-D KiD rainshaft model using python bindings for
+    ICON AES saturation adjustment as the microphysics scheme (without AES microphysics).
+
+    This function sets up initial conditions and parameters for running a 1-D KiD rainshaft
+    test case using the saturation adjustment from ICON AES one-moment bulk microphysics scheme.
+    It then runs the test case as specified.
+    """
+    if Path(aes_muphys_py_dir).is_dir():
+        from libs.test_case_1dkid.perform_1dkid_test_case import perform_1dkid_test_case
+        from libs.thermo.thermodynamics import Thermodynamics
+        from libs.icon_satadj.microphysics_scheme_wrapper import (
+            MicrophysicsSchemeWrapper,
+        )
+
+        os.environ["AES_MUPHYS_PY_DIR"] = str(aes_muphys_py_dir)
 
         ### label for test case to name data/plots with
         run_name = "icon_satadj_1dkid"
@@ -81,8 +97,3 @@ if path and path is not None:
             binpath,
             run_name,
         )
-
-else:
-    warnings.warn(
-        f"No ICON AES microphysics library found. Not running 1-D KiD {Path(__file__).name}"
-    )

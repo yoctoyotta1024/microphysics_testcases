@@ -19,21 +19,34 @@ unit tests for Python bindings to the saturation adjustment from ICON AES
 one-moment bulk microphysics scheme
 """
 
+import pytest
 import numpy as np
 import os
 import warnings
 
 from pathlib import Path
 
-path = os.environ.get("AES_MUPHYS_PY_DIR")
-if path and path is not None:
-    from libs.icon_satadj.microphysics_scheme_wrapper import (
-        MicrophysicsSchemeWrapper,
-        aes_muphys_py,
-    )
-    from libs.thermo.thermodynamics import Thermodynamics
 
-    def test_initialize_wrapper():
+@pytest.fixture(scope="module")
+def aes_muphys_py_dir(pytestconfig):
+    return pytestconfig.getoption("aes_muphys_py_dir")
+
+
+@pytest.hookimpl(tryfirst=True)
+def test_aes_muphys_py_dir(aes_muphys_py_dir):
+    if not Path(aes_muphys_py_dir).is_dir():
+        warnings.warn(
+            f"No ICON AES microphysics library found. Not running {Path(__file__).name}"
+        )
+
+
+def test_initialize_wrapper(aes_muphys_py_dir):
+    if Path(aes_muphys_py_dir).is_dir():
+        os.environ["AES_MUPHYS_PY_DIR"] = str(aes_muphys_py_dir)
+        from libs.icon_satadj.microphysics_scheme_wrapper import (
+            MicrophysicsSchemeWrapper,
+        )
+
         nvec = 1
         ke = 1
         ivstart = 0
@@ -43,7 +56,14 @@ if path and path is not None:
 
         assert microphys_wrapped.initialize() == 0
 
-    def test_finalize_wrapper():
+
+def test_finalize_wrapper(aes_muphys_py_dir):
+    if Path(aes_muphys_py_dir).is_dir():
+        os.environ["AES_MUPHYS_PY_DIR"] = str(aes_muphys_py_dir)
+        from libs.icon_satadj.microphysics_scheme_wrapper import (
+            MicrophysicsSchemeWrapper,
+        )
+
         nvec = 1
         ke = 1
         ivstart = 0
@@ -53,7 +73,17 @@ if path and path is not None:
 
         assert microphys_wrapped.finalize() == 0
 
-    def test_microphys_with_wrapper():
+
+def test_microphys_with_wrapper(aes_muphys_py_dir):
+    if Path(aes_muphys_py_dir).is_dir():
+        os.environ["AES_MUPHYS_PY_DIR"] = str(aes_muphys_py_dir)
+
+        from libs.icon_satadj.microphysics_scheme_wrapper import (
+            MicrophysicsSchemeWrapper,
+            aes_muphys_py,
+        )
+        from libs.thermo.thermodynamics import Thermodynamics
+
         nvec = 1
         ke = 1
         ivstart = 0
@@ -93,8 +123,3 @@ if path and path is not None:
 
         assert result.temp == temp
         assert result.massmix_ratios == [qvap, qcond, qice, qrain, qsnow, qgrau]
-
-else:
-    warnings.warn(
-        f"No ICON AES microphysics library found. Not running {Path(__file__).name}"
-    )

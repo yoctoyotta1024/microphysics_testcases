@@ -19,52 +19,67 @@ perform test case for 0-D parcel model with python bindings to saturation adjust
 ICON AES one-moment bulk microphysics scheme
 """
 
+import pytest
 import os
 import warnings
+import numpy as np
 
 from pathlib import Path
 
-path = os.environ.get("AES_MUPHYS_PY_DIR")
-if path and path is not None:
-    import numpy as np
 
-    from libs.icon_satadj.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
-    from libs.test_case_0dparcel.perform_0dparcel_test_case import (
-        perform_0dparcel_test_case,
-    )
-    from libs.thermo.thermodynamics import Thermodynamics
+@pytest.fixture(scope="module")
+def aes_muphys_py_dir(pytestconfig):
+    return pytestconfig.getoption("aes_muphys_py_dir")
 
-    def test_icon_satadj_0dparcel():
-        """runs 0-D parcel model test using ICON saturation adjustment as a MicrophysicsScheme
-        (without AES microphysics).
 
-        This function sets up initial conditions and parameters for running a 0-D parcel model
-        test case using a wrapper around python bindings to ICON AES saturation adjustment.
-        It then runs the 0-D parcel test case as specified.
+@pytest.hookimpl(tryfirst=True)
+def test_aes_muphys_py_dir(aes_muphys_py_dir):
+    if not Path(aes_muphys_py_dir).is_dir():
+        warnings.warn(
+            f"No ICON AES microphysics library found. Not running {Path(__file__).name}"
+        )
 
-        Test Parameters:
-            Timestepping:
-              time_init (float): Initial time for the simulation (s).
-              time_end (float): End time for the simulation (s).
-              timestep (float): Timestep for the simulation (s).
-            Initial thermodynamics:
-              temp (np.ndarray): Initial temperature (K).
-              rho (np.ndarray): Initial density of moist air (kg/m3).
-              press (np.ndarray): Initial pressure (Pa).
-              qvap (np.ndarray): Initial specific water vapor content (kg/kg).
-              qcond (np.ndarray): Initial specific cloud water content (kg/kg).
-              qice (np.ndarray): Initial specific cloud ice content (kg/kg).
-              qrain (np.ndarray): Initial specific rain content (kg/kg).
-              qsnow (np.ndarray): Initial specific snow content (kg/kg).
-              qgrau (np.ndarray): Initial specific graupel content (kg/kg).
-            Microphysics Scheme:
-              nvec (int): Number of horizontal points for the microphysics scheme.
-              ke (float): Number of grid points in vertical direction for the microphysics scheme.
-              ivstart (int): Start index for horizontal direction for the microphysics scheme.
-              dz (np.ndarray): Layer thickness of full levels (m) for the microphysics scheme.
-              qnc (float): Cloud number concentration.
 
-        """
+def test_icon_satadj_0dparcel(aes_muphys_py_dir):
+    """runs 0-D parcel model test using ICON saturation adjustment as a MicrophysicsScheme
+    (without AES microphysics).
+
+    This function sets up initial conditions and parameters for running a 0-D parcel model
+    test case using a wrapper around python bindings to ICON AES saturation adjustment.
+    It then runs the 0-D parcel test case as specified.
+
+    Test Parameters:
+        Timestepping:
+            time_init (float): Initial time for the simulation (s).
+            time_end (float): End time for the simulation (s).
+            timestep (float): Timestep for the simulation (s).
+        Initial thermodynamics:
+            temp (np.ndarray): Initial temperature (K).
+            rho (np.ndarray): Initial density of moist air (kg/m3).
+            press (np.ndarray): Initial pressure (Pa).
+            qvap (np.ndarray): Initial specific water vapor content (kg/kg).
+            qcond (np.ndarray): Initial specific cloud water content (kg/kg).
+            qice (np.ndarray): Initial specific cloud ice content (kg/kg).
+            qrain (np.ndarray): Initial specific rain content (kg/kg).
+            qsnow (np.ndarray): Initial specific snow content (kg/kg).
+            qgrau (np.ndarray): Initial specific graupel content (kg/kg).
+        Microphysics Scheme:
+            nvec (int): Number of horizontal points for the microphysics scheme.
+            ke (float): Number of grid points in vertical direction for the microphysics scheme.
+            ivstart (int): Start index for horizontal direction for the microphysics scheme.
+            dz (np.ndarray): Layer thickness of full levels (m) for the microphysics scheme.
+            qnc (float): Cloud number concentration.
+
+    """
+    if Path(aes_muphys_py_dir).is_dir():
+        os.environ["AES_MUPHYS_PY_DIR"] = str(aes_muphys_py_dir)
+        from libs.icon_satadj.microphysics_scheme_wrapper import (
+            MicrophysicsSchemeWrapper,
+        )
+        from libs.test_case_0dparcel.perform_0dparcel_test_case import (
+            perform_0dparcel_test_case,
+        )
+        from libs.thermo.thermodynamics import Thermodynamics
 
         ### label for test case to name data/plots with
         run_name = "icon_satadj_0dparcel"
@@ -112,8 +127,3 @@ if path and path is not None:
             binpath,
             run_name,
         )
-
-else:
-    warnings.warn(
-        f"No ICON AES microphysics library found. Not running 0-D parcel {Path(__file__).name}"
-    )
