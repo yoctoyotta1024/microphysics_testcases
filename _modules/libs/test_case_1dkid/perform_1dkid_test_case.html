@@ -390,13 +390,13 @@
         <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">out</span><span class="o">.</span><span class="n">qcond</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> / g/kg&quot;</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">out</span><span class="o">.</span><span class="n">qcond</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">out</span><span class="o">.</span><span class="n">qrain</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)/ g/kg&quot;</span>
     <span class="n">plot_kid_result</span><span class="p">(</span>
         <span class="n">fig</span><span class="p">,</span>
         <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
         <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
         <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="n">out</span><span class="o">.</span><span class="n">qcond</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">qcond</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">out</span><span class="o">.</span><span class="n">qrain</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
         <span class="n">out</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
         <span class="n">z_delta</span><span class="p">,</span>
         <span class="n">z_max</span><span class="p">,</span>
@@ -576,7 +576,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 04 June 2025</div>
+              Last updated on 26 June 2025</div>
           </div>
           <div class="right-details">
             
