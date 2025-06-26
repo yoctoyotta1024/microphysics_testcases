@@ -107,8 +107,6 @@ def test_cleo_sdm_0dparcel(path2pycleo, config_filename):
         temp,
         qvap,
         qcond,
-        no_init=False,
-        no_final=False,
     )
 
     ### Perform 0-D parcel model test case using chosen setup
