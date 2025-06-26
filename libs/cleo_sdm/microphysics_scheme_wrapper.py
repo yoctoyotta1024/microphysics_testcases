@@ -50,14 +50,10 @@ class MicrophysicsSchemeWrapper:
         temp,
         qvap,
         qcond,
-        no_init=True,
-        no_final=True,
     ):
         """Initialize the MicrophysicsSchemeWrapper object."""
         config = pycleo.Config(str(config_filename))
-        if not no_init:
-            # TODO(CB): fix multiple kokkos initialise error -> remove option not to initialise?
-            pycleo.pycleo_initialize(config)
+        pycleo.pycleo_initialize(config)
 
         self.microphys = CleoSDM(config, t_start, timestep, press, temp, qvap, qcond)
         self.name = "Wrapper around " + self.microphys.name
@@ -65,11 +61,6 @@ class MicrophysicsSchemeWrapper:
         # constants to de-dimensionalise thermodynamics
         self.TEMP0 = 273.15  # Temperature [K]
         self.P0 = 100000.0  # Pressure [Pa]
-
-        self.pycleo_finalize = lambda: None
-        if not no_final:
-            # TODO(CB): fix multiple kokkos initialise error -> remove option not to finalize?
-            self.pycleo_finalize = pycleo.pycleo_finalize
 
     def initialize(self) -> int:
         """Initialise the microphysics scheme.
@@ -120,7 +111,3 @@ class MicrophysicsSchemeWrapper:
         thermo.temp = thermo.temp * self.TEMP0
 
         return thermo
-
-    def __del__(self):
-        self.microphys = None  # destroys CleoSDM member
-        self.pycleo_finalize()
