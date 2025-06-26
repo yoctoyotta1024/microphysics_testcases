@@ -151,6 +151,7 @@ def test_generic_cleo(path2pycleo, config_filename):
             temp2, rho, press2, qvap2, qcond2, qice, qrain, qsnow, qgrau
         )
 
+        config = pycleo.Config(str(config_filename))
         microphys = MicrophysicsScheme(
             config, t_start, timestep, press1, temp1, qvap1, qcond1
         )
@@ -174,8 +175,6 @@ def test_generic_cleo(path2pycleo, config_filename):
             assert q1 == q2
 
     print(f"MPI version: {MPI.Get_version()}")
-    config = pycleo.Config(str(config_filename))
-    pycleo.pycleo_initialize(config)
 
     print("TEST 1: test_initialize")
     test_initialize(config_filename)
@@ -192,5 +191,3 @@ def test_generic_cleo(path2pycleo, config_filename):
     print("TEST 4: test_microphys_with_wrapper")
     test_microphys_with_wrapper(config_filename)
     print("------- TEST 4/4 PASSED -------")
-
-    pycleo.pycleo_finalize()
