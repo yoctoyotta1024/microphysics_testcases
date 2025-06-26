@@ -117,13 +117,13 @@ def plot_1dkid_moisture(out, z_delta, z_max, binpath, run_name):
         cmap="gray",
     )
 
-    label = f"{out.qcond.name} / g/kg"
+    label = f"({out.qcond.name} + {out.qrain.name})/ g/kg"
     plot_kid_result(
         fig,
         axs[2, 0],
         axs[3, 0],
         axs[2, 1],
-        out.qcond.values,
+        out.qcond.values + out.qrain.values,
         out.time.values,
         z_delta,
         z_max,
