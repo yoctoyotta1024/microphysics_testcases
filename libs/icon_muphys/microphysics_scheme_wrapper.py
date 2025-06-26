@@ -16,7 +16,9 @@ https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
 wrapper function for an instance of MicrophysicsScheme so it can be used by generic test cases
-and run scripts
+and run scripts.
+NOTE: To use the wrapper, you must first export "AES_MUPHYS_PY_DIR". Currently on Levante, do:
+export AES_MUPHYS_PY_DIR=/work/k20200/k202174/icon-mpim/ragnarok/build_py/src/aes_microphysics/
 """
 
 import os
@@ -27,8 +29,7 @@ from copy import deepcopy
 from ..thermo.thermodynamics import Thermodynamics
 
 sys.path.append(os.environ["AES_MUPHYS_PY_DIR"])
-# currently on Levante, do:
-# export AES_MUPHYS_PY_DIR=/work/k20200/k202174/icon-mpim/ragnarok/build_py/src/aes_microphysics/
+
 import aes_muphys_py
 
 
