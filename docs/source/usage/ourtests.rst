@@ -48,7 +48,7 @@ of directly calling cmake, e.g.
 
 .. code-block:: console
 
-  $ scripts/compile_bindings_levante.sh $HOME/microphysics_testcases $HOME/microphysics_testcases/build
+  $ ./scripts/compile_bindings_levante.sh $HOME/microphysics_testcases $HOME/microphysics_testcases/build
 
 After making the bindings, the Python modules can then tested using
 pytest just :ref:`like an ordinary python module <python-test>`.
