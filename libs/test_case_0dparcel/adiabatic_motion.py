@@ -210,8 +210,8 @@ class AdiabaticMotion:
             self.adiabatic_odes, y0, [t0, t1], args=(qvap,)
         )[1]
 
-        thermo.temp = np.array([temp], dtype=np.float64)
-        thermo.rho = np.array([rho], dtype=np.float64)
-        thermo.press = np.array([press], dtype=np.float64)
+        thermo.temp[0] = temp
+        thermo.rho[0] = rho
+        thermo.press[0] = press
 
         return thermo
