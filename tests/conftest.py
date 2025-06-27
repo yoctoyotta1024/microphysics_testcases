@@ -22,16 +22,7 @@ configuration file for pytests to allow tests to receive arguments
 def pytest_addoption(parser):
     from pathlib import Path
 
-    default_aes_muphys_py_dir = (
-        Path("/work")
-        / "k20200"
-        / "k202174"
-        / "icon-mpim"
-        / "ragnarok"
-        / "build_py"
-        / "src"
-        / "aes_microphysics"
-    )
+    default_aes_muphys_py_dir = Path("/work") / "k20200" / "k202174" / "py_libs"
     default_cleo_path2pycleo = Path.cwd() / "build" / "_deps" / "cleo-build" / "pycleo"
     parser.addoption(
         "--aes_muphys_py_dir", action="store", default=str(default_aes_muphys_py_dir)

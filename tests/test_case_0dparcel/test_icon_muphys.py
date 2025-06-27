@@ -29,7 +29,7 @@ from pathlib import Path
 
 @pytest.fixture(scope="module")
 def aes_muphys_py_dir(pytestconfig):
-    return pytestconfig.getoption("aes_muphys_py_dir")
+    return pytestconfig.getoption("aes_muphys_py_dir") + "/no_precip"
 
 
 @pytest.hookimpl(tryfirst=True)
