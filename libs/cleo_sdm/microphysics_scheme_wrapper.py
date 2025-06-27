@@ -101,13 +101,13 @@ class MicrophysicsSchemeWrapper:
 
         """
         # de-dimensionlise variables
-        thermo.press = thermo.press / self.P0
-        thermo.temp = thermo.temp / self.TEMP0
+        thermo.press /= self.P0
+        thermo.temp /= self.TEMP0
 
         self.microphys.run(timestep)
 
         # re-dimensionlise variables
-        thermo.press = thermo.press * self.P0
-        thermo.temp = thermo.temp * self.TEMP0
+        thermo.press *= self.P0
+        thermo.temp *= self.TEMP0
 
         return thermo
