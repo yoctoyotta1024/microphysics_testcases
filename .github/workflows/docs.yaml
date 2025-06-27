@@ -10,34 +10,33 @@ jobs:
         shell: bash -l {0}
     steps:
       - uses: actions/checkout@v4
-      - uses: conda-incubator/setup-miniconda@v3
+
+      - name: Initialise Conda/Mamba
+        uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: microtestsenv
-          environment-file: environment.yaml
           auto-activate-base: false
+          use-mamba: true
+          miniforge-version: 'latest'
+          conda-remove-defaults: true
 
-      - name: Conda Info
+      - name: Update Mamba Environment
         run: |
-          conda info
-          conda list
+          mamba env update -n microtestsenv -f environment.yaml
 
-      - name: Activate Conda Environment
+      - name: Mamba and Doxygen Info
         run: |
-          conda init
-          source /home/runner/.bashrc
-          conda activate /usr/share/miniconda/envs/microtestsenv
-          conda info --envs
+          mamba info
+          mamba list
+          which doxygen
+          doxygen --version
 
-      - name: Install Doxygen
-        run: /usr/share/miniconda/envs/microtestsenv/bin/doxygen --version
-        shell: bash
       - name: Generate Doxygen Documentation
         run: |
           cd docs &&
           mkdir build &&
           mkdir build/doxygen &&
-          /usr/share/miniconda/envs/microtestsenv/bin/doxygen doxygen/doxygen.dox
-        shell: bash
+          doxygen doxygen/doxygen.dox
 
       - name: Build docs
         run: |

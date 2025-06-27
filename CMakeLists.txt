@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.18.0)
 project(project
-  LANGUAGES CXX
+  LANGUAGES CXX C
   DESCRIPTION "Microphysics Test Cases by Clara Bayley and other developers"
 )
 
-find_package(MPI REQUIRED)
+find_package(MPI REQUIRED COMPONENTS C)
 
 ## Use the pybind11 package from .gitmodules
 add_subdirectory(extern/pybind11)
@@ -14,7 +14,7 @@ set(SOURCES libs/mock_bindcxx/mock.cpp)
 pybind11_add_module(mock_cxx MODULE ${SOURCES})
 
 # ## Link any necessary libraries (if needed)
-target_link_libraries(mock_cxx PUBLIC MPI::MPI_CXX)
+target_link_libraries(mock_cxx PUBLIC MPI::MPI_C)
 
 # ## Set additional compile options if needed
 # target_compile_options(mock_cxx PRIVATE -Wall -Wextra)
