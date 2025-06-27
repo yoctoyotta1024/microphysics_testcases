@@ -31,13 +31,6 @@ jobs:
         run: |
           conda info
           conda list
-
-      - name: Activate Conda Environment
-        run: |
-          conda init
-          source /home/runner/.bashrc
-          conda activate /usr/share/miniconda/envs/microtestsenv
-          conda info --envs
           which python
           python --version
 
@@ -92,6 +85,13 @@ jobs:
             sudo apt-get install -y \
             cmake libopenmpi-dev openmpi-bin libomp-dev \
             libnetcdff-dev liblapack-dev libfyaml-dev
+
+        - name: Setup Conda environment
+          uses: conda-incubator/setup-miniconda@v3
+          with:
+            activate-environment: microtestsenv
+            environment-file: environment.yaml
+            auto-activate-base: false
 
         - name: Install Pybind11
           run: |

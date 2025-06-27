@@ -21,13 +21,6 @@ jobs:
           conda info
           conda list
 
-      - name: Activate Conda Environment
-        run: |
-          conda init
-          source /home/runner/.bashrc
-          conda activate /usr/share/miniconda/envs/microtestsenv
-          conda info --envs
-
       - name: Install Doxygen
         run: /usr/share/miniconda/envs/microtestsenv/bin/doxygen --version
         shell: bash
