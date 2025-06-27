@@ -48,13 +48,12 @@ def test_icon_satadj_scheme_1dkid(aes_muphys_py_dir):
     It then runs the test case as specified.
     """
     if Path(aes_muphys_py_dir).is_dir():
+        os.environ["AES_MUPHYS_PY_DIR"] = str(aes_muphys_py_dir)
         from libs.test_case_1dkid.perform_1dkid_test_case import perform_1dkid_test_case
         from libs.thermo.thermodynamics import Thermodynamics
         from libs.icon_satadj.microphysics_scheme_wrapper import (
             MicrophysicsSchemeWrapper,
         )
-
-        os.environ["AES_MUPHYS_PY_DIR"] = str(aes_muphys_py_dir)
 
         ### label for test case to name data/plots with
         run_name = "icon_satadj_1dkid"
