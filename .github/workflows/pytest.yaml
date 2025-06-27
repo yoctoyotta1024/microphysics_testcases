@@ -112,6 +112,8 @@ jobs:
         - name: Build Pybind11 module for C++ code
           run: |
             echo "TODO(CB: fix missing MPI error"
+            which mpic++
+            ls /usr/lib/x86_64-linux-gnu/
             cmake  -S ./ -B ./build \
               -DCMAKE_C_COMPILER=mpicc \
               -DCMAKE_CXX_COMPILER=mpic++ \
