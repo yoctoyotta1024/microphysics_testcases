@@ -95,7 +95,7 @@ def plot_0dparcel_thermodynamics(out, binpath, run_name):
     assert run_name
     print("plotting " + run_name + " and saving plots in: " + str(binpath))
 
-    fig, axs = plt.subplots(nrows=2, ncols=2, sharex=True)
+    fig, axs = plt.subplots(nrows=2, ncols=3, sharex=True, figsize=(12, 5))
     figname = run_name + "_thermodynamics.png"
     axs = axs.flatten()
 
@@ -103,8 +103,10 @@ def plot_0dparcel_thermodynamics(out, binpath, run_name):
     plot_utilities.plot_thermodynamics_output_timeseries(axs[0], out, "press")
     plot_utilities.plot_thermodynamics_output_timeseries(axs[0].twinx(), out, "rho")
     plot_utilities.plot_thermodynamics_output_timeseries(axs[1], out, "temp")
-    plot_thetas_on_axis(axs[3], time, out.temp, out.press, out.qvap)
-    plot_mse_on_axis(axs[2], time, out.temp, out.qvap)
+    plot_thetas_on_axis(axs[2], time, out.temp, out.press, out.qvap)
+    plot_mse_on_axis(axs[3], time, out.temp, out.qvap)
+    plot_relh_on_axis(axs[4], time, out.temp, out.press, out.qvap)
+    axs[5].remove()
 
     for ax in axs:
         ax.set_xlabel(out.time.name + " /" + out.time.units)
@@ -139,7 +141,7 @@ def plot_0dparcel_massmix_ratios(out, binpath, run_name):
     assert run_name, "The run_name cannot be empty."
     print("plotting " + run_name + " and saving plots in: " + str(binpath))
 
-    fig, axs = plt.subplots(nrows=2, ncols=4, sharex=True)
+    fig, axs = plt.subplots(nrows=2, ncols=4, sharex=True, figsize=(12, 5))
     figname = run_name + "_massmix_ratios.png"
     axs = axs.flatten()
 
@@ -174,7 +176,7 @@ def plot_mse_on_axis(ax, time, temp, qvap):
         ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the MSE.
         time (array-like): Time values (x axis).
         temp (OutputVariable): Temperature variable.
-        press (OutputVariable): Pressure variable.
+        qvap (OutputVariable): Mass mixing ratio of water vapour variable.
 
     Returns:
         None
@@ -195,6 +197,7 @@ def plot_thetas_on_axis(ax, time, temp, press, qvap):
         time (array-like): Time values (x axis).
         temp (OutputVariable): Temperature variable.
         press (OutputVariable): Pressure variable.
+        qvap (OutputVariable): Mass mixing ratio of water vapour variable.
 
     Returns:
         None
@@ -209,3 +212,30 @@ def plot_thetas_on_axis(ax, time, temp, press, qvap):
     ax.set_ylim(theta_dry[0] - 50, theta_dry[0] + 50)
     ax.legend()
     ax.set_ylabel("potential temperature /" + temp.units)
+
+
+def plot_relh_on_axis(ax, time, temp, press, qvap):
+    """Plot relative humidity (relh) on a specified axis.
+
+    This function calculates and plots relh against time on a specified axis.
+
+    Args:
+        ax (matplotlib.axes.Axes): The (x-y) axis on which to plot relh.
+        time (array-like): Time values (x axis).
+        temp (OutputVariable): Temperature variable.
+        press (OutputVariable): Pressure variable.
+        qvap (OutputVariable): Mass mixing ratio of water vapour variable.
+
+    Returns:
+        None
+    """
+    from metpy.units import units
+    from metpy import calc
+
+    relh = calc.relative_humidity_from_mixing_ratio(
+        press.values * units.Pa, temp.values * units.kelvin, qvap.values
+    )
+
+    ax.plot(time, relh * 100)
+    ax.hlines(100, time[0], time[-1], linestyles="--", linewidth=0.8, color="grey")
+    ax.set_ylabel("relative humidity /%")
