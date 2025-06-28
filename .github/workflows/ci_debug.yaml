@@ -1,0 +1,44 @@
+name: ci_debug
+
+on: [push, pull_request]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+          cmake libopenmpi-dev openmpi-bin libomp-dev \
+          libnetcdff-dev liblapack-dev libfyaml-dev
+      - name: Extend path
+        run: |
+          ls /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx
+
+      - name: Install Pybind11
+        run: |
+          git submodule update --init
+
+      - name: Build Pybind11 module for C++ code
+        run: |
+          echo "PATH=/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx:$PATH" >> $GITHUB_ENV
+          cmake  -S ./ -B ./build \
+            -DCMAKE_PREFIX_PATH="/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/" \
+            -DCMAKE_C_COMPILER=mpicc \
+            -DCMAKE_CXX_COMPILER=mpic++ \
+            -DCMAKE_CXX_FLAGS="-Werror -Wall -Wextra -pedantic -Wno-unused-parameter -O3" \
+            -DKokkos_ARCH_NATIVE=ON -DKokkos_ENABLE_SERIAL=ON \
+            -DCLEO_COUPLED_DYNAMICS=numpy \
+            -DCLEO_DOMAIN=cartesian \
+            -DCLEO_PYTHON=/usr/share/miniconda/envs/microtestsenv/bin/python \
+            -DCLEO_YAXT_ROOT=${{ runner.temp }}/yaxt \
+            -DCLEO_YAC_ROOT=${{ runner.temp }}/yac \
+            -DCMAKE_MODULE_PATH=${PWD}/libs/coupldyn_yac/cmake
+          cd build && make && cd ..
