@@ -1,4 +1,4 @@
-name: CI
+name: docs
 
 on: [push, pull_request]
 
@@ -20,23 +20,6 @@ jobs:
         run: |
           conda info
           conda list
-
-      - name: Activate Conda Environment
-        run: |
-          conda init
-          source /home/runner/.bashrc
-          conda activate /usr/share/miniconda/envs/microtestsenv
-          conda info --envs
-
-      - name: Install Pybind11
-        run: |
-          git submodule update --init
-      - name: Build Pybind11 module for C++ code
-        run: |
-          cmake -S ./ -B ./build
-          cd build && make
-      - name: Test with pytest
-        run: pytest ./tests
 
       - name: Install Doxygen
         run: /usr/share/miniconda/envs/microtestsenv/bin/doxygen --version

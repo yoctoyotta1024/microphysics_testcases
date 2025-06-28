@@ -18,52 +18,36 @@ File Description:
 unit tests for Python bindings of ICON AES one-moment bulk microphysics scheme
 """
 
+import pytest
 import numpy as np
 import os
 import warnings
 
 from pathlib import Path
 
-path = os.environ.get("AES_MUPHYS_PY_DIR")
-if path and path is not None:
-    from libs.icon_muphys.microphysics_scheme_wrapper import (
-        MicrophysicsSchemeWrapper,
-        aes_muphys_py,
-    )
-    from libs.thermo.thermodynamics import Thermodynamics
 
-    """  def test_initialize():
-        microphys = aes_muphys_py
+@pytest.fixture(scope="module")
+def aes_muphys_py_dir(pytestconfig):
+    return pytestconfig.getoption("aes_muphys_py_dir")
 
-        assert microphys.initialize() is None
 
-    def test_finalize():
-        microphys = aes_muphys_py
+@pytest.hookimpl(tryfirst=True)
+def test_aes_muphys_py_dir(aes_muphys_py_dir):
+    if not Path(aes_muphys_py_dir).is_dir():
+        warnings.warn(
+            f"No ICON AES microphysics library found. Not running {Path(__file__).name}"
+        )
 
-        assert microphys.finalize() is None
 
-    def test_initialize_wrapper():
-        nvec = 1
-        ke = 1
-        ivstart = 0
-        dz = np.array([10], dtype=np.float64)
-        qnc = 500
-        microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
+def test_microphys_with_wrapper(aes_muphys_py_dir):
+    if Path(aes_muphys_py_dir).is_dir():
+        os.environ["AES_MUPHYS_PY_DIR"] = str(aes_muphys_py_dir)
+        from libs.icon_muphys.microphysics_scheme_wrapper import (
+            MicrophysicsSchemeWrapper,
+            aes_muphys_py,
+        )
+        from libs.thermo.thermodynamics import Thermodynamics
 
-        assert microphys_wrapped.initialize() == 0
-
-    def test_finalize_wrapper():
-        nvec = 1
-        ke = 1
-        ivstart = 0
-        dz = np.array([10], dtype=np.float64)
-        qnc = 500
-        microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
-
-        assert microphys_wrapped.finalize() == 0
- """
-
-    def test_microphys_with_wrapper():
         microphys = aes_muphys_py
         nvec = 1
         ke = 1
@@ -151,8 +135,3 @@ if path and path is not None:
 
         assert result.temp == temp
         assert result.massmix_ratios == [qvap, qcond, qice, qrain, qsnow, qgrau]
-
-else:
-    warnings.warn(
-        f"No ICON AES microphysics library found. Not running {Path(__file__).name}"
-    )

@@ -1,4 +1,6 @@
 name: microtestsenv
+channels:
+    - conda-forge
 dependencies:
     - python=3.10 # stricly 3.10 for ICON AES_MUPHYS_PY bindings on Levante
     - pytest

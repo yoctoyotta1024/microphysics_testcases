@@ -27,8 +27,9 @@ Contents
    :maxdepth: 1
 
    usage/getstart
-   usage/ourdocs
+   usage/requirements
    usage/ourtests
+   usage/ourdocs
    tests/index
    thermo/index
    pympdata_bulk/index
