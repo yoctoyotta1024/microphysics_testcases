@@ -131,7 +131,18 @@ jobs:
           cd build && make && cd ..
 
       - name: Compile CLEO python bindings
-        run: cd build && make -j 16 mock_cxx pycleo && cd ..
+        run: cd build && make -j 64 mock_cxx pycleo && cd ..
+
+      - name: Download CLEO Initial Condition Files
+        run: |
+          mkdir -p ./src/cleo_initial_conditions/generic/
+          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/config.yaml \
+            -o src/cleo_initial_conditions/generic/config.yaml
+          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/dimlessGBxboundaries.dat \
+            -o src/cleo_initial_conditions/generic/dimlessGBxboundaries.dat
+          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/dimlessSDsinit.dat \
+            -o src/cleo_initial_conditions/generic/dimlessSDsinit.dat
+          pwd && echo "ls ./src/cleo_initial_conditions/generic/" && ls ./src/cleo_initial_conditions/generic/
 
       - name: Test with pytest
         run: pytest ./tests
