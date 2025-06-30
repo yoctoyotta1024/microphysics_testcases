@@ -60,78 +60,78 @@ jobs:
           make install
 
   execute_tests:
-      runs-on: ubuntu-latest
-      defaults:
-        run:
-          shell: bash -l {0}
-      needs: setup
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v4
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    needs: setup
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-        - name: Setup
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y \
-            cmake libopenmpi-dev openmpi-bin libomp-dev \
-            libnetcdff-dev liblapack-dev libfyaml-dev
-            apt list --installed
+      - name: Setup
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+          cmake libopenmpi-dev openmpi-bin libomp-dev \
+          libnetcdff-dev liblapack-dev libfyaml-dev
+          apt list --installed
 
-        - name: Initialise Conda/Mamba
-          uses: conda-incubator/setup-miniconda@v3
-          with:
-            activate-environment: microtestsenv
-            auto-activate-base: false
-            use-mamba: true
-            miniforge-version: 'latest'
-            conda-remove-defaults: true
+      - name: Initialise Conda/Mamba
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: microtestsenv
+          auto-activate-base: false
+          use-mamba: true
+          miniforge-version: 'latest'
+          conda-remove-defaults: true
 
-        - name: Update Mamba Environment
-          run: |
-            mamba env update -n microtestsenv -f environment.yaml
+      - name: Update Mamba Environment
+        run: |
+          mamba env update -n microtestsenv -f environment.yaml
 
-        - name: Mamba and Python Info
-          run: |
-            mamba info
-            mamba list
-            which python
-            python --version
+      - name: Mamba and Python Info
+        run: |
+          mamba info
+          mamba list
+          which python
+          python --version
 
-        - name: Install Pybind11
-          run: |
-            git submodule update --init
+      - name: Install Pybind11
+        run: |
+          git submodule update --init
 
-        - name: Restore YAXT Cache
-          uses: actions/cache@v4
-          with:
-            path: ${{ runner.temp }}/yaxt/
-            key: ${{ runner.os }}-yaxt-cache-v0.11.1
+      - name: Restore YAXT Cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/yaxt/
+          key: ${{ runner.os }}-yaxt-cache-v0.11.1
 
-        - name: Restore YAC Cache
-          uses: actions/cache@v4
-          with:
-            path: ${{ runner.temp }}/yac/
-            key: ${{ runner.os }}-yac-cache-v3.5.2
+      - name: Restore YAC Cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/yac/
+          key: ${{ runner.os }}-yac-cache-v3.5.2
 
-        - name: Build Pybind11 module for C++ code
-          run: |
-            which python
-            python_path=$(which python)
-            cmake  -S ./ -B ./build \
-              -DCMAKE_C_COMPILER=mpicc \
-              -DCMAKE_CXX_COMPILER=mpic++ \
-              -DCMAKE_CXX_FLAGS="-Werror -Wall -pedantic -Wno-unused-parameter -O3" \
-              -DKokkos_ARCH_NATIVE=ON -DKokkos_ENABLE_SERIAL=ON \
-              -DCLEO_COUPLED_DYNAMICS=numpy \
-              -DCLEO_DOMAIN=cartesian \
-              -DCLEO_PYTHON=python_path \
-              -DCLEO_YAXT_ROOT=${{ runner.temp }}/yaxt \
-              -DCLEO_YAC_ROOT=${{ runner.temp }}/yac \
-              -DCMAKE_MODULE_PATH=${PWD}/libs/coupldyn_yac/cmake
-            cd build && make && cd ..
+      - name: Build Pybind11 module for C++ code
+        run: |
+          which python
+          python_path=$(which python)
+          cmake  -S ./ -B ./build \
+            -DCMAKE_C_COMPILER=mpicc \
+            -DCMAKE_CXX_COMPILER=mpic++ \
+            -DCMAKE_CXX_FLAGS="-Werror -Wall -pedantic -Wno-unused-parameter -O3" \
+            -DKokkos_ARCH_NATIVE=ON -DKokkos_ENABLE_SERIAL=ON \
+            -DCLEO_COUPLED_DYNAMICS=numpy \
+            -DCLEO_DOMAIN=cartesian \
+            -DCLEO_PYTHON=python_path \
+            -DCLEO_YAXT_ROOT=${{ runner.temp }}/yaxt \
+            -DCLEO_YAC_ROOT=${{ runner.temp }}/yac \
+            -DCMAKE_MODULE_PATH=${PWD}/libs/coupldyn_yac/cmake
+          cd build && make && cd ..
 
-        - name: Compile CLEO python bindings
-          run: cd build && make -j 16 mock_cxx pycleo && cd ..
+      - name: Compile CLEO python bindings
+        run: cd build && make -j 16 mock_cxx pycleo && cd ..
 
-        - name: Test with pytest
-          run: pytest ./tests
+      - name: Test with pytest
+        run: pytest ./tests
