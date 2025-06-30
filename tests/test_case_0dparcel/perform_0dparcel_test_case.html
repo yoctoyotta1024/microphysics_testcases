@@ -379,7 +379,24 @@ of a run of the 0-D parcel model as a function of time and then saves the plots 
 <dt>Args:</dt><dd><p>ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the MSE.
 time (array-like): Time values (x axis).
 temp (OutputVariable): Temperature variable.
-press (OutputVariable): Pressure variable.</p>
+qvap (OutputVariable): Mass mixing ratio of water vapour variable.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libs.test_case_0dparcel.perform_0dparcel_test_case.plot_relh_on_axis">
+<span class="sig-prename descclassname"><span class="pre">libs.test_case_0dparcel.perform_0dparcel_test_case.</span></span><span class="sig-name descname"><span class="pre">plot_relh_on_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">press</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qvap</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libs/test_case_0dparcel/perform_0dparcel_test_case.html#plot_relh_on_axis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.test_case_0dparcel.perform_0dparcel_test_case.plot_relh_on_axis" title="Link to this definition">¶</a></dt>
+<dd><p>Plot relative humidity (relh) on a specified axis.</p>
+<p>This function calculates and plots relh against time on a specified axis.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>ax (matplotlib.axes.Axes): The (x-y) axis on which to plot relh.
+time (array-like): Time values (x axis).
+temp (OutputVariable): Temperature variable.
+press (OutputVariable): Pressure variable.
+qvap (OutputVariable): Mass mixing ratio of water vapour variable.</p>
 </dd>
 <dt>Returns:</dt><dd><p>None</p>
 </dd>
@@ -395,7 +412,8 @@ press (OutputVariable): Pressure variable.</p>
 <dt>Args:</dt><dd><p>ax (matplotlib.axes.Axes): The (x-y) axis on which to plot the potential temperature(s).
 time (array-like): Time values (x axis).
 temp (OutputVariable): Temperature variable.
-press (OutputVariable): Pressure variable.</p>
+press (OutputVariable): Pressure variable.
+qvap (OutputVariable): Mass mixing ratio of water vapour variable.</p>
 </dd>
 <dt>Returns:</dt><dd><p>None</p>
 </dd>
@@ -465,6 +483,7 @@ press (OutputVariable): Pressure variable.</p>
 <li><a class="reference internal" href="#libs.test_case_0dparcel.perform_0dparcel_test_case.plot_0dparcel_massmix_ratios"><code class="docutils literal notranslate"><span class="pre">plot_0dparcel_massmix_ratios()</span></code></a></li>
 <li><a class="reference internal" href="#libs.test_case_0dparcel.perform_0dparcel_test_case.plot_0dparcel_thermodynamics"><code class="docutils literal notranslate"><span class="pre">plot_0dparcel_thermodynamics()</span></code></a></li>
 <li><a class="reference internal" href="#libs.test_case_0dparcel.perform_0dparcel_test_case.plot_mse_on_axis"><code class="docutils literal notranslate"><span class="pre">plot_mse_on_axis()</span></code></a></li>
+<li><a class="reference internal" href="#libs.test_case_0dparcel.perform_0dparcel_test_case.plot_relh_on_axis"><code class="docutils literal notranslate"><span class="pre">plot_relh_on_axis()</span></code></a></li>
 <li><a class="reference internal" href="#libs.test_case_0dparcel.perform_0dparcel_test_case.plot_thetas_on_axis"><code class="docutils literal notranslate"><span class="pre">plot_thetas_on_axis()</span></code></a></li>
 </ul>
 </li>
