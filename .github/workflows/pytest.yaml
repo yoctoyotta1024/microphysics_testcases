@@ -12,63 +12,52 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
-        if: steps.cache_yaxt.outputs.cache-hit != 'true' || steps.cache_yac.outputs.cache-hit != 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-          cmake libopenmpi-dev openmpi-bin libomp-dev \
-          libnetcdff-dev liblapack-dev libfyaml-dev
-          apt list --installed
+      # - name: Setup
+      #   if: steps.cache_yaxt.outputs.cache-hit != 'true' || steps.cache_yac.outputs.cache-hit != 'true'
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y \
+      #     cmake libopenmpi-dev openmpi-bin libomp-dev \
+      #     libnetcdff-dev liblapack-dev libfyaml-dev
+      #     apt list --installed
 
-      - name: Cache YAXT
-        id: cache_yaxt
-        uses: actions/cache@v4
-        with:
-          path: ${{ runner.temp }}/yaxt/
-          key: ${{ runner.os }}-yaxt-cache-v0.11.1
-          restore-keys: |
-            ${{ runner.os }}-yaxt-
+      # - name: Cache YAXT
+      #   id: cache_yaxt
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ${{ runner.temp }}/yaxt/
+      #     key: ${{ runner.os }}-yaxt-cache-v0.11.1
+      #     restore-keys: |
+      #       ${{ runner.os }}-yaxt-
 
-      - name: Cache YAC
-        id: cache_yac
-        uses: actions/cache@v4
-        with:
-          path: ${{ runner.temp }}/yac/
-          key: ${{ runner.os }}-yac-cache-v3.5.2
-          restore-keys: |
-            ${{ runner.os }}-yac-
+      # - name: Cache YAC
+      #   id: cache_yac
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ${{ runner.temp }}/yac/
+      #     key: ${{ runner.os }}-yac-cache-v3.5.2
+      #     restore-keys: |
+      #       ${{ runner.os }}-yac-
 
-      - name: Build YAXT
-        if: steps.cache_yaxt.outputs.cache-hit != 'true'
-        run: |
-          mkdir yaxt-0.11.1 && cd yaxt-0.11.1
-          curl -s -L https://gitlab.dkrz.de/dkrz-sw/yaxt/-/archive/release-0.11.1/yaxt-0.11.1.tar.gz | tar xvz --strip-components=1
-          ./configure --without-regard-for-quality --without-example-programs \
-            --without-perf-programs --with-pic --prefix=${{ runner.temp }}/yaxt
-          make -j 4
-          make install
+      # - name: Build YAXT
+      #   if: steps.cache_yaxt.outputs.cache-hit != 'true'
+      #   run: |
+      #     mkdir yaxt-0.11.1 && cd yaxt-0.11.1
+      #     curl -s -L https://gitlab.dkrz.de/dkrz-sw/yaxt/-/archive/release-0.11.1/yaxt-0.11.1.tar.gz | tar xvz --strip-components=1
+      #     ./configure --without-regard-for-quality --without-example-programs \
+      #       --without-perf-programs --with-pic --prefix=${{ runner.temp }}/yaxt
+      #     make -j 4
+      #     make install
 
-      - name: Build YAC
-        if: steps.cache_yac.outputs.cache-hit != 'true'
-        run: |
-          mkdir yac-v3.5.2 && cd yac-v3.5.2
-          curl -s -L https://gitlab.dkrz.de/dkrz-sw/yac/-/archive/v3.5.2/yac_v3.5.2.tar.gz | tar xvz --strip-components=1
-          ./configure CFLAGS="-fPIC" CC=mpicc FC=mpif90 --disable-mpi-checks \
-            --with-yaxt-root=${{ runner.temp }}/yaxt --prefix=${{ runner.temp }}/yac
-          make -j 4
-          make install
-      - name: Download CLEO Initial Condition Files
-        run: |
-          mkdir -p ./src/cleo_initial_conditions/generic/
-          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/config.yaml \
-            -o src/cleo_initial_conditions/generic/config.yaml
-          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/dimlessGBxboundaries.dat \
-            -o src/cleo_initial_conditions/generic/dimlessGBxboundaries.dat
-          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/dimlessSDsinit.dat \
-            -o src/cleo_initial_conditions/generic/dimlessSDsinit.dat
-          pwd && echo "ls ./src/cleo_initial_conditions/generic/" && ls ./src/cleo_initial_conditions/generic/
-
+      # - name: Build YAC
+      #   if: steps.cache_yac.outputs.cache-hit != 'true'
+      #   run: |
+      #     mkdir yac-v3.5.2 && cd yac-v3.5.2
+      #     curl -s -L https://gitlab.dkrz.de/dkrz-sw/yac/-/archive/v3.5.2/yac_v3.5.2.tar.gz | tar xvz --strip-components=1
+      #     ./configure CFLAGS="-fPIC" CC=mpicc FC=mpif90 --disable-mpi-checks \
+      #       --with-yaxt-root=${{ runner.temp }}/yaxt --prefix=${{ runner.temp }}/yac
+      #     make -j 4
+      #     make install
   execute_tests:
     runs-on: ubuntu-latest
     defaults:
@@ -107,41 +96,54 @@ jobs:
           which python
           python --version
 
-      - name: Install Pybind11
+      # - name: Install Pybind11
+      #   run: |
+      #     git submodule update --init
+
+      # - name: Restore YAXT Cache
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ${{ runner.temp }}/yaxt/
+      #     key: ${{ runner.os }}-yaxt-cache-v0.11.1
+
+      # - name: Restore YAC Cache
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ${{ runner.temp }}/yac/
+      #     key: ${{ runner.os }}-yac-cache-v3.5.2
+
+      # - name: Build Pybind11 module for C++ code
+      #   run: |
+      #     which python
+      #     python_path=$(which python)
+      #     cmake  -S ./ -B ./build \
+      #       -DCMAKE_C_COMPILER=mpicc \
+      #       -DCMAKE_CXX_COMPILER=mpic++ \
+      #       -DCMAKE_CXX_FLAGS="-Werror -Wall -pedantic -Wno-unused-parameter -O3" \
+      #       -DKokkos_ARCH_NATIVE=ON -DKokkos_ENABLE_SERIAL=ON \
+      #       -DCLEO_COUPLED_DYNAMICS=numpy \
+      #       -DCLEO_DOMAIN=cartesian \
+      #       -DCLEO_PYTHON=python_path \
+      #       -DCLEO_YAXT_ROOT=${{ runner.temp }}/yaxt \
+      #       -DCLEO_YAC_ROOT=${{ runner.temp }}/yac \
+      #       -DCMAKE_MODULE_PATH=${PWD}/libs/coupldyn_yac/cmake
+      #     cd build && make && cd ..
+
+      # - name: Compile CLEO python bindings
+      #   run: cd build && make -j 64 mock_cxx pycleo && cd ..
+
+      - name: Download CLEO Initial Condition Files
         run: |
-          git submodule update --init
-
-      - name: Restore YAXT Cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ runner.temp }}/yaxt/
-          key: ${{ runner.os }}-yaxt-cache-v0.11.1
-
-      - name: Restore YAC Cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ runner.temp }}/yac/
-          key: ${{ runner.os }}-yac-cache-v3.5.2
-
-      - name: Build Pybind11 module for C++ code
-        run: |
-          which python
-          python_path=$(which python)
-          cmake  -S ./ -B ./build \
-            -DCMAKE_C_COMPILER=mpicc \
-            -DCMAKE_CXX_COMPILER=mpic++ \
-            -DCMAKE_CXX_FLAGS="-Werror -Wall -pedantic -Wno-unused-parameter -O3" \
-            -DKokkos_ARCH_NATIVE=ON -DKokkos_ENABLE_SERIAL=ON \
-            -DCLEO_COUPLED_DYNAMICS=numpy \
-            -DCLEO_DOMAIN=cartesian \
-            -DCLEO_PYTHON=python_path \
-            -DCLEO_YAXT_ROOT=${{ runner.temp }}/yaxt \
-            -DCLEO_YAC_ROOT=${{ runner.temp }}/yac \
-            -DCMAKE_MODULE_PATH=${PWD}/libs/coupldyn_yac/cmake
-          cd build && make && cd ..
-
-      - name: Compile CLEO python bindings
-        run: cd build && make -j 64 mock_cxx pycleo && cd ..
+          mkdir -p ./src/cleo_initial_conditions/generic/
+          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/config.yaml \
+            -o src/cleo_initial_conditions/generic/config.yaml
+          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/dimlessGBxboundaries.dat \
+            -o src/cleo_initial_conditions/generic/dimlessGBxboundaries.dat
+          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/dimlessSDsinit.dat \
+            -o src/cleo_initial_conditions/generic/dimlessSDsinit.dat
+          pwd && echo "ls ./src/cleo_initial_conditions/generic/" && ls ./src/cleo_initial_conditions/generic/
 
       - name: Test with pytest
-        run: pytest ./tests
+        run: |
+          pwd && echo "ls ./src/cleo_initial_conditions/generic/" && ls ./src/cleo_initial_conditions/generic/
+          pwd && pytest ./test_cleo -s

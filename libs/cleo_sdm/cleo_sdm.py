@@ -41,7 +41,22 @@ def mpi_info(comm):
 
 
 def create_sdm(config, tsteps):
+    import subprocess
+
     print("PYCLEO STATUS: creating GridboxMaps")
+    print("gridfile:", config.get_grid_filename())
+    result = subprocess.run(["pwd"], capture_output=True, text=True, check=True)
+    print("pwd:", result.stdout.strip())
+    result = subprocess.run(
+        ["ls src/cleo_initial_conditions/generic/"], capture_output=True, text=True
+    )
+    print("ls:", result.stdout)
+    result = subprocess.run(
+        ["curl ./src/cleo_initial_conditions/generic/dimlessGBxboundaries.dat"],
+        capture_output=True,
+        text=True,
+    )
+    print("ls:", result.stdout)
     gbxmaps = pycleo.create_cartesian_maps(
         config.get_ngbxs(),
         config.get_nspacedims(),
