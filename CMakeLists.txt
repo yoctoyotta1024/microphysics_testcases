@@ -4,7 +4,9 @@ project(project
   DESCRIPTION "Microphysics Test Cases by Clara Bayley and other developers"
 )
 
-find_package(MPI REQUIRED)
+enable_language(CXX)
+enable_language(C)
+find_package(MPI REQUIRED COMPONENTS C)
 
 ## Use the pybind11 package from .gitmodules
 add_subdirectory(extern/pybind11)
@@ -14,9 +16,7 @@ set(SOURCES libs/mock_bindcxx/mock.cpp)
 pybind11_add_module(mock_cxx MODULE ${SOURCES})
 
 # ## Link any necessary libraries (if needed)
-target_include_directories(${MPI_CXX_INCLUDE_DIRS})
-target_link_libraries(mock_cxx PUBLIC MPI::MPI_CXX)
-target_link_libraries(mock_cxx PUBLIC ${MPI_CXX_INCLUDE_DIRS})
+target_link_libraries(mock_cxx PUBLIC MPI::MPI_C)
 
 # ## Set additional compile options if needed
 # target_compile_options(mock_cxx PRIVATE -Wall -Wextra)

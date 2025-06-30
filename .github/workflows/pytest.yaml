@@ -5,9 +5,6 @@ on: [push, pull_request]
 jobs:
   setup:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -l {0}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,16 +14,17 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-          cmake libopenmpi-dev openmpi-bin \
+          cmake g++ libopenmpi-dev openmpi-bin \
           libnetcdff-dev liblapack-dev libfyaml-dev \
           python3-dev python3-numpy python3-mpi4py python3-pip curl
+          apt list --installed
 
       - name: Cache YAXT
         id: cache_yaxt
         uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}/yaxt/
-          key: ${{ runner.os }}-yaxt-cache-v0.11.1
+          key: ${{ runner.os }}-yaxt-cache-v0.11.1_force
           restore-keys: |
             ${{ runner.os }}-yaxt-
 
@@ -35,7 +33,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}/yac/
-          key: ${{ runner.os }}-yac-cache-v3.5.2
+          key: ${{ runner.os }}-yac-cache-v3.5.2_force
           restore-keys: |
             ${{ runner.os }}-yac-
 
@@ -77,10 +75,10 @@ jobs:
 
       - name: Build Pybind11 module for C++ code
         run: |
-          echo "TODO(CB: fix missing MPI error"
           which mpic++
-          ls /usr/lib/x86_64-linux-gnu/
+          mpic++ --show
           cmake  -S ./ -B ./build \
+            -DCMAKE_VERBOSE_MAKEFILE=ON \
             -DCMAKE_C_COMPILER=mpicc \
             -DCMAKE_CXX_COMPILER=mpic++ \
             -DCMAKE_CXX_FLAGS="-Werror -Wall -Wextra -pedantic -Wno-unused-parameter -O3" \
