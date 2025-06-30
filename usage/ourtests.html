@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Microphysics Test Cases" href="../tests/index.html" /><link rel="prev" title="Our Docs" href="ourdocs.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Our Docs" href="ourdocs.html" /><link rel="prev" title="Requirements" href="requirements.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>Our Tests - Microphysics Test Cases 0.0.0 documentation</title>
@@ -201,8 +201,9 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstart.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ourdocs.html">Our Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Our Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ourdocs.html">Our Docs</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../tests/index.html">Microphysics Test Cases</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Microphysics Test Cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../tests/test_case_0dparcel/index.html">0-D Parcel Test Case</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 0-D Parcel Test Case</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tests/test_case_0dparcel/perform_0dparcel_test_case.html">0-D Model Test Case</a></li>
@@ -287,24 +288,36 @@ every test in the <cite>./tests</cite> directory, whereas <code class="docutils 
 </section>
 <section id="testing-c-code">
 <h2>Testing C++ Code<a class="headerlink" href="#testing-c-code" title="Link to this heading">¶</a></h2>
-<p>For testing C++ code, we first make a Python module out of it using pybind11, assuming pybind11 is
-already installed in the <cite>./extern</cite> directory (see <cite>./CMakeLists.txt</cite>).</p>
-<p>It’s no problem if for some reason you don’t have pybind11 already in <cite>./extern</cite> (Maybe you didn’t
-clone this repository with the <code class="docutils literal notranslate"><span class="pre">--recursive</span></code> flag?), we recommend you simply install it using git
-submodule, e.g.</p>
+<p>For testing C++ code, we first make a Python module out of it using pybind11.</p>
+<section id="c-demo-package">
+<h3>C++ Demo Package<a class="headerlink" href="#c-demo-package" title="Link to this heading">¶</a></h3>
+<p>The mock_bindcxx library shows a demonstration of making python bindings assuming pybind11 is
+already installed in the <cite>./extern</cite> directory (see <cite>./CMakeLists.txt</cite>). It’s no problem if for
+some reason you don’t have pybind11 already in <cite>./extern</cite> (Maybe you didn’t clone this repository
+with the <code class="docutils literal notranslate"><span class="pre">--recursive</span></code> flag?), we recommend you simply install it using git submodule, e.g.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/pybind/pybind11.git<span class="w"> </span>extern/pybind11
 <span class="gp">$ </span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init
 </pre></div>
 </div>
-<p>You can then build and compile the python module from your C++ code, provided you have first written
-the appropriate bindings(!), e.g.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cmake<span class="w"> </span>-S<span class="w"> </span>./<span class="w"> </span>-B<span class="w"> </span>./build
-<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make
+<p>You can then build and compile the python module for this C++ code.</p>
+</section>
+<section id="creating-the-python-bindings">
+<h3>Creating The Python Bindings<a class="headerlink" href="#creating-the-python-bindings" title="Link to this heading">¶</a></h3>
+<p>To build the python bindings for the C++ Demo Package and CLEO you can simply do
+`` cmake -S ./ -B ./build &amp;&amp; cd build &amp;&amp; make mock_cxx pycleo``. However, you need to have certain
+<a class="reference internal" href="requirements.html#requirements"><span class="std std-ref">requirements</span></a> fulfilled first (compiler versions etc.). On Levante, we
+therefore reccomend you use the bash helper script <code class="docutils literal notranslate"><span class="pre">scripts/compile_bindings_levante.sh</span></code> instead
+of directly calling cmake.</p>
+<p>First activate the python environment you want to use. Then call the helper script with the source
+and build directories you want to use, e.g.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./scripts/compile_bindings_levante.sh<span class="w"> </span><span class="nv">$HOME</span>/microphysics_testcases<span class="w"> </span><span class="nv">$HOME</span>/microphysics_testcases/build
 </pre></div>
 </div>
-<p>The Python module can then tested using pytest just <a class="reference internal" href="#python-test"><span class="std std-ref">like an ordinary python module</span></a>.</p>
+<p>After making the bindings, the Python modules can then tested using
+pytest just <a class="reference internal" href="#python-test"><span class="std std-ref">like an ordinary python module</span></a>.</p>
 <p>You can find out more about pybind11 by visiting
 <a class="reference external" href="https://github.com/pybind/pybind11/">their repository</a></p>
+</section>
 </section>
 </section>
 
@@ -313,23 +326,23 @@ the appropriate bindings(!), e.g.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../tests/index.html">
+          <a class="next-page" href="ourdocs.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Microphysics Test Cases</div>
+                <div class="title">Our Docs</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="ourdocs.html">
+          <a class="prev-page" href="requirements.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Our Docs</div>
+                <div class="title">Requirements</div>
                 
               </div>
             </a>
@@ -343,7 +356,7 @@ the appropriate bindings(!), e.g.</p>
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 26 June 2025</div>
+              Last updated on 30 June 2025</div>
           </div>
           <div class="right-details">
             
@@ -366,7 +379,11 @@ the appropriate bindings(!), e.g.</p>
             <ul>
 <li><a class="reference internal" href="#">Our Tests</a><ul>
 <li><a class="reference internal" href="#testing-python-code">Testing Python Code</a></li>
-<li><a class="reference internal" href="#testing-c-code">Testing C++ Code</a></li>
+<li><a class="reference internal" href="#testing-c-code">Testing C++ Code</a><ul>
+<li><a class="reference internal" href="#c-demo-package">C++ Demo Package</a></li>
+<li><a class="reference internal" href="#creating-the-python-bindings">Creating The Python Bindings</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
