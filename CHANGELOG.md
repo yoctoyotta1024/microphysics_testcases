@@ -2,6 +2,58 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.8.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/5de569fbd23373bf0804af7a22f68ba011a7dd22..v0.8.0) - 2025-06-30
+#### Bug Fixes
+- cleaner use of conda CI and resolve github CI mpi c++ compatibility error - ([a4e8ccb](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a4e8ccb2f3268a10b2a377f912f0a0cffc965e9e)) - clara.bayley
+- export muphys dir before python imports - ([e61fe8a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e61fe8ae97eecfdb8f5249904ae08f8bf1b25866)) - clara.bayley
+#### Continuous Integration
+- download initial conditions for CLEO pytests - ([d62b105](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d62b105ddeea6ac002a3d8cdf98c134a09ce78e8)) - clara.bayley
+- fixing MPI error - ([fe14f17](https://github.com/yoctoyotta1024/microphysics_testcases/commit/fe14f178b44bd5016f9b4e033d75deb1bf63c2cc)) - clara.bayley
+- rename doc building file - ([6dff052](https://github.com/yoctoyotta1024/microphysics_testcases/commit/6dff0524c33c8cea01417dbe5c88c57334088a66)) - clara.bayley
+- add cleo, yac and yaxt building to python testing - ([ff31dd0](https://github.com/yoctoyotta1024/microphysics_testcases/commit/ff31dd03968889122973ff0427a3f765be1a2bbf)) - clara.bayley
+- move python testing into seperate CI file - ([9a2e2bf](https://github.com/yoctoyotta1024/microphysics_testcases/commit/9a2e2bfbbf10483eb30af05c44c945538223f84d)) - clara.bayley
+#### Documentation
+- note on python env - ([7d62998](https://github.com/yoctoyotta1024/microphysics_testcases/commit/7d62998d7a23253e52eb291617e8ff8324d99fd2)) - clara.bayley
+- missing ./ - ([97a77be](https://github.com/yoctoyotta1024/microphysics_testcases/commit/97a77bec68ff49482e686f5e751fe0bbffd59413)) - clara.bayley
+- update docs requirements on making python bindings with CLEO - ([86986aa](https://github.com/yoctoyotta1024/microphysics_testcases/commit/86986aa9ee53fb2c868971258007c34dd82f820a)) - clara.bayley
+#### Features
+- basic test for CLEO SDM - ([15f1c89](https://github.com/yoctoyotta1024/microphysics_testcases/commit/15f1c89bd3fd633c3230751be5559c18c610bb10)) - clara.bayley
+- basic test for CLEO SDM - ([0069984](https://github.com/yoctoyotta1024/microphysics_testcases/commit/0069984728cf4a8d3ed75f1a9b7a9196c7ad270e)) - clara.bayley
+- configuration file for pytests - ([d7db953](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d7db953a8e9aeaea8c67e6604b67734fc2415131)) - clara.bayley
+- config file for CLEO SDM - ([382ac27](https://github.com/yoctoyotta1024/microphysics_testcases/commit/382ac270658044332d5ff5bc427989af888a53a9)) - clara.bayley
+- helper script to build and compile bindings - ([202790f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/202790fc486854206b876308fb5673e06e0e41cd)) - clara.bayley
+- new library for CLEO SDM microphysics wrapper - ([23e3af8](https://github.com/yoctoyotta1024/microphysics_testcases/commit/23e3af80490ec359016d0c4d4b8080ab834ef42f)) - clara.bayley
+#### Miscellaneous Chores
+- formatting - ([e0f91ec](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e0f91eccfbe84e022089ab0750e7fe4130e320ba)) - clara.bayley
+- update CLEO - ([9ccdaa4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/9ccdaa46ecbfaa61a2c0bf24b028887435d52e1a)) - clara.bayley
+- update cleo version - ([9e76bbc](https://github.com/yoctoyotta1024/microphysics_testcases/commit/9e76bbc4ac99874f0a2384d7da5affdaf4135f5e)) - clara.bayley
+- add todos - ([4d4dd4f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/4d4dd4ff2b32c163bd24af925758a9d20555cd53)) - clara.bayley
+- rename graupel -> muphys filenames - ([6a14bae](https://github.com/yoctoyotta1024/microphysics_testcases/commit/6a14baed95d475e4940078b74dd5e9975d098fd5)) - clara.bayley
+#### Performance Improvements
+- None is clearer than 0 - ([0d9ed8c](https://github.com/yoctoyotta1024/microphysics_testcases/commit/0d9ed8c5cff22d6ff8e382a85140eaec278cd6d1)) - clara.bayley
+- generic test pybind_sol.zarr -> sol.zarr - ([355d15b](https://github.com/yoctoyotta1024/microphysics_testcases/commit/355d15b8f2cf9cbebbc6b34ba68f1696ee44bef1)) - clara.bayley
+#### Refactoring
+- use conftest to set AES_MUPHYS_PY_DIR - ([6d2c3b1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/6d2c3b1e928a492e6ea319fea35facd5fd044bf2)) - clara.bayley
+- move note into file header - ([ebfb1bf](https://github.com/yoctoyotta1024/microphysics_testcases/commit/ebfb1bf3699cb41a65eac652ec1b56f44c58ead8)) - clara.bayley
+- remove unused arg - ([8877e37](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8877e37f79068fbc501a9bfed2d70ceb448780d4)) - clara.bayley
+- use environment variable to set pycleo path - ([b5bb3d5](https://github.com/yoctoyotta1024/microphysics_testcases/commit/b5bb3d5a445945c9edc4f3c55c6936e32d418c1c)) - clara.bayley
+- allow option not to init/finalise pycleo - ([496ac7e](https://github.com/yoctoyotta1024/microphysics_testcases/commit/496ac7efc6fad52218ffe612b0800a0ccb8e6b72)) - clara.bayley
+- variable rename - ([be4a427](https://github.com/yoctoyotta1024/microphysics_testcases/commit/be4a4271ed87e7eb6e9b8d571559b256649e5fd9)) - clara.bayley
+- move cleo config file(s) - ([3249cee](https://github.com/yoctoyotta1024/microphysics_testcases/commit/3249ceef4b656531e4d7753664ac1f3d72edd542)) - clara.bayley
+- development of library for CLEO SDM microphysics wrapper - ([1fb1921](https://github.com/yoctoyotta1024/microphysics_testcases/commit/1fb19210be839aef1ac2ae2da80acfc551010564)) - clara.bayley
+- require MPI in cmake - ([b140216](https://github.com/yoctoyotta1024/microphysics_testcases/commit/b140216a0e80cc1e9ed7191861587b41290c5322)) - clara.bayley
+- mpi4py and ruamel.yaml are requirements for cleo - ([bd68a6f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/bd68a6ff1ec55474134a1b15480dfc6fa2073524)) - clara.bayley
+- add dat files to gitignore - ([ef64342](https://github.com/yoctoyotta1024/microphysics_testcases/commit/ef6434257256c651c79f35b7ecf543866e665aac)) - clara.bayley
+- move note - ([eb838be](https://github.com/yoctoyotta1024/microphysics_testcases/commit/eb838be8d4e357ea2e66942691d373b1aac54c58)) - clara.bayley
+- plot qrain with qcond - ([f7e39a0](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f7e39a0fee2de82afea55ab33b9532a39347c952)) - clara.bayley
+- add warning when icon tests not run - ([a775ce3](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a775ce3b7744470de78750732bc03fe0ed621c38)) - clara.bayley
+- move 1-D kid test case setup files into libs - ([f8c11c7](https://github.com/yoctoyotta1024/microphysics_testcases/commit/f8c11c7ef5e883665f50c52034d0195fd2988927)) - clara.bayley
+- move 0-D parcel test case setup files into libs - ([297ded4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/297ded472b7b100689e7716df70529b8f630720a)) - clara.bayley
+- update path to aes_muphys python bindings on levante - ([cf75f23](https://github.com/yoctoyotta1024/microphysics_testcases/commit/cf75f23dc160d5cc8862930c4a51b4cd1641854c)) - clara.bayley
+- rename muphys-cpp graupel to ICON AES microphysics (muphys) - ([5de569f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/5de569fbd23373bf0804af7a22f68ba011a7dd22)) - clara.bayley
+
+- - -
+
 ## [v0.7.2](https://github.com/yoctoyotta1024/microphysics_testcases/compare/110a936d9f26ff446de776f8d721c2e63dfd0996..v0.7.2) - 2025-06-04
 #### Bug Fixes
 - add missing total_ice calculation - ([e89ab6f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/e89ab6f777f8a888c0783f6b5ae627f2cc01a759)) - Georgiana Mania
