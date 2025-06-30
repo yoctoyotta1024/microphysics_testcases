@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.9.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/a05b19fb4ec73fe3b649b1879ec61336b60f36a3..v0.9.0) - 2025-06-30
+#### Bug Fixes
+- not referencing thermo data into cleo - ([6f11019](https://github.com/yoctoyotta1024/microphysics_testcases/commit/6f1101928e836157a6093ef1c26426a413845371)) - clara.bayley
+- de/re dimensionlise thermodynamics - ([68bb5f7](https://github.com/yoctoyotta1024/microphysics_testcases/commit/68bb5f7bc374b92abd7a5db202a03f6b86ddbbe6)) - clara.bayley
+#### Continuous Integration
+- download initial conditions for 0-D parcel test - ([07c3246](https://github.com/yoctoyotta1024/microphysics_testcases/commit/07c3246342740a2274c8f08a10a0c83e6a02244a)) - clara.bayley
+#### Features
+- new file to test CLEO SDM in 0d parcel test case - ([a05b19f](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a05b19fb4ec73fe3b649b1879ec61336b60f36a3)) - clara.bayley
+#### Refactoring
+- improve plotting - ([efbcf6a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/efbcf6aef598237bfe76c013356a250fce19100f)) - clara.bayley
+- make cleo tests individual - ([56b0828](https://github.com/yoctoyotta1024/microphysics_testcases/commit/56b08284696688c57d5978a618caaf20c59be445)) - clara.bayley
+- remove fix on double kokkos initialise with updated cleo version - ([a24fdef](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a24fdefc41d44242871531e47e3a4af2a08f86ba)) - clara.bayley
+- use microphysics not null from config - ([03fe072](https://github.com/yoctoyotta1024/microphysics_testcases/commit/03fe07284efcfeeecc8ed90bb85f260efa15dbeb)) - clara.bayley
+
+- - -
+
 ## [v0.8.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/5de569fbd23373bf0804af7a22f68ba011a7dd22..v0.8.0) - 2025-06-30
 #### Bug Fixes
 - cleaner use of conda CI and resolve github CI mpi c++ compatibility error - ([a4e8ccb](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a4e8ccb2f3268a10b2a377f912f0a0cffc965e9e)) - clara.bayley
