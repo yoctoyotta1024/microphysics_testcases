@@ -14,7 +14,9 @@ set(SOURCES libs/mock_bindcxx/mock.cpp)
 pybind11_add_module(mock_cxx MODULE ${SOURCES})
 
 # ## Link any necessary libraries (if needed)
+target_include_directories(${MPI_CXX_INCLUDE_DIRS})
 target_link_libraries(mock_cxx PUBLIC MPI::MPI_CXX)
+target_link_libraries(mock_cxx PUBLIC ${MPI_CXX_INCLUDE_DIRS})
 
 # ## Set additional compile options if needed
 # target_compile_options(mock_cxx PRIVATE -Wall -Wextra)
