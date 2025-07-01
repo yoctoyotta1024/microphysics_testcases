@@ -8,7 +8,7 @@ Created Date: Monday 23rd June 2025
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 23rd June 2025
+Last Modified: Tuesday 1st July 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -40,7 +40,7 @@ def mpi_info(comm):
     print("--------------------------------------")
 
 
-def create_sdm(config, tsteps):
+def create_sdm(config, tsteps, is_motion):
     print("PYCLEO STATUS: creating GridboxMaps")
     gbxmaps = pycleo.create_cartesian_maps(
         config.get_ngbxs(),
@@ -56,13 +56,15 @@ def create_sdm(config, tsteps):
         config, tsteps
     )  # config gives microphysics
 
-    print("PYCLEO STATUS: creating Superdroplet Movement")
-    motion = pycleo.NullMotion()
+    if is_motion:
+        print("PYCLEO STATUS: creating Superdroplet Movement")
+        motion = pycleo.create_cartesian_predcorr_motion(tsteps.get_motionstep())
+    else:
+        print("PYCLEO STATUS: creating Superdroplet Movement without Motion")
+        motion = pycleo.create_cartesian_predcorr_motion(False)
     transport = pycleo.CartesianTransportAcrossDomain()
     boundary_conditions = pycleo.NullBoundaryConditions()
-    move = pycleo.CartesianNullMoveSupersInDomain(
-        motion, transport, boundary_conditions
-    )
+    move = pycleo.CartesianMoveSupersInDomain(motion, transport, boundary_conditions)
 
     print("PYCLEO STATUS: creating SDM Methods")
     sdm = pycleo.CartesianSDMMethods(tsteps.get_couplstep(), gbxmaps, micro, move, obs)
@@ -95,6 +97,7 @@ class CleoSDM:
     def __init__(
         self,
         config,
+        is_motion,
         t_start,
         timestep,
         press,
@@ -122,7 +125,7 @@ class CleoSDM:
         )
         self.comms = coupldyn_numpy.NumpyComms()
 
-        self.sdm = create_sdm(config, tsteps)
+        self.sdm = create_sdm(config, tsteps, is_motion)
         self.sdm, self.gbxs, self.allsupers = prepare_to_timestep_sdm(config, self.sdm)
 
     def run(self, timestep):

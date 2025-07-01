@@ -8,7 +8,7 @@ Created Date: Monday 23rd June 2025
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 23rd June 2025
+Last Modified: Tuesday 1st July 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -57,13 +57,16 @@ def test_initialize(path2pycleo, config_filename):
 
     t_start = 0
     timestep = python_config["timesteps"]["COUPLTSTEP"]  # [s]
+    is_motion = python_config["pycleo_settings"]["is_motion"]
     press = np.array([], dtype=np.float64)
     temp = np.array([], dtype=np.float64)
     qvap = np.array([], dtype=np.float64)
     qcond = np.array([], dtype=np.float64)
     config = pycleo.Config(str(config_filename))
     pycleo.pycleo_initialize(config)
-    microphys = MicrophysicsScheme(config, t_start, timestep, press, temp, qvap, qcond)
+    microphys = MicrophysicsScheme(
+        config, is_motion, t_start, timestep, press, temp, qvap, qcond
+    )
 
     assert microphys.name == "CLEO SDM microphysics"
 
@@ -81,12 +84,14 @@ def test_initialize_wrapper(path2pycleo, config_filename):
 
     t_start = 0
     timestep = python_config["timesteps"]["COUPLTSTEP"]  # [s]
+    is_motion = python_config["pycleo_settings"]["is_motion"]
     press = np.array([], dtype=np.float64)
     temp = np.array([], dtype=np.float64)
     qvap = np.array([], dtype=np.float64)
     qcond = np.array([], dtype=np.float64)
     microphys_wrapped = MicrophysicsSchemeWrapper(
         config_filename,
+        is_motion,
         t_start,
         timestep,
         press,
@@ -111,12 +116,14 @@ def test_finalize_wrapper(path2pycleo, config_filename):
 
     t_start = 0
     timestep = python_config["timesteps"]["COUPLTSTEP"]  # [s]
+    is_motion = python_config["pycleo_settings"]["is_motion"]
     press = np.array([], dtype=np.float64)
     temp = np.array([], dtype=np.float64)
     qvap = np.array([], dtype=np.float64)
     qcond = np.array([], dtype=np.float64)
     microphys_wrapped = MicrophysicsSchemeWrapper(
         config_filename,
+        is_motion,
         t_start,
         timestep,
         press,
@@ -144,6 +151,7 @@ def test_microphys_with_wrapper(path2pycleo, config_filename):
 
     t_start = 0
     timestep = python_config["timesteps"]["COUPLTSTEP"]  # [s]
+    is_motion = python_config["pycleo_settings"]["is_motion"]
     temp1 = np.array([288.15], dtype=np.float64)
     temp2 = np.array([288.15], dtype=np.float64)
     rho = np.array([1.225], dtype=np.float64)
@@ -167,11 +175,12 @@ def test_microphys_with_wrapper(path2pycleo, config_filename):
 
     config = pycleo.Config(str(config_filename))
     microphys = MicrophysicsScheme(
-        config, t_start, timestep, press1, temp1, qvap1, qcond1
+        config, is_motion, t_start, timestep, press1, temp1, qvap1, qcond1
     )
 
     microphys_wrapped = MicrophysicsSchemeWrapper(
         config_filename,
+        is_motion,
         t_start,
         timestep,
         press2,

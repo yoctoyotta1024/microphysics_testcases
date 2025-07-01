@@ -8,7 +8,7 @@ Created Date: Tuesday 24th June 2025
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Tuesday 24th June 2025
+Last Modified: Tuesday 1st July 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -99,8 +99,10 @@ def test_cleo_sdm_0dparcel(path2pycleo, config_filename):
     )
 
     ### microphysics scheme to use (within a wrapper)
+    is_motion = False
     microphys_scheme = MicrophysicsSchemeWrapper(
         config_filename,
+        is_motion,
         time_init,
         timestep,
         thermo_init.press,

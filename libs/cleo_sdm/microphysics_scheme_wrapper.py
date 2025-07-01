@@ -8,7 +8,7 @@ Created Date: Monday 23rd June 2025
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Monday 23rd June 2025
+Last Modified: Tuesday 1st July 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -44,6 +44,7 @@ class MicrophysicsSchemeWrapper:
     def __init__(
         self,
         config_filename,
+        is_motion,
         t_start,
         timestep,
         press,
@@ -55,7 +56,9 @@ class MicrophysicsSchemeWrapper:
         config = pycleo.Config(str(config_filename))
         pycleo.pycleo_initialize(config)
 
-        self.microphys = CleoSDM(config, t_start, timestep, press, temp, qvap, qcond)
+        self.microphys = CleoSDM(
+            config, is_motion, t_start, timestep, press, temp, qvap, qcond
+        )
         self.name = "Wrapper around " + self.microphys.name
 
         # constants to de-dimensionalise thermodynamics

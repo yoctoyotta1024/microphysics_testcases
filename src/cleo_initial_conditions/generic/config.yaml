@@ -5,7 +5,7 @@
 # Author: Clara Bayley (CB)
 # Additional Contributors:
 # -----
-# Last Modified: Monday 23rd June 2025
+# Last Modified: Tuesday 1st July 2025
 # Modified By: CB
 # -----
 # License: BSD 3-Clause "New" or "Revised" License
@@ -19,6 +19,10 @@
 # CLEO's pySD module (see Python script "create_initsuperdropsbinary_script.py" for usage).
 # Likewise the "grid_filename" can be made using pySD (see "create_gbxboundariesbinary_script.py").
 #
+
+### Python Binding Parameters ###
+pycleo_settings:
+  is_motion : true                      # true/false, if true include superdroplet motion in SDM
 
 ### Kokkos Initialization Parameters ###
 kokkos_settings:
