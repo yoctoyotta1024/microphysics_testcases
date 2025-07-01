@@ -1,5 +1,5 @@
 ##### Folders to ignore - files may be too large, too many, etc. #####
-build
+build*
 bin
 *.dat
 
