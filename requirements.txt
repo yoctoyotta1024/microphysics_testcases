@@ -17,4 +17,5 @@ PyMPDATA
 PyMPDATA-examples
 metpy
 mpi4py
+openmpi
 ruamel.yaml
