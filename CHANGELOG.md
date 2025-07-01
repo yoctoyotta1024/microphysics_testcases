@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.9.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/ed9c20931277d665905d462f8db9c2a4a80f1364..v0.9.1) - 2025-07-01
+#### Bug Fixes
+- missing mpi requirement - ([02b347a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/02b347a5e79cb7b65f756813bce203a59a57bae9)) - clara.bayley
+#### Documentation
+- note on environment activation - ([020a563](https://github.com/yoctoyotta1024/microphysics_testcases/commit/020a56300db3e721bb8d5835d5329889571e9fc5)) - clara.bayley
+#### Miscellaneous Chores
+- update cleo - ([ed9c209](https://github.com/yoctoyotta1024/microphysics_testcases/commit/ed9c20931277d665905d462f8db9c2a4a80f1364)) - clara.bayley
+#### Refactoring
+- ignore all build files - ([11b84c1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/11b84c1644704562ba19cc605843a90af7b404d8)) - clara.bayley
+- make cleo tests compatible with cleo version in(/ex)cluding superdroplet motion - ([415df07](https://github.com/yoctoyotta1024/microphysics_testcases/commit/415df07fc61b6d6fb8b092da49ebb8711e105a7e)) - clara.bayley
+
+- - -
+
 ## [v0.9.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/a05b19fb4ec73fe3b649b1879ec61336b60f36a3..v0.9.0) - 2025-06-30
 #### Bug Fixes
 - not referencing thermo data into cleo - ([6f11019](https://github.com/yoctoyotta1024/microphysics_testcases/commit/6f1101928e836157a6093ef1c26426a413845371)) - clara.bayley
