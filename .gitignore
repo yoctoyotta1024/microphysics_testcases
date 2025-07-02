@@ -2,6 +2,7 @@
 build*
 bin
 *.dat
+*.patch
 
 ##### Documentation Build Artifacts #####
 docs/source/_autosummary
