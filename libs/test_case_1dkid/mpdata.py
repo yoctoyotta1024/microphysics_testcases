@@ -40,6 +40,7 @@ class MPDATA:
         options,
     ):
         nr = 1  # nr==1 is like a bulk scheme
+        self.nr = nr
         self.t = 0
         self.dt = dt
         self.fields = ("qv", "ql")
