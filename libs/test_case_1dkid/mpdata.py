@@ -43,7 +43,7 @@ class MPDATA:
         self.nr = nr
         self.t = 0
         self.dt = dt
-        self.fields = ("qvap", "qcond")
+        self.fields = ("qvap", "qcond", "qice", "qrain", "qsnow", "qgrau")
 
         self.options = options
 

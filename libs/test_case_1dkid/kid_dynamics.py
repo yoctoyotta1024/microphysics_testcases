@@ -97,6 +97,10 @@ class KiDDynamics:
         thermo.press = self.press_prof
         thermo.massmix_ratios[0] = self.mpdata["qvap"].advectee.get()  # qvap
         thermo.massmix_ratios[1] = self.mpdata["qcond"].advectee.get()  # qcond
+        thermo.massmix_ratios[2] = self.mpdata["qice"].advectee.get()  # qcond
+        thermo.massmix_ratios[3] = self.mpdata["qrain"].advectee.get()  # qcond
+        thermo.massmix_ratios[4] = self.mpdata["qsnow"].advectee.get()  # qcond
+        thermo.massmix_ratios[5] = self.mpdata["qgrau"].advectee.get()  # qcond
 
         return thermo
 
@@ -127,11 +131,9 @@ class KiDDynamics:
         )
         advector_0 = np.ones_like(self.settings.z_vec) * GC
 
-        self.mpdata["qvap"].advector.get_component(0)[:] = advector_0
-        self.mpdata["qvap"].advance(1)
-
-        self.mpdata["qcond"].advector.get_component(0)[:] = advector_0
-        self.mpdata["qcond"].advance(1)
+        for field in self.mpdata.fields:
+            self.mpdata[field].advector.get_component(0)[:] = advector_0
+            self.mpdata[field].advance(1)
 
         thermo = self.set_thermo(thermo)
         return thermo
