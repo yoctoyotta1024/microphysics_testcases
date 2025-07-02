@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.10.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/23f936587ff6c150f83cac206041c5897f6f84ae..v0.10.0) - 2025-07-02
+#### Features
+- copied and adapted files for 1-D KiD from PyMPDATA - ([23f9365](https://github.com/yoctoyotta1024/microphysics_testcases/commit/23f936587ff6c150f83cac206041c5897f6f84ae)) - clara.bayley
+#### Miscellaneous Chores
+- variable renaming - ([261219c](https://github.com/yoctoyotta1024/microphysics_testcases/commit/261219c7d344ec0371c9ac600b15badaa7c0957f)) - clara.bayley
+#### Refactoring
+- add fields for other condensates to KiD - ([d6b7863](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d6b786365916465b82b3e5415c8f8d008b3558b0)) - clara.bayley
+- use copied scripts in kid dynamics - ([bd33f08](https://github.com/yoctoyotta1024/microphysics_testcases/commit/bd33f08bf21f8a77b2877c71c76fb3d63d00db0b)) - clara.bayley
+
+- - -
+
 ## [v0.9.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/ed9c20931277d665905d462f8db9c2a4a80f1364..v0.9.1) - 2025-07-01
 #### Bug Fixes
 - missing mpi requirement - ([02b347a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/02b347a5e79cb7b65f756813bce203a59a57bae9)) - clara.bayley
