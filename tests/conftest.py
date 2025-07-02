@@ -57,3 +57,12 @@ def pytest_addoption(parser):
         action="store",
         default=str(default_cleo_test_0dparcel_config_filename),
     )
+
+    default_cleo_test_1dkid_config_filename = (
+        Path.cwd() / "src" / "cleo_initial_conditions" / "1dkid" / "config.yaml"
+    )
+    parser.addoption(
+        "--cleo_test_1dkid_config_filename",
+        action="store",
+        default=str(default_cleo_test_1dkid_config_filename),
+    )
