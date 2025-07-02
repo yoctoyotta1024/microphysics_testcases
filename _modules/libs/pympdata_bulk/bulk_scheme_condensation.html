@@ -319,10 +319,10 @@
     <span class="n">pvs</span> <span class="o">=</span> <span class="n">kid</span><span class="o">.</span><span class="n">formulae</span><span class="o">.</span><span class="n">pvs_Celsius</span><span class="p">(</span><span class="n">temp</span> <span class="o">-</span> <span class="n">kid</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">T0</span><span class="p">)</span>
     <span class="n">relh</span> <span class="o">=</span> <span class="n">kid</span><span class="o">.</span><span class="n">formulae</span><span class="o">.</span><span class="n">pv</span><span class="p">(</span><span class="n">press</span><span class="p">,</span> <span class="n">qvap</span><span class="p">)</span> <span class="o">/</span> <span class="n">pvs</span>
 
-    <span class="n">dql_cond</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">qvap</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">relh</span><span class="p">))</span>
+    <span class="n">dqcond</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">qvap</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">relh</span><span class="p">))</span>
 
-    <span class="n">qvap</span> <span class="o">-=</span> <span class="n">dql_cond</span>
-    <span class="n">qcond</span> <span class="o">+=</span> <span class="n">dql_cond</span>
+    <span class="n">qvap</span> <span class="o">-=</span> <span class="n">dqcond</span>
+    <span class="n">qcond</span> <span class="o">+=</span> <span class="n">dqcond</span>
 
     <span class="k">return</span> <span class="n">qvap</span><span class="p">,</span> <span class="n">qcond</span></div>
 
@@ -410,7 +410,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 01 July 2025</div>
+              Last updated on 02 July 2025</div>
           </div>
           <div class="right-details">
             
