@@ -20,7 +20,11 @@ class for driving KiD rainshaft test case
 
 import numpy as np
 from PyMPDATA import Options
-from PyMPDATA_examples import Shipway_and_Hill_2012 as kid
+from PyMPDATA_examples.Shipway_and_Hill_2012 import si
+from PyMPDATA_examples.Shipway_and_Hill_2012 import formulae as SH2012formulae
+
+from .mpdata import MPDATA
+from .settings import Settings
 
 
 class KiDDynamics:
@@ -42,52 +46,42 @@ class KiDDynamics:
             timestep (float): Size of time steps of simulation [s].
             t_end (float): End time of the simulation [s].
         """
-        N_CCN_HALO = 500 / kid.si.mg
-        R_MIN = 1 * kid.si.um
-        R_MAX = 20.2 * kid.si.um
+        options = Options(n_iters=3, nonoscillatory=True)
 
-        RHOD_VERTVELO = 3 * kid.si.m / kid.si.s * kid.si.kg / kid.si.m**3
-        P0 = 1007 * kid.si.hPa
-        NR = 1  # fixed value for bulk scheme microphysics
-
-        self.options = Options(n_iters=3, nonoscillatory=True)
-        self.key = f"nr={NR}_dz={z_delta}_dt={timestep}_opt={self.options}"
-        self.settings = kid.Settings(
-            rhod_w_const=RHOD_VERTVELO,
-            nr=NR,
+        RHOD_VERTVELO = 3 * si.m / si.s * si.kg / si.m**3
+        P0 = 1007 * si.hPa
+        self.settings = Settings(
             dt=timestep,
             dz=z_delta,
+            rhod_w_const=RHOD_VERTVELO,
             t_max=t_end,
-            r_min=R_MIN,
-            r_max=R_MAX,
             p0=P0,
             z_max=z_max,
         )
 
-        self.mpdata = kid.MPDATA(
-            nr=NR,
+        self.mpdata = MPDATA(
             nz=self.settings.nz,
             dt=self.settings.dt,
             qv_of_zZ_at_t0=lambda zZ: self.settings.qv(zZ * self.settings.dz),
             g_factor_of_zZ=lambda zZ: self.settings.rhod(zZ * self.settings.dz),
-            options=self.options,
-            activation_bc=kid.DropletActivation(
-                N_CCN_HALO, self.settings.dr, self.settings.dz
-            ),
+            options=options,
         )
 
-        nz = int(z_max / z_delta)
+        assert self.settings.nz == int(z_max / z_delta)
+        assert self.settings.dz == z_delta
+        nz = self.settings.nz
         zfull = np.linspace(z_delta / 2, (nz - 1 / 2) * z_delta, nz, endpoint=True)
         self.zhalf = np.linspace(0, nz * z_delta, nz + 1, endpoint=True)
 
         self.rhod_prof = self.settings.rhod(zfull)
-        self.temp_prof = kid.formulae.temperature(
+        self.temp_prof = SH2012formulae.temperature(
             self.rhod_prof, self.settings.thd(zfull)
         )
         qvap0 = self.mpdata["qv"].advectee.get()
-        self.press_prof = kid.formulae.pressure(self.rhod_prof, self.temp_prof, qvap0)
+        self.press_prof = SH2012formulae.pressure(self.rhod_prof, self.temp_prof, qvap0)
 
-        print(f"Simulating {self.settings.nt} timesteps using {self.key}")
+        key = f"nr={self.mpdata.nr}, dz={self.settings.dz}, dt={self.settings.dt}, options={options}"
+        print(f"Simulating {self.settings.nt} timesteps using {key}")
 
     def set_thermo(self, thermo):
         """Set thermodynamics from the dynamics solver.
