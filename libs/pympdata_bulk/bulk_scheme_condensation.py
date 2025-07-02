@@ -48,10 +48,10 @@ def bulk_scheme_condensation(temp, press, qvap, qcond):
     pvs = kid.formulae.pvs_Celsius(temp - kid.const.T0)
     relh = kid.formulae.pv(press, qvap) / pvs
 
-    dql_cond = np.maximum(0, qvap * (1 - 1 / relh))
+    dqcond = np.maximum(0, qvap * (1 - 1 / relh))
 
-    qvap -= dql_cond
-    qcond += dql_cond
+    qvap -= dqcond
+    qcond += dqcond
 
     return qvap, qcond
 
