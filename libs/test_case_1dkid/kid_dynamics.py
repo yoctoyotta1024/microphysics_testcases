@@ -77,7 +77,7 @@ class KiDDynamics:
         self.temp_prof = SH2012formulae.temperature(
             self.rhod_prof, self.settings.thd(zfull)
         )
-        qvap0 = self.mpdata["qv"].advectee.get()
+        qvap0 = self.mpdata["qvap"].advectee.get()
         self.press_prof = SH2012formulae.pressure(self.rhod_prof, self.temp_prof, qvap0)
 
         key = f"nr={self.mpdata.nr}, dz={self.settings.dz}, dt={self.settings.dt}, options={options}"
@@ -95,8 +95,8 @@ class KiDDynamics:
         thermo.temp = self.temp_prof
         thermo.rho = self.rhod_prof
         thermo.press = self.press_prof
-        thermo.massmix_ratios[0] = self.mpdata["qv"].advectee.get()  # qvap
-        thermo.massmix_ratios[1] = self.mpdata["ql"].advectee.get()  # qcond
+        thermo.massmix_ratios[0] = self.mpdata["qvap"].advectee.get()  # qvap
+        thermo.massmix_ratios[1] = self.mpdata["qcond"].advectee.get()  # qcond
 
         return thermo
 
@@ -127,11 +127,11 @@ class KiDDynamics:
         )
         advector_0 = np.ones_like(self.settings.z_vec) * GC
 
-        self.mpdata["qv"].advector.get_component(0)[:] = advector_0
-        self.mpdata["qv"].advance(1)
+        self.mpdata["qvap"].advector.get_component(0)[:] = advector_0
+        self.mpdata["qvap"].advance(1)
 
-        self.mpdata["ql"].advector.get_component(0)[:] = advector_0
-        self.mpdata["ql"].advance(1)
+        self.mpdata["qcond"].advector.get_component(0)[:] = advector_0
+        self.mpdata["qcond"].advance(1)
 
         thermo = self.set_thermo(thermo)
         return thermo

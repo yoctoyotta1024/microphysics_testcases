@@ -43,22 +43,22 @@ class MPDATA:
         self.nr = nr
         self.t = 0
         self.dt = dt
-        self.fields = ("qv", "ql")
+        self.fields = ("qvap", "qcond")
 
         self.options = options
 
         self._solvers = {}
         for k in self.fields:
-            grid = (nz, nr) if nr > 1 and k == "ql" else (nz,)
+            grid = (nz, nr) if nr > 1 and k == "qcond" else (nz,)
 
             bcs_extrapol = tuple(
                 Extrapolated(dim=d)
-                for d in ((OUTER, INNER) if k == "ql" and nr > 1 else (INNER,))
+                for d in ((OUTER, INNER) if k == "qcond" and nr > 1 else (INNER,))
             )
 
             bcs_zero = tuple(
                 Extrapolated(dim=d)
-                for d in ((OUTER, INNER) if k == "ql" and nr > 1 else (INNER,))
+                for d in ((OUTER, INNER) if k == "qcond" and nr > 1 else (INNER,))
             )
 
             stepper = Stepper(
@@ -74,7 +74,7 @@ class MPDATA:
             advector = VectorField(
                 data=data, halo=self.options.n_halo, boundary_conditions=bcs_zero
             )
-            if k == "qv":
+            if k == "qvap":
                 data = qv_of_zZ_at_t0(arakawa_c.z_scalar_coord(grid))
                 bcs = (Constant(value=data[0]),)
             else:
