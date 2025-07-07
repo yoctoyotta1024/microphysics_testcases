@@ -92,15 +92,15 @@ class KiDDynamics:
         Returns:
             Thermodynamics: Updated thermodynamic state.
         """
-        thermo.temp = self.temp_prof
-        thermo.rho = self.rhod_prof
-        thermo.press = self.press_prof
-        thermo.massmix_ratios[0] = self.mpdata["qvap"].advectee.get()  # qvap
-        thermo.massmix_ratios[1] = self.mpdata["qcond"].advectee.get()  # qcond
-        thermo.massmix_ratios[2] = self.mpdata["qice"].advectee.get()  # qcond
-        thermo.massmix_ratios[3] = self.mpdata["qrain"].advectee.get()  # qcond
-        thermo.massmix_ratios[4] = self.mpdata["qsnow"].advectee.get()  # qcond
-        thermo.massmix_ratios[5] = self.mpdata["qgrau"].advectee.get()  # qcond
+        thermo.temp[:] = self.temp_prof
+        thermo.rho[:] = self.rhod_prof
+        thermo.press[:] = self.press_prof
+        thermo.massmix_ratios[0][:] = self.mpdata["qvap"].advectee.get()  # qvap
+        thermo.massmix_ratios[1][:] = self.mpdata["qcond"].advectee.get()  # qcond
+        thermo.massmix_ratios[2][:] = self.mpdata["qice"].advectee.get()  # qice
+        thermo.massmix_ratios[3][:] = self.mpdata["qrain"].advectee.get()  # qrain
+        thermo.massmix_ratios[4][:] = self.mpdata["qsnow"].advectee.get()  # qsnow
+        thermo.massmix_ratios[5][:] = self.mpdata["qgrau"].advectee.get()  # qgrau
 
         return thermo
 

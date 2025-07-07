@@ -97,7 +97,14 @@ class Thermodynamics:
         self.temp = deepcopy(temp)
         self.rho = deepcopy(rho)
         self.press = deepcopy(press)
-        self.massmix_ratios = deepcopy([qvap, qcond, qice, qrain, qsnow, qgrau])
+        self.massmix_ratios = {
+            0: deepcopy(qvap),  # TODO(ALL): rename 0-5 numbering with variable names
+            1: deepcopy(qcond),
+            2: deepcopy(qice),
+            3: deepcopy(qrain),
+            4: deepcopy(qsnow),
+            5: deepcopy(qgrau),
+        }
 
     def print_state(self):
         print(self.temp)
