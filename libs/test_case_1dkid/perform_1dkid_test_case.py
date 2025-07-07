@@ -220,7 +220,7 @@ def plot_kid_result(
     """
     lines = {3: ":", 6: "--", 9: "-", 12: "-."}
     colors = {3: "crimson", 6: "orange", 9: "navy", 12: "green"}
-    fctr = 50
+    fctr = 5
 
     coarse_dt = (time[1] - time[0]) * fctr
     tgrid = np.concatenate(((time[0] - coarse_dt / 2,), time[0::fctr] + coarse_dt / 2))

@@ -64,7 +64,7 @@ def test_cleo_sdm_1dkid(path2pycleo, config_filename):
     # NOTE: these must be consistent with CLEO initial condition binary files(!)
     z_delta = 25 * si.m  # (!) must be consistent with CLEO
     z_max = 3200 * si.m  # (!) must be consistent with CLEO
-    timestep = 0.25 / 2 * si.s
+    timestep = 1.25 * si.s
     time_end = 15 * si.minutes
 
     ### initial thermodynamic conditions

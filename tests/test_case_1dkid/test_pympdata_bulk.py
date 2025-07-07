@@ -46,7 +46,7 @@ def test_pympdata_bulk_scheme_1dkid():
     ### time and grid parameters
     z_delta = 25 * si.m
     z_max = 3200 * si.m
-    timestep = 0.25 / 2 * si.s
+    timestep = 1.25 * si.s
     time_end = 15 * si.minutes
 
     ### initial thermodynamic conditions
