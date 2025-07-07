@@ -65,6 +65,7 @@ def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     while time < time_end:
         thermo = kid_dynamics.run(time, timestep, thermo)
         thermo = microphys_scheme.run(timestep, thermo)
+        kid_dynamics.set_advectees(thermo)
 
         time += timestep
 

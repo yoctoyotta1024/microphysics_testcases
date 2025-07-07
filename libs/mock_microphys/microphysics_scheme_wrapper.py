@@ -132,7 +132,7 @@ class MicrophysicsSchemeWrapper:
         t = cp_thermo.temp
         rho = cp_thermo.rho
         p = cp_thermo.press
-        qv, qc, qi, qr, qs, qg = cp_thermo.massmix_ratios
+        qv, qc, qi, qr, qs, qg = cp_thermo.unpack_massmix_ratios()
 
         t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx = self.microphys.run(
             self.nvec,
@@ -152,7 +152,7 @@ class MicrophysicsSchemeWrapper:
             self.qnc,
         )
 
-        cp_thermo.temp = t
-        cp_thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
+        cp_thermo.temp[:] = t
+        cp_thermo.copy_massmix_ratios(qv, qc, qi, qr, qs, qg)
 
         return cp_thermo

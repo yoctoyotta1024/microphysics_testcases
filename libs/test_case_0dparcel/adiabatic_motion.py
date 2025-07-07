@@ -199,11 +199,11 @@ class AdiabaticMotion:
             thermo.press.size == 1
         ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
         assert (
-            thermo.massmix_ratios[0].size == 1
+            thermo.massmix_ratios["qvap"].size == 1
         ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
 
         t0, t1 = time, time + timestep
-        qvap = thermo.massmix_ratios[0][0]
+        qvap = thermo.massmix_ratios["qvap"][0]
 
         y0 = [thermo.temp[0], thermo.rho[0], thermo.press[0]]
         temp, rho, press = integrate.odeint(

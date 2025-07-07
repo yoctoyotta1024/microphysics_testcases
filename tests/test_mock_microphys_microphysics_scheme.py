@@ -103,4 +103,4 @@ def test_microphys_with_wrapper():
     result = microphys_wrapped.run(timestep, thermo)
 
     assert result.temp == t
-    assert result.massmix_ratios == [qv, qc, qi, qr, qs, qg]
+    assert result.unpack_massmix_ratios() == [qv, qc, qi, qr, qs, qg]

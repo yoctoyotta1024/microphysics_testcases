@@ -99,12 +99,12 @@ class MicrophysicsSchemeWrapper:
         cp_thermo = deepcopy(thermo)
         temp = cp_thermo.temp
         press = cp_thermo.press
-        qvap = cp_thermo.massmix_ratios[0]
-        qcond = cp_thermo.massmix_ratios[1]
+        qvap = cp_thermo.massmix_ratios["qvap"]
+        qcond = cp_thermo.massmix_ratios["qcond"]
 
         qvap, qcond = bulk_scheme_condensation(temp, press, qvap, qcond)
 
-        cp_thermo.massmix_ratios[0] = qvap
-        cp_thermo.massmix_ratios[1] = qcond
+        cp_thermo.massmix_ratios["qvap"][:] = qvap
+        cp_thermo.massmix_ratios["qcond"][:] = qcond
 
         return cp_thermo

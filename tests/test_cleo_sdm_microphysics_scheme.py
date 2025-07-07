@@ -194,5 +194,5 @@ def test_microphys_with_wrapper(path2pycleo, config_filename):
 
     assert thermo1.press == thermo2.press
     assert thermo1.temp == thermo2.temp
-    for q1, q2 in zip(thermo1.massmix_ratios, thermo2.massmix_ratios):
+    for q1, q2 in zip(thermo1.unpack_massmix_ratios(), thermo2.unpack_massmix_ratios()):
         assert q1 == q2

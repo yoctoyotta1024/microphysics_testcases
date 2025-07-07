@@ -83,8 +83,8 @@ def test_cleo_sdm_1dkid(path2pycleo, config_filename):
         timestep,
         thermo_init.press,
         thermo_init.temp,
-        thermo_init.massmix_ratios[0],
-        thermo_init.massmix_ratios[1],
+        thermo_init.massmix_ratios["qvap"],
+        thermo_init.massmix_ratios["qcond"],
     )
 
     ### Perform test of 1-D KiD rainshaft model using chosen setup
