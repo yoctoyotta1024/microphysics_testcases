@@ -33,12 +33,12 @@ domain:
   maxnsupers: 1024                                     # maximum number of SDs
 
 timesteps:
-  CONDTSTEP : 0.1                                      # time between SD condensation [s]
-  COLLTSTEP : 0.1                                      # time between SD collision [s]
-  MOTIONTSTEP : 0.1                                    # time between SDM motion [s]
-  COUPLTSTEP : 0.125                                   # time between dynamic couplings [s]
-  OBSTSTEP : 900                                       # time between SDM observations [s]
-  T_END : 900                                          # time span of integration from 0s to T_END [s]
+  CONDTSTEP : 1.25                                      # time between SD condensation [s]
+  COLLTSTEP : 1.25                                      # time between SD collision [s]
+  MOTIONTSTEP : 1.25                                    # time between SDM motion [s]
+  COUPLTSTEP : 1.25                                     # time between dynamic couplings [s]
+  OBSTSTEP : 900                                        # time between SDM observations [s]
+  T_END : 900                                           # time span of integration from 0s to T_END [s]
 
 ### Initialisation Parameters ###
 inputfiles:
