@@ -74,4 +74,4 @@ def test_microphys_with_wrapper():
 
     result = microphys_wrapped.run(timestep, thermo)
 
-    assert result.massmix_ratios == [qv, qc, qice, qrain, qsnow, qgrau]
+    assert result.unpack_massmix_ratios() == [qv, qc, qice, qrain, qsnow, qgrau]

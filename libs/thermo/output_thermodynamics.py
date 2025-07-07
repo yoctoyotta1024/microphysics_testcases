@@ -167,12 +167,12 @@ class OutputThermodynamics:
         self.temp.write(thermo.temp)
         self.rho.write(thermo.rho)
         self.press.write(thermo.press)
-        self.qvap.write(thermo.massmix_ratios[0])
-        self.qcond.write(thermo.massmix_ratios[1])
-        self.qice.write(thermo.massmix_ratios[2])
-        self.qrain.write(thermo.massmix_ratios[3])
-        self.qsnow.write(thermo.massmix_ratios[4])
-        self.qgrau.write(thermo.massmix_ratios[5])
+        self.qvap.write(thermo.massmix_ratios["qvap"])
+        self.qcond.write(thermo.massmix_ratios["qcond"])
+        self.qice.write(thermo.massmix_ratios["qice"])
+        self.qrain.write(thermo.massmix_ratios["qrain"])
+        self.qsnow.write(thermo.massmix_ratios["qsnow"])
+        self.qgrau.write(thermo.massmix_ratios["qgrau"])
 
     def __call__(self, time: float, thermo: Thermodynamics):
         """Invoke the object as a function to call the `output_thermodynamics` method.

@@ -95,12 +95,12 @@ class KiDDynamics:
         thermo.temp[:] = self.temp_prof
         thermo.rho[:] = self.rhod_prof
         thermo.press[:] = self.press_prof
-        thermo.massmix_ratios[0][:] = self.mpdata["qvap"].advectee.get()  # qvap
-        thermo.massmix_ratios[1][:] = self.mpdata["qcond"].advectee.get()  # qcond
-        thermo.massmix_ratios[2][:] = self.mpdata["qice"].advectee.get()  # qice
-        thermo.massmix_ratios[3][:] = self.mpdata["qrain"].advectee.get()  # qrain
-        thermo.massmix_ratios[4][:] = self.mpdata["qsnow"].advectee.get()  # qsnow
-        thermo.massmix_ratios[5][:] = self.mpdata["qgrau"].advectee.get()  # qgrau
+        thermo.massmix_ratios["qvap"][:] = self.mpdata["qvap"].advectee.get()
+        thermo.massmix_ratios["qcond"][:] = self.mpdata["qcond"].advectee.get()
+        thermo.massmix_ratios["qice"][:] = self.mpdata["qice"].advectee.get()
+        thermo.massmix_ratios["qrain"][:] = self.mpdata["qrain"].advectee.get()
+        thermo.massmix_ratios["qsnow"][:] = self.mpdata["qsnow"].advectee.get()
+        thermo.massmix_ratios["qgrau"][:] = self.mpdata["qgrau"].advectee.get()
 
         return thermo
 
@@ -137,3 +137,23 @@ class KiDDynamics:
 
         thermo = self.set_thermo(thermo)
         return thermo
+
+    def set_advectees(self, thermo):
+        """
+        Set the values of variables that are advected 1-D KiD motion computations.
+
+        This method sets the values of advected quantities in KiD dynamics ("advectees")
+        to match the values given by the thermo data structure.
+
+        It is neccessary to call this function after changes to thermo if the data in thermo
+        was created from a copy not a reference to the advectees.
+
+        Args:
+            thermo (Thermodynamics): Object representing the thermodynamic state.
+        """
+        self.mpdata["qvap"].advectee.get()[:] = thermo.massmix_ratios["qvap"]
+        self.mpdata["qcond"].advectee.get()[:] = thermo.massmix_ratios["qcond"]
+        self.mpdata["qice"].advectee.get()[:] = thermo.massmix_ratios["qice"]
+        self.mpdata["qrain"].advectee.get()[:] = thermo.massmix_ratios["qrain"]
+        self.mpdata["qsnow"].advectee.get()[:] = thermo.massmix_ratios["qsnow"]
+        self.mpdata["qgrau"].advectee.get()[:] = thermo.massmix_ratios["qgrau"]

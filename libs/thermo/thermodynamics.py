@@ -55,16 +55,16 @@ class Thermodynamics:
         Density of moist air (kg/m3).
       press (np.ndarray):
         Pressure (Pa).
-      massmix_ratios (tuple):
+      massmix_ratios (dict):
         Specific content of vapour and condensates (see below).
 
       massmax_ratios consists of the following:
-              massmix_ratios[0] = qvap (np.ndarray): Specific water vapor content (kg/kg)\n
-              massmix_ratios[1] = qcond (np.ndarray): Specific cloud water content (kg/kg)\n
-              massmix_ratios[2] = qice (np.ndarray): Specific cloud ice content (kg/kg)\n
-              massmix_ratios[3] = qrain (np.ndarray): Specific rain content (kg/kg)\n
-              massmix_ratios[4] = qsnow (np.ndarray): Specific snow content kg/kg)\n
-              massmix_ratios[5] = qgrau (np.ndarray): Specific graupel content (kg/kg).
+              massmix_ratios["qvap"] = qvap (np.ndarray): Specific water vapor content (kg/kg)\n
+              massmix_ratios["qcond"] = qcond (np.ndarray): Specific cloud water content (kg/kg)\n
+              massmix_ratios["qice"] = qice (np.ndarray): Specific cloud ice content (kg/kg)\n
+              massmix_ratios["qrain"] = qrain (np.ndarray): Specific rain content (kg/kg)\n
+              massmix_ratios["qsnow"] = qsnow (np.ndarray): Specific snow content kg/kg)\n
+              massmix_ratios["qgrau"] = qgrau (np.ndarray): Specific graupel content (kg/kg).
 
     """
 
@@ -98,12 +98,12 @@ class Thermodynamics:
         self.rho = deepcopy(rho)
         self.press = deepcopy(press)
         self.massmix_ratios = {
-            0: deepcopy(qvap),  # TODO(ALL): rename 0-5 numbering with variable names
-            1: deepcopy(qcond),
-            2: deepcopy(qice),
-            3: deepcopy(qrain),
-            4: deepcopy(qsnow),
-            5: deepcopy(qgrau),
+            "qvap": deepcopy(qvap),
+            "qcond": deepcopy(qcond),
+            "qice": deepcopy(qice),
+            "qrain": deepcopy(qrain),
+            "qsnow": deepcopy(qsnow),
+            "qgrau": deepcopy(qgrau),
         }
 
     def print_state(self):
@@ -111,3 +111,18 @@ class Thermodynamics:
         print(self.rho)
         print(self.press)
         print(self.massmix_ratios)
+
+    def unpack_massmix_ratios(self):
+        """returns list of references to massmix_ratio arrays"""
+        return list(
+            self.massmix_ratios.values()
+        )  # qvap, qcond, qice, qrain, qsnow, qgrau
+
+    def copy_massmix_ratios(self, qvap, qcond, qice, qrain, qsnow, qgrau):
+        """copies values for each variable into respective array in massmix_ratios dictionary"""
+        self.massmix_ratios["qvap"][:] = qvap
+        self.massmix_ratios["qcond"][:] = qcond
+        self.massmix_ratios["qice"][:] = qice
+        self.massmix_ratios["qrain"][:] = qrain
+        self.massmix_ratios["qsnow"][:] = qsnow
+        self.massmix_ratios["qgrau"][:] = qgrau

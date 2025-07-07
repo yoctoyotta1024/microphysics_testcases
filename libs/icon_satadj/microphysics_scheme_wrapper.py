@@ -140,7 +140,7 @@ class MicrophysicsSchemeWrapper:
         cp_thermo = deepcopy(thermo)
         t = cp_thermo.temp
         rho = cp_thermo.rho
-        qv, qc, qi, qr, qs, qg = cp_thermo.massmix_ratios
+        qv, qc, qi, qr, qs, qg = cp_thermo.unpack_massmix_ratios()
 
         # call saturation adjustment
         total_ice = qg + qs + qi  # temporary variable
@@ -155,7 +155,7 @@ class MicrophysicsSchemeWrapper:
             rho=rho,
         )
 
-        cp_thermo.temp = t
-        cp_thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
+        cp_thermo.temp[:] = t
+        cp_thermo.copy_massmix_ratios(qv, qc, qi, qr, qs, qg)
 
         return cp_thermo

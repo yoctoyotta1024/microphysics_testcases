@@ -107,8 +107,8 @@ def test_cleo_sdm_0dparcel(path2pycleo, config_filename):
         timestep,
         thermo_init.press,
         thermo_init.temp,
-        thermo_init.massmix_ratios[0],
-        thermo_init.massmix_ratios[1],
+        thermo_init.massmix_ratios["qvap"],
+        thermo_init.massmix_ratios["qcond"],
     )
 
     ### Perform 0-D parcel model test case using chosen setup

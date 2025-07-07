@@ -122,4 +122,11 @@ def test_microphys_with_wrapper(aes_muphys_py_dir):
         result = microphys_wrapped.run(timestep, thermo)
 
         assert result.temp == temp
-        assert result.massmix_ratios == [qvap, qcond, qice, qrain, qsnow, qgrau]
+        assert result.unpack_massmix_ratios() == [
+            qvap,
+            qcond,
+            qice,
+            qrain,
+            qsnow,
+            qgrau,
+        ]

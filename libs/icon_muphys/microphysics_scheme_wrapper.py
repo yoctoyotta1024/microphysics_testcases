@@ -139,7 +139,7 @@ class MicrophysicsSchemeWrapper:
         t = cp_thermo.temp
         rho = cp_thermo.rho
         p = cp_thermo.press
-        qv, qc, qi, qr, qs, qg = cp_thermo.massmix_ratios
+        qv, qc, qi, qr, qs, qg = cp_thermo.unpack_massmix_ratios()
 
         prr_gsp = np.zeros(self.nvec, dtype=np.float64)
         pri_gsp = np.zeros(self.nvec, dtype=np.float64)
@@ -198,7 +198,7 @@ class MicrophysicsSchemeWrapper:
             rho=rho,
         )
 
-        cp_thermo.temp = t
-        cp_thermo.massmix_ratios = [qv, qc, qi, qr, qs, qg]
+        cp_thermo.temp[:] = t
+        cp_thermo.copy_massmix_ratios(qv, qc, qi, qr, qs, qg)
 
         return cp_thermo
