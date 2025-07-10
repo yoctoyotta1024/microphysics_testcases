@@ -51,6 +51,8 @@ class MicrophysicsSchemeWrapper:
           Layer thickness of full levels (m).
         qnc (float):
           Cloud number concentration.
+        lrain (bool):
+          Switch to enable precipitation
 
     Attributes:
         nvec (int):
@@ -68,7 +70,7 @@ class MicrophysicsSchemeWrapper:
 
     """
 
-    def __init__(self, nvec, ke, ivstart, dz, qnc):
+    def __init__(self, nvec, ke, ivstart, dz, qnc, lrain):
         """Initialize the MicrophysicsSchemeWrapper object.
 
         Args:
@@ -82,6 +84,8 @@ class MicrophysicsSchemeWrapper:
             Layer thickness of full levels (m).
           qnc (float):
             Cloud number concentration.
+          lrain (bool):
+            Switch to enable precipitation
 
         """
         self.nvec = nvec
@@ -90,7 +94,9 @@ class MicrophysicsSchemeWrapper:
         self.dz = dz
         self.qnc = np.float64(qnc)
         self.microphys = aes_muphys_py
+
         self.name = "Wrapper around " + "ICON AES microphysics"  # self.microphys.name
+        self.lrain = lrain
 
     def initialize(self) -> int:
         """Initialise the microphysics scheme.
@@ -183,6 +189,7 @@ class MicrophysicsSchemeWrapper:
             prg_gsp=prg_gsp,
             pre_gsp=pre_gsp,
             pflx=pflx,
+            lrain=self.lrain
         )
 
         # call saturation adjustment

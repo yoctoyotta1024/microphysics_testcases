@@ -54,7 +54,8 @@ def test_microphys_with_wrapper(aes_muphys_py_dir):
         ivstart = 0
         dz = np.array([10], dtype=np.float64)
         qnc = np.float64(500)
-        microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
+        lrain = True
+        microphys_wrapped = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc, lrain)
 
         microphys_wrapped.initialize()
 
@@ -114,6 +115,7 @@ def test_microphys_with_wrapper(aes_muphys_py_dir):
             prg_gsp=prg_gsp,
             pflx=pflx,
             pre_gsp=pre_gsp,
+            lrain=lrain
         )
 
         # call saturation adjustment
