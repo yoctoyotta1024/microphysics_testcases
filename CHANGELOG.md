@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.11.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/77b53cff3ebe2ded1e53c59ef8b48f83f7e73ae2..v0.11.0) - 2025-07-10
+#### Bug Fixes
+- use dict to store thermo mass mixing ratio arrays and rename dict keys - ([d2edb4e](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d2edb4e35f7bb65a0d53472617e1a40a4afe1a9e)) - clara.bayley
+- use dict to store thermo mass mixing ratio arrays - ([b1524c4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/b1524c40fb3041a7534f0db09edcbb4abfb65706)) - clara.bayley
+#### Continuous Integration
+- download cleo kid initial conditions - ([8d9bd6c](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8d9bd6cb0200b510d29d39b6262d532406531851)) - clara.bayley
+#### Features
+- 1d kid test case for CLEO - ([00cac27](https://github.com/yoctoyotta1024/microphysics_testcases/commit/00cac276a123e38f3d18f403284982e5b0bdb4fe)) - clara.bayley
+#### Refactoring
+- fewer timesteps in test case - ([fb2649c](https://github.com/yoctoyotta1024/microphysics_testcases/commit/fb2649ca3896edefc27a58f7a396d72253e194d7)) - clara.bayley
+- add patches to gitignore - ([77b53cf](https://github.com/yoctoyotta1024/microphysics_testcases/commit/77b53cff3ebe2ded1e53c59ef8b48f83f7e73ae2)) - clara.bayley
+
+- - -
+
 ## [v0.10.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/23f936587ff6c150f83cac206041c5897f6f84ae..v0.10.0) - 2025-07-02
 #### Features
 - copied and adapted files for 1-D KiD from PyMPDATA - ([23f9365](https://github.com/yoctoyotta1024/microphysics_testcases/commit/23f936587ff6c150f83cac206041c5897f6f84ae)) - clara.bayley
