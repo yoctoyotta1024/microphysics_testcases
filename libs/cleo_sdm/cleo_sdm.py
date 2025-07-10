@@ -8,7 +8,7 @@ Created Date: Monday 23rd June 2025
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Tuesday 1st July 2025
+Last Modified: Thursday 10th July 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -104,7 +104,17 @@ class CleoSDM:
         temp,
         qvap,
         qcond,
+        wvel,
+        uvel,
+        vvel,
     ):
+        """Initialize the CleoSDM object.
+
+        CleoSDM class only works correctly if addresses of press, temp,
+        qvap, qcond, wvel, uvel, and vvel arrays remain unchanged throughout a simulation.
+        Undefined behaviour if values are changed by reassigning arrays rather than by copying
+        data into the arrays given during class initialisation.
+        """
         self.name = "CLEO SDM microphysics"
 
         tsteps = pycleo.pycreate_timesteps(config)
@@ -122,6 +132,9 @@ class CleoSDM:
             temp,
             qvap,
             qcond,
+            wvel,
+            uvel,
+            vvel,
         )
         self.comms = coupldyn_numpy.NumpyComms()
 
