@@ -69,6 +69,7 @@ def test_icon_muphys_0dparcel(aes_muphys_py_dir):
             ivstart (int): Start index for horizontal direction for the microphysics scheme.
             dz (np.ndarray): Layer thickness of full levels (m) for the microphysics scheme.
             qnc (float): Cloud number concentration.
+            lrain (bool): Switch to enable/disable precipitation
 
     """
     if Path(aes_muphys_py_dir).is_dir():
@@ -115,7 +116,8 @@ def test_icon_muphys_0dparcel(aes_muphys_py_dir):
         ivstart = 0
         dz = np.array([100], dtype=np.float64)
         qnc = 500
-        microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
+        lrain = False
+        microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc, lrain)
 
         ### Perform 0-D parcel model test case using chosen setup
         perform_0dparcel_test_case(
