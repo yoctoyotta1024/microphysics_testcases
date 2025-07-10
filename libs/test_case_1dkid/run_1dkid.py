@@ -22,7 +22,9 @@ from .kid_dynamics import KiDDynamics
 from libs.thermo.output_thermodynamics import OutputThermodynamics
 
 
-def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
+def run_1dkid(
+    z_delta, z_max, time_end, timestep, thermo, microphys_scheme, advect_hydrometeors
+):
     """Run 1-D KiD rainshaft model with a specified microphysics scheme and KiD dynamics.
 
     This function runs a 1-D KiD rainshaft model with the given initial
@@ -48,7 +50,9 @@ def run_1dkid(z_delta, z_max, time_end, timestep, thermo, microphys_scheme):
     """
 
     ### type of dynamics rainshaft will undergo
-    kid_dynamics = KiDDynamics(z_delta, z_max, timestep, time_end)
+    kid_dynamics = KiDDynamics(
+        z_delta, z_max, timestep, time_end, advect_hydrometeors=advect_hydrometeors
+    )
 
     ### run dynamics + microphysics from time to time_end
     microphys_scheme.initialize()

@@ -91,6 +91,7 @@ def test_cleo_sdm_1dkid_fullscheme(path2pycleo, config_filename):
     )
 
     ### Perform test of 1-D KiD rainshaft model using chosen setup
+    advect_hydrometeors = False
     perform_1dkid_test_case(
         z_delta,
         z_max,
@@ -98,6 +99,7 @@ def test_cleo_sdm_1dkid_fullscheme(path2pycleo, config_filename):
         timestep,
         thermo_init,
         microphys_scheme,
+        advect_hydrometeors,
         binpath,
         run_name,
     )
