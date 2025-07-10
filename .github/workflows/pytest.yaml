@@ -155,5 +155,16 @@ jobs:
             -o src/cleo_initial_conditions/0dparcel/dimlessSDsinit.dat
           pwd && echo "ls ./src/cleo_initial_conditions/0dparcel/" && ls ./src/cleo_initial_conditions/0dparcel/
 
+      - name: Download CLEO Initial Condition Files for 1-D KiD Test
+        run: |
+          mkdir -p ./src/cleo_initial_conditions/1dkid/
+          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/1dkid/config.yaml \
+            -o src/cleo_initial_conditions/1dkid/config.yaml
+          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/1dkid/dimlessGBxboundaries.dat \
+            -o src/cleo_initial_conditions/1dkid/dimlessGBxboundaries.dat
+          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/1dkid/dimlessSDsinit.dat \
+            -o src/cleo_initial_conditions/1dkid/dimlessSDsinit.dat
+          pwd && echo "ls ./src/cleo_initial_conditions/1dkid/" && ls ./src/cleo_initial_conditions/1dkid/
+
       - name: Test with pytest
         run: pytest ./tests
