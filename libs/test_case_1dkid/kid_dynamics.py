@@ -37,7 +37,7 @@ class KiDDynamics:
     for the original source code.
     """
 
-    def __init__(self, z_delta, z_max, timestep, t_end):
+    def __init__(self, z_delta, z_max, timestep, t_end, advect_hydrometeors=True):
         """Initialize the KiDDynamics object.
 
         Args:
@@ -66,6 +66,8 @@ class KiDDynamics:
             g_factor_of_zZ=lambda zZ: self.settings.rhod(zZ * self.settings.dz),
             options=options,
         )
+
+        self.advect_hydrometeors = advect_hydrometeors
 
         assert self.settings.nz == int(z_max / z_delta)
         assert self.settings.dz == z_delta
@@ -131,7 +133,12 @@ class KiDDynamics:
         )
         advector_0 = np.ones_like(self.settings.z_vec) * GC
 
-        for field in self.mpdata.fields:
+        if self.advect_hydrometeors:
+            for field in self.mpdata.fields:
+                self.mpdata[field].advector.get_component(0)[:] = advector_0
+                self.mpdata[field].advance(1)
+        else:
+            field = "qvap"
             self.mpdata[field].advector.get_component(0)[:] = advector_0
             self.mpdata[field].advance(1)
 

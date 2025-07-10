@@ -86,6 +86,7 @@ def test_icon_satadj_scheme_1dkid(aes_muphys_py_dir):
         microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc)
 
         ### Perform test of 1-D KiD rainshaft model using chosen setup
+        advect_hydrometeors = True
         perform_1dkid_test_case(
             z_delta,
             z_max,
@@ -93,6 +94,7 @@ def test_icon_satadj_scheme_1dkid(aes_muphys_py_dir):
             timestep,
             thermo_init,
             microphys_scheme,
+            advect_hydrometeors,
             binpath,
             run_name,
         )

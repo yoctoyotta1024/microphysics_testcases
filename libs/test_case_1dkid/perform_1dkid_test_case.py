@@ -29,7 +29,15 @@ from libs.thermo import formulae
 
 
 def perform_1dkid_test_case(
-    z_delta, z_max, time_end, timestep, thermo_init, microphys_scheme, binpath, run_name
+    z_delta,
+    z_max,
+    time_end,
+    timestep,
+    thermo_init,
+    microphys_scheme,
+    advect_hydrometeors,
+    binpath,
+    run_name,
 ):
     """
     Run test case for a 1-D KiD rainshaft model.
@@ -57,7 +65,15 @@ def perform_1dkid_test_case(
     """
 
     print("\n--- Running 1-D KiD Rainshaft Model ---")
-    out = run_1dkid(z_delta, z_max, time_end, timestep, thermo_init, microphys_scheme)
+    out = run_1dkid(
+        z_delta,
+        z_max,
+        time_end,
+        timestep,
+        thermo_init,
+        microphys_scheme,
+        advect_hydrometeors,
+    )
     print("--------------------------------")
 
     print("--- Plotting Results ---")

@@ -60,6 +60,7 @@ def test_pympdata_bulk_scheme_1dkid():
     microphys_scheme = MicrophysicsSchemeWrapper()
 
     ### Perform test of 1-D KiD rainshaft model using chosen setup
+    advect_hydrometeors = True
     perform_1dkid_test_case(
         z_delta,
         z_max,
@@ -67,6 +68,7 @@ def test_pympdata_bulk_scheme_1dkid():
         timestep,
         thermo_init,
         microphys_scheme,
+        advect_hydrometeors,
         binpath,
         run_name,
     )
