@@ -301,6 +301,20 @@ thermo (Thermodynamics): Object representing the thermodynamic state.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_advectees">
+<span class="sig-name descname"><span class="pre">set_advectees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thermo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libs/test_case_1dkid/kid_dynamics.html#KiDDynamics.set_advectees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_advectees" title="Link to this definition">¶</a></dt>
+<dd><p>Set the values of variables that are advected 1-D KiD motion computations.</p>
+<p>This method sets the values of advected quantities in KiD dynamics (“advectees”)
+to match the values given by the thermo data structure.</p>
+<p>It is neccessary to call this function after changes to thermo if the data in thermo
+was created from a copy not a reference to the advectees.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>thermo (Thermodynamics): Object representing the thermodynamic state.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo">
 <span class="sig-name descname"><span class="pre">set_thermo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thermo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libs/test_case_1dkid/kid_dynamics.html#KiDDynamics.set_thermo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo" title="Link to this definition">¶</a></dt>
 <dd><p>Set thermodynamics from the dynamics solver.</p>
@@ -351,7 +365,7 @@ thermo (Thermodynamics): Object representing the thermodynamic state.</p>
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 02 July 2025</div>
+              Last updated on 10 July 2025</div>
           </div>
           <div class="right-details">
             
@@ -375,6 +389,7 @@ thermo (Thermodynamics): Object representing the thermodynamic state.</p>
 <li><a class="reference internal" href="#">KiD Dynamics</a><ul>
 <li><a class="reference internal" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics"><code class="docutils literal notranslate"><span class="pre">KiDDynamics</span></code></a><ul>
 <li><a class="reference internal" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics.run"><code class="docutils literal notranslate"><span class="pre">KiDDynamics.run()</span></code></a></li>
+<li><a class="reference internal" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_advectees"><code class="docutils literal notranslate"><span class="pre">KiDDynamics.set_advectees()</span></code></a></li>
 <li><a class="reference internal" href="#libs.test_case_1dkid.kid_dynamics.KiDDynamics.set_thermo"><code class="docutils literal notranslate"><span class="pre">KiDDynamics.set_thermo()</span></code></a></li>
 </ul>
 </li>

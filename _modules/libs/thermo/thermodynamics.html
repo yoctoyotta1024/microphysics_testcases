@@ -326,16 +326,16 @@
 <span class="sd">        Density of moist air (kg/m3).</span>
 <span class="sd">      press (np.ndarray):</span>
 <span class="sd">        Pressure (Pa).</span>
-<span class="sd">      massmix_ratios (tuple):</span>
+<span class="sd">      massmix_ratios (dict):</span>
 <span class="sd">        Specific content of vapour and condensates (see below).</span>
 
 <span class="sd">      massmax_ratios consists of the following:</span>
-<span class="sd">              massmix_ratios[0] = qvap (np.ndarray): Specific water vapor content (kg/kg)\n</span>
-<span class="sd">              massmix_ratios[1] = qcond (np.ndarray): Specific cloud water content (kg/kg)\n</span>
-<span class="sd">              massmix_ratios[2] = qice (np.ndarray): Specific cloud ice content (kg/kg)\n</span>
-<span class="sd">              massmix_ratios[3] = qrain (np.ndarray): Specific rain content (kg/kg)\n</span>
-<span class="sd">              massmix_ratios[4] = qsnow (np.ndarray): Specific snow content kg/kg)\n</span>
-<span class="sd">              massmix_ratios[5] = qgrau (np.ndarray): Specific graupel content (kg/kg).</span>
+<span class="sd">              massmix_ratios[&quot;qvap&quot;] = qvap (np.ndarray): Specific water vapor content (kg/kg)\n</span>
+<span class="sd">              massmix_ratios[&quot;qcond&quot;] = qcond (np.ndarray): Specific cloud water content (kg/kg)\n</span>
+<span class="sd">              massmix_ratios[&quot;qice&quot;] = qice (np.ndarray): Specific cloud ice content (kg/kg)\n</span>
+<span class="sd">              massmix_ratios[&quot;qrain&quot;] = qrain (np.ndarray): Specific rain content (kg/kg)\n</span>
+<span class="sd">              massmix_ratios[&quot;qsnow&quot;] = qsnow (np.ndarray): Specific snow content kg/kg)\n</span>
+<span class="sd">              massmix_ratios[&quot;qgrau&quot;] = qgrau (np.ndarray): Specific graupel content (kg/kg).</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -368,7 +368,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">press</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">press</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">([</span><span class="n">qvap</span><span class="p">,</span> <span class="n">qcond</span><span class="p">,</span> <span class="n">qice</span><span class="p">,</span> <span class="n">qrain</span><span class="p">,</span> <span class="n">qsnow</span><span class="p">,</span> <span class="n">qgrau</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;qvap&quot;</span><span class="p">:</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">qvap</span><span class="p">),</span>
+            <span class="s2">&quot;qcond&quot;</span><span class="p">:</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">qcond</span><span class="p">),</span>
+            <span class="s2">&quot;qice&quot;</span><span class="p">:</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">qice</span><span class="p">),</span>
+            <span class="s2">&quot;qrain&quot;</span><span class="p">:</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">qrain</span><span class="p">),</span>
+            <span class="s2">&quot;qsnow&quot;</span><span class="p">:</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">qsnow</span><span class="p">),</span>
+            <span class="s2">&quot;qgrau&quot;</span><span class="p">:</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">qgrau</span><span class="p">),</span>
+        <span class="p">}</span>
 
 <div class="viewcode-block" id="Thermodynamics.print_state">
 <a class="viewcode-back" href="../../../thermo/thermodynamics.html#libs.thermo.thermodynamics.Thermodynamics.print_state">[docs]</a>
@@ -377,6 +384,27 @@
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">press</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Thermodynamics.unpack_massmix_ratios">
+<a class="viewcode-back" href="../../../thermo/thermodynamics.html#libs.thermo.thermodynamics.Thermodynamics.unpack_massmix_ratios">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unpack_massmix_ratios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;returns list of references to massmix_ratio arrays&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="p">)</span>  <span class="c1"># qvap, qcond, qice, qrain, qsnow, qgrau</span></div>
+
+
+<div class="viewcode-block" id="Thermodynamics.copy_massmix_ratios">
+<a class="viewcode-back" href="../../../thermo/thermodynamics.html#libs.thermo.thermodynamics.Thermodynamics.copy_massmix_ratios">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy_massmix_ratios</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qvap</span><span class="p">,</span> <span class="n">qcond</span><span class="p">,</span> <span class="n">qice</span><span class="p">,</span> <span class="n">qrain</span><span class="p">,</span> <span class="n">qsnow</span><span class="p">,</span> <span class="n">qgrau</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;copies values for each variable into respective array in massmix_ratios dictionary&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qvap&quot;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">qvap</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qcond&quot;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">qcond</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qice&quot;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">qice</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qrain&quot;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">qrain</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qsnow&quot;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">qsnow</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qgrau&quot;</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">qgrau</span></div>
 </div>
 
 </pre></div>
@@ -397,7 +425,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 02 July 2025</div>
+              Last updated on 10 July 2025</div>
           </div>
           <div class="right-details">
             

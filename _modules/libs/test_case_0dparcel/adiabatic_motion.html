@@ -484,11 +484,11 @@
             <span class="n">thermo</span><span class="o">.</span><span class="n">press</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span>
         <span class="p">),</span> <span class="s2">&quot;AdiabaticMotion only applicable to 0-D parcel (1 element)&quot;</span>
         <span class="k">assert</span> <span class="p">(</span>
-            <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qvap&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span>
         <span class="p">),</span> <span class="s2">&quot;AdiabaticMotion only applicable to 0-D parcel (1 element)&quot;</span>
 
         <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">time</span> <span class="o">+</span> <span class="n">timestep</span>
-        <span class="n">qvap</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">qvap</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qvap&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">thermo</span><span class="o">.</span><span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">thermo</span><span class="o">.</span><span class="n">rho</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">thermo</span><span class="o">.</span><span class="n">press</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
         <span class="n">temp</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">press</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span>
@@ -520,7 +520,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 02 July 2025</div>
+              Last updated on 10 July 2025</div>
           </div>
           <div class="right-details">
             
