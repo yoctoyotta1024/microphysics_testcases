@@ -76,7 +76,7 @@ def test_cleo_sdm_1dkid_condevap_only(path2pycleo, config_filename):
     )
 
     ### microphysics scheme to use (within a wrapper)
-    is_motion = True
+    is_motion = False
     microphys_scheme = MicrophysicsSchemeWrapper(
         config_filename,
         is_motion,
