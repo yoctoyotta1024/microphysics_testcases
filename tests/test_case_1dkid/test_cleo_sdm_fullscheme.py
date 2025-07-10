@@ -72,10 +72,14 @@ def test_cleo_sdm_1dkid_fullscheme(path2pycleo, config_filename):
 
     ### initial thermodynamic conditions
     assert z_max % z_delta == 0, "z limit is not a multiple of the grid spacing."
-    zeros = np.zeros(int(z_max / z_delta))
+    ngbxs = int(z_max / z_delta)
+    zeros = np.zeros(ngbxs)
     thermo_init = Thermodynamics(
         zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros
     )
+    wvel = np.zeros(ngbxs * 2)
+    uvel = np.zeros(ngbxs * 2)
+    vvel = np.zeros(ngbxs * 2)
 
     ### microphysics scheme to use (within a wrapper)
     is_motion = True
@@ -88,6 +92,9 @@ def test_cleo_sdm_1dkid_fullscheme(path2pycleo, config_filename):
         thermo_init.temp,
         thermo_init.massmix_ratios["qvap"],
         thermo_init.massmix_ratios["qcond"],
+        wvel,
+        uvel,
+        vvel,
     )
 
     ### Perform test of 1-D KiD rainshaft model using chosen setup

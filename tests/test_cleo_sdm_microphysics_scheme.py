@@ -58,14 +58,22 @@ def test_initialize(path2pycleo, config_filename):
     t_start = 0
     timestep = python_config["timesteps"]["COUPLTSTEP"]  # [s]
     is_motion = python_config["pycleo_settings"]["is_motion"]
-    press = np.array([], dtype=np.float64)
-    temp = np.array([], dtype=np.float64)
-    qvap = np.array([], dtype=np.float64)
-    qcond = np.array([], dtype=np.float64)
+    arr = np.array([], dtype=np.float64)
+    press = temp = qvap = qcond = wvel = uvel = vvel = arr
     config = pycleo.Config(str(config_filename))
     pycleo.pycleo_initialize(config)
     microphys = MicrophysicsScheme(
-        config, is_motion, t_start, timestep, press, temp, qvap, qcond
+        config,
+        is_motion,
+        t_start,
+        timestep,
+        press,
+        temp,
+        qvap,
+        qcond,
+        wvel,
+        uvel,
+        vvel,
     )
 
     assert microphys.name == "CLEO SDM microphysics"
@@ -85,10 +93,8 @@ def test_initialize_wrapper(path2pycleo, config_filename):
     t_start = 0
     timestep = python_config["timesteps"]["COUPLTSTEP"]  # [s]
     is_motion = python_config["pycleo_settings"]["is_motion"]
-    press = np.array([], dtype=np.float64)
-    temp = np.array([], dtype=np.float64)
-    qvap = np.array([], dtype=np.float64)
-    qcond = np.array([], dtype=np.float64)
+    arr = np.array([], dtype=np.float64)
+    press = temp = qvap = qcond = wvel = uvel = vvel = arr
     microphys_wrapped = MicrophysicsSchemeWrapper(
         config_filename,
         is_motion,
@@ -98,6 +104,9 @@ def test_initialize_wrapper(path2pycleo, config_filename):
         temp,
         qvap,
         qcond,
+        wvel,
+        uvel,
+        vvel,
     )
 
     assert microphys_wrapped.initialize() == 0
@@ -117,10 +126,8 @@ def test_finalize_wrapper(path2pycleo, config_filename):
     t_start = 0
     timestep = python_config["timesteps"]["COUPLTSTEP"]  # [s]
     is_motion = python_config["pycleo_settings"]["is_motion"]
-    press = np.array([], dtype=np.float64)
-    temp = np.array([], dtype=np.float64)
-    qvap = np.array([], dtype=np.float64)
-    qcond = np.array([], dtype=np.float64)
+    arr = np.array([], dtype=np.float64)
+    press = temp = qvap = qcond = wvel = uvel = vvel = arr
     microphys_wrapped = MicrophysicsSchemeWrapper(
         config_filename,
         is_motion,
@@ -130,6 +137,9 @@ def test_finalize_wrapper(path2pycleo, config_filename):
         temp,
         qvap,
         qcond,
+        wvel,
+        uvel,
+        vvel,
     )
 
     assert microphys_wrapped.finalize() == 0
@@ -152,19 +162,23 @@ def test_microphys_with_wrapper(path2pycleo, config_filename):
     t_start = 0
     timestep = python_config["timesteps"]["COUPLTSTEP"]  # [s]
     is_motion = python_config["pycleo_settings"]["is_motion"]
-    temp1 = np.array([288.15], dtype=np.float64)
-    temp2 = np.array([288.15], dtype=np.float64)
-    rho = np.array([1.225], dtype=np.float64)
-    press1 = np.array([101325], dtype=np.float64)
-    press2 = np.array([101325], dtype=np.float64)
-    qvap1 = np.array([0.015], dtype=np.float64)
-    qvap2 = np.array([0.015], dtype=np.float64)
-    qcond1 = np.array([0.0001], dtype=np.float64)
-    qcond2 = np.array([0.0001], dtype=np.float64)
-    qice = np.array([0.0002], dtype=np.float64)
-    qrain = np.array([0.0003], dtype=np.float64)
-    qsnow = np.array([0.0004], dtype=np.float64)
-    qgrau = np.array([0.0005], dtype=np.float64)
+    ngbxs = python_config["domain"]["ngbxs"]
+    temp1 = np.tile(np.array([288.15], dtype=np.float64), ngbxs)
+    temp2 = np.tile(np.array([288.15], dtype=np.float64), ngbxs)
+    press1 = np.tile(np.array([101325], dtype=np.float64), ngbxs)
+    press2 = np.tile(np.array([101325], dtype=np.float64), ngbxs)
+    qvap1 = np.tile(np.array([0.015], dtype=np.float64), ngbxs)
+    qvap2 = np.tile(np.array([0.015], dtype=np.float64), ngbxs)
+    qcond1 = np.tile(np.array([0.0001], dtype=np.float64), ngbxs)
+    qcond2 = np.tile(np.array([0.0001], dtype=np.float64), ngbxs)
+    rho = np.tile(np.array([1.225], dtype=np.float64), ngbxs)
+    qice = np.tile(np.array([0.0002], dtype=np.float64), ngbxs)
+    qrain = np.tile(np.array([0.0003], dtype=np.float64), ngbxs)
+    qsnow = np.tile(np.array([0.0004], dtype=np.float64), ngbxs)
+    qgrau = np.tile(np.array([0.0005], dtype=np.float64), ngbxs)
+    wvel = np.tile(np.array([-1.2, 1.0], dtype=np.float64), ngbxs)
+    uvel = np.tile(np.array([-0.1, 0.2], dtype=np.float64), ngbxs)
+    vvel = np.tile(np.array([0.0, 0.0], dtype=np.float64), ngbxs)
 
     thermo1 = Thermodynamics(
         temp1, rho, press1, qvap1, qcond1, qice, qrain, qsnow, qgrau
@@ -175,7 +189,17 @@ def test_microphys_with_wrapper(path2pycleo, config_filename):
 
     config = pycleo.Config(str(config_filename))
     microphys = MicrophysicsScheme(
-        config, is_motion, t_start, timestep, press1, temp1, qvap1, qcond1
+        config,
+        is_motion,
+        t_start,
+        timestep,
+        press1,
+        temp1,
+        qvap1,
+        qcond1,
+        wvel,
+        uvel,
+        vvel,
     )
 
     microphys_wrapped = MicrophysicsSchemeWrapper(
@@ -187,12 +211,15 @@ def test_microphys_with_wrapper(path2pycleo, config_filename):
         temp2,
         qvap2,
         qcond2,
+        wvel,
+        uvel,
+        vvel,
     )
 
     microphys.run(timestep)  # implict change of thermo1
     thermo2 = microphys_wrapped.run(timestep, thermo2)
 
-    assert thermo1.press == thermo2.press
-    assert thermo1.temp == thermo2.temp
+    assert np.all(thermo1.press == thermo2.press)
+    assert np.all(thermo1.temp == thermo2.temp)
     for q1, q2 in zip(thermo1.unpack_massmix_ratios(), thermo2.unpack_massmix_ratios()):
-        assert q1 == q2
+        assert np.all(q1 == q2)
