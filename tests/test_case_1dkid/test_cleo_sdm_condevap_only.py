@@ -15,6 +15,7 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
+1-D kid test case for CLEO SDM with only condensation/evaporation enabled
 """
 
 import pytest
@@ -30,12 +31,12 @@ def path2pycleo(pytestconfig):
 
 @pytest.fixture(scope="module")
 def config_filename(pytestconfig):
-    return pytestconfig.getoption("cleo_test_1dkid_config_filename")
+    return pytestconfig.getoption("cleo_test_1dkid_condevap_only_config_filename")
 
 
-def test_cleo_sdm_1dkid(path2pycleo, config_filename):
+def test_cleo_sdm_1dkid_condevap_only(path2pycleo, config_filename):
     """runs test of 1-D KiD rainshaft model using CLEO SDM for the
-    microphysics scheme.
+    microphysics scheme with only condensation/evaporation enabled.
 
      NOTE: test assumes CLEO's initial condition binary files already exist
     (i.e. 'dimlessGBxboundaries.dat' and 'dimlessSDsinit.dat' files, whose
@@ -54,7 +55,7 @@ def test_cleo_sdm_1dkid(path2pycleo, config_filename):
     from libs.cleo_sdm.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
     ### label for test case to name data/plots with
-    run_name = "cleo_sdm_1dkid"
+    run_name = "cleo_sdm_1dkid_condevap_only"
 
     ### path to directory to save data/plots in after model run
     binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/
