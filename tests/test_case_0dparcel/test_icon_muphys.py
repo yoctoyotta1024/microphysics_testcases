@@ -106,8 +106,21 @@ def test_icon_muphys_0dparcel(aes_muphys_py_dir):
         qrain = np.array([0.04], dtype=np.float64)
         qsnow = np.array([0.0], dtype=np.float64)
         qgrau = np.array([0.0], dtype=np.float64)
+        wvel = uvel = vvel = np.array([])  # this microphysics test doesn't need winds
+
         thermo_init = Thermodynamics(
-            temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau
+            temp,
+            rho,
+            press,
+            qvap,
+            qcond,
+            qice,
+            qrain,
+            qsnow,
+            qgrau,
+            wvel,
+            uvel,
+            vvel,
         )
 
         ### microphysics scheme to use (within a wrapper)

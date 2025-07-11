@@ -201,6 +201,15 @@ class AdiabaticMotion:
         assert (
             thermo.massmix_ratios["qvap"].size == 1
         ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
+        assert (thermo.wvel.size == 2) or (
+            thermo.wvel.size == 0
+        ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
+        assert (thermo.uvel.size == 2) or (
+            thermo.uvel.size == 0
+        ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
+        assert (thermo.vvel.size == 2) or (
+            thermo.vvel.size == 0
+        ), "AdiabaticMotion only applicable to 0-D parcel (1 element)"
 
         t0, t1 = time, time + timestep
         qvap = thermo.massmix_ratios["qvap"][0]

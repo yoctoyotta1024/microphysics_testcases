@@ -76,7 +76,12 @@ def main():
     qrain = np.array([0.0], dtype=np.float64)
     qsnow = np.array([0.0], dtype=np.float64)
     qgrau = np.array([0.0], dtype=np.float64)
-    thermo = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
+    wvel = np.array([])  # this microphysics scheme doesn't need thermodynamics' winds
+    uvel = np.array([])  # this microphysics scheme doesn't need thermodynamics' winds
+    vvel = np.array([])  # this microphysics scheme doesn't need thermodynamics' winds
+    thermo = Thermodynamics(
+        temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau, wvel, uvel, vvel
+    )
 
     nvec = 1
     ke = 1

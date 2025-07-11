@@ -98,7 +98,18 @@ def test_cleo_sdm_0dparcel(path2pycleo, config_filename):
     uvel = np.array([0.0, 0.0], dtype=np.float64)
     vvel = np.array([0.0, 0.0], dtype=np.float64)
     thermo_init = Thermodynamics(
-        temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau
+        temp,
+        rho,
+        press,
+        qvap,
+        qcond,
+        qice,
+        qrain,
+        qsnow,
+        qgrau,
+        wvel,
+        uvel,
+        vvel,
     )
 
     ### microphysics scheme to use (within a wrapper)
@@ -112,9 +123,9 @@ def test_cleo_sdm_0dparcel(path2pycleo, config_filename):
         thermo_init.temp,
         thermo_init.massmix_ratios["qvap"],
         thermo_init.massmix_ratios["qcond"],
-        wvel,
-        uvel,
-        vvel,
+        thermo_init.wvel,
+        thermo_init.uvel,
+        thermo_init.vvel,
     )
 
     ### Perform 0-D parcel model test case using chosen setup
