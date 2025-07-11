@@ -27,6 +27,22 @@ from .mpdata import MPDATA
 from .settings import Settings
 
 
+class UpdraftVelocity:
+    """class for equation (6) of Shipway and Hill (2012), 'Diagnosis of systematic differences
+    between multiple parametrizations of warm rain microphysics using a kinematic framework'
+    """
+
+    def __init__(self, w1, t1):
+        self.w1 = w1
+        self.t1 = t1
+
+    def magnitude(self, time):
+        if time < self.t1:
+            return self.w1 * np.sin(np.pi * time / self.t1)
+        else:
+            return 0.0
+
+
 class KiDDynamics:
     """A class for driving the KiD rainshaft test case, based on Shipway and Hill 2012.
 
@@ -84,10 +100,12 @@ class KiDDynamics:
         qvap0 = self.mpdata["qvap"].advectee.get()
         self.press_prof = SH2012formulae.pressure(self.rhod_prof, self.temp_prof, qvap0)
 
+        self.updraught_velocity = UpdraftVelocity(WMAX, TSCALE)
+
         key = f"nr={self.mpdata.nr}, dz={self.settings.dz}, dt={self.settings.dt}, options={options}"
         print(f"Simulating {self.settings.nt} timesteps using {key}")
 
-    def set_thermo(self, thermo):
+    def set_thermo(self, time, thermo):
         """Set thermodynamics from the dynamics solver.
 
         Args:
@@ -105,6 +123,9 @@ class KiDDynamics:
         thermo.massmix_ratios["qrain"][:] = self.mpdata["qrain"].advectee.get()
         thermo.massmix_ratios["qsnow"][:] = self.mpdata["qsnow"].advectee.get()
         thermo.massmix_ratios["qgrau"][:] = self.mpdata["qgrau"].advectee.get()
+
+        wmagnitude = self.updraught_velocity.magnitude(time)
+        thermo.wvel[:] = np.ones_like(thermo.wvel) * wmagnitude
 
         return thermo
 
@@ -144,7 +165,7 @@ class KiDDynamics:
             self.mpdata[field].advector.get_component(0)[:] = advector_0
             self.mpdata[field].advance(1)
 
-        thermo = self.set_thermo(thermo)
+        thermo = self.set_thermo(time, thermo)
         return thermo
 
     def set_advectees(self, thermo):
