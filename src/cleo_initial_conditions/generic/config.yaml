@@ -21,7 +21,7 @@
 #
 
 ### Python Binding Parameters ###
-pycleo_settings:
+pycleo_setup:
   is_motion : true                      # true/false, if true include superdroplet motion in SDM
 
 ### Kokkos Initialization Parameters ###
