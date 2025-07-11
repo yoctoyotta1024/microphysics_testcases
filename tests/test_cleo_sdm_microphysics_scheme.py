@@ -181,10 +181,32 @@ def test_microphys_with_wrapper(path2pycleo, config_filename):
     vvel = np.tile(np.array([0.0, 0.0], dtype=np.float64), ngbxs)
 
     thermo1 = Thermodynamics(
-        temp1, rho, press1, qvap1, qcond1, qice, qrain, qsnow, qgrau
+        temp1,
+        rho,
+        press1,
+        qvap1,
+        qcond1,
+        qice,
+        qrain,
+        qsnow,
+        qgrau,
+        wvel,
+        uvel,
+        vvel,
     )
     thermo2 = Thermodynamics(
-        temp2, rho, press2, qvap2, qcond2, qice, qrain, qsnow, qgrau
+        temp2,
+        rho,
+        press2,
+        qvap2,
+        qcond2,
+        qice,
+        qrain,
+        qsnow,
+        qgrau,
+        wvel,
+        uvel,
+        vvel,
     )
 
     config = pycleo.Config(str(config_filename))
@@ -193,13 +215,13 @@ def test_microphys_with_wrapper(path2pycleo, config_filename):
         is_motion,
         t_start,
         timestep,
-        press1,
-        temp1,
-        qvap1,
-        qcond1,
-        wvel,
-        uvel,
-        vvel,
+        thermo1.press,
+        thermo1.temp,
+        thermo1.massmix_ratios["qvap"],
+        thermo1.massmix_ratios["qcond"],
+        thermo1.wvel,
+        thermo1.uvel,
+        thermo1.vvel,
     )
 
     microphys_wrapped = MicrophysicsSchemeWrapper(
@@ -207,13 +229,13 @@ def test_microphys_with_wrapper(path2pycleo, config_filename):
         is_motion,
         t_start,
         timestep,
-        press2,
-        temp2,
-        qvap2,
-        qcond2,
-        wvel,
-        uvel,
-        vvel,
+        thermo2.press,
+        thermo2.temp,
+        thermo2.massmix_ratios["qvap"],
+        thermo2.massmix_ratios["qcond"],
+        thermo2.wvel,
+        thermo2.uvel,
+        thermo2.vvel,
     )
 
     microphys.run(timestep)  # implict change of thermo1

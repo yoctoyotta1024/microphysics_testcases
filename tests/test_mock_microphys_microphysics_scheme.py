@@ -79,8 +79,22 @@ def test_microphys_with_wrapper():
     qrain = np.array([0.0003], dtype=np.float64)
     qsnow = np.array([0.0004], dtype=np.float64)
     qgrau = np.array([0.0005], dtype=np.float64)
+    wvel = uvel = vvel = np.array([])  # this microphysics test doesn't need winds
 
-    thermo = Thermodynamics(temp, rho, press, qvap, qcond, qice, qrain, qsnow, qgrau)
+    thermo = Thermodynamics(
+        temp,
+        rho,
+        press,
+        qvap,
+        qcond,
+        qice,
+        qrain,
+        qsnow,
+        qgrau,
+        wvel,
+        uvel,
+        vvel,
+    )
 
     t, qv, qc, qi, qr, qs, qg, prr_gsp, pflx = microphys.run(
         nvec,
