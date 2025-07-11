@@ -64,7 +64,7 @@ def run_1dkid(
     out = OutputThermodynamics(shape, zhalf=kid_dynamics.zhalf)
 
     time = 0.0
-    thermo = kid_dynamics.set_thermo(thermo)
+    thermo = kid_dynamics.set_thermo(time, thermo)
     out.output_thermodynamics(time, thermo)
     while time < time_end:
         thermo = kid_dynamics.run(time, timestep, thermo)
