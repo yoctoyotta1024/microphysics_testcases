@@ -189,7 +189,7 @@ class MicrophysicsSchemeWrapper:
             prg_gsp=prg_gsp,
             pre_gsp=pre_gsp,
             pflx=pflx,
-            lrain=self.lrain
+            lrain=self.lrain,
         )
 
         # call saturation adjustment

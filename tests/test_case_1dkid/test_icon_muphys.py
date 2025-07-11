@@ -86,7 +86,6 @@ def test_icon_muphys_1dkid(aes_muphys_py_dir):
         lrain = True
         microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc, lrain)
 
-
         ### Perform test of 1-D KiD rainshaft model using chosen setup
         perform_1dkid_test_case(
             z_delta,
