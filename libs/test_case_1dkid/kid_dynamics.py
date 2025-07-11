@@ -124,7 +124,9 @@ class KiDDynamics:
         thermo.massmix_ratios["qsnow"][:] = self.mpdata["qsnow"].advectee.get()
         thermo.massmix_ratios["qgrau"][:] = self.mpdata["qgrau"].advectee.get()
 
-        wmagnitude = self.updraught_velocity.magnitude(time)
+        wmagnitude = self.updraught_velocity.magnitude(
+            time
+        )  # TODO(CB: get from mpdata directly
         thermo.wvel[:] = np.ones_like(thermo.wvel) * wmagnitude
 
         return thermo
