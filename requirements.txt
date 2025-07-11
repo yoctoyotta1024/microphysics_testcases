@@ -9,6 +9,7 @@ sphinxcontrib-htmlhelp
 breathe
 
 numba
+numdifftools
 numpy
 scipy
 matplotlib
