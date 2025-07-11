@@ -58,10 +58,12 @@ def create_sdm(config, tsteps, is_motion):
 
     if is_motion:
         print("PYCLEO STATUS: creating Superdroplet Movement")
-        motion = pycleo.create_cartesian_predcorr_motion(tsteps.get_motionstep())
+        motion = pycleo.create_cartesian_predcorr_motion(
+            config, tsteps.get_motionstep()
+        )
     else:
         print("PYCLEO STATUS: creating Superdroplet Movement without Motion")
-        motion = pycleo.create_cartesian_predcorr_motion(False)
+        motion = pycleo.create_cartesian_predcorr_motion(config, False)
     transport = pycleo.CartesianTransportAcrossDomain()
     boundary_conditions = pycleo.NullBoundaryConditions()
     move = pycleo.CartesianMoveSupersInDomain(motion, transport, boundary_conditions)

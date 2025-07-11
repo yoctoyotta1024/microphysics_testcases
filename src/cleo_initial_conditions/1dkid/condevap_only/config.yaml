@@ -63,3 +63,9 @@ microphysics:
     MINSUBTSTEP : 0.01                                 # minimum subtimestep in cases of substepping [s]
     rtol : 0.0                                         # relative tolerance for implicit Euler integration
     atol : 0.001                                       # absolute tolerance for implicit Euler integration
+
+### Pycleo (Python Bindings) Parameters ###
+pycleo:
+  enable_terminal_velocity : false                                 # true enables terminal velocity in superdroplet motion
+  enable_condensation : true                                       # true enables condensation in microphysics
+  enable_collisions : false                                        # true enables collisions in microphysics
