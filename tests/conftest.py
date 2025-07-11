@@ -58,11 +58,20 @@ def pytest_addoption(parser):
         default=str(default_cleo_test_0dparcel_config_filename),
     )
 
-    default_cleo_test_1dkid_config_filename = (
-        Path.cwd() / "src" / "cleo_initial_conditions" / "1dkid" / "config.yaml"
+    cleo_initconds_1dkid_path = Path.cwd() / "src" / "cleo_initial_conditions" / "1dkid"
+    default_cleo_test_1dkid_condevap_only_config_filename = (
+        cleo_initconds_1dkid_path / "condevap_only" / "config.yaml"
+    )
+    default_cleo_test_1dkid_fullscheme_config_filename = (
+        cleo_initconds_1dkid_path / "fullscheme" / "config.yaml"
     )
     parser.addoption(
-        "--cleo_test_1dkid_config_filename",
+        "--cleo_test_1dkid_condevap_only_config_filename",
         action="store",
-        default=str(default_cleo_test_1dkid_config_filename),
+        default=str(default_cleo_test_1dkid_condevap_only_config_filename),
+    )
+    parser.addoption(
+        "--cleo_test_1dkid_fullscheme_config_filename",
+        action="store",
+        default=str(default_cleo_test_1dkid_fullscheme_config_filename),
     )

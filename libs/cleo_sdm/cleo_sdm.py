@@ -8,7 +8,7 @@ Created Date: Monday 23rd June 2025
 Author: Clara Bayley (CB)
 Additional Contributors:
 -----
-Last Modified: Tuesday 1st July 2025
+Last Modified: Thursday 10th July 2025
 Modified By: CB
 -----
 License: BSD 3-Clause "New" or "Revised" License
@@ -58,10 +58,12 @@ def create_sdm(config, tsteps, is_motion):
 
     if is_motion:
         print("PYCLEO STATUS: creating Superdroplet Movement")
-        motion = pycleo.create_cartesian_predcorr_motion(tsteps.get_motionstep())
+        motion = pycleo.create_cartesian_predcorr_motion(
+            config, tsteps.get_motionstep()
+        )
     else:
         print("PYCLEO STATUS: creating Superdroplet Movement without Motion")
-        motion = pycleo.create_cartesian_predcorr_motion(False)
+        motion = pycleo.create_cartesian_predcorr_motion(config, False)
     transport = pycleo.CartesianTransportAcrossDomain()
     boundary_conditions = pycleo.NullBoundaryConditions()
     move = pycleo.CartesianMoveSupersInDomain(motion, transport, boundary_conditions)
@@ -104,7 +106,17 @@ class CleoSDM:
         temp,
         qvap,
         qcond,
+        wvel,
+        uvel,
+        vvel,
     ):
+        """Initialize the CleoSDM object.
+
+        CleoSDM class only works correctly if addresses of press, temp,
+        qvap, qcond, wvel, uvel, and vvel arrays remain unchanged throughout a simulation.
+        Undefined behaviour if values are changed by reassigning arrays rather than by copying
+        data into the arrays given during class initialisation.
+        """
         self.name = "CLEO SDM microphysics"
 
         tsteps = pycleo.pycreate_timesteps(config)
@@ -122,6 +134,9 @@ class CleoSDM:
             temp,
             qvap,
             qcond,
+            wvel,
+            uvel,
+            vvel,
         )
         self.comms = coupldyn_numpy.NumpyComms()
 
@@ -137,7 +152,7 @@ class CleoSDM:
             self.t_sdm
         ), "SDM out of sync with coupling"
 
-        print(f"PYCLEO STATUS: start t_sdm = {self.t_sdm} [model timesteps]")
+        # print(f"PYCLEO STATUS: start t_sdm = {self.t_sdm} [model timesteps]")
         while self.t_sdm < t_mdl_next:
             t_sdm_next = min(
                 self.sdm.next_couplstep(self.t_sdm), self.sdm.obs.next_obs(self.t_sdm)
@@ -156,4 +171,4 @@ class CleoSDM:
                 self.comms.send_dynamics(self.sdm.gbxmaps, self.gbxs, self.coupldyn)
 
             self.t_sdm = t_sdm_next
-        print(f"PYCLEO STATUS: end t_sdm = {self.t_sdm} [model timesteps]")
+        # print(f"PYCLEO STATUS: end t_sdm = {self.t_sdm} [model timesteps]")

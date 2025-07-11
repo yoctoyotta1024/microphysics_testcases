@@ -73,8 +73,20 @@ def test_icon_muphys_1dkid(aes_muphys_py_dir):
         ### initial thermodynamic conditions
         assert z_max % z_delta == 0, "z limit is not a multiple of the grid spacing."
         zeros = np.zeros(int(z_max / z_delta))
+        null = np.array([])  # this microphysics test doesn't need winds
         thermo_init = Thermodynamics(
-            zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros
+            zeros,
+            zeros,
+            zeros,
+            zeros,
+            zeros,
+            zeros,
+            zeros,
+            zeros,
+            zeros,
+            null,
+            null,
+            null,
         )
 
         ### microphysics scheme to use (within a wrapper)
@@ -87,6 +99,7 @@ def test_icon_muphys_1dkid(aes_muphys_py_dir):
         microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc, lrain)
 
         ### Perform test of 1-D KiD rainshaft model using chosen setup
+        advect_hydrometeors = True
         perform_1dkid_test_case(
             z_delta,
             z_max,
@@ -94,6 +107,7 @@ def test_icon_muphys_1dkid(aes_muphys_py_dir):
             timestep,
             thermo_init,
             microphys_scheme,
+            advect_hydrometeors,
             binpath,
             run_name,
         )

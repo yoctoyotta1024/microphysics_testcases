@@ -15,6 +15,8 @@ License: BSD 3-Clause "New" or "Revised" License
 https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
+1-D kid test case for CLEO SDM with full scheme, i.e. with condensation/evaporation,
+collision-coalescence and precipitation enabled
 """
 
 import pytest
@@ -30,12 +32,13 @@ def path2pycleo(pytestconfig):
 
 @pytest.fixture(scope="module")
 def config_filename(pytestconfig):
-    return pytestconfig.getoption("cleo_test_1dkid_config_filename")
+    return pytestconfig.getoption("cleo_test_1dkid_fullscheme_config_filename")
 
 
-def test_cleo_sdm_1dkid(path2pycleo, config_filename):
+def test_cleo_sdm_1dkid_fullscheme(path2pycleo, config_filename):
     """runs test of 1-D KiD rainshaft model using CLEO SDM for the
-    microphysics scheme.
+    microphysics scheme with full warm-rain microphysics enabled: condensation/evaporation,
+    collision-coalescence and precipitation (i.e. condensates have terminal velocity).
 
      NOTE: test assumes CLEO's initial condition binary files already exist
     (i.e. 'dimlessGBxboundaries.dat' and 'dimlessSDsinit.dat' files, whose
@@ -54,7 +57,7 @@ def test_cleo_sdm_1dkid(path2pycleo, config_filename):
     from libs.cleo_sdm.microphysics_scheme_wrapper import MicrophysicsSchemeWrapper
 
     ### label for test case to name data/plots with
-    run_name = "cleo_sdm_1dkid"
+    run_name = "cleo_sdm_1dkid_fullscheme"
 
     ### path to directory to save data/plots in after model run
     binpath = Path(__file__).parent.resolve() / "bin"  # i.e. [current directory]/bin/
@@ -69,9 +72,22 @@ def test_cleo_sdm_1dkid(path2pycleo, config_filename):
 
     ### initial thermodynamic conditions
     assert z_max % z_delta == 0, "z limit is not a multiple of the grid spacing."
-    zeros = np.zeros(int(z_max / z_delta))
+    ngbxs = int(z_max / z_delta)
+    zeros = np.zeros(ngbxs)
+    zeros2 = np.tile(zeros, 2)
     thermo_init = Thermodynamics(
-        zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros, zeros
+        zeros,
+        zeros,
+        zeros,
+        zeros,
+        zeros,
+        zeros,
+        zeros,
+        zeros,
+        zeros,
+        zeros2,
+        zeros2,
+        zeros2,
     )
 
     ### microphysics scheme to use (within a wrapper)
@@ -85,9 +101,13 @@ def test_cleo_sdm_1dkid(path2pycleo, config_filename):
         thermo_init.temp,
         thermo_init.massmix_ratios["qvap"],
         thermo_init.massmix_ratios["qcond"],
+        thermo_init.wvel,
+        thermo_init.uvel,
+        thermo_init.vvel,
     )
 
     ### Perform test of 1-D KiD rainshaft model using chosen setup
+    advect_hydrometeors = False
     perform_1dkid_test_case(
         z_delta,
         z_max,
@@ -95,6 +115,7 @@ def test_cleo_sdm_1dkid(path2pycleo, config_filename):
         timestep,
         thermo_init,
         microphys_scheme,
+        advect_hydrometeors,
         binpath,
         run_name,
     )

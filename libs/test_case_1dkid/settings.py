@@ -39,7 +39,8 @@ class Settings:
         self,
         dt: float,
         dz: float,
-        rhod_w_const: float,
+        wmax_const: float,
+        tscale_const: float,
         t_max: float = 15 * si.minutes,
         p0: Optional[float] = None,
         z_max: float = 3000 * si.metres,
@@ -82,7 +83,8 @@ class Settings:
 
         self.rhod = interp1d(z_points, rhod_solution.y[0])
 
-        self.t_1 = 600 * si.s
+        rhod_w_const = wmax_const * si.m / si.s * si.kg / si.m**3
+        self.t_1 = tscale_const * si.s
         self.rhod_w = lambda t: (
             rhod_w_const * np.sin(np.pi * t / self.t_1) if t < self.t_1 else 0
         )

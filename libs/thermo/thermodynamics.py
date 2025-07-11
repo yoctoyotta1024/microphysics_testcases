@@ -79,6 +79,9 @@ class Thermodynamics:
         qrain: np.ndarray,
         qsnow: np.ndarray,
         qgrau: np.ndarray,
+        wvel: np.ndarray,
+        uvel: np.ndarray,
+        vvel: np.ndarray,
     ):
         """Initialize a thermodynamics object with the given variables
 
@@ -92,7 +95,9 @@ class Thermodynamics:
             qrain (np.ndarray): Specific rain content (kg/kg)
             qsnow (np.ndarray): Specific snow content kg/kg)
             qgrau (np.ndarray): Specific graupel content (kg/kg)
-
+            wvel (np.ndarray): vertical wind velocity, 'z', (m/s)
+            uvel (np.ndarray): zonal wind velocity, 'x', (m/s)
+            vvel (np.ndarray): meridional wind velocity, 'y', (m/s)
         """
         self.temp = deepcopy(temp)
         self.rho = deepcopy(rho)
@@ -105,6 +110,9 @@ class Thermodynamics:
             "qsnow": deepcopy(qsnow),
             "qgrau": deepcopy(qgrau),
         }
+        self.wvel = deepcopy(wvel)
+        self.uvel = deepcopy(uvel)
+        self.vvel = deepcopy(vvel)
 
     def print_state(self):
         print(self.temp)

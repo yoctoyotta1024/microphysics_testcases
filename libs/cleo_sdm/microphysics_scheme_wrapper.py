@@ -51,19 +51,39 @@ class MicrophysicsSchemeWrapper:
         temp,
         qvap,
         qcond,
+        wvel,
+        uvel,
+        vvel,
     ):
-        """Initialize the MicrophysicsSchemeWrapper object."""
+        """Initialize the MicrophysicsSchemeWrapper object.
+
+        This Wrapper only works correctly if addresses of press, temp,
+        qvap, qcond, wvel, uvel, and vvel arrays remain unchanged throughout a simulation.
+        Undefined behaviour if values are changed by reassigning arrays rather than by copying
+        data into the arrays given during wrapper initialisation.
+        """
         config = pycleo.Config(str(config_filename))
         pycleo.pycleo_initialize(config)
 
         self.microphys = CleoSDM(
-            config, is_motion, t_start, timestep, press, temp, qvap, qcond
+            config,
+            is_motion,
+            t_start,
+            timestep,
+            press,
+            temp,
+            qvap,
+            qcond,
+            wvel,
+            uvel,
+            vvel,
         )
         self.name = "Wrapper around " + self.microphys.name
 
         # constants to de-dimensionalise thermodynamics
         self.TEMP0 = 273.15  # Temperature [K]
         self.P0 = 100000.0  # Pressure [Pa]
+        self.W0 = 1.0  # Velocity [m/s]
 
     def initialize(self) -> int:
         """Initialise the microphysics scheme.
@@ -106,11 +126,17 @@ class MicrophysicsSchemeWrapper:
         # de-dimensionlise variables
         thermo.press /= self.P0
         thermo.temp /= self.TEMP0
+        thermo.wvel /= self.W0
+        thermo.uvel /= self.W0
+        thermo.vvel /= self.W0
 
         self.microphys.run(timestep)
 
         # re-dimensionlise variables
         thermo.press *= self.P0
         thermo.temp *= self.TEMP0
+        thermo.wvel *= self.W0
+        thermo.uvel *= self.W0
+        thermo.vvel *= self.W0
 
         return thermo
