@@ -62,10 +62,6 @@ class MicrophysicsSchemeWrapper:
         Undefined behaviour if values are changed by reassigning arrays rather than by copying
         data into the arrays given during wrapper initialisation.
         """
-        self.wvel = wvel
-        self.uvel = uvel
-        self.vvel = vvel
-
         config = pycleo.Config(str(config_filename))
         pycleo.pycleo_initialize(config)
 
@@ -130,17 +126,17 @@ class MicrophysicsSchemeWrapper:
         # de-dimensionlise variables
         thermo.press /= self.P0
         thermo.temp /= self.TEMP0
-        self.wvel /= self.W0
-        self.uvel /= self.W0
-        self.vvel /= self.W0
+        thermo.wvel /= self.W0
+        thermo.uvel /= self.W0
+        thermo.vvel /= self.W0
 
         self.microphys.run(timestep)
 
         # re-dimensionlise variables
         thermo.press *= self.P0
         thermo.temp *= self.TEMP0
-        self.wvel *= self.W0
-        self.uvel *= self.W0
-        self.vvel *= self.W0
+        thermo.wvel *= self.W0
+        thermo.uvel *= self.W0
+        thermo.vvel *= self.W0
 
         return thermo
