@@ -150,7 +150,7 @@ class CleoSDM:
             self.t_sdm
         ), "SDM out of sync with coupling"
 
-        print(f"PYCLEO STATUS: start t_sdm = {self.t_sdm} [model timesteps]")
+        # print(f"PYCLEO STATUS: start t_sdm = {self.t_sdm} [model timesteps]")
         while self.t_sdm < t_mdl_next:
             t_sdm_next = min(
                 self.sdm.next_couplstep(self.t_sdm), self.sdm.obs.next_obs(self.t_sdm)
@@ -169,4 +169,4 @@ class CleoSDM:
                 self.comms.send_dynamics(self.sdm.gbxmaps, self.gbxs, self.coupldyn)
 
             self.t_sdm = t_sdm_next
-        print(f"PYCLEO STATUS: end t_sdm = {self.t_sdm} [model timesteps]")
+        # print(f"PYCLEO STATUS: end t_sdm = {self.t_sdm} [model timesteps]")
