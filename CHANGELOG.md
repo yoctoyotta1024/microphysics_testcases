@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.11.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/5d416d18aecec13038847771ee6366be9ab08baa..v0.11.1) - 2025-07-11
+#### Bug Fixes
+- add missing python package dependency - ([5d416d1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/5d416d18aecec13038847771ee6366be9ab08baa)) - clara.bayley
+
+- - -
+
 ## [v0.11.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/77b53cff3ebe2ded1e53c59ef8b48f83f7e73ae2..v0.11.0) - 2025-07-10
 #### Bug Fixes
 - use dict to store thermo mass mixing ratio arrays and rename dict keys - ([d2edb4e](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d2edb4e35f7bb65a0d53472617e1a40a4afe1a9e)) - clara.bayley
