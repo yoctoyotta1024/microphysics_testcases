@@ -48,12 +48,14 @@ class KiDDynamics:
         """
         options = Options(n_iters=3, nonoscillatory=True)
 
-        RHOD_VERTVELO = 3 * si.m / si.s * si.kg / si.m**3
+        WMAX = 3  # maximum vertical velocity [m/s], 'w1' of equation (6) in Shipway and Hill (2012)
+        TSCALE = 600  # timescale of sinusoid [s], 't1' of equation (6) in Shipway and Hill (2012)
         P0 = 1007 * si.hPa
         self.settings = Settings(
             dt=timestep,
             dz=z_delta,
-            rhod_w_const=RHOD_VERTVELO,
+            wmax_const=WMAX,
+            tscale_const=TSCALE,
             t_max=t_end,
             p0=P0,
             z_max=z_max,
