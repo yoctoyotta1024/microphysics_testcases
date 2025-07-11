@@ -91,7 +91,7 @@ def test_cleo_sdm_1dkid_fullscheme(path2pycleo, config_filename):
     )
 
     ### microphysics scheme to use (within a wrapper)
-    is_motion = False
+    is_motion = True
     microphys_scheme = MicrophysicsSchemeWrapper(
         config_filename,
         is_motion,
