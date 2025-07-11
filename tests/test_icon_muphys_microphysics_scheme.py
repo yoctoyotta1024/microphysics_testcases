@@ -115,7 +115,7 @@ def test_microphys_with_wrapper(aes_muphys_py_dir):
             prg_gsp=prg_gsp,
             pflx=pflx,
             pre_gsp=pre_gsp,
-            lrain=lrain
+            lrain=lrain,
         )
 
         # call saturation adjustment
