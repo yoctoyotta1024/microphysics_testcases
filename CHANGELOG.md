@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.11.2](https://github.com/yoctoyotta1024/microphysics_testcases/compare/d20788c2ccb62651f272cfd353b381486eb825ff..v0.11.2) - 2025-07-11
+#### Bug Fixes
+- format sources - ([8c5e8a5](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8c5e8a5acfc477670effa40496f1dcfc6f2b94a7)) - Georgiana Mania
+#### Refactoring
+- add switch to enable/disable precipitation; co-author: Joerg Behrens - ([d20788c](https://github.com/yoctoyotta1024/microphysics_testcases/commit/d20788c2ccb62651f272cfd353b381486eb825ff)) - Georgiana Mania
+
+- - -
+
 ## [v0.11.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/5d416d18aecec13038847771ee6366be9ab08baa..v0.11.1) - 2025-07-11
 #### Bug Fixes
 - add missing python package dependency - ([5d416d1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/5d416d18aecec13038847771ee6366be9ab08baa)) - clara.bayley
