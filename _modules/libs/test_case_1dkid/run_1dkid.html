@@ -293,7 +293,9 @@
 
 <div class="viewcode-block" id="run_1dkid">
 <a class="viewcode-back" href="../../../tests/test_case_1dkid/run_1dkid.html#libs.test_case_1dkid.run_1dkid.run_1dkid">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">run_1dkid</span><span class="p">(</span><span class="n">z_delta</span><span class="p">,</span> <span class="n">z_max</span><span class="p">,</span> <span class="n">time_end</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">,</span> <span class="n">microphys_scheme</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_1dkid</span><span class="p">(</span>
+    <span class="n">z_delta</span><span class="p">,</span> <span class="n">z_max</span><span class="p">,</span> <span class="n">time_end</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">,</span> <span class="n">microphys_scheme</span><span class="p">,</span> <span class="n">advect_hydrometeors</span>
+<span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run 1-D KiD rainshaft model with a specified microphysics scheme and KiD dynamics.</span>
 
 <span class="sd">    This function runs a 1-D KiD rainshaft model with the given initial</span>
@@ -319,7 +321,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1">### type of dynamics rainshaft will undergo</span>
-    <span class="n">kid_dynamics</span> <span class="o">=</span> <span class="n">KiDDynamics</span><span class="p">(</span><span class="n">z_delta</span><span class="p">,</span> <span class="n">z_max</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">time_end</span><span class="p">)</span>
+    <span class="n">kid_dynamics</span> <span class="o">=</span> <span class="n">KiDDynamics</span><span class="p">(</span>
+        <span class="n">z_delta</span><span class="p">,</span> <span class="n">z_max</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">time_end</span><span class="p">,</span> <span class="n">advect_hydrometeors</span><span class="o">=</span><span class="n">advect_hydrometeors</span>
+    <span class="p">)</span>
 
     <span class="c1">### run dynamics + microphysics from time to time_end</span>
     <span class="n">microphys_scheme</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
@@ -331,7 +335,7 @@
     <span class="n">out</span> <span class="o">=</span> <span class="n">OutputThermodynamics</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">zhalf</span><span class="o">=</span><span class="n">kid_dynamics</span><span class="o">.</span><span class="n">zhalf</span><span class="p">)</span>
 
     <span class="n">time</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="n">thermo</span> <span class="o">=</span> <span class="n">kid_dynamics</span><span class="o">.</span><span class="n">set_thermo</span><span class="p">(</span><span class="n">thermo</span><span class="p">)</span>
+    <span class="n">thermo</span> <span class="o">=</span> <span class="n">kid_dynamics</span><span class="o">.</span><span class="n">set_thermo</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
     <span class="n">out</span><span class="o">.</span><span class="n">output_thermodynamics</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="n">time_end</span><span class="p">:</span>
         <span class="n">thermo</span> <span class="o">=</span> <span class="n">kid_dynamics</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">thermo</span><span class="p">)</span>
@@ -365,7 +369,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 11 July 2025</div>
+              Last updated on 14 July 2025</div>
           </div>
           <div class="right-details">
             

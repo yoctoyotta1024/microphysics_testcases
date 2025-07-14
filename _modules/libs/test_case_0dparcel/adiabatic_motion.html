@@ -486,6 +486,15 @@
         <span class="k">assert</span> <span class="p">(</span>
             <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qvap&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span>
         <span class="p">),</span> <span class="s2">&quot;AdiabaticMotion only applicable to 0-D parcel (1 element)&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">wvel</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+            <span class="n">thermo</span><span class="o">.</span><span class="n">wvel</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="p">),</span> <span class="s2">&quot;AdiabaticMotion only applicable to 0-D parcel (1 element)&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">uvel</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+            <span class="n">thermo</span><span class="o">.</span><span class="n">uvel</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="p">),</span> <span class="s2">&quot;AdiabaticMotion only applicable to 0-D parcel (1 element)&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">thermo</span><span class="o">.</span><span class="n">vvel</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+            <span class="n">thermo</span><span class="o">.</span><span class="n">vvel</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="p">),</span> <span class="s2">&quot;AdiabaticMotion only applicable to 0-D parcel (1 element)&quot;</span>
 
         <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">time</span> <span class="o">+</span> <span class="n">timestep</span>
         <span class="n">qvap</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">massmix_ratios</span><span class="p">[</span><span class="s2">&quot;qvap&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -520,7 +529,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 11 July 2025</div>
+              Last updated on 14 July 2025</div>
           </div>
           <div class="right-details">
             

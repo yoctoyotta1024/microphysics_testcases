@@ -350,6 +350,9 @@
         <span class="n">qrain</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
         <span class="n">qsnow</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
         <span class="n">qgrau</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">wvel</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">uvel</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">vvel</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a thermodynamics object with the given variables</span>
 
@@ -363,7 +366,9 @@
 <span class="sd">            qrain (np.ndarray): Specific rain content (kg/kg)</span>
 <span class="sd">            qsnow (np.ndarray): Specific snow content kg/kg)</span>
 <span class="sd">            qgrau (np.ndarray): Specific graupel content (kg/kg)</span>
-
+<span class="sd">            wvel (np.ndarray): vertical wind velocity, &#39;z&#39;, (m/s)</span>
+<span class="sd">            uvel (np.ndarray): zonal wind velocity, &#39;x&#39;, (m/s)</span>
+<span class="sd">            vvel (np.ndarray): meridional wind velocity, &#39;y&#39;, (m/s)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
@@ -376,6 +381,9 @@
             <span class="s2">&quot;qsnow&quot;</span><span class="p">:</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">qsnow</span><span class="p">),</span>
             <span class="s2">&quot;qgrau&quot;</span><span class="p">:</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">qgrau</span><span class="p">),</span>
         <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wvel</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">wvel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uvel</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">uvel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vvel</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">vvel</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Thermodynamics.print_state">
 <a class="viewcode-back" href="../../../thermo/thermodynamics.html#libs.thermo.thermodynamics.Thermodynamics.print_state">[docs]</a>
@@ -425,7 +433,7 @@
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             <div class="last-updated">
-              Last updated on 11 July 2025</div>
+              Last updated on 14 July 2025</div>
           </div>
           <div class="right-details">
             
