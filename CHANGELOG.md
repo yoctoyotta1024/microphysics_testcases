@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.12.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/28ba63e584ea929d6add74f7796f8250747c0e97..v0.12.1) - 2025-07-14
+#### Bug Fixes
+- directory renaming - ([28ba63e](https://github.com/yoctoyotta1024/microphysics_testcases/commit/28ba63e584ea929d6add74f7796f8250747c0e97)) - clara.bayley
+
+- - -
+
 ## [v0.12.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/3e44a764b4fe4db80edbea67601fe87945b8e193..v0.12.0) - 2025-07-14
 #### Bug Fixes
 - decrease substep of condensation - ([0f0f163](https://github.com/yoctoyotta1024/microphysics_testcases/commit/0f0f163703c0a40bff18fb0f4d05a8f19f18fdc9)) - clara.bayley
