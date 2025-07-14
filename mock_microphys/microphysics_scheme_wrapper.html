@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="C++ Demo Package" href="../mock_bindcxx/index.html" /><link rel="prev" title="Python Mock Microphysics Module" href="mock_microphysics_scheme.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>C++ Mock Module - Microphysics Test Cases 0.0.0 documentation</title>
+        <title>Wrapper for Python Mock Microphysics Scheme - Microphysics Test Cases 0.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -199,7 +199,7 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
+  <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../usage/getstart.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/ourtests.html">Our Tests</a></li>
@@ -225,7 +225,20 @@
 <li class="toctree-l2"><a class="reference internal" href="../thermo/formulae.html">Calculations</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../utility_functions/index.html">Utilities Package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Utilities Package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pympdata_bulk/index.html">Microphysics Schemes From PyMPDATA</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Microphysics Schemes From PyMPDATA</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pympdata_bulk/bulk_scheme_condensation.html">Bulk Scheme for Condensation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Python Demo Package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Python Demo Package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mock_microphysics_scheme.html">Python Mock Microphysics Module</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Wrapper for Python Mock Microphysics Scheme</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mock_bindcxx/index.html">C++ Demo Package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of C++ Demo Package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mock_bindcxx/mock.html">C++ Mock Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../utility_functions/index.html">Utilities Package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Utilities Package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../utility_functions/plot_utilities.html">Calculations</a></li>
 </ul>
 </li>
@@ -253,7 +266,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/src_mock_cxx/mock.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/mock_microphys/microphysics_scheme_wrapper.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -273,23 +286,87 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="c-mock-module">
-<h1>C++ Mock Module<a class="headerlink" href="#c-mock-module" title="Link to this heading">¶</a></h1>
-<p>Header file: <code class="docutils literal notranslate"><span class="pre">&lt;libs/mock_bindcxx/mock.hpp&gt;</span></code>
-<a class="reference external" href="https://github.com/yoctoyotta1024/microphysics_testcases/blob/main/libs/mock_bindcxx/mock.hpp">[source]</a></p>
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv411area_circleKd">
-<span id="_CPPv311area_circleKd"></span><span id="_CPPv211area_circleKd"></span><span id="area_circle__doubleC"></span><span class="target" id="mock_8hpp_1a3c79da65554590c5358209eb13da4323"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">area_circle</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">radius</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411area_circleKd" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Calculates the area of a circle given its radius. </p>
-<p>This function calculates the area of a circle using the formula: <span class="math notranslate nohighlight">\( A = \pi \times r^2 \)</span> where <span class="math notranslate nohighlight">\( A \)</span> is the area and <span class="math notranslate nohighlight">\( r \)</span> is the radius.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>radius</strong> – The radius of the circle. </p>
+          <section id="wrapper-for-python-mock-microphysics-scheme">
+<h1>Wrapper for Python Mock Microphysics Scheme<a class="headerlink" href="#wrapper-for-python-mock-microphysics-scheme" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">libs.mock_microphys.microphysics_scheme_wrapper.</span></span><span class="sig-name descname"><span class="pre">MicrophysicsSchemeWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nvec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ke</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ivstart</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qnc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/libs/mock_microphys/microphysics_scheme_wrapper.html#MicrophysicsSchemeWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class wrapping around Python MicrophysicsScheme for compatibility purposes.</p>
+<p>This class wraps around the MicrophysicsScheme class to provide compatibility with the Python
+run scripts and tests in this project. It initializes a MicrophysicsScheme object and provides
+wrappers around methods to initialize, finalize, and run the microphysics.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>nvec (int):</dt><dd><p>Number of horizontal points.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The area of the circle. </p>
+<dt>ke (int):</dt><dd><p>Number of grid points in vertical direction.</p>
+</dd>
+<dt>ivstart (int):</dt><dd><p>Start index for horizontal direction.</p>
+</dd>
+<dt>dz (np.ndarray):</dt><dd><p>Layer thickness of full levels (m).</p>
+</dd>
+<dt>qnc (float):</dt><dd><p>Cloud number concentration.</p>
 </dd>
 </dl>
+</dd>
+<dt>Attributes:</dt><dd><dl class="simple">
+<dt>nvec (int):</dt><dd><p>Number of horizontal points.</p>
+</dd>
+<dt>ke (int):</dt><dd><p>Number of grid points in vertical direction.</p>
+</dd>
+<dt>ivstart (int):</dt><dd><p>Start index for horizontal direction.</p>
+</dd>
+<dt>dz (np.ndarray):</dt><dd><p>Layer thickness of full levels (m).</p>
+</dd>
+<dt>qnc (float):</dt><dd><p>Cloud number concentration.</p>
+</dd>
+<dt>microphys (MicrophysicsScheme):</dt><dd><p>instance of Python MicrophysicsScheme.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.finalize">
+<span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/libs/mock_microphys/microphysics_scheme_wrapper.html#MicrophysicsSchemeWrapper.finalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.finalize" title="Link to this definition">¶</a></dt>
+<dd><p>Finalise the microphysics scheme.</p>
+<p>This method calls the microphysics finalisation.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: 0 upon successful finalisation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/libs/mock_microphys/microphysics_scheme_wrapper.html#MicrophysicsSchemeWrapper.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.initialize" title="Link to this definition">¶</a></dt>
+<dd><p>Initialise the microphysics scheme.</p>
+<p>This method calls the microphysics initialisation</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: 0 upon successful initialisation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../thermo/thermodynamics.html#libs.thermo.thermodynamics.Thermodynamics" title="libs.thermo.thermodynamics.Thermodynamics"><span class="pre">Thermodynamics</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../thermo/thermodynamics.html#libs.thermo.thermodynamics.Thermodynamics" title="libs.thermo.thermodynamics.Thermodynamics"><span class="pre">Thermodynamics</span></a></span></span><a class="reference internal" href="../_modules/libs/mock_microphys/microphysics_scheme_wrapper.html#MicrophysicsSchemeWrapper.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.run" title="Link to this definition">¶</a></dt>
+<dd><p>Run the microphysics computations.</p>
+<p>This method is a wrapper of the MicrophysicsScheme object’s run function to call the
+microphysics computations in a way that’s compatible with the test and scripts in this project.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>timestep (float):</dt><dd><p>Time-step for integration of microphysics (s)</p>
+</dd>
+<dt>thermo (Thermodynamics):</dt><dd><p>Thermodynamic properties.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>Thermodynamics: Updated thermodynamic properties after microphysics computations.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -299,8 +376,26 @@
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="../mock_bindcxx/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">C++ Demo Package</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="mock_microphysics_scheme.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Python Mock Microphysics Module</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -332,8 +427,13 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">C++ Mock Module</a><ul>
-<li><a class="reference internal" href="#_CPPv411area_circleKd"><code class="docutils literal notranslate"><span class="pre">area_circle()</span></code></a></li>
+<li><a class="reference internal" href="#">Wrapper for Python Mock Microphysics Scheme</a><ul>
+<li><a class="reference internal" href="#libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper"><code class="docutils literal notranslate"><span class="pre">MicrophysicsSchemeWrapper</span></code></a><ul>
+<li><a class="reference internal" href="#libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.finalize"><code class="docutils literal notranslate"><span class="pre">MicrophysicsSchemeWrapper.finalize()</span></code></a></li>
+<li><a class="reference internal" href="#libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.initialize"><code class="docutils literal notranslate"><span class="pre">MicrophysicsSchemeWrapper.initialize()</span></code></a></li>
+<li><a class="reference internal" href="#libs.mock_microphys.microphysics_scheme_wrapper.MicrophysicsSchemeWrapper.run"><code class="docutils literal notranslate"><span class="pre">MicrophysicsSchemeWrapper.run()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -351,6 +451,5 @@
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
