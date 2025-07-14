@@ -2,6 +2,35 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.12.0](https://github.com/yoctoyotta1024/microphysics_testcases/compare/3e44a764b4fe4db80edbea67601fe87945b8e193..v0.12.0) - 2025-07-14
+#### Bug Fixes
+- decrease substep of condensation - ([0f0f163](https://github.com/yoctoyotta1024/microphysics_testcases/commit/0f0f163703c0a40bff18fb0f4d05a8f19f18fdc9)) - clara.bayley
+- make cleo tests compatible with changes to numpy dynamics in latest cleo version - ([9726c60](https://github.com/yoctoyotta1024/microphysics_testcases/commit/9726c602f19ce77e2ef7490a8397c12aba8542b8)) - clara.bayley
+#### Continuous Integration
+- update download paths for cleo 1d kid initial condition files - ([ad51481](https://github.com/yoctoyotta1024/microphysics_testcases/commit/ad514812f29ccdba0cc43aaa264fbf2a1fcffbe7)) - clara.bayley
+#### Features
+- files for two tests of CLEO 1-D KiD test case - ([3e44a76](https://github.com/yoctoyotta1024/microphysics_testcases/commit/3e44a764b4fe4db80edbea67601fe87945b8e193)) - clara.bayley
+#### Miscellaneous Chores
+- update cleo version - ([87ffd65](https://github.com/yoctoyotta1024/microphysics_testcases/commit/87ffd65bd15e32d5545fcca24956d084a0c0a55a)) - clara.bayley
+- ignore .png files - ([fd9a064](https://github.com/yoctoyotta1024/microphysics_testcases/commit/fd9a0644f3b78f598f0f4fc13144e533a441fd28)) - clara.bayley
+- rename variable - ([024069a](https://github.com/yoctoyotta1024/microphysics_testcases/commit/024069a6c086ef79d0c29cae6ee6dd9f99bda600)) - clara.bayley
+- update cleo version - ([32b42d6](https://github.com/yoctoyotta1024/microphysics_testcases/commit/32b42d61c211918070b38741bacda0fa8d799d0c)) - clara.bayley
+- add todo note - ([4540197](https://github.com/yoctoyotta1024/microphysics_testcases/commit/454019730c835cc91894d0fd4c4e1474c264aee9)) - clara.bayley
+- update cleo version - ([8e9868b](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8e9868b76ae8d8353dbbe3238e0e0751dd18655b)) - clara.bayley
+#### Performance Improvements
+- comment out debugging messages - ([71d06ca](https://github.com/yoctoyotta1024/microphysics_testcases/commit/71d06ca0fda5a65275eeb7bd80d62b14bdf4faa8)) - clara.bayley
+#### Refactoring
+- use pycleo options from latest cleo version - ([9935ad2](https://github.com/yoctoyotta1024/microphysics_testcases/commit/9935ad2b5299deee45cf50d295b4d895c7ec3b33)) - clara.bayley
+- shorted SDM condensation timestep - ([c816785](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c816785dfe8fc6000a350038c3da8a55db5d3626)) - clara.bayley
+- wrapper gets velocities from thermo - ([40bc878](https://github.com/yoctoyotta1024/microphysics_testcases/commit/40bc878e3864be021151b14dc89b69f3b179fffa)) - clara.bayley
+- change wvel in kid_dynamics - ([6bf5172](https://github.com/yoctoyotta1024/microphysics_testcases/commit/6bf517250b3765c791239fce4a44fe25647cefbc)) - clara.bayley
+- move setting of w1 and t1 to kid_dynamics - ([a49600d](https://github.com/yoctoyotta1024/microphysics_testcases/commit/a49600d73ee524ec6e43c2ca8807a03462cef9fc)) - clara.bayley
+- thermodynamics contains wind fields - ([4502405](https://github.com/yoctoyotta1024/microphysics_testcases/commit/4502405666aa55d07bef923ccdf49ae9e4d08b6d)) - clara.bayley
+- turn off motion in condevap only cleo 1-D KiD - ([3d173b4](https://github.com/yoctoyotta1024/microphysics_testcases/commit/3d173b415e4f6eb4527d911efb97d8f94fbb6bdc)) - clara.bayley
+- flag to make hydrometeor advection optional in 1-D KiD - ([b154a06](https://github.com/yoctoyotta1024/microphysics_testcases/commit/b154a0610b10fc0bd0a982aa0079ec30f6aedf88)) - clara.bayley
+
+- - -
+
 ## [v0.11.2](https://github.com/yoctoyotta1024/microphysics_testcases/compare/d20788c2ccb62651f272cfd353b381486eb825ff..v0.11.2) - 2025-07-11
 #### Bug Fixes
 - format sources - ([8c5e8a5](https://github.com/yoctoyotta1024/microphysics_testcases/commit/8c5e8a5acfc477670effa40496f1dcfc6f2b94a7)) - Georgiana Mania
