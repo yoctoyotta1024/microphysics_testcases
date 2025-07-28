@@ -136,8 +136,6 @@ jobs:
       - name: Download CLEO Initial Condition Files for Generic Test
         run: |
           mkdir -p ./src/cleo_initial_conditions/generic/
-          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/config.yaml \
-            -o src/cleo_initial_conditions/generic/config.yaml
           curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/dimlessGBxboundaries.dat \
             -o src/cleo_initial_conditions/generic/dimlessGBxboundaries.dat
           curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/generic/dimlessSDsinit.dat \
@@ -147,8 +145,6 @@ jobs:
       - name: Download CLEO Initial Condition Files for 0-D Parcel Test
         run: |
           mkdir -p ./src/cleo_initial_conditions/0dparcel/
-          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/0dparcel/config.yaml \
-            -o src/cleo_initial_conditions/0dparcel/config.yaml
           curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/0dparcel/dimlessGBxboundaries.dat \
             -o src/cleo_initial_conditions/0dparcel/dimlessGBxboundaries.dat
           curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/0dparcel/dimlessSDsinit.dat \
@@ -160,14 +156,10 @@ jobs:
           mkdir -p ./src/cleo_initial_conditions/1dkid/
           mkdir -p ./src/cleo_initial_conditions/1dkid/condevap_only/
           mkdir -p ./src/cleo_initial_conditions/1dkid/fullscheme/
-          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/1dkid/condevap_only/config.yaml \
-            -o src/cleo_initial_conditions/1dkid/condevap_only/config.yaml
           curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/1dkid/condevap_only/dimlessGBxboundaries.dat \
             -o src/cleo_initial_conditions/1dkid/condevap_only/dimlessGBxboundaries.dat
           curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/1dkid/condevap_only/dimlessSDsinit.dat \
             -o src/cleo_initial_conditions/1dkid/condevap_only/dimlessSDsinit.dat
-          curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/1dkid/fullscheme/config.yaml \
-            -o src/cleo_initial_conditions/1dkid/fullscheme/config.yaml
           curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/1dkid/fullscheme/dimlessGBxboundaries.dat \
             -o src/cleo_initial_conditions/1dkid/fullscheme/dimlessGBxboundaries.dat
           curl https://swift.dkrz.de/v1/dkrz_8f1b1e92-f07c-41c5-a4ae-8089ec495d87/microphysics_testcases/src/cleo_initial_conditions/1dkid/fullscheme/dimlessSDsinit.dat \
