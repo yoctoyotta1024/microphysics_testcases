@@ -93,7 +93,8 @@ def test_icon_muphys_1dkid(aes_muphys_py_dir):
         nvec = 1
         ke = 128
         ivstart = 0
-        dz = np.array([25], dtype=np.float64)
+        dz = np.empty(ke, dtype=np.float64)
+        dz.fill(25)
         qnc = 500
         lrain = True
         microphys_scheme = MicrophysicsSchemeWrapper(nvec, ke, ivstart, dz, qnc, lrain)
