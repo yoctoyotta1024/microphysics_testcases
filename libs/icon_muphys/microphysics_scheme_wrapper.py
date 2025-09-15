@@ -24,7 +24,6 @@ export AES_MUPHYS_PY_DIR=/work/k20200/k202174/icon-mpim/ragnarok/build_py/src/ae
 import os
 import sys
 import numpy as np
-from copy import deepcopy
 
 from ..thermo.thermodynamics import Thermodynamics
 
@@ -129,6 +128,9 @@ class MicrophysicsSchemeWrapper:
         This method is a wrapper of the MicrophysicsScheme object's run function to call the
         microphysics computations in a way that's compatible with the test and scripts in this project.
 
+        _NOTE!_ flip(...) (and copy) operations performed because ICON 'z' dimension is upside-down
+        (0th index is top of atmosphere). Operation only works for 1-D or 0-D tests.
+
         Args:
             timestep (float):
               Time-step for integration of microphysics (s)
@@ -140,12 +142,13 @@ class MicrophysicsSchemeWrapper:
 
         """
 
-        cp_thermo = deepcopy(thermo)
         dt = np.float64(timestep)
-        t = cp_thermo.temp
-        rho = cp_thermo.rho
-        p = cp_thermo.press
-        qv, qc, qi, qr, qs, qg = cp_thermo.unpack_massmix_ratios()
+        t = np.copy(np.flip(thermo.temp))
+        rho = np.copy(np.flip(thermo.rho))
+        p = np.copy(np.flip(thermo.press))
+        qv, qc, qi, qr, qs, qg = [
+            np.copy(np.flip(x)) for x in thermo.unpack_massmix_ratios()
+        ]
 
         prr_gsp = np.zeros(self.nvec, dtype=np.float64)
         pri_gsp = np.zeros(self.nvec, dtype=np.float64)
@@ -205,7 +208,10 @@ class MicrophysicsSchemeWrapper:
             rho=rho,
         )
 
-        cp_thermo.temp[:] = t
-        cp_thermo.copy_massmix_ratios(qv, qc, qi, qr, qs, qg)
+        thermo.temp[:] = np.flip(t)
+        thermo.rho[:] = np.flip(rho)
+        thermo.press[:] = np.flip(p)
+        massmix_ratios = [np.flip(x) for x in [qv, qc, qi, qr, qs, qg]]
+        thermo.copy_massmix_ratios(*massmix_ratios)
 
-        return cp_thermo
+        return thermo
