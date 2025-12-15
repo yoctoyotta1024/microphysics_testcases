@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.12.2](https://github.com/yoctoyotta1024/microphysics_testcases/compare/1d8c7e16368f64ebaefb1f007232400a5ba36671..v0.12.2) - 2025-12-15
+#### Bug Fixes
+- perform flip on arrays before handing to ICON microphysics - ([c0c2387](https://github.com/yoctoyotta1024/microphysics_testcases/commit/c0c238792f676e11e9a64a23374df2088d38d0c8)) - clara.bayley
+- testcase 1dkid for icon muphys - ([0e5a137](https://github.com/yoctoyotta1024/microphysics_testcases/commit/0e5a1379518d567a7195cb3aebe435c344af46a8)) - Georgiana Mania
+#### Continuous Integration
+- don't download config from swift - ([1d8c7e1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/1d8c7e16368f64ebaefb1f007232400a5ba36671)) - clara.bayley
+#### Refactoring
+- satadj wrapper setup analagous to muphys - ([3a61ab1](https://github.com/yoctoyotta1024/microphysics_testcases/commit/3a61ab122a220f70be72e9ae3e5155223a1ab253)) - clara.bayley
+
+- - -
+
 ## [v0.12.1](https://github.com/yoctoyotta1024/microphysics_testcases/compare/28ba63e584ea929d6add74f7796f8250747c0e97..v0.12.1) - 2025-07-14
 #### Bug Fixes
 - directory renaming - ([28ba63e](https://github.com/yoctoyotta1024/microphysics_testcases/commit/28ba63e584ea929d6add74f7796f8250747c0e97)) - clara.bayley
