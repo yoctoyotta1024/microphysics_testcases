@@ -53,7 +53,7 @@ def dry_potential_temperature(temp: np.ndarray, press: np.ndarray):
 def moist_equiv_potential_temperature(
     temp: np.ndarray, press: np.ndarray, qvap: np.ndarray
 ):
-    """
+    r"""
     Calculate the moist potential temperature.
 
     .. math::
@@ -87,7 +87,7 @@ def moist_equiv_potential_temperature(
 def moist_static_energy(
     temp: np.ndarray, qvap: np.ndarray, height: Optional[np.ndarray] = None
 ):
-    """
+    r"""
     Calculate the moist static energy [kilojoule / kilogram]
 
     .. math::
@@ -118,7 +118,7 @@ def moist_static_energy(
 
 
 def supersaturation(temp: np.ndarray, press: np.ndarray, qvap: np.ndarray):
-    """
+    r"""
     Calculate supersaturation based on the method described in PyMPDATA-examples
 
     This function uses the calculations in the Shipway and Hill (2012) example from
