@@ -26,8 +26,10 @@ open build/html/index.html
 
 Thank you and good luck!
 
-## Contributors
+## Main Developers
 - Clara Bayley
+- Georgiana Mania (for ICON 1-moment scheme wrapper and bindings)
+- Joerg Behrens (for ICON 1-moment scheme bindings)
 
 ## Acknowledgements
 - Bjorn Stevens
